@@ -14,8 +14,6 @@ Project intended to provide realtime information regarding Firespring Interactiv
 
 Clone the repo.
 
-Copy `.env.example` and rename your copied file to `.env`
-
 
 ### Step 2
 
@@ -31,21 +29,35 @@ Add the following entry to your `/etc/hosts` file:
 
 Using the terminal, access the project directory: `/ia-clients-laravel`
 
+
 Run the following command:
 
-`vagrant up`
+    vagrant up
+
 
 Wait for vagrant to to finish booting up. After its done, run:
 
-`vagrant ssh`
+    vagrant ssh
 
-Change directory to `/var/www/` and run:
 
- `composer install`
+Change directory to `/var/www/`
+
+    cd /var/www/
+
+
+Copy `.env.example` and rename your copied file to `.env`
+
+    cp .env.example .env
+
+
+After copying the file, run:
+
+    composer install
+ 
 
 Wait until all dependencies are installed, then run:
 
- `php artisan key:generate`
+    php artisan key:generate
 
 
 
