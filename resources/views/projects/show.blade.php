@@ -5,5 +5,5 @@
 
     <p>{{ $project->description }}</p>
 
-    <a href="/projects" class="button is-link">Back to Projects</a>
+    <a href="/projects">Back to Projects</a>
 @endsection
