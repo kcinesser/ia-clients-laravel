@@ -7561,6 +7561,28 @@ video {
   z-index: auto;
 }
 
+.button {
+  background-color: #4299e1;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  -webkit-box-shadow: 0 2px 7px 0 #b0eaff;
+          box-shadow: 0 2px 7px 0 #b0eaff;
+}
+
+.card {
+  background-color: #fff;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.08);
+          box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.08);
+}
+
 @media (min-width: 640px){
   .sm\:appearance-none{
     -webkit-appearance: none;
