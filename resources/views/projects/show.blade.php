@@ -4,7 +4,7 @@
     <header class="flex items-center mb-3 py-4">
         <div class="flex justify-between w-full items-center">
             <p class="text-gray-500 text-sm font-normal">
-            	<a href="{{ $client->path() }}" class="no-underline">{{ $client->name }}</a> / <a href="{{ $project->path() }}" class="no-underline">Projects</a> / {{ $project->title }}
+            	<a href="{{ $client->path() }}" class="no-underline">{{ $client->name }}</a> / Project / {{ $project->title }}
             </p>
             <a href="{{ $project->path() . '/edit' }}" class="button">Edit Project</a>
         </div>

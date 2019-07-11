@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::group(['middleware' => 'auth'], function(){
     // Route::get('/clients', 'ClientsController@index');
     // Route::get('/clients/create', 'ClientsController@create');
@@ -24,6 +20,7 @@ Route::group(['middleware' => 'auth'], function(){
     // Route::patch('/clients/{client}', 'ClientsController@update');
 
     Route::resource('clients', 'ClientsController');
+    Route::resource('registrars', 'RegistrarsController');
 
     Route::get('/projects', 'ProjectsController@index');
     Route::get('/clients/{client}/projects/create', 'ProjectsController@create');
@@ -43,6 +40,12 @@ Route::group(['middleware' => 'auth'], function(){
 
 
     Route::get('/home', 'HomeController@index')->name('home');
+
+
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
 });
 
 Auth::routes();
