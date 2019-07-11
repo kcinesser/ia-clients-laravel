@@ -9,11 +9,11 @@ class Project extends Model
     protected $guarded = [];
 
     public function path() {
-        return "/projects/{$this->id}";
+        return "/clients/{$this->client->id}/projects/{$this->id}";
     }
 
-    public function owner() {
-        return $this->belongsTo(User::class);
+    public function client() {
+        return $this->belongsTo(Client::class);
     }
 
     public function tasks() {

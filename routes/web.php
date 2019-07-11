@@ -16,12 +16,23 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => 'auth'], function(){
-    Route::get('/projects', 'ProjectsController@index');
-    Route::get('/projects/create', 'ProjectsController@create');
-    Route::get('/projects/{project}', 'ProjectsController@show');
-    Route::post('/projects', 'ProjectsController@store');
+    Route::get('/clients', 'ClientsController@index');
+    Route::get('/clients/create', 'ClientsController@create');
+    Route::post('/clients', 'ClientsController@store');
+    Route::get('/clients/{client}', 'ClientsController@show');
+    Route::get('/clients/{client}/edit', 'ClientsController@edit');
+    Route::patch('/clients/{client}', 'ClientsController@update');
 
-    Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
+
+    Route::get('/projects', 'ProjectsController@index');
+    Route::get('/clients/{client}/projects/create', 'ProjectsController@create');
+    Route::get('/clients/{client}/projects/{project}', 'ProjectsController@show');
+    Route::get('/clients/{client}/projects/{project}/edit', 'ProjectsController@edit');
+    Route::post('/clients/{client}/projects', 'ProjectsController@store');
+    Route::patch('/clients/{client}/projects/{project}', 'ProjectsController@update');
+
+    Route::post('/clients/{client}/projects/{project}/tasks', 'ProjectTasksController@store');
+    Route::patch('/clients/{client}/projects/{project}/tasks/{task}', 'ProjectTasksController@update');
 
     Route::get('/home', 'HomeController@index')->name('home');
 });

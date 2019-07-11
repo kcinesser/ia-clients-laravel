@@ -3,18 +3,18 @@
 @section('content')
     <header class="flex items-center mb-3 py-4">
         <div class="flex justify-between w-full items-center">
-            <h2 class="text-gray-500 text-sm font-normal">Projects</h2>
-            <a href="/projects/create" class="button">Create New Project</a>
+            <h2 class="text-gray-500 text-sm font-normal">Interactive Clients</h2>
+            <a href="/clients/create" class="button">Create New Client</a>
         </div>
     </header>
 
     <main class="lg:flex lg:flex-wrap -mx-3">
-        @forelse ($projects as $project)
+        @forelse ($clients as $client)
             <div class="lg:w-1/3 px-3 pb-6">
-                @include ('projects.card')
+                @include ('clients.card')
             </div>
         @empty
-            <div>No projects yet.</div>
+            <div>No clients yet.</div>
         @endforelse
     </main>
 

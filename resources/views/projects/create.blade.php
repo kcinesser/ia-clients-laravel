@@ -1,31 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-    <form method="POST" action="/projects">
-        {{ csrf_field() }}
-        <h1>Create a Project</h1>
 
-        <div>
-            <label for="title">Title</label>
+<form method="POST" action="{{ $client->path() . '/projects' }}" class="lg:w-1/2 lg:mx-auto bg-white p-6 md:py-12 md:px-16 rounded shadow">
+    {{ csrf_field() }}
+    <h1 class="text-2xl font-normal mb-10 text-center">Create A Project</h1>
 
-            <div class="control">
-                <input type="text" class="input" name="title">
-            </div>
-        </div>
+    @include('projects.form', [
+        'project' => new App\Project,
+        'buttonText' => 'Create Project',
+        'cancelURL' => '/projects'
+    ])
 
-        <div>
-            <label for="description">Description</label>
+</form>
 
-            <div>
-                <input type="text" name="description">
-            </div>
-        </div>
-
-        <div>
-            <div>
-                <button type="submit">Create Project</button>
-                <a href="/projects">Cancel</a>
-            </div>
-        </div>
-    </form>
 @endsection
