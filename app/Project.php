@@ -20,12 +20,20 @@ class Project extends Model
     	return $this->hasMany(Task::class);
     }
 
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
+
     public function domains() {
         return $this->hasMany(Domain::class);
     }
 
     public function addTask($body) {
     	return $this->tasks()->create(compact('body'));
+    }
+
+    public function addComment($body) {
+        return $this->comments()->create(compact('body'));
     }
 
     public function addDomain($attributes) {

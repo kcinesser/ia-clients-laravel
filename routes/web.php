@@ -35,6 +35,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/clients/{client}/projects/{project}/tasks', 'ProjectTasksController@store');
     Route::patch('/clients/{client}/projects/{project}/tasks/{task}', 'ProjectTasksController@update');
 
+    Route::post('/clients/{client}/projects/{project}/comments', 'ProjectCommentsController@store');
+    Route::patch('/clients/{client}/projects/{project}/comments/{comment}', 'ProjectCommentsController@update');
+
     Route::get('/clients/{client}/projects/{project}/domains/create', 'DomainsController@create');
     Route::post('/clients/{client}/projects/{project}/domains', 'DomainsController@store');
 

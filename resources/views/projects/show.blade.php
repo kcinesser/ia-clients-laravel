@@ -4,7 +4,7 @@
     <header class="flex items-center mb-3 py-4">
         <div class="flex justify-between w-full items-center">
             <p class="text-gray-500 text-sm font-normal">
-            	<a href="{{ $client->path() }}" class="no-underline">{{ $client->name }} Projects</a> / {{ $project->title }}
+            	<a href="{{ $client->path() }}" class="no-underline">{{ $client->name }}</a> / <a href="{{ $project->path() }}" class="no-underline">Projects</a> / {{ $project->title }}
             </p>
             <a href="{{ $project->path() . '/edit' }}" class="button">Edit Project</a>
         </div>
@@ -63,7 +63,7 @@
                         </form>
                     </div>
     			</div>
-    			<div>
+    			<div class="mb-8">
 	            	<h2 class="text-lg text-gray-500 font-normal mb-3">Notes</h2>
 
                     <form method="POST" action="{{ $project->path() }}">
@@ -72,8 +72,34 @@
                         <textarea name="notes" class="card w-full mb-3 h-300">{{ $project->notes }}</textarea>
                         <button type="submit" class="button">Save</button>
                     </form>
-	            	{{-- notes --}}
 	            </div>
+
+                <div>
+                    <h2 class="text-lg text-gray-500 font-normal mb-3">Comments</h2>
+
+                    @foreach ($project->comments->sortByDesc('created_at') as $comment)
+                        <div class="card mb-3">
+                            <form method="POST" action="{{ $comment->path() }}">
+                                {{ method_field('PATCH') }}
+                                {{ csrf_field() }}
+
+                                <div class="flex justify-between">
+                                    <input class="w-full" name="body" value="{{ $comment->body }}">
+                                    <div>
+                                        {{ $comment->created_at }}
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    @endforeach
+
+                    <div class="card mb-3">
+                        <form action="{{ $project->path() . '/comments' }}" method="POST">
+                            {{ csrf_field() }}
+                            <input name="body" class="w-full" placeholder="Add a note.">
+                        </form>
+                    </div>
+                </div>
 			</div>
     	</div>
     </main>
