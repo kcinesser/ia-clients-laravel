@@ -26,6 +26,8 @@ class ClientsController extends Controller
             'name' => 'required', 
         ]);
 
+        $attributes = request()->all();
+
         $client = Client::create($attributes);
 
         return redirect($client->path());
@@ -39,6 +41,7 @@ class ClientsController extends Controller
         $attributes = request()->validate([
             'name' => 'sometimes', 
         ]);
+        $attributes = request()->all();
 
         $client->update($attributes);
 

@@ -3,7 +3,11 @@ module.exports = {
     boxShadow:{
       default: '0 0 5px 0 rgba(0, 0, 0, 0.08)'
     },
-    extend: {}
+    extend: {
+    	spacing : {
+    		'300': '300px',
+    	}
+    }
   },
   variants: {},
   plugins: []

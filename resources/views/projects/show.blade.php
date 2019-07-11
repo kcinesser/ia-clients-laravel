@@ -16,6 +16,29 @@
  				@include ('projects.card')
     		</div>
     		<div class="lg:w-3/4 px-3">
+                <div class="mb-8">            
+                    <h2 class="text-lg text-gray-500 font-normal mb-3">Domains</h2>
+
+                    <div class="mb-6">
+                        @forelse ($project->domains as $domain)
+                            <div class="card mb-6">
+                                <div class="flex justify-between">
+                                    <div>
+                                        {{ $domain->name }}
+                                    </div>
+                                    <div>
+                                        Exp: {{ $domain->exp_date }}
+                                    </div>
+                            </div>
+                        @empty
+                            <div class="card mb-3">
+                                <p>No domains yet.</p>
+                            </div>
+                        @endforelse
+                    </div>
+                    <a href="{{ $project->path() }}/domains/create" class="button">Add Domain</a>
+
+                </div>
     			<div class="mb-8">            
 	    			<h2 class="text-lg text-gray-500 font-normal mb-3">Tasks</h2>
 
@@ -46,7 +69,7 @@
                     <form method="POST" action="{{ $project->path() }}">
                         {{ csrf_field() }}
                         {{ method_field('PATCH') }}
-                        <textarea name="notes" class="card w-full mb-3">{{ $project->notes }}</textarea>
+                        <textarea name="notes" class="card w-full mb-3 h-300">{{ $project->notes }}</textarea>
                         <button type="submit" class="button">Save</button>
                     </form>
 	            	{{-- notes --}}

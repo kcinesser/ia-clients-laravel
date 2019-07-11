@@ -80,21 +80,6 @@ class ManageProjectsTest extends TestCase
             ->assertSee($project->description);
     }
 
-    /** @test */
-    public function a_user_can_only_view_their_project() {
-        $this->signIn();
-        $project = factory('App\Project')->create();
-
-        $this->get($project->path())->assertStatus(403);
-    }
-
-    /** @test */
-    public function a_user_can_only_update_their_project() {
-        $this->signIn();
-        $project = factory('App\Project')->create();
-
-        $this->patch($project->path())->assertStatus(403);
-    }
 
     /** @test */
     public function a_project_requires_a_title() {
