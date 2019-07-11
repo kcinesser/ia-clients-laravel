@@ -24,7 +24,7 @@
                             <div class="card mb-6">
                                 <div class="flex justify-between">
                                     <div>
-                                        {{ $domain->name }}
+                                        <a href="{{ $domain->path() }}">{{ $domain->name }}</a>
                                     </div>
                                     <div>
                                         Exp: {{ $domain->exp_date }}

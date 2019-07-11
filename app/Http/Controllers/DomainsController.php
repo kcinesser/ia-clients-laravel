@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Domain;
 use App\Client;
 use App\Project;
+use App\Registrar;
 use Illuminate\Http\Request;
 
 class DomainsController extends Controller
@@ -26,7 +27,9 @@ class DomainsController extends Controller
      */
     public function create(Client $client, Project $project)
     {
-        return view('domains.create', compact('project'));
+        $registrars = Registrar::all();
+
+        return view('domains.create', compact('project'), compact('registrars'));
     }
 
     /**
@@ -50,9 +53,9 @@ class DomainsController extends Controller
      * @param  \App\Domain  $domain
      * @return \Illuminate\Http\Response
      */
-    public function show(Domain $domain)
+    public function show(Client $client, Project $project, Domain $domain)
     {
-        //
+        return view('domains.show', compact('domain'));
     }
 
     /**

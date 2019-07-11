@@ -14,6 +14,16 @@
     </div>
 </div>
 
+<div class="field mb-6">
+    <label for="registrar_id" class="label text-sm mb-2 block">Registrar</label>
+
+    <select name="registrar_id" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+        @foreach ($registrars as $registrar)
+            <option value="{{ $registrar->id }}">{{ $registrar->name }}</option>
+        @endforeach
+    </select>
+</div>
+
 <div class="field">
     <div class="control">
         <button type="submit" class="button is-link mr-2">{{ $buttonText }}</button>

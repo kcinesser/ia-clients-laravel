@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::patch('/clients/{client}/projects/{project}/comments/{comment}', 'ProjectCommentsController@update');
 
     Route::get('/clients/{client}/projects/{project}/domains/create', 'DomainsController@create');
+    Route::get('/clients/{client}/projects/{project}/domains/{domain}', 'DomainsController@show');
     Route::post('/clients/{client}/projects/{project}/domains', 'DomainsController@store');
 
 
