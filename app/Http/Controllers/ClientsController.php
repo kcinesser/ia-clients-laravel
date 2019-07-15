@@ -22,6 +22,7 @@ class ClientsController extends Controller
     }
 
     public function store() {
+
 	  	$attributes = request()->validate([
             'name' => 'required', 
         ]);

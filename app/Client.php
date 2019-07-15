@@ -22,4 +22,12 @@ class Client extends Model
     public function projects() {
     	return $this->hasMany(Project::class);
     }
+
+    public function developer() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function accountManager() {
+        return $this->belongsTo(User::class);
+    }
 }

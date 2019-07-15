@@ -7,6 +7,30 @@
 </div>
 
 <div class="field mb-6">
+    <label for="account_manager_id" class="label text-sm mb-2 block">Account Manager</label>
+
+    <div class="control">
+        <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="account_manager_id" required>
+            @foreach($account_managers as $account_manager)
+                <option value="{{ $account_manager->id }}" >{{ $account_manager->name }}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
+
+<div class="field mb-6">
+    <label for="developer_id" class="label text-sm mb-2 block">Primary Developer</label>
+
+    <div class="control">
+        <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="developer_id" required>
+            @foreach($developers as $developer)
+                <option value="{{ $developer->id }}" >{{ $developer->name }}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
+
+<div class="field mb-6">
     <label for="primary_email" class="label text-sm mb-2 block">Primary Contact Email</label>
 
     <div class="control">

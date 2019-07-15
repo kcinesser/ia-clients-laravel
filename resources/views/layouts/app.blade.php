@@ -52,6 +52,7 @@
                                             </form>
                                         </li>
                                     </ul>
+                                    <a href="/settings">Settings</a>
                                 </li>
                             @endguest
                         </ul>

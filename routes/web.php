@@ -41,6 +41,11 @@ Route::group(['middleware' => 'auth'], function(){
 
 
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/settings', 'SettingsController@index');
+
+    Route::get('/user/create', 'UserController@create');
+    Route::post('/user', 'UserController@store');
+
 
 
     Route::get('/', function () {
