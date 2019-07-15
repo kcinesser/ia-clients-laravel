@@ -6,6 +6,7 @@ use App\Domain;
 use App\Client;
 use App\Project;
 use App\Registrar;
+use App\DomainAccount;
 use Illuminate\Http\Request;
 
 class DomainsController extends Controller
@@ -38,11 +39,24 @@ class DomainsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Client $client, Project $project)
+    public function store(Client $client, Project $project, DomainAccount $account)
     {
         $attributes = request()->all();
 
-        $project->addDomain($attributes);
+        $account = DomainAccount::create([
+            'url' => $attributes['url'],
+            'description' => $attributes['url_description']
+        ]);
+
+        $domain = array(
+            'name' => $attributes['name'],
+            'exp_date' => $attributes['exp_date'],
+            'project_id' => $project->id,
+            'registrar_id' => $attributes['registrar_id'],
+            'domain_account_id' => $account->id
+        );
+
+        $project->addDomain($domain);
 
         return redirect($project->path());
     }

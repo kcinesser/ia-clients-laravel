@@ -7,6 +7,7 @@
     <h1 class="text-2xl font-normal mb-10 text-center">Create A Domain</h1>
     @include('domains.form', [
         'domain' => new App\Domain,
+        'account' => new App\DomainAccount,
         'buttonText' => 'Create Domain',
         'cancelURL' => '/projects'
     ])

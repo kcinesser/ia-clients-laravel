@@ -1,5 +1,5 @@
 <div class="field mb-6">
-    <label for="title" class="label text-sm mb-2 block">Name</label>
+    <label for="title" class="label text-sm mb-2 block">Domain Name</label>
 
     <div class="control">
         <input type="text" class="input bg-transparent border border-grey-500 rounded p-2 text-xs w-full" name="name" value="{{ $domain->name }}" required>
@@ -7,10 +7,26 @@
 </div>
 
 <div class="field mb-6">
+    <label for="url" class="label text-sm mb-2 block">URL</label>
+
+    <div class="control">
+        <input type="text" name="url" class="bg-transparent border border-grey-500 rounded p-2 text-xs w-full" required>{{ $account->url }}</textarea>
+    </div>
+</div>
+
+<div class="field mb-6">
+    <label for="url_description" class="label text-sm mb-2 block">URL Description</label>
+
+    <div class="control">
+        <input type="text" name="url_description" class="bg-transparent border border-grey-500 rounded p-2 text-xs w-full" required>{{ $account->description }}</textarea>
+    </div>
+</div>
+
+<div class="field mb-6">
     <label for="description" class="label text-sm mb-2 block">Expiration Date</label>
 
     <div class="control">
-        <input type="text" name="exp_date" rows="10" class="bg-transparent border border-grey-500 rounded p-2 text-xs w-full" required>{{ $domain->exp_date }}</textarea>
+        <input type="text" name="exp_date"S class="bg-transparent border border-grey-500 rounded p-2 text-xs w-full" required>{{ $domain->exp_date }}</textarea>
     </div>
 </div>
 

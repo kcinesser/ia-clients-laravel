@@ -12,13 +12,15 @@ class Domain extends Model
     	return $this->belongsTo(Project::class);
     }
 
-    public function path() {
-    	return "/clients/{$this->project->client->id}/projects/{$this->project->id}/domains/{$this->id}";
+    public function registrar() {
+        return $this->belongsTo(Registrar::class);
     }
 
-    public function getRegistrar() {
-    	$registrar = Registrar::where('id', $this->registrar_id)->first();
+    public function domain_account() {
+        return $this->belongsTo(DomainAccount::class);
+    }
 
-    	return ($registrar);
+    public function path() {
+    	return "/clients/{$this->project->client->id}/projects/{$this->project->id}/domains/{$this->id}";
     }
 }

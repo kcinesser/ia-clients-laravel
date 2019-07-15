@@ -27,6 +27,9 @@
                                         <a href="{{ $domain->path() }}">{{ $domain->name }}</a>
                                     </div>
                                     <div>
+                                        <a href="{{ $domain->domain_account->url }}">{{ $domain->domain_account->url }}</a>
+                                    </div>
+                                    <div>
                                         Exp: {{ $domain->exp_date }}
                                     </div>
                             </div>
