@@ -28,6 +28,10 @@ class Project extends Model
         return $this->hasMany(Domain::class);
     }
 
+    public function updates() {
+        return $this->hasMany(Update::class);
+    }
+
     public function addTask($body) {
     	return $this->tasks()->create(compact('body'));
     }

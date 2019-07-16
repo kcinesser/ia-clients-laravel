@@ -12,22 +12,12 @@
 */
 
 Route::group(['middleware' => 'auth'], function(){
-    // Route::get('/clients', 'ClientsController@index');
-    // Route::get('/clients/create', 'ClientsController@create');
-    // Route::post('/clients', 'ClientsController@store');
-    // Route::get('/clients/{client}', 'ClientsController@show');
-    // Route::get('/clients/{client}/edit', 'ClientsController@edit');
-    // Route::patch('/clients/{client}', 'ClientsController@update');
-
     Route::resource('clients', 'ClientsController');
     Route::resource('registrars', 'RegistrarsController');
+    Route::resource('clients.projects', 'ProjectsController');
+    Route::resource('clients.projects.updates', 'UpdatesController');
 
     Route::get('/projects', 'ProjectsController@index');
-    Route::get('/clients/{client}/projects/create', 'ProjectsController@create');
-    Route::get('/clients/{client}/projects/{project}', 'ProjectsController@show');
-    Route::get('/clients/{client}/projects/{project}/edit', 'ProjectsController@edit');
-    Route::post('/clients/{client}/projects', 'ProjectsController@store');
-    Route::patch('/clients/{client}/projects/{project}', 'ProjectsController@update');
     
     Route::post('/clients/{client}/projects/{project}/tasks', 'ProjectTasksController@store');
     Route::patch('/clients/{client}/projects/{project}/tasks/{task}', 'ProjectTasksController@update');
@@ -45,8 +35,6 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/user/create', 'UserController@create');
     Route::post('/user', 'UserController@store');
-
-
 
     Route::get('/', function () {
         return view('welcome');
