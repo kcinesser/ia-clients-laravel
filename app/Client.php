@@ -23,6 +23,10 @@ class Client extends Model
     	return $this->hasMany(Project::class);
     }
 
+    public function comments() {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
     public function developer() {
         return $this->belongsTo(User::class);
     }

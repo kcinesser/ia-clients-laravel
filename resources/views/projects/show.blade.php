@@ -80,28 +80,33 @@
                 <div>
                     <h2 class="text-lg text-gray-500 font-normal mb-3">Comments</h2>
 
+
+                    <div class="card mb-3">
+                        <form action="/comment/project/{{ $project->id }}" method="POST">
+                            {{ csrf_field() }}
+                            <input name="body" class="w-full" placeholder="Add a comment.">
+                        </form>
+                    </div>
+
                     @foreach ($project->comments->sortByDesc('created_at') as $comment)
                         <div class="card mb-3">
-                            <form method="POST" action="{{ $comment->path() }}">
+                            <form method="POST" action="/comment/{{ $comment->id }}">
                                 {{ method_field('PATCH') }}
                                 {{ csrf_field() }}
 
                                 <div class="flex justify-between">
-                                    <input class="w-full" name="body" value="{{ $comment->body }}">
+                                    <input class="w-3/4" name="body" value="{{ $comment->body }}">
                                     <div>
-                                        {{ $comment->created_at }}
+                                        <p>{{ $comment->user->name }}</p>
+                                    </div>
+                                    <div>
+                                        {{ \Carbon\Carbon::parse($comment->created_at)->format('n/j/Y')}}
                                     </div>
                                 </div>
                             </form>
                         </div>
                     @endforeach
 
-                    <div class="card mb-3">
-                        <form action="{{ $project->path() . '/comments' }}" method="POST">
-                            {{ csrf_field() }}
-                            <input name="body" class="w-full" placeholder="Add a note.">
-                        </form>
-                    </div>
                 </div>
 			</div>
     	</div>

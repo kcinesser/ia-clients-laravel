@@ -93,4 +93,8 @@ class User extends Authenticatable
     public function clients() {
         $this->hasMany(Client::class);
     }
+
+    public function comments() {
+        $this->hasMany(Comment::class);
+    }
 }

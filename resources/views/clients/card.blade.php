@@ -17,6 +17,6 @@
 	</div>
 	<div class="mb-3">
     	<p class="text-gray-800 text-sm font-normal">Client Since</p>
-    	<p class="text-gray-500 text-sm font-normal">{{ $client->created_at }}</p>
+    	<p class="text-gray-500 text-sm font-normal"> {{ \Carbon\Carbon::parse($client->created_at)->format('n/j/Y')}}</p>
 	</div>
 </div>

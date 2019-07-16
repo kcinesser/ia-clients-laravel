@@ -29,7 +29,40 @@
                         </div>
                     @endforelse
                 </div>
-                <a href="{{ $client->path() . '/projects/create' }}" class="button">New Project</a>
+
+                <div class="mb-8">
+                    <a href="{{ $client->path() . '/projects/create' }}" class="button mb-3">New Project</a>
+                </div>
+
+                <div>
+                    <h2 class="text-lg text-gray-500 font-normal mb-3">Comments</h2>
+
+                    <div class="card mb-3">
+                        <form action="/comment/client/{{ $client->id }}" method="POST">
+                            {{ csrf_field() }}
+                            <input name="body" class="w-full" placeholder="Add a comment.">
+                        </form>
+                    </div>
+
+                    @foreach ($client->comments->sortByDesc('created_at') as $comment)
+                        <div class="card mb-3">
+                            <form method="POST" action="/comment/{{ $comment->id }}">
+                                {{ method_field('PATCH') }}
+                                {{ csrf_field() }}
+                                <div class="flex justify-between">
+                                    <input class="w-3/4" name="body" value="{{ $comment->body }}">
+                                    <div>
+                                        <p>{{ $comment->user->name }}</p>
+                                    </div>
+                                    <div>
+                                        {{ \Carbon\Carbon::parse($comment->created_at)->format('n/j/Y')}}
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    @endforeach
+
+                </div>
             </div>
     	</div>
     </main>
