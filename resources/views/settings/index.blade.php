@@ -51,6 +51,21 @@
 
 				<a href="{{ route('registrars.create') }}" class="button is-link mb-4">Create New Registrar</a>
 			</div>
+
+			<div class="p-4 w-full">
+				@foreach($services as $service)
+					<div class="flex justify-between mb-4">
+						<div>
+							{{ $service->name }}
+						</div>
+						<div>
+							{{ $service->description }}
+						</div>
+					</div>
+				@endforeach
+
+				<a href="{{ route('services.create') }}" class="button is-link mb-4">Create New Service</a>
+			</div>
 		</div>
 	</main>
 

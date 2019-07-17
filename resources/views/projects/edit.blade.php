@@ -9,7 +9,8 @@
 
     @include('projects.form', [
         'buttonText' => 'Update Project',
-        'cancelURL' => $project->path()
+        'cancelURL' => $project->path(),
+        'services' => App\Service::all()
     ])
 
 </form>

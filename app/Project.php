@@ -32,6 +32,10 @@ class Project extends Model
         return $this->hasMany(Update::class);
     }
 
+    public function services() {
+        return $this->belongsToMany(Service::class);
+    }
+
     public function addTask($body) {
     	return $this->tasks()->create(compact('body'));
     }

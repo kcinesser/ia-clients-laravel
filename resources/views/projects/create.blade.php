@@ -9,7 +9,8 @@
     @include('projects.form', [
         'project' => new App\Project,
         'buttonText' => 'Create Project',
-        'cancelURL' => '/projects'
+        'cancelURL' => '/projects',
+        'services' => App\Service::all()
     ])
 
 </form>

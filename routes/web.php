@@ -16,6 +16,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('registrars', 'RegistrarsController');
     Route::resource('clients.projects', 'ProjectsController');
     Route::resource('clients.projects.updates', 'UpdatesController');
+    Route::resource('services', 'ServicesController');
 
     Route::get('/projects', 'ProjectsController@index');
     
