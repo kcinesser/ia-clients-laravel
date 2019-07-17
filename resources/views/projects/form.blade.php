@@ -26,6 +26,23 @@
     </div>
 </div>
 
+<div class="field mb-6">
+    <label for="technology" class="label text-sm mb-2 block">Technology</label>
+
+    <div class="control">
+        <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="technology" required>
+                <option value="WordPress" >WordPress</option>
+                <option value="WordPress - Laravel" >WordPress - Hexagram</option>
+                <option value="Rails" >Rails</option>
+                <option value="Laravel" >Laravel</option>
+                <option value="Drupal" >Drupal</option>
+                <option value="PHP" >PHP</option>
+                <option value="HTML" >HTML</option>
+                <option value="MindFire" >MindFire</option>
+        </select>
+    </div>
+</div>
+
 <div class="field">
     <div class="control">
         <button type="submit" class="button is-link mr-2">{{ $buttonText }}</button>

@@ -17,7 +17,8 @@ class CreateProjectsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('client_id');
             $table->string('title');
-            $table->text('description');
+            $table->text('description')->nullable();
+            $table->enum('technology', ['WordPress', 'WordPress - Hexagram', 'Rails', 'Laravel', 'PHP', 'Drupal', 'MindFire', 'HTML']);
             $table->text('notes')->nullable();
             $table->timestamps();
 

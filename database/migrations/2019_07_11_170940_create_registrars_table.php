@@ -16,7 +16,7 @@ class CreateRegistrarsTable extends Migration
         Schema::create('registrars', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->string('url');
             $table->timestamps();
         });

@@ -15,7 +15,8 @@ class Client extends Model
     public function addProject($attributes) {
     	$project = $this->projects()->create([
             'title' => $attributes['title'],
-            'description' => $attributes['description']
+            'description' => $attributes['description'],
+            'technology' => $attributes['technology']
         ]);
 
         $project->services()->attach($attributes['service_id']);
