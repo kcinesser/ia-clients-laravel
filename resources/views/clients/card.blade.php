@@ -6,10 +6,6 @@
         <p class="text-gray-800 text-sm font-normal">Account Manager</p>
         <p class="text-gray-500 text-sm font-normal">{{ $client->accountManager->name }}</p>
     </div>
-        <div class="mb-3">
-        <p class="text-gray-800 text-sm font-normal">Primary Developer</p>
-        <p class="text-gray-500 text-sm font-normal">{{ $client->developer->name }}</p>
-    </div>
     <div class="mb-3">
     	<p class="text-gray-800 text-sm font-normal">Primary Contact Information</p>
     	<p class="text-gray-500 text-sm font-normal">{{ $client->contact_email }}</p>

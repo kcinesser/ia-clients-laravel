@@ -6,8 +6,18 @@
 		<p class="text-gray-800 text-sm font-normal">Description</p>
     	<p class="text-gray-500 text-sm font-normal">{{ $project->description }}</p>
     </div>
+    <div class="mb-3">
+        <p class="text-gray-800 text-sm font-normal">Primary Developer</p>
+        <p class="text-gray-500 text-sm font-normal">{{ $project->developer->name }}</p>
+    </div>
 	<div class="mb-3">
 		<p class="text-gray-800 text-sm font-normal">Technology</p>
     	<p class="text-gray-500 text-sm font-normal">{{ \App\Enums\Technologies::getDescription($project->technology) }}</p>
+    </div>
+    <div class="mb-3">
+        <p class="text-gray-800 text-sm font-normal">Services</p>
+        @foreach ($project->services as $service)
+            <p class="text-gray-500 text-sm font-normal">{{ $service->name }}</p>
+        @endforeach
     </div>
 </div>

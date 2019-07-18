@@ -9,7 +9,8 @@
 
     @include('clients.form', [
         'buttonText' => 'Update Client',
-        'cancelURL' => $client->path()
+        'cancelURL' => $client->path(),
+        'account_managers' => App\User::all()->where('role', 1)
     ])
 
 </form>

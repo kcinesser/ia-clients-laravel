@@ -10,8 +10,7 @@
         'client' => new App\Client,
         'buttonText' => 'Create Client',
         'cancelURL' => '/clients',
-        'account_managers' => App\User::all()->where('roles','Account Manager'),
-        'developers' => App\User::all()->where('roles', 'Developer')
+        'account_managers' => App\User::all()->where('role', 1)
     ])
 
 </form>

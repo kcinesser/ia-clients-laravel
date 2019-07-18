@@ -17,12 +17,14 @@ class CreateProjectsTable extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('client_id');
+            $table->unsignedInteger('developer_id')->nullable();
             $table->string('title');
             $table->text('description')->nullable();
             $table->tinyInteger('technology')->unsigned()->default(Technologies::WordPress)->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
 
+            $table->foreign('developer_id')->references('id')->on('users');
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
         });
     }

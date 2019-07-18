@@ -44,6 +44,9 @@ class ProjectsController extends Controller
             'description' => 'sometimes|required'
         ]);
         $attributes = request()->all();
+
+        dd($attributes);
+
         $project->update($attributes);
 
         return redirect($project->path());

@@ -11,7 +11,8 @@
         'buttonText' => 'Update Project',
         'cancelURL' => $project->path(),
         'services' => App\Service::all(),
-        'technologies' => App\Enums\Technologies::toSelectArray()
+        'technologies' => App\Enums\Technologies::toSelectArray(),
+        'developers' => App\User::all()->where('role', 0)
     ])
 
 </form>

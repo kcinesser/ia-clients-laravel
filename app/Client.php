@@ -16,7 +16,8 @@ class Client extends Model
     	$project = $this->projects()->create([
             'title' => $attributes['title'],
             'description' => $attributes['description'],
-            'technology' => $attributes['technology']
+            'technology' => $attributes['technology'],
+            'developer_id' => $attributes['developer_id']
         ]);
 
         $project->services()->attach($attributes['service_id']);
@@ -30,10 +31,6 @@ class Client extends Model
 
     public function comments() {
         return $this->morphMany(Comment::class, 'commentable');
-    }
-
-    public function developer() {
-        return $this->belongsTo(User::class);
     }
 
     public function accountManager() {
