@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Enums\UserTypes;
 
 class AddRolesToUsersTable extends Migration
 {
@@ -14,7 +15,7 @@ class AddRolesToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('roles')->nullable();
+            $table->tinyInteger('role')->unsigned()->default(UserTypes::Developer)->nullable();
         });
     }
 

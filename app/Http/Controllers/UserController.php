@@ -4,20 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Enums\UserTypes;
 
 class UserController extends Controller
 {
 	public function create() {
-    	return view('users.create');
+        $roles = UserTypes::toSelectArray();
+
+    	return view('users.create', compact('roles'));
     }
 
     public function store() {
     	$attributes = request()->all();
 
         $user = User::create($attributes);
-
-        $user->setRoles($attributes['role']);
-        $user->save();
 
         return redirect('/settings');
     }

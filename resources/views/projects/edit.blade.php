@@ -10,7 +10,8 @@
     @include('projects.form', [
         'buttonText' => 'Update Project',
         'cancelURL' => $project->path(),
-        'services' => App\Service::all()
+        'services' => App\Service::all(),
+        'technologies' => App\Enums\Technologies::toSelectArray()
     ])
 
 </form>

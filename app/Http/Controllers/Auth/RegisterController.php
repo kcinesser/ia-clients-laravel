@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Enums\UserTypes;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -67,11 +68,15 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'role' => $data['role']
         ]);
 
-        $user->setRoles($data['role']);
-        $user->save();
-
         return $user;
+    }
+
+    public function showRegistrationForm() {
+        $roles = UserTypes::toSelectArray();
+
+        return view('auth.register', compact('roles'));
     }
 }

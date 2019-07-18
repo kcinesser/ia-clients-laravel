@@ -30,7 +30,7 @@
 					<div class="flex justify-between mb-4">
 						<div><p>{{ $user->name }}</p></div>
 						<div><p>{{ $user->email }}</p></div>
-						<div><p>{{ $user->roles }}</p></div>
+						<div><p>{{ App\Enums\UserTypes::getDescription($user->role) }}</p></div>
 					</div>
 				@endforeach
 

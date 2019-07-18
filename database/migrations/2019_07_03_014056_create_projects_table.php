@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Enums\Technologies;
 
 class CreateProjectsTable extends Migration
 {
@@ -18,7 +19,7 @@ class CreateProjectsTable extends Migration
             $table->unsignedInteger('client_id');
             $table->string('title');
             $table->text('description')->nullable();
-            $table->enum('technology', ['WordPress', 'WordPress - Hexagram', 'Rails', 'Laravel', 'PHP', 'Drupal', 'MindFire', 'HTML']);
+            $table->tinyInteger('technology')->unsigned()->default(Technologies::WordPress)->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
 

@@ -25,8 +25,10 @@
 
             <div class="control">
                 <select id="role" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state" name="role" value="{{ old('role') }}" required autofocus>
-                    <option value="Developer">Developer</option>
-                    <option value="Account Manager">Account Manager</option>
+
+                    @foreach ($roles as $value => $role)
+                        <option value="{{$value}}" >{{ $role }}</option>
+                    @endforeach
                 </select>
 
                 @if ($errors->has('role'))

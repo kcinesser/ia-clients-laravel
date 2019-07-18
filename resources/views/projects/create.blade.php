@@ -10,7 +10,8 @@
         'project' => new App\Project,
         'buttonText' => 'Create Project',
         'cancelURL' => '/projects',
-        'services' => App\Service::all()
+        'services' => App\Service::all(),
+        'technologies' => App\Enums\Technologies::toSelectArray()
     ])
 
 </form>
