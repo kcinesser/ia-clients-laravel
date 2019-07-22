@@ -45,8 +45,6 @@ class ProjectsController extends Controller
         ]);
         $attributes = request()->all();
 
-        dd($attributes);
-
         $project->update($attributes);
 
         return redirect($project->path());

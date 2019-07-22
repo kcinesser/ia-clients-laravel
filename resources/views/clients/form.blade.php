@@ -11,10 +11,19 @@
 
     <div class="control">
         <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="account_manager_id" required>
+            <option>Select Account Manager</option>
             @foreach($account_managers as $account_manager)
-                <option value="{{ $account_manager->id }}" >{{ $account_manager->name }}</option>
+                <option value="{{ $account_manager->id }}" {{ $account_manager->id == $client->account_manager_id ? "selected" : "" }}>{{ $account_manager->name }}</option>
             @endforeach
         </select>
+    </div>
+</div>
+
+<div class="field mb-6">
+    <label for="primary_name" class="label text-sm mb-2 block">Primary Contact Name</label>
+
+    <div class="control">
+        <input type="text" class="input bg-transparent border border-grey-500 rounded p-2 text-xs w-full" name="contact_name" value="{{ $client->contact_name }}" required>
     </div>
 </div>
 

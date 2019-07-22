@@ -8,6 +8,7 @@
     </div>
     <div class="mb-3">
     	<p class="text-gray-800 text-sm font-normal">Primary Contact Information</p>
+        <p class="text-gray-500 text-sm font-normal">{{ $client->contact_name }}</p>
     	<p class="text-gray-500 text-sm font-normal">{{ $client->contact_email }}</p>
     	<p class="text-gray-500 text-sm font-normal">{{ $client->contact_phone }}</p>
 	</div>

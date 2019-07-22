@@ -21,7 +21,7 @@
         <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="developer_id" value="" required>
                 <option>Select Developer</option>
             @foreach($developers as $developer)
-                <option value="{{ $developer->id }}"}>{{ $developer->name }}</option>
+                <option value="{{ $developer->id }}" {{ $developer->id == $project->developer_id ? "selected" : "" }}>{{ $developer->name }}</option>
             @endforeach
         </select>
     </div>
@@ -33,7 +33,7 @@
     <div class="control">
         <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="service_id" required>
             @foreach($services as $service)
-                <option value="{{ $service->id }}" >{{ $service->name }}</option>
+                <option value="{{ $service->id }}">{{ $service->name }}</option>
             @endforeach
         </select>
     </div>
@@ -44,9 +44,8 @@
 
     <div class="control">
         <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="technology" required>
-                <option>Select Technology</option>
             @foreach ($technologies as $value => $technology)
-                <option value="{{$value}}" >{{ $technology }}</option>
+                <option value="{{$value}}" {{ $value == $project->technology ? "selected" : "" }} >{{ $technology }}</option>
             @endforeach
         </select>
     </div>

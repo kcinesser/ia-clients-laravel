@@ -17,8 +17,12 @@ class UserController extends Controller
     public function store() {
     	$attributes = request()->all();
 
-        $user = User::create($attributes);
-
+        $user = User::create([
+            'name' => $attributes['name'],
+            'email' => $attributes['email'],
+            'password' => bcrypt($attributes['password']),
+            'role' => $attributes['role']
+        ]);
         return redirect('/settings');
     }
 }
