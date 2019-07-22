@@ -28,18 +28,18 @@ class User extends Authenticatable
     ];
 
     public function clients() {
-        $this->hasMany(Client::class);
+        return $this->hasMany(Client::class, 'account_manager_id');
     }
 
     public function projects() {
-        $This->hasMany(Project::class);
+        return $this->hasMany(Project::class, 'developer_id');
     }
 
     public function comments() {
-        $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class);
     }
 
     public function updates() {
-        $this->hasMany(Update::class);
+        return $this->hasMany(Update::class);
     }
 }

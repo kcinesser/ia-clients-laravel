@@ -45,7 +45,14 @@ class ProjectsController extends Controller
         ]);
         $attributes = request()->all();
 
-        $project->update($attributes);
+        $project->update(['title' => $attributes['title'],
+            'description' => $attributes['description'],
+            'technology' => $attributes['technology'],
+            'developer_id' => $attributes['developer_id']
+        ]);
+
+        $project->services()->detach();
+        $project->services()->attach($attributes['service_id']);;
 
         return redirect($project->path());
     }

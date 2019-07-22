@@ -37,9 +37,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/user/create', 'UserController@create');
     Route::post('/user', 'UserController@store');
 
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    Route::get('/', 'DashboardController@index');
 
 });
 
