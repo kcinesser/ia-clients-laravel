@@ -19,6 +19,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('services', 'ServicesController');
 
     Route::get('/projects', 'ProjectsController@index');
+    Route::patch('/clients/{client}/projects/{project}/notes', 'ProjectsController@notes');
     
     Route::post('/clients/{client}/projects/{project}/tasks', 'ProjectTasksController@store');
     Route::patch('/clients/{client}/projects/{project}/tasks/{task}', 'ProjectTasksController@update');

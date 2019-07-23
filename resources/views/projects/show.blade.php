@@ -78,7 +78,7 @@
     			<div class="mb-8">
 	            	<h2 class="text-lg text-gray-500 font-normal mb-3">Notes</h2>
 
-                    <form method="POST" action="{{ $project->path() }}">
+                    <form method="POST" action="{{ $project->path() . '/notes' }}">
                         {{ csrf_field() }}
                         {{ method_field('PATCH') }}
                         <textarea name="notes" class="card w-full mb-3 h-300">{{ $project->notes }}</textarea>

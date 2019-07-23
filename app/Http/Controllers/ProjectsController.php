@@ -56,4 +56,12 @@ class ProjectsController extends Controller
 
         return redirect($project->path());
     }
+
+    public function notes(Client $client, Project $project) {
+        $attributes = request()->all();
+
+        $project->update($attributes);
+
+        return redirect($project->path());
+    }
 }
