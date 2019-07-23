@@ -11,10 +11,10 @@ class DashboardController extends Controller
 {
     public function index() {
     	$user = Auth::user();
-    	$clients = Client::where('account_manager_id', $user->id)->get();
-    	$projects = $user->projects;
+    	$clients = $user->dashboardClients();
+    	$projects = $user->dashboardProjects();
     	$updates = Update::all();
 
-    	return view('dashboard.dashboard', compact('user', 'clients', 'projects','updates'));
+    	return view('dashboard.dashboard', compact('user', 'clients', 'projects', 'updates'));
     }
 }
