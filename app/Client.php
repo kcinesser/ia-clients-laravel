@@ -13,13 +13,27 @@ class Client extends Model
     }  
 
     public function addProject($attributes) {
-    	return $this->projects()->create([
+    	$project = $this->projects()->create([
             'title' => $attributes['title'],
-            'description' => $attributes['description']
+            'description' => $attributes['description'],
+            'technology' => $attributes['technology'],
+            'developer_id' => $attributes['developer_id']
         ]);
+
+        $project->services()->attach($attributes['service_id']);
+
+        return $project;
     }
 
     public function projects() {
     	return $this->hasMany(Project::class);
+    }
+
+    public function comments() {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    public function accountManager() {
+        return $this->belongsTo(User::class);
     }
 }

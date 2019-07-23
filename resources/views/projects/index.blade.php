@@ -11,7 +11,14 @@
     <main class="lg:flex lg:flex-wrap -mx-3">
         @forelse ($projects as $project)
             <div class="lg:w-1/3 px-3 pb-6">
-                @include ('projects.card')
+                <div class="card mb-6" style="">
+                    <h3 class="font-normal text-xl py-4 -ml-5 border-l-4 border-blue-500 pl-4">
+                        <a href="{{ $project->path() }}" class="text-black no-underline">{{ $project->title }}</a>
+                    </h3>
+                    <div class="mb-3">
+                        <p class="text-gray-500 text-sm font-normal">{{ $project->client->name }}</p>
+                    </div>
+                </div>
             </div>
         @empty
             <div>No projects yet.</div>

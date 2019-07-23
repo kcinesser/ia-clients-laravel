@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Enums\UserTypes;
 
-class CreateRegistrarsTable extends Migration
+class AddRolesToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +14,8 @@ class CreateRegistrarsTable extends Migration
      */
     public function up()
     {
-        Schema::create('registrars', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('description')->nullable();
-            $table->string('url');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->tinyInteger('role')->unsigned()->default(UserTypes::Developer)->nullable();
         });
     }
 
@@ -29,6 +26,8 @@ class CreateRegistrarsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('registrars');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('roles');
+        });
     }
 }

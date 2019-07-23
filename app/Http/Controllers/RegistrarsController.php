@@ -46,7 +46,7 @@ class RegistrarsController extends Controller
 
         $registrar = Registrar::create($attributes);
 
-        return redirect('/registrars');
+        return redirect('/settings');
     }
 
     /**

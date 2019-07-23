@@ -44,6 +44,22 @@ class ProjectsController extends Controller
             'description' => 'sometimes|required'
         ]);
         $attributes = request()->all();
+
+        $project->update(['title' => $attributes['title'],
+            'description' => $attributes['description'],
+            'technology' => $attributes['technology'],
+            'developer_id' => $attributes['developer_id']
+        ]);
+
+        $project->services()->detach();
+        $project->services()->attach($attributes['service_id']);;
+
+        return redirect($project->path());
+    }
+
+    public function notes(Client $client, Project $project) {
+        $attributes = request()->all();
+
         $project->update($attributes);
 
         return redirect($project->path());

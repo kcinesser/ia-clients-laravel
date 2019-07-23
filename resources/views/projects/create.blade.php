@@ -9,7 +9,10 @@
     @include('projects.form', [
         'project' => new App\Project,
         'buttonText' => 'Create Project',
-        'cancelURL' => '/projects'
+        'cancelURL' => '/projects',
+        'services' => App\Service::all(),
+        'technologies' => App\Enums\Technologies::toSelectArray(),
+        'developers' => App\User::all()->where('role', 0)
     ])
 
 </form>

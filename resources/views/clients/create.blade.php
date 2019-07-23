@@ -9,7 +9,8 @@
     @include('clients.form', [
         'client' => new App\Client,
         'buttonText' => 'Create Client',
-        'cancelURL' => '/clients'
+        'cancelURL' => '/clients',
+        'account_managers' => App\User::all()->where('role', 1)
     ])
 
 </form>

@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <form class="lg:w-1/2 lg:mx-auto bg-white p-6 md:py-12 md:px-16 rounded shadow" method="POST" action="{{ route('register') }}">
+    <form class="lg:w-1/2 lg:mx-auto bg-white p-6 md:py-12 md:px-16 rounded shadow" method="POST" action="/user">
         {{ csrf_field() }}
         <h1 class="text-2xl font-normal mb-10 text-center">Register</h1>
 
@@ -25,7 +25,6 @@
 
             <div class="control">
                 <select id="role" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state" name="role" value="{{ old('role') }}" required autofocus>
-
                     @foreach ($roles as $value => $role)
                         <option value="{{$value}}" >{{ $role }}</option>
                     @endforeach
@@ -78,7 +77,7 @@
         <div class="form-group">
             <div class="col-md-6 col-md-offset-4">
                 <button type="submit" class="button is-link mr-2">
-                    Register
+                    Create New User
                 </button>
             </div>
         </div>

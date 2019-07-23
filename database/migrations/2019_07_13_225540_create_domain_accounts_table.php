@@ -16,7 +16,7 @@ class CreateDomainAccountsTable extends Migration
         Schema::create('domain_accounts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->string('url');
             $table->timestamps();
         });

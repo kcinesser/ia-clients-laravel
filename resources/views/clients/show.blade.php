@@ -16,20 +16,59 @@
  				@include ('clients.card')
     		</div>
             <div class="lg:w-3/4 px-3">
-                <div class="mb-8">            
-                    <h2 class="text-lg text-gray-500 font-normal mb-3">Projects</h2>
+                <div class="mb-8">  
+                    <div class="lg:flex lg:flex-wrap items-center">          
+                        <h2 class="text-lg text-gray-500 font-normal mb-3 mr-3">Projects</h2>
+                        <a href="{{ $client->path() . '/projects/create' }}" class="button mb-3">New Project</a>
+                    </div>
 
-                    @forelse ($client->projects as $project)
-                        <div class="card mb-3">
-                            <a href="{{ $project->path() }}">{{ $project->title }}</a>
-                        </div>
-                    @empty
-                        <div class="card mb-3">
-                            <p>No projects yet.</p>
-                        </div>
-                    @endforelse
+                    <div class="lg:flex lg:flex-wrap">          
+                        @forelse ($client->projects as $project)
+                            <div class="w-1/4 px-3 pb-6">
+                                <div class="card h-40">
+                                    <a href="{{ $project->path() }}">{{ $project->title }}</a>
+                                    <p class="text-gray-500 text-sm font-normal">{{ $project->description }}</p>
+                                </div>
+                            </div>
+                        @empty
+                            <div class="card mb-3">
+                                <p>No projects yet.</p>
+                            </div>
+                        @endforelse
+                    </div>
                 </div>
-                <a href="{{ $client->path() . '/projects/create' }}" class="button">New Project</a>
+
+
+
+                <div>
+                    <h2 class="text-lg text-gray-500 font-normal mb-3">Comments</h2>
+
+                    <div class="card mb-3">
+                        <form action="/comment/client/{{ $client->id }}" method="POST">
+                            {{ csrf_field() }}
+                            <input name="body" class="w-full" placeholder="Add a comment.">
+                        </form>
+                    </div>
+
+                    @foreach ($client->comments->sortByDesc('created_at') as $comment)
+                        <div class="card mb-3">
+                            <form method="POST" action="/comment/{{ $comment->id }}">
+                                {{ method_field('PATCH') }}
+                                {{ csrf_field() }}
+                                <div class="flex justify-between">
+                                    <input class="w-3/4" name="body" value="{{ $comment->body }}">
+                                    <div>
+                                        <p>{{ $comment->user->initials() }}</p>
+                                    </div>
+                                    <div>
+                                        {{ \Carbon\Carbon::parse($comment->created_at)->format('n/j/Y')}}
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    @endforeach
+
+                </div>
             </div>
     	</div>
     </main>

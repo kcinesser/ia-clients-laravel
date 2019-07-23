@@ -6,7 +6,12 @@ module.exports = {
     extend: {
     	spacing : {
     		'300': '300px',
-    	}
+    	},
+      colors : {
+        orange : {
+          '500' : '#F15B39',
+        }
+      }
     }
   },
   variants: {

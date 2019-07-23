@@ -16,16 +16,28 @@ class Project extends Model
         return $this->belongsTo(Client::class);
     }
 
+    public function developer() {
+        return $this->belongsTo(User::class);
+    }
+
     public function tasks() {
     	return $this->hasMany(Task::class);
     }
 
     public function comments() {
-        return $this->hasMany(Comment::class);
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     public function domains() {
         return $this->hasMany(Domain::class);
+    }
+
+    public function updates() {
+        return $this->hasMany(Update::class);
+    }
+
+    public function services() {
+        return $this->belongsToMany(Service::class);
     }
 
     public function addTask($body) {
