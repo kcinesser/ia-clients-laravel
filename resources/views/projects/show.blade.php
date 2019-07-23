@@ -13,7 +13,7 @@
     <main>
     	<div class="lg:flex -mx-3">
     		<div class="lg:w-1/4 px-3">
- 				@include ('clients.card')
+ 				@include ('projects.card')
 
                 <div class="mb-8">            
                     <h2 class="text-lg text-gray-500 font-normal mb-3">Tasks</h2>
