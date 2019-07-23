@@ -34,8 +34,8 @@
 			                <div class="card" style="">
 			                    <h3 class="font-normal text-xl py-4 -ml-5 border-l-4 border-orange-500 pl-4">
 			                        <a href="{{ $project->path() }}" class="text-black no-underline">{{ $project->title }}</a>
-			                        <a href="{{ $project->client->path() }}" class="text-gray-500 text-sm font-normal">{{ $project->client->name }}</a>
 			                    </h3>
+        	                        <a href="{{ $project->client->path() }}" class="text-gray-500 text-sm font-normal">{{ $project->client->name }}</a>
 			                </div>
 
 			            </div>
