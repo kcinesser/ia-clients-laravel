@@ -27,6 +27,18 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
+    public function initials() {
+        $names = explode(" ", $this->name);
+        $initials = "";
+
+        foreach ($names as $name) {
+            $initials .= $name[0];
+        }
+
+        return $initials;
+    }
+
     public function clients() {
         return $this->hasMany(Client::class, 'account_manager_id');
     }
