@@ -15,6 +15,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('clients', 'ClientsController');
     Route::resource('registrars', 'RegistrarsController');
     Route::resource('clients.projects', 'ProjectsController');
+    Route::resource('clients.projects.software-license', 'SoftwareLicensesController')->only(['store', 'update', 'destroy']);
     Route::resource('clients.projects.updates', 'UpdatesController');
     Route::resource('services', 'ServicesController');
 

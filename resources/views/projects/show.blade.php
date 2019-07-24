@@ -75,6 +75,37 @@
 
                 </div>
     			
+                <div class="mb-8">            
+                    <h2 class="text-lg text-gray-500 font-normal mb-3">Licenses</h2>
+
+                    @foreach ($project->licenses as $license)
+                        <div class="card mb-3">
+                            <form method="POST" action="{{ $license->path() }}">
+                                {{ method_field('PATCH') }}
+                                {{ csrf_field() }}
+
+                                <div class="flex items-center">
+                                    <input type="text" name="description" class="w-1/2" value="{{ $license->description }}">
+                                    <input type="text" name="license" class="w-1/2" value="{{ $license->license }}">
+                                    <button type="submit" class="button">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    @endforeach
+
+                    <div class="card mb-3">
+                        <form action="{{ $project->path() . '/software-license' }}" method="POST">
+                            {{ csrf_field() }}
+                            <div class="flex justify-between items-center">
+                                <input name="description" class="w-1/2 mr-3" placeholder="License Description">
+                                <input name="license" class="w-1/2 mr-3" placeholder="License">
+                                <button type="submit" class="button">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
     			<div class="mb-8">
 	            	<h2 class="text-lg text-gray-500 font-normal mb-3">Notes</h2>
 
