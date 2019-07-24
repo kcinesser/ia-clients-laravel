@@ -28,6 +28,10 @@ class Project extends Model
         return $this->morphMany(Comment::class, 'commentable');
     }
 
+    public function activities() {
+        return $this->morphMany(Activity::class, 'activatable');
+    }
+
     public function domains() {
         return $this->hasMany(Domain::class);
     }

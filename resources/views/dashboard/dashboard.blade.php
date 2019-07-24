@@ -47,7 +47,15 @@
 				</div>
 			</div>
 			<div class="lg:w-1/4 px-3">
-		   		<h2 class="text-lg text-gray-500 font-normal mb-3">Activity Feed</h2>
+				<h2 class="text-lg text-gray-500 font-normal mb-3">Activity Feed</h2>
+		   		@foreach ($activities as $activity)
+		   			<div class="card mb-3">
+                        <p class="text-gray-800 text-sm font-normal">{{ $activity->description }}</p>
+                    	<p class="text-gray-500 text-sm font-normal">{{ \Carbon\Carbon::parse($activity->created_at)->format('n/j/Y') }}</p>
+                    </div>
+		   		@endforeach
+
+		   		<h2 class="text-lg text-gray-500 font-normal mb-3">Update Feed</h2>
 		   		@foreach ($updates as $update)
 		   			<a href="{{ $update->project->path() }}">
 			   			<div class="card mb-3">

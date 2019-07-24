@@ -36,4 +36,8 @@ class Client extends Model
     public function accountManager() {
         return $this->belongsTo(User::class);
     }
+
+    public function activities() {
+        return $this->morphMany(Activity::class, 'activatable');
+    }
 }
