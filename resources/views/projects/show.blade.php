@@ -124,7 +124,10 @@
                     <div class="card mb-3">
                         <form action="/comment/project/{{ $project->id }}" method="POST">
                             {{ csrf_field() }}
-                            <input name="body" class="w-full" placeholder="Add a comment.">
+                            <div class="flex items-center">
+                                <input name="body" class="w-full" placeholder="Add a comment.">
+                                <button type="submit" class="button">Save</button>
+                            </div>
                         </form>
                     </div>
 
@@ -134,14 +137,13 @@
                                 {{ method_field('PATCH') }}
                                 {{ csrf_field() }}
 
-                                <div class="flex justify-between">
-                                    <input class="w-3/4" name="body" value="{{ $comment->body }}">
-                                    <div>
+                                <div class="flex items-center justify-between">
+                                    <input class="w-3/4 px-3" name="body" value="{{ $comment->body }}">
+                                    <div class="mx-3">
                                         <p>{{ $comment->user->initials() }}</p>
-                                    </div>
-                                    <div>
                                         {{ \Carbon\Carbon::parse($comment->created_at)->format('n/j/Y')}}
                                     </div>
+                                    <button type="submit" class="button">Update</button>
                                 </div>
                             </form>
                         </div>
