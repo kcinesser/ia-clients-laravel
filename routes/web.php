@@ -12,11 +12,13 @@
 */
 
 Route::group(['middleware' => 'auth'], function(){
+    Route::resource('activities', 'ActivitiesController')->only(['index']);
     Route::resource('clients', 'ClientsController');
     Route::resource('registrars', 'RegistrarsController');
     Route::get('/clients/{client}/projects/archives', 'ProjectsController@archives');
     Route::patch('/clients/{client}/projects/{project}/archive', 'ProjectsController@archive');
     Route::resource('clients.projects', 'ProjectsController');
+    Route::resource('clients.projects.software-license', 'SoftwareLicensesController')->only(['store', 'update', 'destroy']);
     Route::resource('clients.projects.updates', 'UpdatesController');
     Route::resource('services', 'ServicesController');
 

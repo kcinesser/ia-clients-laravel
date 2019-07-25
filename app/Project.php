@@ -20,12 +20,20 @@ class Project extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function licenses() {
+        return $this->hasMany(SoftwareLicense::class);
+    }
+
     public function tasks() {
     	return $this->hasMany(Task::class);
     }
 
     public function comments() {
         return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    public function activities() {
+        return $this->morphMany(Activity::class, 'activatable');
     }
 
     public function domains() {
@@ -50,5 +58,9 @@ class Project extends Model
 
     public function addDomain($attributes) {
         return $this->domains()->create($attributes);
+    }
+
+    public function addLicense($attributes) {
+        return $this->licenses()->create($attributes);
     }
 }

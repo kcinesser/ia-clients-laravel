@@ -3,6 +3,12 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Project;
+use App\Comment;
+use App\Client;
+use App\Observers\ProjectObserver;
+use App\Observers\CommentObserver;
+use App\Observers\ClientObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +19,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Project::observe(ProjectObserver::class);
+        Comment::observe(CommentObserver::class);
+        Client::observe(ClientObserver::class);
     }
 
     /**

@@ -75,6 +75,44 @@
 
                 </div>
     			
+                <div class="mb-8">            
+                    <h2 class="text-lg text-gray-500 font-normal mb-3">Licenses</h2>
+
+                    @foreach ($project->licenses as $license)
+                        <div class="card mb-3">
+                            <form method="POST" action="{{ $license->path() }}">
+                                {{ method_field('PATCH') }}
+                                {{ csrf_field() }}
+
+                                <div class="items-center mb-3">
+                                    <input type="text" name="description" class="w-full mb-3" value="{{ $license->description }}">
+                                    <input type="text" name="key" class="w-full mb-3" value="{{ $license->key }}">
+                                    <input type="text" name="url" class="w-full mb-3" value="{{ $license->url }}">
+                                    <button type="submit" class="button">Update</button>
+                                </div>
+                            </form>
+                            <form method="POST" action={{ $license->path() }}>
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-500 text-sm font-normal">Delete</button>
+                            </form>
+                        </div>
+                    @endforeach
+
+                    <div class="card mb-3">
+                        <form action="{{ $project->path() . '/software-license' }}" method="POST">
+                            {{ csrf_field() }}
+                            <div class="items-center">
+                                <input name="description" class="w-full mb-3" placeholder="Description">
+                                <input name="key" class="w-full mb-3" placeholder="Key">
+                                <input name="url" class="w-full mb-3" placeholder="URL">
+                                <button type="submit" class="button">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
     			<div class="mb-8">
 	            	<h2 class="text-lg text-gray-500 font-normal mb-3">Notes</h2>
 
@@ -93,7 +131,10 @@
                     <div class="card mb-3">
                         <form action="/comment/project/{{ $project->id }}" method="POST">
                             {{ csrf_field() }}
-                            <input name="body" class="w-full" placeholder="Add a comment.">
+                            <div class="flex items-center">
+                                <input name="body" class="w-full" placeholder="Add a comment.">
+                                <button type="submit" class="button">Save</button>
+                            </div>
                         </form>
                     </div>
 
@@ -103,14 +144,13 @@
                                 {{ method_field('PATCH') }}
                                 {{ csrf_field() }}
 
-                                <div class="flex justify-between">
-                                    <input class="w-3/4" name="body" value="{{ $comment->body }}">
-                                    <div>
+                                <div class="flex items-center justify-between">
+                                    <input class="w-3/4 px-3" name="body" value="{{ $comment->body }}">
+                                    <div class="mx-3">
                                         <p>{{ $comment->user->initials() }}</p>
-                                    </div>
-                                    <div>
                                         {{ \Carbon\Carbon::parse($comment->created_at)->format('n/j/Y')}}
                                     </div>
+                                    <button type="submit" class="button">Update</button>
                                 </div>
                             </form>
                         </div>
@@ -120,6 +160,21 @@
 
 
             <div class="lg:w-1/4 px-3">
+                <div class="mb-8">
+                    <h2 class="text-lg text-gray-500 font-normal mb-3">Activity</h2>
+
+                    @foreach ($project->activities as $activity)
+                        <div class="card mb-3">
+                            <div class="flex justify-between items-center">
+                                <p class="w-3/4 text-sm font-normal pr-3">{{ $activity->description }}</p>
+                                <div>
+                                    <p class="text-gray-500 text-sm font-normal">{{ \Carbon\Carbon::parse($activity->updated_at)->format('n/j/Y')}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
                 <div class="mb-8">            
                     <h2 class="text-lg text-gray-500 font-normal mb-3">Update History</h2>
                     
