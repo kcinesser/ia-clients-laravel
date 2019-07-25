@@ -36,8 +36,11 @@
                     <a href="/projects" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 mr-4">
                         Projects
                     </a>
-                    <a href="/settings" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300">
+                    <a href="/settings" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 mr-4">
                         Settings
+                    </a>
+                    <a href="/activities" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300">
+                        Activities
                     </a>
                 </div>
                 <div class="text-sm text-white">
