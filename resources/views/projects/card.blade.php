@@ -25,10 +25,12 @@
         <p class="text-gray-500 text-sm font-normal"> {{ \Carbon\Carbon::parse($project->created_at)->format('n/j/Y')}}</p>
     </div>
     <div class="mb-3">
-         <form method="POST" action="{{ $project->path() . '/archive' }}">
-            {{ method_field('PATCH') }}
-            {{ csrf_field() }}   
-            <button type="submit" class="text-red-500 text-sm font-normal underline">Archive Project</button>     
-        </form>
+        @if ($project->status != 3)
+            <form method="POST" action="{{ $project->path() . '/archive' }}">
+                {{ method_field('PATCH') }}
+                {{ csrf_field() }}   
+                <button type="submit" class="text-red-500 text-sm font-normal underline">Archive Project</button>     
+            </form>
+        @endif
     </div>
 </div>
