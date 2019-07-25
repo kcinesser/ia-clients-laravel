@@ -84,9 +84,10 @@
                                 {{ method_field('PATCH') }}
                                 {{ csrf_field() }}
 
-                                <div class="flex items-center">
-                                    <input type="text" name="description" class="w-1/2" value="{{ $license->description }}">
-                                    <input type="text" name="license" class="w-1/2" value="{{ $license->license }}">
+                                <div class="items-center mb-3">
+                                    <input type="text" name="description" class="w-full mb-3" value="{{ $license->description }}">
+                                    <input type="text" name="key" class="w-full mb-3" value="{{ $license->key }}">
+                                    <input type="text" name="url" class="w-full mb-3" value="{{ $license->url }}">
                                     <button type="submit" class="button">Update</button>
                                 </div>
                             </form>
@@ -101,9 +102,10 @@
                     <div class="card mb-3">
                         <form action="{{ $project->path() . '/software-license' }}" method="POST">
                             {{ csrf_field() }}
-                            <div class="flex justify-between items-center">
-                                <input name="description" class="w-1/2 mr-3" placeholder="License Description">
-                                <input name="license" class="w-1/2 mr-3" placeholder="License">
+                            <div class="items-center">
+                                <input name="description" class="w-full mb-3" placeholder="Description">
+                                <input name="key" class="w-full mb-3" placeholder="Key">
+                                <input name="url" class="w-full mb-3" placeholder="URL">
                                 <button type="submit" class="button">Save</button>
                             </div>
                         </form>

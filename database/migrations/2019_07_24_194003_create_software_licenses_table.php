@@ -17,7 +17,8 @@ class CreateSoftwareLicensesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('project_id');
             $table->string('description');
-            $table->string('license');
+            $table->string('key');
+            $table->string('url')->nullable();
             $table->timestamps();
 
             $table->foreign('project_id')->references('id')->on('projects');

@@ -13,10 +13,12 @@ class SoftwareLicensesController extends Controller
 
     public function store(Client $client, Project $project, SoftwareLicense $license)
     {
-        $attributes = request()->validate([
+        request()->validate([
             'description' => 'required',
-            'license' => 'required'
+            'key' => 'required'
         ]);
+
+        $attributes = request()->all();
 
         $project->addLicense($attributes);
 
@@ -26,10 +28,12 @@ class SoftwareLicensesController extends Controller
 
     public function update(Client $client, Project $project, SoftwareLicense $softwareLicense)
     {
-        $attributes = request()->validate([
+        request()->validate([
             'description' => 'required',
-            'license' => 'required'
+            'key' => 'required'
         ]);
+
+        $attributes = request()->all();
 
         $softwareLicense->update($attributes);
 
