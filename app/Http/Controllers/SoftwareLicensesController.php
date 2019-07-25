@@ -36,8 +36,10 @@ class SoftwareLicensesController extends Controller
         return redirect($project->path());
     }
 
-    public function destroy(SoftwareLicense $softwareLicense)
+    public function destroy(Client $client, Project $project, SoftwareLicense $softwareLicense)
     {
-        //
+        $softwareLicense->delete();
+
+        return redirect($project->path());
     }
 }

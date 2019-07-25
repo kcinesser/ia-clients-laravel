@@ -90,6 +90,11 @@
                                     <button type="submit" class="button">Update</button>
                                 </div>
                             </form>
+                            <form method="POST" action={{ $license->path() }}>
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-500 text-sm font-normal">Delete</button>
+                            </form>
                         </div>
                     @endforeach
 
