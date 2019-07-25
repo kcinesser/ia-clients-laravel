@@ -44,6 +44,9 @@
 							{{ $registrar->name }}
 						</div>
 						<div>
+							{{ App\Enums\Owners::getDescription($registrar->owner) }}
+						</div>
+						<div>
 							{{ $registrar->url }}
 						</div>
 					</div>

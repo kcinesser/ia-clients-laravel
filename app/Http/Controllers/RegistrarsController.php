@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Registrar;
+use App\Enums\Owners;
 use Illuminate\Http\Request;
 
 class RegistrarsController extends Controller
@@ -26,7 +27,9 @@ class RegistrarsController extends Controller
      */
     public function create()
     {
-        return view('registrars.create');
+        $owners = Owners::toSelectArray();
+
+        return view('registrars.create', compact('owners'));
     }
 
     /**
