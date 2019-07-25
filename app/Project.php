@@ -20,6 +20,10 @@ class Project extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function licenses() {
+        return $this->hasMany(SoftwareLicense::class);
+    }
+
     public function tasks() {
     	return $this->hasMany(Task::class);
     }
@@ -54,5 +58,9 @@ class Project extends Model
 
     public function addDomain($attributes) {
         return $this->domains()->create($attributes);
+    }
+
+    public function addLicense($attributes) {
+        return $this->licenses()->create($attributes);
     }
 }
