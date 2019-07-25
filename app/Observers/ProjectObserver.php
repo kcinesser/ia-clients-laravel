@@ -39,7 +39,7 @@ class ProjectObserver
             'user_id' => Auth::user()->id,
             'activatable_type' => 'App\Project' ,
             'activatable_id' => $project->id,
-            'description' => $user . ' edited ' . $project->title . '  ' . $project->changes,
+            'description' => $user . ' edited ' . $project->title,
         ]);
     }
 
