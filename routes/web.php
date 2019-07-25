@@ -12,6 +12,7 @@
 */
 
 Route::group(['middleware' => 'auth'], function(){
+    Route::resource('activities', 'ActivitiesController')->only(['index']);
     Route::resource('clients', 'ClientsController');
     Route::resource('registrars', 'RegistrarsController');
     Route::resource('clients.projects', 'ProjectsController');

@@ -120,6 +120,21 @@
 
 
             <div class="lg:w-1/4 px-3">
+                <div class="mb-8">
+                    <h2 class="text-lg text-gray-500 font-normal mb-3">Activity</h2>
+
+                    @foreach ($project->activities as $activity)
+                        <div class="card mb-3">
+                            <div class="flex justify-between items-center">
+                                <p class="w-3/4 text-sm font-normal pr-3">{{ $activity->description }}</p>
+                                <div>
+                                    <p class="text-gray-500 text-sm font-normal">{{ \Carbon\Carbon::parse($activity->updated_at)->format('n/j/Y')}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
                 <div class="mb-8">            
                     <h2 class="text-lg text-gray-500 font-normal mb-3">Update History</h2>
                     
