@@ -21,7 +21,7 @@
     <div id="app">
         <nav class="flex items-center justify-between flex-wrap bg-orange-500 p-6">
             <div class="flex items-center flex-shrink-0 text-white mr-6">
-                <a href="/" class="font-semibold text-xl tracking-tight">Firespring Client Database</a>
+                <a href="/" class="font-semibold text-xl tracking-tight">Interactive Client Database</a>
             </div>
             <div class="block lg:hidden">
                 <button class="flex items-center px-3 py-2 border rounded text-white border-teal-400 hover:text-gray-500 hover:border-white">

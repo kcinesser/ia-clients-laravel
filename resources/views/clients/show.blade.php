@@ -23,8 +23,8 @@
                     </div>
 
                     <div class="lg:flex lg:flex-wrap">          
-                        @forelse ($client->projects as $project)
-                            <div class="w-1/3 px-3 pb-6">
+                        @forelse ($projects as $project)
+                            <div class="w-1/4 px-3 pb-6">
                                 <div class="card h-40">
                                     <a href="{{ $project->path() }}">{{ $project->title }}</a>
                                     <p class="text-gray-500 text-sm font-normal">{{ \Illuminate\Support\Str::limit($project->description, 50) }}</p>
@@ -36,9 +36,8 @@
                             </div>
                         @endforelse
                     </div>
+                    <a href="{{ $client->archivePath() }}" class="">View Archived Projects</a>
                 </div>
-
-
 
                 <div>
                     <h2 class="text-lg text-gray-500 font-normal mb-3">Comments</h2>
