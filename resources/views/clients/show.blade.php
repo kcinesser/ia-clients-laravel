@@ -3,7 +3,7 @@
 @section('content')
     <header class="flex items-center mb-3 py-4">
         <div class="flex justify-between w-full items-center">
-            <p class="text-gray-500 text-sm font-normal">
+            <p class="text-gray-500 font-normal font-sans">
             	<a href="/clients" class="no-underline">Clients</a> / {{ $client->name }}
             </p>
             <a href="{{ $client->path() . '/edit' }}" class="button bg-blue-500 hover:bg-blue-300">Edit Client</a>
