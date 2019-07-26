@@ -7,6 +7,7 @@ Project intended to provide realtime information regarding Firespring Interactiv
 
 1. [Vagrant](https://www.vagrantup.com/downloads.html)
 2. [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+3. [Node/npm] Using homebrew is easiest (brew install node), otherwise (https://nodejs.org/en/download/)
 
 
 
@@ -64,3 +65,22 @@ Wait until all dependencies are installed, then run:
 You can now visit [iaclients.test](http://iaclients.test/)
 
 After installing successfully, you only need to run `vagrant up` (inside the project directory) to access [iaclients.test](http://iaclients.test/) from now on.
+
+### Step 4
+
+Locally, run:
+    
+    npm install
+    
+Then:
+
+    npm run dev
+    
+To install any module dependencies and combile assets.
+
+Then, in vagrant, run:
+
+    php artisan migrate
+    
+To run any pending migrations. At this point, there is not seed/development database, so the first time you set up, you'll be starting from scratch.
+
