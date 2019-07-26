@@ -8,7 +8,7 @@ class Service extends Model
 {
     protected $guarded = [];
 
-    public function projects() {
-    	return $this->belongsToMany(Project::class);
+    public function sites() {
+    	return $this->belongsToMany(Site::class);
     }
 }

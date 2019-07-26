@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Domain;
 use App\Client;
-use App\Project;
+use App\Site;
 use App\Registrar;
 use App\DomainAccount;
 use Illuminate\Http\Request;
@@ -26,11 +26,11 @@ class DomainsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Client $client, Project $project)
+    public function create(Client $client, Site $site)
     {
         $registrars = Registrar::all();
 
-        return view('domains.create', compact('project'), compact('registrars'));
+        return view('domains.create', compact('site'), compact('registrars'));
     }
 
     /**
@@ -39,7 +39,7 @@ class DomainsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Client $client, Project $project, DomainAccount $account)
+    public function store(Client $client, Site $site, DomainAccount $account)
     {
         $attributes = request()->all();
 
@@ -51,14 +51,14 @@ class DomainsController extends Controller
         $domain = array(
             'name' => $attributes['name'],
             'exp_date' => $attributes['exp_date'],
-            'project_id' => $project->id,
+            'site_id' => $site->id,
             'registrar_id' => $attributes['registrar_id'],
             'domain_account_id' => $account->id
         );
 
-        $project->addDomain($domain);
+        $site->addDomain($domain);
 
-        return redirect($project->path());
+        return redirect($site->path());
     }
 
     /**
@@ -67,7 +67,7 @@ class DomainsController extends Controller
      * @param  \App\Domain  $domain
      * @return \Illuminate\Http\Response
      */
-    public function show(Client $client, Project $project, Domain $domain)
+    public function show(Client $client, Site $site, Domain $domain)
     {
         return view('domains.show', compact('domain'));
     }

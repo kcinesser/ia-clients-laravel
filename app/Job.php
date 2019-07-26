@@ -35,11 +35,7 @@ class Job extends Model
     public function activities() {
         return $this->morphMany(Activity::class, 'activatable');
     }
-
-    public function domains() {
-        return $this->hasMany(Domain::class);
-    }
-
+    
     public function updates() {
         return $this->hasMany(Update::class);
     }
@@ -54,10 +50,6 @@ class Job extends Model
 
     public function addComment($body) {
         return $this->comments()->create(compact('body'));
-    }
-
-    public function addDomain($attributes) {
-        return $this->domains()->create($attributes);
     }
 
     public function addLicense($attributes) {

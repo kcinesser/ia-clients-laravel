@@ -25,6 +25,7 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/jobs', 'JobsController@index');
     Route::patch('/clients/{client}/jobs/{job}/notes', 'JobsController@notes');
+    Route::patch('/clients/{client}/sites/{site}/notes', 'SitesController@notes');
     
     Route::post('/clients/{client}/jobs/{job}/tasks', 'ProjectTasksController@store');
     Route::patch('/clients/{client}/jobs/{job}/tasks/{task}', 'ProjectTasksController@update');
@@ -32,9 +33,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/comment/{model}/{id}', 'CommentsController@store')->where('model', ('client|job'));
     Route::patch('/comment/{comment}', 'CommentsController@update');
 
-    Route::get('/clients/{client}/jobs/{job}/domains/create', 'DomainsController@create');
-    Route::get('/clients/{client}/jobs/{job}/domains/{domain}', 'DomainsController@show');
-    Route::post('/clients/{client}/jobs/{job}/domains', 'DomainsController@store');
+    Route::get('/clients/{client}/sites/{site}/domains/create', 'DomainsController@create');
+    Route::get('/clients/{client}/sites/{site}/domains/{domain}', 'DomainsController@show');
+    Route::post('/clients/{client}/sites/{site}/domains', 'DomainsController@store');
 
 
     Route::get('/home', 'HomeController@index')->name('home');

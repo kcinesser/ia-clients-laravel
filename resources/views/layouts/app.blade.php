@@ -33,8 +33,8 @@
                     <a href="/clients" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 mr-4">
                         Clients
                     </a>
-                    <a href="/projects" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 mr-4">
-                        Projects
+                    <a href="/jobs" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 mr-4">
+                        Jobs
                     </a>
                     <a href="/settings" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 mr-4">
                         Settings

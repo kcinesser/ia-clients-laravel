@@ -62,7 +62,7 @@ class SitesController extends Controller
      */
     public function edit(Client $client, Site $site)
     {
-        //
+        return view('sites.edit', compact('client', 'site'));
     }
 
     /**
@@ -72,9 +72,13 @@ class SitesController extends Controller
      * @param  \App\Site  $site
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Site $site)
+    public function update(Client $client, Site $site)
     {
-        //
+        $attributes = request()->all();
+
+        $site->update($attributes);
+
+        return redirect($site->path());
     }
 
     /**
@@ -86,5 +90,13 @@ class SitesController extends Controller
     public function destroy(Site $site)
     {
         //
+    }
+
+    public function notes(Client $client, Site $site) {
+        $attributes = request()->all();
+
+        $site->update($attributes);
+
+        return redirect($site->path());
     }
 }

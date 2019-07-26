@@ -51,6 +51,7 @@ class RefactorMigration extends Migration
             $table->unsignedInteger('service_id')->nullable();
             $table->string('name');
             $table->tinyInteger('technology')->unsigned()->default(Technologies::WordPress)->nullable();
+            $table->tinyInteger('status')->unsigned()->default(SiteStatus::InDevelopment)->nullable();
             $table->text('notes')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
@@ -106,11 +107,12 @@ class RefactorMigration extends Migration
             $table->increments('id');
             $table->string('name');
             $table->date('exp_date');
-            $table->morphs('domainable');
             $table->timestamps();
+            $table->unsignedInteger('site_id');
             $table->unsignedInteger('registrar_id');
-            $table->unsignedInteger('domain_account_id');
+            $table->unsignedInteger('domain_account_id')->nullable();
 
+            $table->foreign('site_id')->references('id')->on('sites');
             $table->foreign('registrar_id')->references('id')->on('registrars');
             $table->foreign('domain_account_id')->references('id')->on('domain_accounts');
         });
@@ -130,9 +132,10 @@ class RefactorMigration extends Migration
             $table->increments('id');
             $table->text('description');
             $table->unsignedInteger('user_id');
-            $table->morphs('updateable');
+            $table->unsignedInteger('site_id');
             $table->timestamps();
 
+            $table->foreign('site_id')->references('id')->on('sites');
             $table->foreign('user_id')->references('id')->on('users');
         });
 
@@ -144,7 +147,7 @@ class RefactorMigration extends Migration
             $table->timestamps();
         });
 
-        Schema::create('site_services', function (Blueprint $table) {
+        Schema::create('service_site', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('site_id');
             $table->unsignedInteger('service_id');
