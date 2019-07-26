@@ -54,7 +54,7 @@
 	<div class="field">
 	    <div class="control">
 	        <button type="submit" class="button is-link mr-2">Update Registrar</button>
-	        <a href="/registrars" class="button">Cancel</a>
+	        <a href="/settings" class="button">Cancel</a>
 	    </div>
 	</div>
 

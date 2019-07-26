@@ -28,9 +28,10 @@
 			<div class="p-4 w-full mb-4">
 				@foreach($users as $user)
 					<div class="flex justify-between mb-4">
-						<div><p>{{ $user->name }}</p></div>
-						<div><p>{{ $user->email }}</p></div>
-						<div><p>{{ App\Enums\UserTypes::getDescription($user->role) }}</p></div>
+						<div class="w-1/4"><p>{{ $user->name }}</p></div>
+						<div class="w-1/4"><p>{{ $user->email }}</p></div>
+						<div class="w-1/4"><p>{{ App\Enums\UserTypes::getDescription($user->role) }}</p></div>
+						<div class="w-1/4"><a href="{{ route('user.edit', $user->id) }}" class="button">Edit</a></div>
 					</div>
 				@endforeach
 
