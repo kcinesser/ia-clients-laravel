@@ -3,7 +3,7 @@
 @section('content')
     <header class="flex items-center mb-3 py-4">
         <div class="flex justify-between w-full items-center">
-            <h2 class="text-gray-500 text-sm font-normal">Registrars</h2>
+            <h2 class="text-gray-500">Registrars</h2>
             <a href="/registrars/create" class="button">Create New Registrar</a>
         </div>
     </header>
