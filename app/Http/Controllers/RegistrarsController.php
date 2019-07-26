@@ -69,9 +69,10 @@ class RegistrarsController extends Controller
      * @param  \App\Registrar  $registrar
      * @return \Illuminate\Http\Response
      */
-    public function edit(Registrar $registrar)
-    {
-        //
+    public function edit(Registrar $registrar) {
+        $owners = Owners::toSelectArray();
+
+        return view('registrars.edit', compact('owners', 'registrar'));
     }
 
     /**
@@ -83,7 +84,16 @@ class RegistrarsController extends Controller
      */
     public function update(Request $request, Registrar $registrar)
     {
-        //
+        request()->validate([
+            'name' => 'required',
+            'url' => 'required'
+        ]);
+
+        $attributes = request()->all();
+
+        $registrar->update($attributes);
+
+        return redirect('/settings');
     }
 
     /**
