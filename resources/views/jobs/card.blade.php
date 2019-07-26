@@ -4,7 +4,7 @@
     </h3>
     <div class="mb-3">
         <p class="text-gray-800 text-sm font-normal">Status</p>
-        <p class="text-gray-500 text-sm font-normal">{{ \App\Enums\ProjectStatus::getDescription($project->status) }}</p>
+        <p class="text-gray-500 text-sm font-normal">{{ \App\Enums\JobStatus::getDescription($job->status) }}</p>
     </div>
     <div class="mb-3">
         <p class="text-gray-800 text-sm font-normal">Account Manager</p>
@@ -12,7 +12,7 @@
     </div>
     <div class="mb-3">
         <p class="text-gray-800 text-sm font-normal">Primary Developer</p>
-        <p class="text-gray-500 text-sm font-normal">{{ $project->developer->name }}</p>
+        <p class="text-gray-500 text-sm font-normal">{{ $job->developer->name }}</p>
     </div>
     <div class="mb-3">
         <p class="text-gray-800 text-sm font-normal">Primary Contact Information</p>
@@ -22,11 +22,11 @@
     </div>
     <div class="mb-3">
         <p class="text-gray-800 text-sm font-normal">Project Start Date</p>
-        <p class="text-gray-500 text-sm font-normal"> {{ \Carbon\Carbon::parse($project->created_at)->format('n/j/Y')}}</p>
+        <p class="text-gray-500 text-sm font-normal"> {{ \Carbon\Carbon::parse($job->created_at)->format('n/j/Y')}}</p>
     </div>
     <div class="mb-3">
-        @if ($project->status != 3)
-            <form method="POST" action="{{ $project->path() . '/archive' }}">
+        @if ($job->status != 3)
+            <form method="POST" action="{{ $job->path() . '/archive' }}">
                 {{ method_field('PATCH') }}
                 {{ csrf_field() }}   
                 <button type="submit" class="text-red-500 text-sm font-normal underline">Archive Project</button>     

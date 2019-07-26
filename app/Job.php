@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
+class Job extends Model
 {
     protected $guarded = [];
 
     public function path() {
-        return "/clients/{$this->client->id}/projects/{$this->id}";
+        return "/clients/{$this->client->id}/jobs/{$this->id}";
     }
 
     public function client() {

@@ -39,23 +39,23 @@ class User extends Authenticatable
         return $initials;
     }
 
-    public function dashboardProjects() {
-        $projects = array();
+    public function dashboardJobs() {
+        $jobs = array();
 
         if ($this->role == 0) {
-            $projects = $this->projects->whereNotIn('status', 3);
+            $jobs = $this->jobs->whereNotIn('status', 3);
         } elseif ($this->role == 1) {
-            $projects = $this->accountManagerProjects->whereNotIn('status', 3);
+            $jobs = $this->accountManagerJobs->whereNotIn('status', 3);
         }
 
-        return $projects;
+        return $jobs;
     }
 
      public function dashboardClients() {
         $clients = array();
 
         if ($this->role == 0) {
-            $client_ids = Project::where('developer_id', $this->id)->pluck('client_id');
+            $client_ids = Job::where('developer_id', $this->id)->pluck('client_id');
             $clients = Client::find($client_ids);
         } else {
             $clients = $this->clients;
@@ -68,12 +68,12 @@ class User extends Authenticatable
         return $this->hasMany(Client::class, 'account_manager_id');
     }
 
-    public function accountManagerProjects() {
-        return $this->hasManyThrough(Project::class, Client::class, 'account_manager_id');
+    public function accountManagerJobs() {
+        return $this->hasManyThrough(Job::class, Client::class, 'account_manager_id');
     }
 
-    public function projects() {
-        return $this->hasMany(Project::class, 'developer_id');
+    public function jobs() {
+        return $this->hasMany(Job::class, 'developer_id');
     }
 
     public function comments() {

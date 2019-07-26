@@ -18,25 +18,48 @@
             <div class="lg:w-1/2 px-3">
                 <div class="mb-8">  
                     <div class="lg:flex lg:flex-wrap items-center">          
-                        <h2 class="text-lg text-gray-500 font-normal mb-3 mr-3">Projects</h2>
-                        <a href="{{ $client->path() . '/projects/create' }}" class="button mb-3">New Project</a>
+                        <h2 class="text-lg text-gray-500 font-normal mb-3 mr-3">Sites</h2>
+                        <a href="{{ $client->path() . '/sites/create' }}" class="button mb-3">New Site</a>
                     </div>
 
                     <div class="lg:flex lg:flex-wrap">          
-                        @forelse ($projects as $project)
+                        @forelse ($sites as $site)
                             <div class="w-1/3 px-3 pb-6">
                                 <div class="card h-40">
-                                    <a href="{{ $project->path() }}">{{ $project->title }}</a>
-                                    <p class="text-gray-500 text-sm font-normal">{{ \Illuminate\Support\Str::limit($project->description, 50) }}</p>
+                                    <a href="{{ $site->path() }}">{{ $site->name }}</a>
+                                    <p class="text-gray-500 text-sm font-normal">{{ \Illuminate\Support\Str::limit($site->description, 50) }}</p>
                                 </div>
                             </div>
                         @empty
                             <div class="card mb-3">
-                                <p>No projects yet.</p>
+                                <p>No sites yet.</p>
                             </div>
                         @endforelse
                     </div>
-                    <a href="{{ $client->archivePath() }}" class="">View Archived Projects</a>
+                    <a href="{{ $client->archivePath() }}" class="">View Archived Sites</a>
+                </div>
+
+                <div class="mb-8">  
+                    <div class="lg:flex lg:flex-wrap items-center">          
+                        <h2 class="text-lg text-gray-500 font-normal mb-3 mr-3">Jobs</h2>
+                        <a href="{{ $client->path() . '/jobs/create' }}" class="button mb-3">New Job</a>
+                    </div>
+
+                    <div class="lg:flex lg:flex-wrap">          
+                        @forelse ($jobs as $job)
+                            <div class="w-1/3 px-3 pb-6">
+                                <div class="card h-40">
+                                    <a href="{{ $job->path() }}">{{ $job->title }}</a>
+                                    <p class="text-gray-500 text-sm font-normal">{{ \Illuminate\Support\Str::limit($job->description, 50) }}</p>
+                                </div>
+                            </div>
+                        @empty
+                            <div class="card mb-3">
+                                <p>No jobs yet.</p>
+                            </div>
+                        @endforelse
+                    </div>
+                    <a href="{{ $client->archivePath() }}" class="">View Archived Jobs</a>
                 </div>
 
                 <div>

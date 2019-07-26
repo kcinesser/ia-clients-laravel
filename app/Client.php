@@ -13,24 +13,32 @@ class Client extends Model
     }  
 
     public function archivePath() {
-        return "/clients/{$this->id}/projects/archives";
+        return "/clients/{$this->id}/jobs/archives";
     }
 
-    public function addProject($attributes) {
-    	$project = $this->projects()->create([
+    public function addJob($attributes) {
+    	$job = $this->jobs()->create([
             'title' => $attributes['title'],
             'description' => $attributes['description'],
             'technology' => $attributes['technology'],
             'developer_id' => $attributes['developer_id']
         ]);
 
-        $project->services()->attach($attributes['service_id']);
-
-        return $project;
+        return $job;
     }
 
-    public function projects() {
-    	return $this->hasMany(Project::class);
+    public function addSite($attributes) {
+        $site = $this->sites()->create($attributes);
+
+        return $site;
+    }
+
+    public function sites() {
+        return $this->hasMany(Site::class);
+    }
+
+    public function jobs() {
+    	return $this->hasMany(Job::class);
     }
 
     public function comments() {

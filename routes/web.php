@@ -15,25 +15,26 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('activities', 'ActivitiesController')->only(['index']);
     Route::resource('clients', 'ClientsController');
     Route::resource('registrars', 'RegistrarsController');
-    Route::get('/clients/{client}/projects/archives', 'ProjectsController@archives');
-    Route::patch('/clients/{client}/projects/{project}/archive', 'ProjectsController@archive');
-    Route::resource('clients.projects', 'ProjectsController');
-    Route::resource('clients.projects.software-license', 'SoftwareLicensesController')->only(['store', 'update', 'destroy']);
-    Route::resource('clients.projects.updates', 'UpdatesController');
+    Route::get('/clients/{client}/jobs/archives', 'JobsController@archives');
+    Route::patch('/clients/{client}/jobs/{job}/archive', 'JobsController@archive');
+    Route::resource('clients.jobs', 'JobsController');
+    Route::resource('clients.sites', 'SitesController');
+    Route::resource('clients.jobs.software-license', 'SoftwareLicensesController')->only(['store', 'update', 'destroy']);
+    Route::resource('clients.jobs.updates', 'UpdatesController');
     Route::resource('services', 'ServicesController');
 
-    Route::get('/projects', 'ProjectsController@index');
-    Route::patch('/clients/{client}/projects/{project}/notes', 'ProjectsController@notes');
+    Route::get('/jobs', 'JobsController@index');
+    Route::patch('/clients/{client}/jobs/{job}/notes', 'JobsController@notes');
     
-    Route::post('/clients/{client}/projects/{project}/tasks', 'ProjectTasksController@store');
-    Route::patch('/clients/{client}/projects/{project}/tasks/{task}', 'ProjectTasksController@update');
+    Route::post('/clients/{client}/jobs/{job}/tasks', 'ProjectTasksController@store');
+    Route::patch('/clients/{client}/jobs/{job}/tasks/{task}', 'ProjectTasksController@update');
 
-    Route::post('/comment/{model}/{id}', 'CommentsController@store')->where('model', ('client|project'));
+    Route::post('/comment/{model}/{id}', 'CommentsController@store')->where('model', ('client|job'));
     Route::patch('/comment/{comment}', 'CommentsController@update');
 
-    Route::get('/clients/{client}/projects/{project}/domains/create', 'DomainsController@create');
-    Route::get('/clients/{client}/projects/{project}/domains/{domain}', 'DomainsController@show');
-    Route::post('/clients/{client}/projects/{project}/domains', 'DomainsController@store');
+    Route::get('/clients/{client}/jobs/{job}/domains/create', 'DomainsController@create');
+    Route::get('/clients/{client}/jobs/{job}/domains/{domain}', 'DomainsController@show');
+    Route::post('/clients/{client}/jobs/{job}/domains', 'DomainsController@store');
 
 
     Route::get('/home', 'HomeController@index')->name('home');
