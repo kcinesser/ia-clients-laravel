@@ -6,13 +6,14 @@
    	@csrf
     <h1 class="text-2xl font-normal mb-10 text-center">Create A Site</h1>
 
-    @include('sites.form', [
+    @include('sites.create_form', [
         'site' => new App\Site,
         'buttonText' => 'Create Site',
         'cancelURL' => $client->path(),
         'technologies' => App\Enums\Technologies::toSelectArray(),
         'services' => App\Service::all(),
         'statuses' => App\Enums\SiteStatus::toSelectArray(),
+        'registrars' => App\Registrar::all()
     ])
 
 </form>

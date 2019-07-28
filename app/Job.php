@@ -16,6 +16,10 @@ class Job extends Model
         return $this->belongsTo(Client::class);
     }
 
+    public function site() {
+        return $this->belongsTo(Site::class);
+    }
+
     public function developer() {
         return $this->belongsTo(User::class);
     }

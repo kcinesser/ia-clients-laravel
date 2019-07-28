@@ -27,10 +27,10 @@ Route::group(['middleware' => 'auth'], function(){
     Route::patch('/clients/{client}/jobs/{job}/notes', 'JobsController@notes');
     Route::patch('/clients/{client}/sites/{site}/notes', 'SitesController@notes');
     
-    Route::post('/clients/{client}/jobs/{job}/tasks', 'ProjectTasksController@store');
-    Route::patch('/clients/{client}/jobs/{job}/tasks/{task}', 'ProjectTasksController@update');
+    Route::post('/clients/{client}/jobs/{job}/tasks', 'TasksController@store');
+    Route::patch('/clients/{client}/jobs/{job}/tasks/{task}', 'TasksController@update');
 
-    Route::post('/comment/{model}/{id}', 'CommentsController@store')->where('model', ('client|job'));
+    Route::post('/comment/{model}/{id}', 'CommentsController@store')->where('model', ('client|job|site'));
     Route::patch('/comment/{comment}', 'CommentsController@update');
 
     Route::get('/clients/{client}/sites/{site}/domains/create', 'DomainsController@create');

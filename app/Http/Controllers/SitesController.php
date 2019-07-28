@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Site;
 use App\Client;
+use App\Domain;
 use Illuminate\Http\Request;
 
 class SitesController extends Controller

@@ -21,8 +21,16 @@
         <p class="text-gray-500 text-sm font-normal">{{ $client->contact_phone }}</p>
     </div>
     <div class="mb-3">
-        <p class="text-gray-800 text-sm font-normal">Project Start Date</p>
-        <p class="text-gray-500 text-sm font-normal"> {{ \Carbon\Carbon::parse($job->created_at)->format('n/j/Y')}}</p>
+        <p class="text-gray-800 text-sm font-normal">Job Start Date</p>
+        <p class="text-gray-500 text-sm font-normal"> {{ isset($job->start_date) ? \Carbon\Carbon::parse($job->start_date)->format('n/j/Y') : $job->created_at }}</p>
+    </div>
+    <div class="mb-3">
+        <p class="text-gray-800 text-sm font-normal">Job End Date</p>
+        <p class="text-gray-500 text-sm font-normal"> {{ isset($job->end_date) ? \Carbon\Carbon::parse($job->end_date)->format('n/j/Y') : "None" }}</p>
+    </div>
+    <div class="mb-3">
+        <p class="text-gray-800 text-sm font-normal">Go Live Date</p>
+        <p class="text-gray-500 text-sm font-normal"> {{ isset($job->go_live_date) ? \Carbon\Carbon::parse($job->go_live_date)->format('n/j/Y') : "None" }}</p>
     </div>
     <div class="mb-3">
         @if ($job->status != 3)

@@ -6,9 +6,11 @@ use Illuminate\Support\ServiceProvider;
 use App\Job;
 use App\Comment;
 use App\Client;
+use App\Site;
 use App\Observers\JobObserver;
 use App\Observers\CommentObserver;
 use App\Observers\ClientObserver;
+use App\Observers\SiteObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
         Job::observe(JobObserver::class);
         Comment::observe(CommentObserver::class);
         Client::observe(ClientObserver::class);
+        Site::observe(SiteObserver::class);
     }
 
     /**

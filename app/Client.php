@@ -17,18 +17,30 @@ class Client extends Model
     }
 
     public function addJob($attributes) {
-    	$job = $this->jobs()->create([
-            'title' => $attributes['title'],
-            'description' => $attributes['description'],
-            'technology' => $attributes['technology'],
-            'developer_id' => $attributes['developer_id']
-        ]);
+    	$job = $this->jobs()->create($attributes);
 
         return $job;
     }
 
     public function addSite($attributes) {
-        $site = $this->sites()->create($attributes);
+        $site = $this->sites()->create([
+            'name' => $attributes['name'],
+            'technology' => $attributes['technology'],
+            'status' => $attributes['status']
+        ]);
+
+        if ($attributes['URL']) {
+            $account = DomainAccount::create([
+                'url' => 'test',
+                'description' => 'test'
+            ]);
+
+            $site->domains()->create([
+                'name' => $attributes['URL'],
+                'registrar_id' => $attributes['registrar'],
+                'domain_account_id' => $account->id
+            ]);
+        }
 
         return $site;
     }

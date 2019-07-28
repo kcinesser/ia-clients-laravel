@@ -12,7 +12,8 @@
         'cancelURL' => $client->path(),
         'services' => App\Service::all(),
         'technologies' => App\Enums\Technologies::toSelectArray(),
-        'developers' => App\User::all()->where('role', 0)
+        'developers' => App\User::all()->where('role', 0),
+        'sites' => $client->sites,
     ])
 
 </form>

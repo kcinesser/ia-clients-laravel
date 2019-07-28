@@ -26,10 +26,11 @@ class JobsController extends Controller
     }
 
     public function store(Client $client) {
-        $attributes = request()->validate([
+        request()->validate([
             'title' => 'required', 
             'description' => 'required'
         ]);
+        
         $attributes = request()->all();
 
         $job = $client->addJob($attributes);
@@ -40,7 +41,7 @@ class JobsController extends Controller
     public function edit(Client $client, Job $job) {
         $statuses = JobStatus::toSelectArray();
 
-        return view('jobs.edit', compact('job', 'statuses'));
+        return view('jobs.edit', compact('client', 'job', 'statuses'));
     }
 
     public function update(Client $client, Job $job) {

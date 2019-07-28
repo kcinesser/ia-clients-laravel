@@ -4,20 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Client;
-use App\Project;
+use App\Job;
 use App\Task;
 
-class ProjectTasksController extends Controller
+class TasksController extends Controller
 {
-    public function store(Client $client, Project $project) {
+    public function store(Client $client, Job $job) {
     	request()->validate(['body' => 'required']);
     	
-    	$project->addTask(request('body'));
+    	$job->addTask(request('body'));
 
-    	return redirect($project->path());
+    	return redirect($job->path());
     }
 
-    public function update(Client $client, Project $project, Task $task) {
+    public function update(Client $client, Job $job, Task $task) {
     	request()->validate(['body' => 'required']);
 
     	$task->update([
@@ -25,6 +25,6 @@ class ProjectTasksController extends Controller
     		'completed' => request()->has('completed')
     	]);
 
-    	return redirect($project->path());
+    	return redirect($job->path());
     }
 }

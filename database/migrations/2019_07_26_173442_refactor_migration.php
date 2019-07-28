@@ -48,7 +48,6 @@ class RefactorMigration extends Migration
         Schema::create('sites', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('client_id');
-            $table->unsignedInteger('service_id')->nullable();
             $table->string('name');
             $table->tinyInteger('technology')->unsigned()->default(Technologies::WordPress)->nullable();
             $table->tinyInteger('status')->unsigned()->default(SiteStatus::InDevelopment)->nullable();
@@ -69,6 +68,9 @@ class RefactorMigration extends Migration
             $table->text('description')->nullable();
             $table->tinyInteger('technology')->unsigned()->default(Technologies::WordPress)->nullable();
             $table->text('notes')->nullable();
+            $table->date('go_live_date')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->default(NULL)->nullable();
             $table->timestamps();
             $table->tinyInteger('status')->unsigned()->default(JobStatus::Incoming)->nullable();
 
@@ -106,7 +108,7 @@ class RefactorMigration extends Migration
         Schema::create('domains', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->date('exp_date');
+            $table->date('exp_date')->nullable();
             $table->timestamps();
             $table->unsignedInteger('site_id');
             $table->unsignedInteger('registrar_id');

@@ -42,38 +42,17 @@
 
     		</div>
     		<div class="lg:w-1/2 px-3">
-                <div class="mb-8">            
-                    <h2 class="text-3xl text-gray-800 font-normal mb-3">{{ $job->title }}</h2>
+                <div class="mb-8">
+                    <div class="flex items-center">            
+                        <h2 class="text-3xl text-gray-800 font-normal mb-3 mr-3">{{ $job->title }}</h2>
+                        @if($job->site()->exists())
+                        <p class="font-normal text-sm text-gray-500">Site: <a class="text-blue-500" href="{{ $job->site->path() }}">{{ $job->site->name }}</a></p>
+                        @endif
+                    </div>
                     <p class="text-gray-500 text-sm font-normal">{{ $job->description }}</p>
                 </div>
 
                 <div class="mb-8">            
-                    <h2 class="text-lg text-gray-500 font-normal mb-3">Domains</h2>
-
-                   {{--  <div>
-                        @forelse ($job->domains as $domain)
-                            <div class="card mb-6">
-                                <div class="flex justify-between">
-                                    <div>
-                                        <a href="{{ $domain->path() }}">{{ $domain->name }}</a>
-                                    </div>
-                                    <div>
-                                        <a href="{{ $domain->domain_account->url }}">{{ $domain->domain_account->url }}</a>
-                                    </div>
-                                    <div>
-                                        Exp: {{ $domain->exp_date }}
-                                    </div>
-                                </div>
-                            </div>
-                        @empty
-                            <div class="card mb-3">
-                                <p>No domains yet.</p>
-                            </div>
-                        @endforelse
-                    </div>
-                    <a href="{{ $job->path() }}/domains/create" class="button">Add Domain</a>
-
-                </div> --}}
     			
 {{--                 <div class="mb-8">            
                     <h2 class="text-lg text-gray-500 font-normal mb-3">Licenses</h2>
@@ -109,8 +88,8 @@
                                 <button type="submit" class="button">Save</button>
                             </div>
                         </form>
-                    </div>
-                </div> --}}
+                    </div> --}}
+                </div>
 
 
     			<div class="mb-8">
@@ -130,7 +109,7 @@
 
                     <div class="card mb-3">
                         <form action="/comment/job/{{ $job->id }}" method="POST">
-                            {{ csrf_field() }}
+                            @csrf
                             <div class="flex items-center">
                                 <input name="body" class="w-full" placeholder="Add a comment.">
                                 <button type="submit" class="button">Save</button>

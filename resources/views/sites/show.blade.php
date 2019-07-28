@@ -16,6 +16,10 @@
  				@include ('sites.card')
     		</div>
     		<div class="lg:w-1/2 px-3">
+                <div class="mb-8">
+                    <h2 class="text-3xl text-gray-800 font-normal mb-3 mr-3">{{ $site->name }}</h2>
+                    <p class="text-gray-500 text-sm font-normal">{{ $site->description }}</p>
+                </div>
                 <div class="mb-8">            
                     <h2 class="text-lg text-gray-500 font-normal mb-3">Domains</h2>
 
@@ -44,6 +48,29 @@
 
                 </div>
 
+                @if($site->jobs()->exists())
+                <div class="mb-8">  
+                    <div class="lg:flex lg:flex-wrap items-center">          
+                        <h2 class="text-lg text-gray-500 font-normal mb-3 mr-3">Jobs</h2>
+                    </div>
+
+                    <div class="lg:flex lg:flex-wrap">          
+                        @forelse ($site->jobs as $job)
+                            <div class="w-1/3 px-3 pb-6">
+                                <div class="card h-40">
+                                    <a href="{{ $job->path() }}">{{ $job->title }}</a>
+                                    <p class="text-gray-500 text-sm font-normal">{{ \Illuminate\Support\Str::limit($job->description, 50) }}</p>
+                                </div>
+                            </div>
+                        @empty
+                            <div class="card mb-3">
+                                <p>No jobs yet.</p>
+                            </div>
+                        @endforelse
+                    </div>
+                    <a href="{{ $client->archivePath() }}" class="">View Archived Jobs</a>
+                </div>
+                @endif
 
     			<div class="mb-8">
 	            	<h2 class="text-lg text-gray-500 font-normal mb-3">Notes</h2>
@@ -55,8 +82,39 @@
                         <button type="submit" class="button">Save</button>
                     </form>
 	            </div>
+                <div>
+                    <h2 class="text-lg text-gray-500 font-normal mb-3">Comments</h2>
 
+                    <div class="card mb-3">
+                        <form action="/comment/site/{{ $site->id }}" method="POST">
+                            @csrf
+                            <div class="flex items-center">
+                                <input name="body" class="w-full" placeholder="Add a comment.">
+                                <button type="submit" class="button">Save</button>
+                            </div>
+                        </form>
+                    </div>
 
+                    @foreach ($site->comments->sortByDesc('created_at') as $comment)
+                        <div class="card mb-3">
+                            <form method="POST" action="/comment/{{ $comment->id }}">
+                                {{ method_field('PATCH') }}
+                                {{ csrf_field() }}
+                                <div class="flex justify-between">
+                                    <input class="w-3/4" name="body" value="{{ $comment->body }}">
+                                    <div>
+                                        <p>{{ $comment->user->initials() }}</p>
+                                    </div>
+                                    <div>
+                                        {{ \Carbon\Carbon::parse($comment->created_at)->format('n/j/Y')}}
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    @endforeach
+
+                </div>
+            </div>
     	</div>
     </main>
 
