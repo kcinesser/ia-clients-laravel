@@ -8,11 +8,7 @@ class SoftwareLicense extends Model
 {
     protected $guarded = [];
 
-    public function project() {
-    	return $this->belongsTo(Project::class);
-    }
-
-   public function path() {
-    	return "/clients/{$this->project->client->id}/projects/{$this->project->id}/software-license/{$this->id}";
+    public function licenseable() {
+    	return $this->morphMany();
     }
 }

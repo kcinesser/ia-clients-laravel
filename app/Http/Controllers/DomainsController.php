@@ -30,7 +30,7 @@ class DomainsController extends Controller
     {
         $registrars = Registrar::all();
 
-        return view('domains.create', compact('site'), compact('registrars'));
+        return view('domains.create', compact('site', 'registrars'));
     }
 
     /**
@@ -78,9 +78,11 @@ class DomainsController extends Controller
      * @param  \App\Domain  $domain
      * @return \Illuminate\Http\Response
      */
-    public function edit(Domain $domain)
+    public function edit(Client $client, Site $site, Domain $domain)
     {
-        //
+        $registrars = Registrar::all();
+
+        return view('domains.edit', compact('domain', 'site', 'registrars'));
     }
 
     /**
@@ -90,9 +92,11 @@ class DomainsController extends Controller
      * @param  \App\Domain  $domain
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Domain $domain)
+    public function update(Client $client, Site $site, Domain $domain)
     {
-        //
+        $domain->update(request()->all());
+
+        return redirect($domain->path());
     }
 
     /**

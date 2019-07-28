@@ -50,7 +50,7 @@
                             <div class="w-1/3 px-3 pb-6">
                                 <div class="card h-40">
                                     <a href="{{ $job->path() }}">{{ $job->title }}</a>
-                                    <p class="text-gray-500 text-sm font-normal">{{ \Illuminate\Support\Str::limit($job->description, 50) }}</p>
+                                    <p class="text-gray-500 text-sm font-normal">{{ \Illuminate\Support\Str::limit($job->description, 35) }}</p>
                                 </div>
                             </div>
                         @empty

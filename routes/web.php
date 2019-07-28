@@ -19,7 +19,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::patch('/clients/{client}/jobs/{job}/archive', 'JobsController@archive');
     Route::resource('clients.jobs', 'JobsController');
     Route::resource('clients.sites', 'SitesController');
-    Route::resource('clients.jobs.software-license', 'SoftwareLicensesController')->only(['store', 'update', 'destroy']);
+    Route::resource('clients.sites.domains', 'DomainsController');
     Route::resource('clients.jobs.updates', 'UpdatesController');
     Route::resource('services', 'ServicesController');
 
@@ -32,11 +32,9 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::post('/comment/{model}/{id}', 'CommentsController@store')->where('model', ('client|job|site'));
     Route::patch('/comment/{comment}', 'CommentsController@update');
-
-    Route::get('/clients/{client}/sites/{site}/domains/create', 'DomainsController@create');
-    Route::get('/clients/{client}/sites/{site}/domains/{domain}', 'DomainsController@show');
-    Route::post('/clients/{client}/sites/{site}/domains', 'DomainsController@store');
-
+    Route::post('/software_license/{model}/{id}', 'SoftwareLicensesController@store')->where('model', ('job|site'));
+    Route::patch('/software_license/{software_license}', 'SoftwareLicensesController@update');
+    Route::delete('/software_license/{software_license}', 'SoftwareLicensesController@destroy');
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/settings', 'SettingsController@index');

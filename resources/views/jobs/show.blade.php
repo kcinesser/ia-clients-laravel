@@ -51,17 +51,15 @@
                     </div>
                     <p class="text-gray-500 text-sm font-normal">{{ $job->description }}</p>
                 </div>
-
-                <div class="mb-8">            
     			
-{{--                 <div class="mb-8">            
+                <div class="mb-8">            
                     <h2 class="text-lg text-gray-500 font-normal mb-3">Licenses</h2>
 
                     @foreach ($job->licenses as $license)
                         <div class="card mb-3">
-                            <form method="POST" action="{{ $license->path() }}">
-                                {{ method_field('PATCH') }}
-                                {{ csrf_field() }}
+                            <form method="POST" action="/software_license/{{ $license->id }}">
+                                @method('PATCH')
+                                @csrf
 
                                 <div class="items-center mb-3">
                                     <input type="text" name="description" class="w-full mb-3" value="{{ $license->description }}">
@@ -70,7 +68,7 @@
                                     <button type="submit" class="button">Update</button>
                                 </div>
                             </form>
-                            <form method="POST" action={{ $license->path() }}>
+                            <form method="POST" action="/software_license/{{ $license->id }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-red-500 text-sm font-normal">Delete</button>
@@ -79,8 +77,8 @@
                     @endforeach
 
                     <div class="card mb-3">
-                        <form action="{{ $job->path() . '/software-license' }}" method="POST">
-                            {{ csrf_field() }}
+                        <form action="/software_license/job/{{ $job->id }}" method="POST">
+                            @csrf
                             <div class="items-center">
                                 <input name="description" class="w-full mb-3" placeholder="Description">
                                 <input name="key" class="w-full mb-3" placeholder="Key">
@@ -88,7 +86,7 @@
                                 <button type="submit" class="button">Save</button>
                             </div>
                         </form>
-                    </div> --}}
+                    </div>
                 </div>
 
 

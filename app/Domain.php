@@ -21,6 +21,6 @@ class Domain extends Model
     }
 
     public function path() {
-    	return "/clients/{$this->site->client->id}/site/{$this->site->id}/domains/{$this->id}";
+    	return "/clients/{$this->site->client->id}/sites/{$this->site->id}/domains/{$this->id}";
     }
 }

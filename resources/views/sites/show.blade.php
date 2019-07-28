@@ -31,9 +31,6 @@
                                         <a href="{{ $domain->path() }}">{{ $domain->name }}</a>
                                     </div>
                                     <div>
-                                        <a href="{{ $domain->domain_account->url }}">{{ $domain->domain_account->url }}</a>
-                                    </div>
-                                    <div>
                                         Exp: {{ $domain->exp_date }}
                                     </div>
                                 </div>
@@ -71,6 +68,46 @@
                     <a href="{{ $client->archivePath() }}" class="">View Archived Jobs</a>
                 </div>
                 @endif
+
+                <div class="mb-8">            
+                
+                <div class="mb-8">            
+                    <h2 class="text-lg text-gray-500 font-normal mb-3">Licenses</h2>
+
+                    @foreach ($site->licenses as $license)
+                        <div class="card mb-3">
+                            <form method="POST" action="/software_license/{{ $license->id }}">
+                                @method('PATCH')
+                                @csrf
+
+                                <div class="items-center mb-3">
+                                    <input type="text" name="description" class="w-full mb-3" value="{{ $license->description }}">
+                                    <input type="text" name="key" class="w-full mb-3" value="{{ $license->key }}">
+                                    <input type="text" name="url" class="w-full mb-3" value="{{ $license->url }}">
+                                    <button type="submit" class="button">Update</button>
+                                </div>
+                            </form>
+                            <form method="POST" action="/software_license/{{ $license->id }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-500 text-sm font-normal">Delete</button>
+                            </form>
+                        </div>
+                    @endforeach
+
+                    <div class="card mb-3">
+                        <form action="/software_license/site/{{ $site->id }}" method="POST">
+                            @csrf
+                            <div class="items-center">
+                                <input name="description" class="w-full mb-3" placeholder="Description">
+                                <input name="key" class="w-full mb-3" placeholder="Key">
+                                <input name="url" class="w-full mb-3" placeholder="URL">
+                                <button type="submit" class="button">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
 
     			<div class="mb-8">
 	            	<h2 class="text-lg text-gray-500 font-normal mb-3">Notes</h2>

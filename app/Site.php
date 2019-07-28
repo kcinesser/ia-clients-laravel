@@ -28,8 +28,8 @@ class Site extends Model
         return $this->belongsToMany(Service::class);
     }
 
-    public function tasks() {
-        return $this->morphMany(Task::class, 'taskable');
+    public function licenses() {
+        return $this->morphMany(SoftwareLicense::class, 'licenseable');
     }
     
     public function comments() {

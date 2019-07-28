@@ -25,7 +25,7 @@ class Job extends Model
     }
 
     public function licenses() {
-        return $this->hasMany(SoftwareLicense::class);
+        return $this->morphMany(SoftwareLicense::class, 'licenseable');
     }
 
     public function tasks() {
