@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Registrar;
+use App\Enums\Owners;
 use Illuminate\Http\Request;
 
 class RegistrarsController extends Controller
@@ -26,7 +27,9 @@ class RegistrarsController extends Controller
      */
     public function create()
     {
-        return view('registrars.create');
+        $owners = Owners::toSelectArray();
+
+        return view('registrars.create', compact('owners'));
     }
 
     /**
@@ -66,9 +69,10 @@ class RegistrarsController extends Controller
      * @param  \App\Registrar  $registrar
      * @return \Illuminate\Http\Response
      */
-    public function edit(Registrar $registrar)
-    {
-        //
+    public function edit(Registrar $registrar) {
+        $owners = Owners::toSelectArray();
+
+        return view('registrars.edit', compact('owners', 'registrar'));
     }
 
     /**
@@ -80,7 +84,16 @@ class RegistrarsController extends Controller
      */
     public function update(Request $request, Registrar $registrar)
     {
-        //
+        request()->validate([
+            'name' => 'required',
+            'url' => 'required'
+        ]);
+
+        $attributes = request()->all();
+
+        $registrar->update($attributes);
+
+        return redirect('/settings');
     }
 
     /**

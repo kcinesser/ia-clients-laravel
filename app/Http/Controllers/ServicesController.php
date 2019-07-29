@@ -18,4 +18,16 @@ class ServicesController extends Controller
 
         return redirect('/settings');
     }
+
+    public function edit(Service $service) {
+    	return view('services.edit', compact('service'));
+    }
+
+    public function update(Service $service) {
+        $attributes = request()->all();
+
+        $service->update($attributes);
+
+        return redirect('/settings');
+    }
 }

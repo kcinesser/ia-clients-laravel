@@ -25,4 +25,18 @@ class UserController extends Controller
         ]);
         return redirect('/settings');
     }
+
+    public function edit(User $user) {
+        $roles = UserTypes::toSelectArray();
+
+        return view('users.edit', compact('user', 'roles'));
+    }
+
+    public function update(User $user) {
+        $attributes = request()->all();
+
+        $user->update($attributes);
+
+        return redirect('/settings');
+    }
 }
