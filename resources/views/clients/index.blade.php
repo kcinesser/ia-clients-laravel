@@ -3,8 +3,8 @@
 @section('content')
     <header class="flex items-center mb-3 py-4">
         <div class="flex justify-between w-full items-center">
-            <h2 class="text-gray-500 text-sm font-normal">Interactive Clients</h2>
-            <a href="/clients/create" class="button">Create New Client</a>
+            <h2 class="text-gray-500">Interactive Clients</h2>
+            <a href="/clients/create" class="button bg-plum-500 hover:bg-plum-300">Create New Client</a>
         </div>
     </header>
 
@@ -12,11 +12,10 @@
         @forelse ($clients as $client)
             <div class="lg:w-1/3 px-3 pb-6">
                 <div class="card" style="">
-                    <h3 class="font-normal text-xl py-4 -ml-5 border-l-4 border-blue-500 pl-4">
+                    <h3 class="py-4 -ml-5 border-l-4 border-blue-500 pl-4">
                         <a href="{{ $client->path() }}" class="text-black no-underline">{{ $client->name }}</a>
                     </h3>
                 </div>
-
             </div>
         @empty
             <div>No clients yet.</div>
