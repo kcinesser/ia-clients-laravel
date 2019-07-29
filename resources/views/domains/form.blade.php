@@ -7,10 +7,10 @@
 </div>
 
 <div class="field mb-6">
-    <label for="description" class="label text-sm mb-2 block">Expiration Date</label>
+    <label for="exp_date" class="label text-sm mb-2 block">Expiration Date</label>
 
     <div class="control">
-        <input type="text" name="exp_date"S class="bg-transparent border border-grey-500 rounded p-2 text-xs w-full" required>{{ $domain->exp_date }}</textarea>
+        <input type="text" name="exp_date" class="bg-transparent border border-grey-500 rounded p-2 text-xs w-full" value="{{ $domain->exp_date }}">
     </div>
 </div>
 

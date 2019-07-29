@@ -15,10 +15,8 @@
         <p class="text-gray-500 text-sm font-normal">{{ $job->developer->name }}</p>
     </div>
     <div class="mb-3">
-        <p class="text-gray-800 text-sm font-normal">Primary Contact Information</p>
-        <p class="text-gray-500 text-sm font-normal">{{ $client->contact_name }}</p>
-        <p class="text-gray-500 text-sm font-normal">{{ $client->contact_email }}</p>
-        <p class="text-gray-500 text-sm font-normal">{{ $client->contact_phone }}</p>
+        <p class="text-gray-800 text-sm font-normal">Technology/Framework</p>
+        <p class="text-gray-500 text-sm font-normal">{{ \App\Enums\Technologies::getDescription($job->technology) }}</p>
     </div>
     <div class="mb-3">
         <p class="text-gray-800 text-sm font-normal">Job Start Date</p>

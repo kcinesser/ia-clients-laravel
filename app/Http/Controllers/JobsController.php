@@ -51,12 +51,7 @@ class JobsController extends Controller
         ]);
         $attributes = request()->all();
 
-        $job->update(['title' => $attributes['title'],
-            'description' => $attributes['description'],
-            'technology' => $attributes['technology'],
-            'developer_id' => $attributes['developer_id'],
-            'status' => $attributes['status']
-        ]);
+        $job->update($attributes);
 
         return redirect($job->path());
     }
