@@ -44,8 +44,8 @@ class DomainsController extends Controller
         $attributes = request()->all();
 
         $account = DomainAccount::create([
-            'url' => $attributes['url'],
-            'description' => $attributes['url_description']
+            'url' => 'test',
+            'description' => 'test'
         ]);
 
         $domain = array(

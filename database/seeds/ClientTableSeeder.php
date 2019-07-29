@@ -27,5 +27,45 @@ class ClientTableSeeder extends Seeder
         	'contact_phone' => '1231231234'
         ]);
 
+        DB::table('clients')->insert([
+            'name' => 'SL Green',
+            'account_manager_id' => 8,
+            'contact_name' => 'SL Green Contact',
+            'contact_email' => 'test@test.com',
+            'contact_phone' => '1231231234'
+        ]);
+
+        DB::table('clients')->insert([
+            'name' => 'LRS Healthcare',
+            'account_manager_id' => 8,
+            'contact_name' => 'LRS Contact',
+            'contact_email' => 'test@test.com',
+            'contact_phone' => '1231231234'
+        ]);
+
+        DB::table('clients')->insert([
+            'name' => 'NU Foundation',
+            'account_manager_id' => 7,
+            'contact_name' => 'NU Contact',
+            'contact_email' => 'test@test.com',
+            'contact_phone' => '1231231234'
+        ]);
+
+        DB::table('clients')->insert([
+            'name' => 'Firespring - Marketing',
+            'account_manager_id' => 11,
+            'contact_name' => 'Erin Soper',
+            'contact_email' => 'test@test.com',
+            'contact_phone' => '1231231234'
+        ]);
+
+        DB::table('clients')->insert([
+            'name' => 'Firespring - Interactive',
+            'account_manager_id' => 7,
+            'contact_name' => 'Brandon Rakes',
+            'contact_email' => 'test@test.com',
+            'contact_phone' => '1231231234'
+        ]);
+
     }
 }

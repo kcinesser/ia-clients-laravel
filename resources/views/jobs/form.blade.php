@@ -13,7 +13,7 @@
         <select id="site_id" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state" name="site_id" value="{{ old('side_id') }}" autofocus>
                 <option value="">None</option>
             @foreach ($sites as $site)
-                <option value="{{ $site->id }}" {{ $site->id == $job->site->id ? "selected" : "" }}>{{ $site->name }}</option>
+                <option value="{{ $site->id }}">{{ $site->name }}</option>
             @endforeach
         </select>
     </div>

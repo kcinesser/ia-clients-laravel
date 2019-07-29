@@ -15,7 +15,10 @@ class DatabaseSeeder extends Seeder
 			UserTableSeeder::class,	
             RegistrarTableSeeder::class,
             ServiceTableSeeder::class,
-            ClientTableSeeder::class
+            ClientTableSeeder::class,
+            SiteTableSeeder::class,
+            JobTableSeeder::class,
+            DomainTableSeeder::class
 		]);
     }
 }
