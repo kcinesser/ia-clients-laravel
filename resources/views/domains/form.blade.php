@@ -23,6 +23,25 @@
 </div>
 
 <div class="field mb-6">
+    <label for="domain_owner" class="label text-sm mb-2 block">Who owns the account?</label>
+
+
+    <div class="control">
+        <select id="domain_owner" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state" name="domain_owner" value="{{ old('domain_wner') }}" required autofocus>
+            @foreach ($owners as $value => $owner)
+                <option value="{{$value}}" >{{ $owner }}</option>
+            @endforeach
+        </select>
+
+        @if ($errors->has('owner'))
+            <span class="help-block">
+                <strong>{{ $errors->first('owner') }}</strong>
+            </span>
+        @endif
+    </div>
+</div>
+
+<div class="field mb-6">
     <label for="description" class="label text-sm mb-2 block">Expiration Date</label>
 
     <div class="control">

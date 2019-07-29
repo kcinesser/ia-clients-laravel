@@ -19,6 +19,7 @@
                     <div class="card">
                         <p class="mb-3">{{ $domain->name }}</p>
                         <p class="mb-3"><a href="{{ $domain->domain_account->url }}">{{ $domain->domain_account->url }}</a></p>
+                        <p class="mb-3">Owner: {{ \App\Enums\Owners::getDescription($domain->domain_account->owner) }}</p>
                         <p class="mb-3">Registrar: <a href="{{ $domain->registrar->url }}" target="_blank">{{ $domain->registrar->name }}</a></p>
                         <p class="mb-3">Expires: {{ $domain->exp_date }}</p>
                     </div>

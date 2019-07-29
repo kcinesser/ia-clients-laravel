@@ -29,8 +29,9 @@ class DomainsController extends Controller
     public function create(Client $client, Project $project)
     {
         $registrars = Registrar::all();
+        $owners = \App\Enums\Owners::toSelectArray();
 
-        return view('domains.create', compact('project'), compact('registrars'));
+        return view('domains.create', compact('project'), compact('registrars', 'owners'));
     }
 
     /**
@@ -45,7 +46,8 @@ class DomainsController extends Controller
 
         $account = DomainAccount::create([
             'url' => $attributes['url'],
-            'description' => $attributes['url_description']
+            'description' => $attributes['url_description'],
+            'owner' => $attributes['domain_owner']
         ]);
 
         $domain = array(

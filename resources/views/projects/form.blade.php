@@ -14,6 +14,24 @@
     </div>
 </div>
 
+ <div class="field mb-6{{ $errors->has('status') ? ' has-error' : '' }}">
+    <label for="status" class="label text-sm mb-2 block">Status</label>
+
+    <div class="control">
+        <select id="status" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state" name="status" value="{{ old('status') }}" required autofocus>
+            @foreach ($statuses as $value => $status)
+                <option value="{{$value}}" {{ $value == $project->status ? "selected" : "" }}>{{ $status }}</option>
+            @endforeach
+        </select>
+
+        @if ($errors->has('role'))
+            <span class="help-block">
+                <strong>{{ $errors->first('role') }}</strong>
+            </span>
+        @endif
+    </div>
+</div>
+
 <div class="field mb-6">
     <label for="developer_id" class="label text-sm mb-2 block">Primary Developer</label>
 

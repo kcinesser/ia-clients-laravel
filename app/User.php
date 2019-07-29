@@ -43,9 +43,9 @@ class User extends Authenticatable
         $projects = array();
 
         if ($this->role == 0) {
-            $projects = $this->projects;
+            $projects = $this->projects->whereNotIn('status', 3);
         } elseif ($this->role == 1) {
-            $projects = $this->accountManagerProjects;
+            $projects = $this->accountManagerProjects->whereNotIn('status', 3);
         }
 
         return $projects;

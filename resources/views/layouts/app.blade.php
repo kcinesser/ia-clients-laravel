@@ -21,7 +21,7 @@
     <div id="app">
         <nav class="flex items-center justify-between flex-wrap bg-orange-500 font-display p-6">
             <div class="flex items-center flex-shrink-0 text-white mr-6">
-                <a href="/" class="font-semibold text-xl tracking-tight">Firespring Client Database</a>
+                <a href="/" class="font-semibold text-xl tracking-tight">Interactive Client Database</a>
             </div>
             <div class="block lg:hidden">
                 <button class="flex items-center px-3 py-2 border rounded text-white border-teal-400 hover:text-gray-500 hover:border-white">
@@ -36,8 +36,11 @@
                     <a href="/projects" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 mr-4">
                         Projects
                     </a>
-                    <a href="/settings" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300">
+                    <a href="/settings" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 mr-4">
                         Settings
+                    </a>
+                    <a href="/activities" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300">
+                        Activities
                     </a>
                 </div>
                 <div class="text-sm text-white">

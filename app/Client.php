@@ -12,6 +12,10 @@ class Client extends Model
         return "/clients/{$this->id}";
     }  
 
+    public function archivePath() {
+        return "/clients/{$this->id}/projects/archives";
+    }
+
     public function addProject($attributes) {
     	$project = $this->projects()->create([
             'title' => $attributes['title'],
@@ -35,5 +39,9 @@ class Client extends Model
 
     public function accountManager() {
         return $this->belongsTo(User::class);
+    }
+
+    public function activities() {
+        return $this->morphMany(Activity::class, 'activatable');
     }
 }
