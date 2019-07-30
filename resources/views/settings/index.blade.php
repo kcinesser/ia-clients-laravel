@@ -69,6 +69,9 @@
 							{{ $service->description }}
 						</div>
 						<div class="w-1/4">
+							@if(isset($service->price))
+								${{ $service->price }}
+							@endif
 						</div>
 						<div class="w-1/4">
 							<a href="{{ route('services.edit', $service->id) }}" class="button">Edit</a>

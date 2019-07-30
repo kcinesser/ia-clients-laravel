@@ -7,7 +7,7 @@
 </div>
 
 <div class="field mb-6">
-    <label for="url" class="label text-sm mb-2 block">URL</label>
+    <label for="url" class="label text-sm mb-2 block">URL (optional)</label>
 
     <div class="control">
         <input type="text" class="input bg-transparent border border-grey-500 rounded p-2 text-xs w-full" name="URL">
@@ -15,14 +15,23 @@
 </div>
 
 <div class="field mb-6">
-    <label for="registrar" class="label text-sm mb-2 block">Where is the site registered?</label>
+    <label for="registrar" class="label text-sm mb-2 block">Where is the site registered? (optional)</label>
 
     <div class="control">
         <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="registrar">
+                <option>Select Registrar</option>
             @foreach($registrars as $registrar)
                 <option value="{{ $registrar->id }}">{{ $registrar->name }}</option>
             @endforeach
         </select>
+    </div>
+</div>
+
+<div class="field mb-6">
+    <label for="exp_date" class="label text-sm mb-2 block">When does the domain expire? (optional)</label>
+
+    <div class="control">
+        <input type="text" class="input bg-transparent border border-grey-500 rounded p-2 text-xs w-full" name="exp_date">
     </div>
 </div>
 

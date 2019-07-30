@@ -37,6 +37,7 @@ class Client extends Model
 
             $site->domains()->create([
                 'name' => $attributes['URL'],
+                'exp_date' => $attributes['exp_date'],
                 'registrar_id' => $attributes['registrar'],
                 'domain_account_id' => $account->id
             ]);

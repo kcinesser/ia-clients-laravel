@@ -34,7 +34,7 @@
 
 	<div class="field">
 	    <div class="control">
-	        <button type="submit" class="button is-link mr-2">Edit Service</button>
+	        <button type="submit" class="button is-link mr-2">Save Service</button>
 	        <a href="/settings" class="button">Cancel</a>
 	    </div>
 	</div>

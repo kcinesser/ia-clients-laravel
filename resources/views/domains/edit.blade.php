@@ -8,7 +8,7 @@
     <h1 class="text-2xl font-normal mb-10 text-center">Edit {{ $domain->site->name }}</h1>
     @include('domains.form', [
         'account' => new App\DomainAccount,
-        'buttonText' => 'Edit Domain',
+        'buttonText' => 'Save Domain',
         'cancelURL' => $site->path()
     ])
 </form>
