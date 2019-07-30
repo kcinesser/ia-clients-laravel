@@ -27,7 +27,7 @@
                             <div class="w-1/3 px-3 pb-6">
                                 <div class="card h-40">
                                     <a href="{{ $site->path() }}">{{ $site->name }}</a>
-                                    <p class="text-gray-500">{{ \Illuminate\Support\Str::limit($site->description, 50) }}</p>
+                                    <p class="text-gray-500">{{ \Illuminate\Support\Str::limit($site->description, 30) }}</p>
                                 </div>
                             </div>
                         @empty

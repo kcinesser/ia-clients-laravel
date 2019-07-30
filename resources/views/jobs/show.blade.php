@@ -44,7 +44,7 @@
     		<div class="lg:w-1/2 px-3">
                 <div class="mb-8">
                     <div class="flex items-center">            
-                        <h2 class="text-gray-800 mb-3">{{ $job->title }}</h2>
+                        <h2 class="text-gray-800 mb-3 mr-3">{{ $job->title }}</h2>
                         @if($job->site()->exists())
                         <p class="text-gray-500">Site: <a class="text-blue-500" href="{{ $job->site->path() }}">{{ $job->site->name }}</a></p>
                         @endif
@@ -53,7 +53,7 @@
                 </div>
     			
                 <div class="mb-8">            
-                    <h2 class="text-lg text-gray-500 font-normal mb-3">Licenses</h2>
+                    <h2 class="text-gray-500 mb-3">Licenses</h2>
 
                     @foreach ($job->licenses as $license)
                         <div class="card mb-3">
@@ -137,7 +137,7 @@
 
             <div class="lg:w-1/4 px-3">
                 <div class="mb-8">
-                    <h2 class="text-lg text-gray-500 font-normal mb-3">Activity</h2>
+                    <h2 class="text-gray-500 mb-3">Activity</h2>
 
                     @foreach ($job->activities as $activity)
                         <div class="card mb-3">

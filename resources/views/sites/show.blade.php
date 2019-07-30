@@ -17,11 +17,11 @@
     		</div>
     		<div class="lg:w-1/2 px-3">
                 <div class="mb-8">
-                    <h2 class="text-3xl text-gray-800 font-normal mb-3 mr-3">{{ $site->name }}</h2>
-                    <p class="text-gray-500 text-sm font-normal">{{ $site->description }}</p>
+                    <h2 class="text-gray-800 mb-3">{{ $site->name }}</h2>
+                    <p class="text-gray-500">{{ $site->description }}</p>
                 </div>
                 <div class="mb-8">            
-                    <h2 class="text-lg text-gray-500 font-normal mb-3">Domains</h2>
+                    <h2 class="text-gray-500 mb-3 mr-3">Domains</h2>
 
                     <div>
                         @forelse ($site->domains as $domain)
@@ -48,7 +48,7 @@
                 @if($site->jobs()->exists())
                 <div class="mb-8">  
                     <div class="lg:flex lg:flex-wrap items-center">          
-                        <h2 class="text-lg text-gray-500 font-normal mb-3 mr-3">Jobs</h2>
+                        <h2 class="text-gray-500 mb-3 mr-3">Jobs</h2>
                     </div>
 
                     <div class="lg:flex lg:flex-wrap">          
@@ -56,7 +56,7 @@
                             <div class="w-1/3 px-3 pb-6">
                                 <div class="card h-40">
                                     <a href="{{ $job->path() }}">{{ $job->title }}</a>
-                                    <p class="text-gray-500 text-sm font-normal">{{ \Illuminate\Support\Str::limit($job->description, 50) }}</p>
+                                    <p class="text-gray-500">{{ \Illuminate\Support\Str::limit($job->description, 30) }}</p>
                                 </div>
                             </div>
                         @empty
@@ -72,7 +72,7 @@
                 <div class="mb-8">            
                 
                 <div class="mb-8">            
-                    <h2 class="text-lg text-gray-500 font-normal mb-3">Licenses</h2>
+                    <h2 class="text-gray-500 mb-3 mr-3">Licenses</h2>
 
                     @foreach ($site->licenses as $license)
                         <div class="card mb-3">
@@ -90,7 +90,7 @@
                             <form method="POST" action="/software_license/{{ $license->id }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="text-red-500 text-sm font-normal">Delete</button>
+                                <button type="submit" class="text-red-500">Delete</button>
                             </form>
                         </div>
                     @endforeach
@@ -110,7 +110,7 @@
 
 
     			<div class="mb-8">
-	            	<h2 class="text-lg text-gray-500 font-normal mb-3">Notes</h2>
+	            	<h2 class="text-gray-500 mb-3 mr-3">Notes</h2>
 
                     <form method="POST" action="{{ $site->path() . '/notes' }}">
                         {{ csrf_field() }}
@@ -120,7 +120,7 @@
                     </form>
 	            </div>
                 <div>
-                    <h2 class="text-lg text-gray-500 font-normal mb-3">Comments</h2>
+                    <h2 class="text-gray-500 mb-3 mr-3">Comments</h2>
 
                     <div class="card mb-3">
                         <form action="/comment/site/{{ $site->id }}" method="POST">

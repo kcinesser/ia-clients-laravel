@@ -4,9 +4,7 @@
 
     <header class="flex items-center mb-3 py-4">
         <div class="flex justify-between w-full items-center">
-            <p class="text-gray-500 text-sm font-normal">
-            	<a href="/clients" class="no-underline">All Activities</a>
-            </p>
+        	<h2 class="text-gray-500 mb-3">All Activities</h2>
         </div>
     </header>
 
