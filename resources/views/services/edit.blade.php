@@ -28,7 +28,7 @@
 	    <label for="price" class="label text-sm mb-2 block">Price</label>
 
 	    <div class="control">
-	        <input name="price" class="bg-transparent border border-grey-500 rounded p-2 text-xs w-full" required value="{{ $service->price }}">
+	        <input name="price" class="bg-transparent border border-grey-500 rounded p-2 text-xs w-full" value="{{ $service->price }}">
 	    </div>
 	</div>
 
