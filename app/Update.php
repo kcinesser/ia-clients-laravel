@@ -13,10 +13,10 @@ class Update extends Model
     }
 
     public function project() {
-    	return $this->belongsTo(Project::class);
+    	return $this->belongsTo(Job::class);
     }
 
     public function path() {
-    	return "/clients/{$this->project->client->id}/projects/{$this->project->id}/updates/{$this->id}";
+    	return "/clients/{$this->job->client->id}/jobs/{$this->job->id}/updates/{$this->id}";
     }
 }

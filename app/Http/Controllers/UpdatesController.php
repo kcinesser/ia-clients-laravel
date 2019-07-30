@@ -4,30 +4,30 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Client;
-use App\Project;
+use App\Job;
 use App\Update;
 use Auth;
 
 class UpdatesController extends Controller
 {
-	public function store(Client $client, Project $project) {
+	public function store(Client $client, Job $job) {
     	request()->validate(['description' => 'required']);
     	$attributes = request()->all();
 
     	$attributes['user_id'] = Auth::id();
 
-    	$project->updates()->create($attributes);
+    	$job->updates()->create($attributes);
 
-    	return redirect($project->path());
+    	return redirect($job->path());
 	}
 
-	public function update(Client $client, Project $project, Update $update) {
+	public function update(Client $client, Job $job, Update $update) {
         $attributes = request()->validate([
             'description' => 'required', 
         ]);
 
         $update->update($attributes);
 
-    	return redirect($project->path());
+    	return redirect($job->path());
 	}
 }

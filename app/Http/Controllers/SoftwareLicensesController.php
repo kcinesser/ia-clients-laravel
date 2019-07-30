@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\SoftwareLicense;
 use App\Client;
-use App\Project;
+use App\Job;
 use Illuminate\Http\Request;
 
 
