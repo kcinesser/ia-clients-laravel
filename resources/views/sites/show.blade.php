@@ -68,8 +68,6 @@
                     <a href="{{ $client->archivePath() }}" class="">View Archived Jobs</a>
                 </div>
                 @endif
-
-                <div class="mb-8">            
                 
                 <div class="mb-8">            
                     <h2 class="text-gray-500 mb-3 mr-3">Licenses</h2>
@@ -152,7 +150,37 @@
 
                 </div>
             </div>
-    	</div>
+            <div class="lg:w-1/4 px-3">
+                <div class="mb-8">            
+                    <h2 class="text-gray-500 mb-3">Update History</h2>
+                    
+                    @foreach ($site->updates->sortByDesc('updated_at') as $update)
+                        <div class="card">
+                            <form method="POST" action="{{ $update->path() }}">
+                                {{ method_field('PATCH') }}
+                                {{ csrf_field() }}
+
+                                <div class="flex justify-between">
+                                    <input class="w-3/4 text-sm font-normal" name="description" value="{{ $update->description }}">
+                                    <div>
+                                        <p class="text-gray-500">{{ $update->user->initials() }}</p>
+                                        <p class="text-gray-500">{{ \Carbon\Carbon::parse($update->updated_at)->format('n/j/Y')}}</p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    @endforeach
+
+
+                    <div class="card">
+                        <form action="{{ $site->path() . '/updates' }}" method="POST" class="flex justify-between">
+                            {{ csrf_field() }}
+                            <input name="description" class="w-full" placeholder="Create new update.">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
 

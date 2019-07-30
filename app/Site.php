@@ -24,6 +24,10 @@ class Site extends Model
     	return $this->hasMany(Domain::class);
     }
 
+    public function updates() {
+        return $this->hasMany(Update::class);
+    }
+
     public function services() {
         return $this->belongsToMany(Service::class);
     }

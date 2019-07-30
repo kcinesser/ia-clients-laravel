@@ -20,7 +20,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('clients.jobs', 'JobsController');
     Route::resource('clients.sites', 'SitesController');
     Route::resource('clients.sites.domains', 'DomainsController');
-    Route::resource('clients.jobs.updates', 'UpdatesController');
+    Route::resource('clients.sites.updates', 'UpdatesController');
     Route::resource('services', 'ServicesController');
 
     Route::get('/jobs', 'JobsController@index');

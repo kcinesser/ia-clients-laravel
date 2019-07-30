@@ -57,10 +57,10 @@
 
 		   		<h2 class="text-gray-500 mb-3">Update Feed</h2>
 		   		@foreach ($updates as $update)
-		   			<a href="{{ $update->job->path() }}">
+		   			<a href="{{ $update->site->path() }}">
 			   			<div class="card mb-3">
-	                        <p class="text-gray-800">{{ $update->job->client->name }}</p>
-	                    	<p class="text-gray-500">{{ $update->job->title }}</p>
+	                        <p class="text-gray-800">{{ $update->site->client->name }}</p>
+	                    	<p class="text-gray-500">{{ $update->site->name }}</p>
                             <div class="flex justify-between items-center">
                                 <p class="w-3/4">{{ $update->description }}</p>
                                 <div>
