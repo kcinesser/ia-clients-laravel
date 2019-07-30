@@ -47,6 +47,13 @@ class UserTableSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
+            'name' => 'Jeff Ray',
+            'email' => 'jeff.ray@firespring.com',
+            'password' => bcrypt('password'),
+            'role' => 0
+        ]);
+
+        DB::table('users')->insert([
         	'name' => 'Dylan Urias',
         	'email' => 'dylan.urias@firespring.com',
             'password' => bcrypt('password'),
