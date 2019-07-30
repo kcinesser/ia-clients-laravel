@@ -9,7 +9,7 @@
         'domain' => new App\Domain,
         'account' => new App\DomainAccount,
         'buttonText' => 'Create Domain',
-        'cancelURL' => '/'
+        'cancelURL' => $site->path()
     ])
 </form>
 

@@ -29,6 +29,7 @@ class DomainsController extends Controller
     public function create(Client $client, Site $site)
     {
         $registrars = Registrar::all();
+        $owners = \App\Enums\Owners::toSelectArray();
 
         return view('domains.create', compact('site', 'registrars'));
     }

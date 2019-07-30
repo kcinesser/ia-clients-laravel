@@ -3,7 +3,7 @@
 @section('content')
     <header class="flex items-center mb-3 py-4">
         <div class="flex justify-between w-full items-center">
-            <h2 class="text-gray-500 text-sm font-normal">Settings</h2>
+            <h2 class="text-gray-500">Settings</h2>
         </div>
     </header>
 
@@ -25,26 +25,33 @@
 			</ul>
 
 
-			<div class="p-4 w-full">
+			<div class="p-4 w-full mb-4">
 				@foreach($users as $user)
 					<div class="flex justify-between mb-4">
-						<div><p>{{ $user->name }}</p></div>
-						<div><p>{{ $user->email }}</p></div>
-						<div><p>{{ App\Enums\UserTypes::getDescription($user->role) }}</p></div>
+						<div class="w-1/4"><p>{{ $user->name }}</p></div>
+						<div class="w-1/4"><p>{{ $user->email }}</p></div>
+						<div class="w-1/4"><p>{{ App\Enums\UserTypes::getDescription($user->role) }}</p></div>
+						<div class="w-1/4"><a href="{{ route('user.edit', $user->id) }}" class="button">Edit</a></div>
 					</div>
 				@endforeach
 
 				<a href="/user/create" class="button is-link mb-4">Register New User</a>
 			</div>
 
-			<div class="p-4 w-full">
+			<div class="p-4 w-full mb-4">
 				@foreach($registrars as $registrar)
 					<div class="flex justify-between mb-4">
-						<div>
+						<div class="w-1/4">
 							{{ $registrar->name }}
 						</div>
-						<div>
+						<div class="w-1/4">
+							{{ App\Enums\Owners::getDescription($registrar->owner) }}
+						</div>
+						<div class="w-1/4">
 							{{ $registrar->url }}
+						</div>
+						<div class="w-1/4">
+							<a href="{{ route('registrars.edit', $registrar->id) }}" class="button">Edit</a>
 						</div>
 					</div>
 				@endforeach
@@ -52,14 +59,19 @@
 				<a href="{{ route('registrars.create') }}" class="button is-link mb-4">Create New Registrar</a>
 			</div>
 
-			<div class="p-4 w-full">
+			<div class="p-4 w-full mb-4">
 				@foreach($services as $service)
 					<div class="flex justify-between mb-4">
-						<div>
+						<div class="w-1/4">
 							{{ $service->name }}
 						</div>
-						<div>
+						<div class="w-1/4">
 							{{ $service->description }}
+						</div>
+						<div class="w-1/4">
+						</div>
+						<div class="w-1/4">
+							<a href="{{ route('services.edit', $service->id) }}" class="button">Edit</a>
 						</div>
 					</div>
 				@endforeach

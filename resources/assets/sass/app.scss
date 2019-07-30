@@ -10,17 +10,68 @@
 
 @tailwind base;
 
+// START - base styles
+
+h1 {
+	@apply text-4xl font-display font-extrabold;
+}
+
+h2 {
+	@apply text-2xl font-display font-extrabold;
+}
+
+h3 {
+	@apply text-xl font-display font-extrabold;
+}
+
+h4 {
+	@apply text-lg font-display font-extrabold;
+}
+
+a {
+	@apply text-base font-sans;
+}
+
+p {
+	@apply text-base font-body leading-normal;
+}
+
+ul {
+	@apply text-base font-body list-inside;
+}
+
+ol {
+	@apply text-base font-body list-decimal list-inside;
+}
+
+// END - base styles
+
 @tailwind components;
 
+// START - components
+
+@mixin transition($transition...) {
+	-moz-transition: $transition;
+	-o-transition: $transition;
+	-webkit-transition: $transition;
+	transition: $transition;
+}
+
 .button {
-	@apply bg-blue-500 text-white no-underline rounded-lg text-sm py-2 px-5;
-	box-shadow: 0 2px 7px 0 #b0eaff;
+	@apply bg-orange-500 text-white font-sans font-extrabold no-underline rounded-full text-base py-2 px-4 shadow;
+	@include transition(all .25s ease-in-out);
+	&:hover {
+		@apply bg-orange-300 shadow-3;
+	}
+	&.large {
+		@apply py-4 px-8;
+	}
 }
-.button:hover {
-	@apply bg-blue-700;
-}
+
 .card {
-	@apply bg-white p-5 rounded-lg shadow;
+	@apply bg-white p-5 rounded-lg shadow mb-8;
 }
+
+// END - components
 
 @tailwind utilities;

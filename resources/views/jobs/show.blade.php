@@ -3,10 +3,10 @@
 @section('content')
     <header class="flex items-center mb-3 py-4">
         <div class="flex justify-between w-full items-center">
-            <p class="text-gray-500 text-sm font-normal">
+            <p class="text-gray-500">
             	<a href="{{ $client->path() }}" class="no-underline">{{ $client->name }}</a> / Job / {{ $job->title }}
             </p>
-            <a href="{{ $job->path() . '/edit' }}" class="button">Edit Job</a>
+            <a href="{{ $job->path() . '/edit' }}" class="button bg-blue-500 hover:bg-blue-300">Edit Job</a>
         </div>
     </header>
 
@@ -16,10 +16,10 @@
  				@include ('jobs.card')
 
                 <div class="mb-8">            
-                    <h2 class="text-lg text-gray-500 font-normal mb-3">Tasks</h2>
+                    <h2 class="text-gray-500 mb-3">Tasks</h2>
 
                     @foreach ($job->tasks as $task)
-                        <div class="card mb-3">
+                        <div class="card">
                             <form method="POST" action="{{ $task->path() }}">
                                 {{ method_field('PATCH') }}
                                 {{ csrf_field() }}
@@ -32,9 +32,9 @@
                         </div>
                     @endforeach
 
-                    <div class="card mb-3">
+                    <div class="card">
                         <form action="{{ $job->path() . '/tasks' }}" method="POST">
-                            {{ csrf_field() }}
+                            @csrf
                             <input name="body" class="w-full" placeholder="Add a task.">
                         </form>
                     </div>
@@ -44,9 +44,9 @@
     		<div class="lg:w-1/2 px-3">
                 <div class="mb-8">
                     <div class="flex items-center">            
-                        <h2 class="text-3xl text-gray-800 font-normal mb-3 mr-3">{{ $job->title }}</h2>
+                        <h2 class="text-gray-800 mb-3">{{ $job->title }}</h2>
                         @if($job->site()->exists())
-                        <p class="font-normal text-sm text-gray-500">Site: <a class="text-blue-500" href="{{ $job->site->path() }}">{{ $job->site->name }}</a></p>
+                        <p class="text-gray-500">Site: <a class="text-blue-500" href="{{ $job->site->path() }}">{{ $job->site->name }}</a></p>
                         @endif
                     </div>
                     <p class="text-gray-500 text-sm font-normal">{{ $job->description }}</p>
@@ -91,7 +91,7 @@
 
 
     			<div class="mb-8">
-	            	<h2 class="text-lg text-gray-500 font-normal mb-3">Notes</h2>
+	            	<h2 class="text-gray-500 mb-3">Notes</h2>
 
                     <form method="POST" action="{{ $job->path() . '/notes' }}">
                         {{ csrf_field() }}
@@ -102,10 +102,9 @@
 	            </div>
 
                 <div class="mb-8">
-                    <h2 class="text-lg text-gray-500 font-normal mb-3">Comments</h2>
+                    <h2 class="text-gray-500 mb-3">Comments</h2>
 
-
-                    <div class="card mb-3">
+                    <div class="card">
                         <form action="/comment/job/{{ $job->id }}" method="POST">
                             @csrf
                             <div class="flex items-center">
@@ -116,10 +115,10 @@
                     </div>
 
                     @foreach ($job->comments->sortByDesc('created_at') as $comment)
-                        <div class="card mb-3">
+                        <div class="card">
                             <form method="POST" action="/comment/{{ $comment->id }}">
-                                {{ method_field('PATCH') }}
-                                {{ csrf_field() }}
+                                @method('PATCH')
+                                @csrf
 
                                 <div class="flex items-center justify-between">
                                     <input class="w-3/4 px-3" name="body" value="{{ $comment->body }}">
@@ -151,39 +150,8 @@
                         </div>
                     @endforeach
                 </div>
-
-             {{--    <div class="mb-8">            
-                    <h2 class="text-lg text-gray-500 font-normal mb-3">Update History</h2>
-                    
-                    @foreach ($job->updates->sortByDesc('updated_at') as $update)
-                        <div class="card mb-3">
-                            <form method="POST" action="{{ $update->path() }}">
-                                {{ method_field('PATCH') }}
-                                {{ csrf_field() }}
-
-                                <div class="flex justify-between">
-                                    <input class="w-3/4 text-sm font-normal" name="description" value="{{ $update->description }}">
-                                    <div>
-                                        <p class="text-gray-500 text-sm font-normal">{{ $update->user->initials() }}</p>
-                                        <p class="text-gray-500 text-sm font-normal">{{ \Carbon\Carbon::parse($update->updated_at)->format('n/j/Y')}}</p>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    @endforeach
-
-
-                    <div class="card">
-                        <form action="{{ $job->path() . '/updates' }}" method="POST" class="flex justify-between">
-                            {{ csrf_field() }}
-                            <input name="description" class="w-full" placeholder="Create new update.">
-                        </form>
-                    </div>
-                </div> --}}
             </div>
     	</div>
     </main>
-
-
 
 @endsection
