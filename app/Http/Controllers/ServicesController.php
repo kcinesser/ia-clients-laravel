@@ -12,7 +12,16 @@ class ServicesController extends Controller
     }
 
     public function store() {
-        $attributes = request()->all();
+        $request = request()->all();
+        $request['price'] = preg_replace('/[^0-9.]/', '', request('price'));
+
+        request()->replace($request);
+
+        $attributes = request()->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required|numeric'
+        ]);
 
         $registrar = Service::create($attributes);
 
@@ -24,8 +33,17 @@ class ServicesController extends Controller
     }
 
     public function update(Service $service) {
-        $attributes = request()->all();
+        $request = request()->all();
+        $request['price'] = preg_replace('/[^0-9.]/', '', request('price'));
 
+        request()->replace($request);
+
+        $attributes = request()->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required|numeric'
+        ]);
+        
         $service->update($attributes);
 
         return redirect('/settings');
