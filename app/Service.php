@@ -9,7 +9,7 @@ class Service extends Model
     protected $guarded = [];
 
     public function priceFormat() {
-    	return number_format($this->price);
+    	return number_format($this->price, 2, '.', ',');
     }
 
     public function sites() {
