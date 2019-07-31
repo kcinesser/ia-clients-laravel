@@ -51,4 +51,12 @@ class ClientsController extends Controller
 
         return redirect($client->path());
     }
+
+        public function notes(Client $client) {
+        $attributes = request()->all();
+
+        $client->update($attributes);
+
+        return redirect($client->path());
+    }
 }
