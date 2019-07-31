@@ -8,6 +8,10 @@ class Service extends Model
 {
     protected $guarded = [];
 
+    public function priceFormat() {
+    	return number_format($this->price);
+    }
+
     public function sites() {
     	return $this->belongsToMany(Site::class);
     }

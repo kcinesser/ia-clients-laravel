@@ -70,7 +70,7 @@
 						</div>
 						<div class="w-1/4">
 							@if(isset($service->price))
-								${{ $service->price }}
+								${{ $service->priceFormat() }}
 							@endif
 						</div>
 						<div class="w-1/4">
