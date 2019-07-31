@@ -20,9 +20,11 @@
                     <h2 class="text-gray-800 mb-3">{{ $site->name }}</h2>
                     <p class="text-gray-500">{{ $site->description }}</p>
                 </div>
-                <div class="mb-8">            
-                    <h2 class="text-gray-500 mb-3 mr-3">Domains</h2>
-
+                <div class="mb-8">  
+                    <div class="flex flex-wrap items-center mb-3">          
+                        <h2 class="text-gray-500 mb-3 mr-3">Domains</h2>
+                        <a href="{{ $site->path() }}/domains/create" class="button mb-3">Add Domain</a>
+                    </div>
                     <div>
                         @forelse ($site->domains as $domain)
                             <div class="card mb-6">
@@ -41,8 +43,6 @@
                             </div>
                         @endforelse
                     </div>
-                    <a href="{{ $site->path() }}/domains/create" class="button">Add Domain</a>
-
                 </div>
 
                 @if($site->jobs()->exists())
@@ -106,17 +106,29 @@
                     </div>
                 </div>
 
+                <div class="mb-8">            
+                    <h2 class="text-gray-500 mb-3 mr-3">Update Instructions</h2>
+
+                    <form method="POST" action="{{ $site->path() . '/notes' }}">
+                        @csrf
+                        @method('PATCH')
+                        <textarea name="update_instructions" class="card w-full mb-3 h-300">{{ $site->update_instructions }}</textarea>
+                        <button type="submit" class="button">Save</button>
+                    </form>
+                </div>
+
 
     			<div class="mb-8">
 	            	<h2 class="text-gray-500 mb-3 mr-3">Notes</h2>
 
                     <form method="POST" action="{{ $site->path() . '/notes' }}">
-                        {{ csrf_field() }}
-                        {{ method_field('PATCH') }}
+                        @csrf
+                        @method('PATCH')
                         <textarea name="notes" class="card w-full mb-3 h-300">{{ $site->notes }}</textarea>
                         <button type="submit" class="button">Save</button>
                     </form>
 	            </div>
+
                 <div>
                     <h2 class="text-gray-500 mb-3 mr-3">Comments</h2>
 
@@ -133,8 +145,8 @@
                     @foreach ($site->comments->sortByDesc('created_at') as $comment)
                         <div class="card mb-3">
                             <form method="POST" action="/comment/{{ $comment->id }}">
-                                {{ method_field('PATCH') }}
-                                {{ csrf_field() }}
+                                @method('PATCH')
+                                @csrf
                                 <div class="flex justify-between">
                                     <input class="w-3/4" name="body" value="{{ $comment->body }}">
                                     <div>
@@ -157,8 +169,8 @@
                     @foreach ($site->updates->sortByDesc('updated_at') as $update)
                         <div class="card">
                             <form method="POST" action="{{ $update->path() }}">
-                                {{ method_field('PATCH') }}
-                                {{ csrf_field() }}
+                                @method('PATCH')
+                                @csrf
 
                                 <div class="flex justify-between">
                                     <input class="w-3/4 text-sm font-normal" name="description" value="{{ $update->description }}">
@@ -174,7 +186,7 @@
 
                     <div class="card">
                         <form action="{{ $site->path() . '/updates' }}" method="POST" class="flex justify-between">
-                            {{ csrf_field() }}
+                            @csrf
                             <input name="description" class="w-full" placeholder="Create new update.">
                         </form>
                     </div>

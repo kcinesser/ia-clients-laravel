@@ -62,6 +62,17 @@
                     <a href="{{ $client->archivePath() }}" class="">View Archived Jobs</a>
                 </div>
 
+                <div class="mb-8">            
+                    <h2 class="text-gray-500 mb-3 mr-3">Notes</h2>
+
+                    <form method="POST" action="{{ $client->path() . '/notes' }}">
+                        @csrf
+                        @method('PATCH')
+                        <textarea name="notes" class="card w-full mb-3 h-300">{{ $client->notes }}</textarea>
+                        <button type="submit" class="button">Save</button>
+                    </form>
+                </div>
+
                 <div>
                     <h2 class="text-gray-500 mb-3 mr-3">Comments</h2>
 
