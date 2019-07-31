@@ -24,30 +24,10 @@
 	</div>
 
 	<div class="field mb-6">
-	    <label for="owner" class="label text-sm mb-2 block">Account Owner</label>
-
-
-	    <div class="control">
-	    	<select id="owner" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state" name="owner" value="{{ old('owner') }}" required autofocus>
-                @foreach ($owners as $value => $owner)
-                    <option value="{{$value}}" {{ $registrar->owner == $value ? "selected" : "" }} >{{ $owner }}</option>
-                @endforeach
-            </select>
-
-            @if ($errors->has('owner'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('owner') }}</strong>
-                </span>
-            @endif
-	    </div>
-	</div>
-
-
-	<div class="field mb-6">
 	    <label for="description" class="label text-sm mb-2 block">Description</label>
 
 	    <div class="control">
-	        <textarea name="description" rows="10" class="bg-transparent border border-grey-500 rounded p-2 text-xs w-full" required>{{ $registrar->description }}</textarea>
+	        <textarea name="description" rows="10" class="bg-transparent border border-grey-500 rounded p-2 text-xs w-full">{{ $registrar->description }}</textarea>
 	    </div>
 	</div>
 

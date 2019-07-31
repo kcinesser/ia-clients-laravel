@@ -28,13 +28,13 @@
 	    <label for="price" class="label text-sm mb-2 block">Price</label>
 
 	    <div class="control">
-	        <input name="price" class="bg-transparent border border-grey-500 rounded p-2 text-xs w-full" required value="{{ $service->price }}">
+	        <input name="price" class="bg-transparent border border-grey-500 rounded p-2 text-xs w-full" value="{{ $service->price }}">
 	    </div>
 	</div>
 
 	<div class="field">
 	    <div class="control">
-	        <button type="submit" class="button is-link mr-2">Edit Service</button>
+	        <button type="submit" class="button is-link mr-2">Save Service</button>
 	        <a href="/settings" class="button">Cancel</a>
 	    </div>
 	</div>

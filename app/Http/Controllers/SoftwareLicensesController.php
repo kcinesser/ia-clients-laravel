@@ -4,29 +4,34 @@ namespace App\Http\Controllers;
 
 use App\SoftwareLicense;
 use App\Client;
-use App\Project;
+use App\Job;
 use Illuminate\Http\Request;
 
 
 class SoftwareLicensesController extends Controller
 {
 
-    public function store(Client $client, Project $project, SoftwareLicense $license)
+    public function store(Request $request, $model, $id)
     {
         request()->validate([
             'description' => 'required',
             'key' => 'required'
         ]);
 
-        $attributes = request()->all();
+        $license = new SoftwareLicense();
+        $license->description = request('description');
+        $license->key = request('key');
+        $license->url = request('url');
+        $license->licenseable_type = 'App\\' . ucfirst($model);
+        $license->licenseable_id = $id;
 
-        $project->addLicense($attributes);
+        $license->save();
 
-        return redirect($project->path());
+        return redirect()->back();
     }
 
 
-    public function update(Client $client, Project $project, SoftwareLicense $softwareLicense)
+    public function update(SoftwareLicense $softwareLicense)
     {
         request()->validate([
             'description' => 'required',
@@ -37,13 +42,13 @@ class SoftwareLicensesController extends Controller
 
         $softwareLicense->update($attributes);
 
-        return redirect($project->path());
+        return redirect()->back();
     }
 
-    public function destroy(Client $client, Project $project, SoftwareLicense $softwareLicense)
+    public function destroy(SoftwareLicense $softwareLicense)
     {
         $softwareLicense->delete();
 
-        return redirect($project->path());
+        return redirect()->back();
     }
 }

@@ -8,8 +8,8 @@ class Domain extends Model
 {
     protected $guarded = [];
 
-    public function project() {
-    	return $this->belongsTo(Project::class);
+    public function site() {
+    	return $this->belongsTo(Site::class);
     }
 
     public function registrar() {
@@ -21,6 +21,6 @@ class Domain extends Model
     }
 
     public function path() {
-    	return "/clients/{$this->project->client->id}/projects/{$this->project->id}/domains/{$this->id}";
+    	return "/clients/{$this->site->client->id}/sites/{$this->site->id}/domains/{$this->id}";
     }
 }

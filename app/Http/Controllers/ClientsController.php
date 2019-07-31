@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Enums\ProjectStatus;
 use App\Client;
 
 class ClientsController extends Controller
@@ -15,9 +14,10 @@ class ClientsController extends Controller
     }
 
     public function show(Client $client) {
-        $projects = $client->projects->whereNotIn('status', 3);
+        $jobs = $client->jobs->whereNotIn('status', 3);
+        $sites = $client->sites;
 
-        return view('clients.show', compact('client', 'projects'));
+        return view('clients.show', compact('client', 'jobs', 'sites'));
     }
 
     public function create() {

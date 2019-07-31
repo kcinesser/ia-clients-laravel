@@ -12,11 +12,11 @@ class Update extends Model
     	return $this->belongsTo(User::class);
     }
 
-    public function project() {
-    	return $this->belongsTo(Project::class);
+    public function site() {
+    	return $this->belongsTo(Site::class);
     }
 
     public function path() {
-    	return "/clients/{$this->project->client->id}/projects/{$this->project->id}/updates/{$this->id}";
+    	return "/clients/{$this->site->client->id}/jobs/{$this->site->id}/updates/{$this->id}";
     }
 }
