@@ -11,4 +11,9 @@ abstract class TestCase extends BaseTestCase
     protected function signIn($user = null) {
     	return $this->actingAs($user ? : factory('App\User')->create());
     }
+
+    protected function factoryWithoutObservers($class, $name = 'default') {
+        $class::flushEventListeners();
+        return factory($class, $name);
+    }
 }

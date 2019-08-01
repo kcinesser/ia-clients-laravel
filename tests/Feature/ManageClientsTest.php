@@ -28,7 +28,7 @@ class ManageClientsTest extends TestCase
 
     /** @test */
     public function guests_cannot_view_single_clients() {
-        $client = factory('App\Client')->make();
+        $client = $this->factoryWithoutObservers('App\Client')->create();
 
         $this->get('/clients/' . $client->id)->assertRedirect('login');
     }
@@ -76,5 +76,13 @@ class ManageClientsTest extends TestCase
         $client = factory('App\Client')->create();
 
         $this->get($client->path())->assertStatus(200);
+    }
+
+    /** @test */
+    public function a_client_belongs_to_an_account_manager() {
+        $this->signIn();
+        $attributes = factory('App\Client')->raw(['account_manager_id' => null]);
+
+        $this->post('/clients')->assertSessionHasErrors('account_manager_id');
     }
 }

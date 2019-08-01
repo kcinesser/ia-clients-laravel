@@ -29,7 +29,7 @@ class Client extends Model
             'status' => $attributes['status']
         ]);
 
-        if ($attributes['URL']) {
+        if (isset($attributes['URL'])) {
             $account = DomainAccount::create([
                 'url' => 'test',
                 'description' => 'test'

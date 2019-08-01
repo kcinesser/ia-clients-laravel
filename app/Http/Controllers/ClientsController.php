@@ -26,8 +26,9 @@ class ClientsController extends Controller
 
     public function store() {
 
-	  	$attributes = request()->validate([
-            'name' => 'required', 
+	  	request()->validate([
+            'name' => 'required',
+            'account_manager_id' => 'required'
         ]);
 
         $attributes = request()->all();
