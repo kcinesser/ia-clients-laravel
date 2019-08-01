@@ -44,6 +44,8 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/', 'DashboardController@index');
 
+    Route::get('/toolkit', 'ToolkitController@index');
+
 });
 
 Auth::routes();

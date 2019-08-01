@@ -27,35 +27,48 @@ module.exports = {
       '80': '0.8',
       '100': '1',
     },
+    textColor: {
+      'primary': '#F15B39',
+      'secondary': '#4C2E3F',
+      'danger': '#F15B39',
+      'white': '#fff',
+      'orange': '#F15B39',
+      'plum': '#4c2e3f',
+      'blue': '#4B5783',
+      'yellow': '#FABE35',
+      'teal': '#70BEBF',
+      'light-grey': '#eeede9',
+      'dark-grey': '#333'
+    },
     extend: {
       spacing: {
-        '300': '300px',
+        '300': '300px'
       },
       colors: {
         orange: {
           '300': '#f36f51',
-          '500': '#F15B39',
+          '500': '#F15B39'
         },
         plum: {
           '300': '#6c4159',
-          '500': '#4c2e3f',
+          '500': '#4c2e3f'
         },
         blue: {
           '300': '#59679c',
-          '500': '#4B5783',
+          '500': '#4B5783'
         },
         yellow: {
           '300': '#fac957',
-          '500': '#FABE35',
+          '500': '#FABE35'
         },
         teal: {
           '300': '#80d7d9',
-          '500': '#70BEBF',
+          '500': '#70BEBF'
         },
         grey: {
           '300': '#eeede9',
           '500': '#F3F2EF',
-          '700': '#dfdedb',
+          '700': '#dfdedb'
         },
       }
     }

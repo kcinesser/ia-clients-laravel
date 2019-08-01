@@ -4,7 +4,7 @@
     <header class="flex items-center mb-3 py-4">
         <div class="flex justify-between w-full items-center">
             <h2 class="text-gray-500">Interactive Clients</h2>
-            <a href="/clients/create" class="button bg-plum-500 hover:bg-plum-300">Create New Client</a>
+            <a href="/clients/create" class="button btn-secondary">Create New Client</a>
         </div>
     </header>
 
