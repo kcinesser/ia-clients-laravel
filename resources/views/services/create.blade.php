@@ -26,7 +26,7 @@
 	    <label for="price" class="label text-sm mb-2 block">Price</label>
 
 	    <div class="control">
-	        <input name="price" class="bg-transparent border border-grey-500 rounded p-2 text-xs w-full" required>
+	        $ <input name="price" class="bg-transparent border border-grey-500 rounded p-2 text-xs" placeholder="0.00" required>
 	    </div>
 	</div>
 
