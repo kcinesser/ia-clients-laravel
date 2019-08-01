@@ -67,6 +67,10 @@
     </div>
 </div>
 
+<div class="field mb-6">
+    <label for="services" class="label text-sm mb-2 block">Services</label>
+    @include('services.form')
+</div>
 
 <div class="field">
     <div class="control">

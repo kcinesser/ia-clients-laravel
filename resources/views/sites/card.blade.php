@@ -17,6 +17,15 @@
         @empty
             <p class="text-gray-500 text-sm font-normal">None</p>
         @endforelse
-        	<a href="" class="text-blue-500 text-sm font-normal">Add Service</a>
+        	<a href="#" class="text-blue-500 text-sm font-normal edit-services">Edit Services</a>
+        <div class="mt-1">
+            <form class="services-form hidden" action="{{$site->path()}}/services" method="post">
+                @csrf
+                @method('PATCH')
+                @include('services.form')
+                <button type="submit" class="button mt-2">Save</button>
+            </form>
+        </div>
+
     </div>
 </div>

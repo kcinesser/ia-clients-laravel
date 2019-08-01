@@ -21,6 +21,7 @@
     <div id="app">
         <nav class="flex items-center justify-between flex-wrap bg-orange-500 font-display p-6">
             <div class="flex items-center flex-shrink-0 text-white mr-6">
+                <a href="/"><img id="logo" class="mr-6" src="/media/logos/Firespring-icon-wht_298px.png"></a>
                 <a href="/" class="font-semibold text-xl tracking-tight">Interactive Client Database</a>
             </div>
             <div class="block lg:hidden">
@@ -52,6 +53,9 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                    @if(auth()->user()->avatar)
+                                        <img src="{{ auth()->user()->avatar }}" alt="avatar" width="32" height="32" style="margin-right: 8px;">
+                                    @endif
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 

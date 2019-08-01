@@ -6,7 +6,13 @@
     {{ csrf_field() }}
     <h3 class="text-2xl font-normal mb-10 text-center">Login</h3>
 
-    <div class="field mb-6{{ $errors->has('email') ? ' has-error' : '' }}">
+    <div class="field mb-6{{ ($errors->has('email') || session('google-auth-failed')) ? ' has-error' : '' }}">
+    	@if (session('google-auth-failed'))
+            <div class="alert alert-danger mb-6">
+                {{ session('google-auth-failed') }}
+            </div>
+        @endif
+            
         <label for="email" class="label text-sm mb-2 block">E-Mail Address</label>
 
         <div class="control">
@@ -17,6 +23,7 @@
                     <strong>{{ $errors->first('email') }}</strong>
                 </span>
             @endif
+
         </div>
     </div>
 
@@ -54,6 +61,14 @@
                 Forgot Your Password?
             </a>
         </div>
+    </div>
+    
+    <hr class="with-text mb-6" data-content="or">
+    
+    <div class="field mb-6">
+    	<div class="control">
+    		<a href="{{ route('login.provider', 'google') }}" class="button mr-2">{{ __('Login with Google') }}</a>
+    	</div>
     </div>
 </form>
 

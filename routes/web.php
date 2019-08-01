@@ -26,8 +26,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/jobs', 'JobsController@index');
     Route::patch('/clients/{client}/jobs/{job}/notes', 'JobsController@notes');
     Route::patch('/clients/{client}/sites/{site}/notes', 'SitesController@notes');
+    Route::patch('/clients/{client}/sites/{site}/services', 'SitesController@services');
     Route::patch('/clients/{client}/notes', 'ClientsController@notes');
-    
+
     Route::post('/clients/{client}/jobs/{job}/tasks', 'TasksController@store');
     Route::patch('/clients/{client}/jobs/{job}/tasks/{task}', 'TasksController@update');
 
@@ -47,5 +48,13 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/toolkit', 'ToolkitController@index');
 
 });
+
+Route::get('redirect/{driver}', 'Auth\LoginController@redirectToProvider')
+    ->name('login.provider')
+    ->where('driver', implode('|', config('auth.socialite.drivers')));
+
+Route::get('{driver}/callback', 'Auth\LoginController@handleProviderCallback')
+    ->name('login.callback')
+    ->where('driver', implode('|', config('auth.socialite.drivers')));
 
 Auth::routes();

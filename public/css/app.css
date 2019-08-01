@@ -680,6 +680,7 @@ ol {
   list-style-position: inside;
 }
 
+<<<<<<< HEAD
 code {
   font-size: 87.5%;
   color: #e83e8c;
@@ -701,6 +702,43 @@ td {
   border-right-width: 0;
   border-bottom-width: 0;
   padding: 0.75rem;
+=======
+hr {
+  border-width: 1px;
+}
+
+hr.with-text {
+  line-height: 1em;
+  position: relative;
+  outline: 0;
+  border: 0;
+  color: black;
+  text-align: center;
+  height: 1.5em;
+  opacity: .5;
+}
+
+hr.with-text:before {
+  content: '';
+  background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(#818078), to(transparent));
+  background: linear-gradient(to right, transparent, #818078, transparent);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+}
+
+hr.with-text:after {
+  content: attr(data-content);
+  position: relative;
+  display: inline-block;
+  color: black;
+  padding: 0 .5em;
+  line-height: 1.5em;
+  color: #818078;
+  background-color: #fcfcfa;
+>>>>>>> master
 }
 
 .container{
