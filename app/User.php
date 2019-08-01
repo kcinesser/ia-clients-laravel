@@ -24,7 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'provider_name', 'provider_id', 'password', 'remember_token',
     ];
 
 
@@ -51,16 +51,16 @@ class User extends Authenticatable
         return $jobs;
     }
 
-     public function dashboardClients() {
+    public function dashboardClients() {
         $clients = array();
-
+        
         if ($this->role == 0) {
             $client_ids = Job::where('developer_id', $this->id)->pluck('client_id');
             $clients = Client::find($client_ids);
         } else {
             $clients = $this->clients;
         }
-
+        
         return $clients;
     }
 

@@ -52,6 +52,9 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                    @if(auth()->user()->avatar)
+                                        <img src="{{ auth()->user()->avatar }}" alt="avatar" width="32" height="32" style="margin-right: 8px;">
+                                    @endif
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 

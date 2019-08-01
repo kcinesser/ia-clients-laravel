@@ -20,9 +20,9 @@ Clone the repo.
 
 Add the following entry to your `/etc/hosts` file:
 
-`192.168.33.10 iaclients.test`
+`192.168.33.10 iaclients.firespringlocal.com`
 
-[iaclients.test](http://iaclients.test/) will be the url used to access the local site
+[iaclients.firespringlocal.com](http://iaclients.firespringlocal.com/) will be the url used to access the local site
 
 
 
@@ -49,6 +49,11 @@ Change directory to `/var/www/`
 Copy `.env.example` and rename your copied file to `.env`
 
     cp .env.example .env
+    
+Get the Google Oauth Creds from Lastpass and update the .env file
+  
+    GOOGLE_CLIENT_ID=CHANGE_ME.apps.googleusercontent.com
+    GOOGLE_CLIENT_SECRET=CHANGE_ME
 
 
 After copying the file, run:
@@ -62,9 +67,9 @@ Wait until all dependencies are installed, then run:
 
 
 
-You can now visit [iaclients.test](http://iaclients.test/)
+You can now visit [iaclients.firespringlocal.com](http://iaclients.firespringlocal.com/)
 
-After installing successfully, you only need to run `vagrant up` (inside the project directory) to access [iaclients.test](http://iaclients.test/) from now on.
+After installing successfully, you only need to run `vagrant up` (inside the project directory) to access [iaclients.firespringlocal.com](http://iaclients.firespringlocal.com/) from now on.
 
 ### Step 4
 
