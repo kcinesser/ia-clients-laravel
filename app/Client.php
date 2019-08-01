@@ -43,6 +43,9 @@ class Client extends Model
             ]);
         }
 
+        //add any services
+        $site->services()->attach(request()->services);
+
         return $site;
     }
 
