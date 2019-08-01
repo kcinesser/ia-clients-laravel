@@ -83,6 +83,10 @@ class SitesController extends Controller
     {
         $attributes = request()->all();
 
+        //update services and remove it from attributes
+        $site->services()->sync($attributes['services']);
+        unset($attributes['services']);
+
         $site->update($attributes);
 
         return redirect($site->path());
