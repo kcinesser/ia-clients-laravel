@@ -29,7 +29,10 @@ class AddSocialiteFieldsToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropColumn('provider_name');
+            $table->dropColumn('provider_id');
+            $table->dropColumn('avatar');
+            $table->string('password')->nullable(false)->change();
         });
     }
 }
