@@ -23,7 +23,7 @@
     <label for="description" class="label text-sm mb-2 block">Description</label>
 
     <div class="control">
-        <textarea name="description" rows="10" class="bg-transparent border border-grey-500 rounded p-2 text-xs w-full">{{ $job->description }}</textarea>
+        <textarea name="description" rows="10" class="bg-transparent border border-grey-500 rounded p-2 text-xs w-full" required>{{ $job->description }}</textarea>
     </div>
 
     @if ($errors->has('site_id'))
@@ -102,8 +102,8 @@
 
 <div class="field">
     <div class="control">
-        <button type="submit" class="button is-link mr-2">{{ $buttonText }}</button>
-        <a href="{{ $cancelURL }}" class="button">Cancel</a>
+        <button type="submit" class="button mr-2">{{ $buttonText }}</button>
+        <a href="" class="button btn-blue" data-dismiss="modal">Close</a>
     </div>
 </div>
 

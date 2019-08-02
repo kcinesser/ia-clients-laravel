@@ -84,7 +84,7 @@ class SitesController extends Controller
         $attributes = request()->all();
 
         //update services and remove it from attributes
-        $site->services()->sync($attributes['services']);
+        $site->services()->sync(request()->services);
         unset($attributes['services']);
 
         $site->update($attributes);
@@ -119,6 +119,7 @@ class SitesController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function services(Client $client, Site $site){
+        dd(request()->all());
         $site->services()->sync(request()->services);
         return back();
     }

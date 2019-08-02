@@ -6,7 +6,9 @@
             <p class="text-gray-500 text-sm font-normal">
             	<a href="{{ $client->path() }}" class="no-underline">{{ $client->name }}</a> / Site / {{ $site->name }}
             </p>
-            <a href="{{ $site->path() . '/edit' }}" class="button">Edit Site</a>
+            <button type="button" class="button btn-blue mb-3" data-toggle="modal" data-target="#editSitetModal">
+                Edit Site
+            </button>
         </div>
     </header>
 
@@ -23,14 +25,16 @@
                 <div class="mb-8">  
                     <div class="flex flex-wrap items-center mb-3">          
                         <h2 class="text-gray-500 mb-3 mr-3">Domains</h2>
-                        <a href="{{ $site->path() }}/domains/create" class="button mb-3">Add Domain</a>
+                        <button type="button" class="button btn-primary mb-3" data-toggle="modal" data-target="#domainModal">
+                            Add Domain
+                        </button>
                     </div>
                     <div>
                         @forelse ($site->domains as $domain)
                             <div class="card mb-6">
                                 <div class="flex justify-between">
                                     <div>
-                                        <a href="{{ $domain->path() }}">{{ $domain->name }}</a>
+                                        <a href="" data-toggle="modal" data-target="#domainViewModal" data-id="{{ $domain->id }}">{{ $domain->name }}</a>
                                     </div>
                                     <div>
                                         Exp: {{ $domain->exp_date }}
@@ -193,6 +197,76 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="editSitetModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit {{ $site->name }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{{ $site->path() }}" class="lg:w-1/2 lg:mx-auto bg-white p-6 md:py-12 md:px-16">
+                            @csrf
+                            @method('PATCH')
+
+                            @include('sites.edit_form', [
+                                'buttonText' => 'Update Site',
+                                'cancelURL' => $client->path(),
+                                'technologies' => App\Enums\Technologies::toSelectArray(),
+                                'services' => App\Service::all(),
+                                'statuses' => App\Enums\SiteStatus::toSelectArray(),
+                            ])
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="domainModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit {{ $site->name }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{{ $site->path() }}/domains" class="lg:w-1/2 lg:mx-auto bg-white p-6 md:py-12 md:px-16">
+                            @csrf
+                            @include('domains.form', [
+                                'domain' => new App\Domain,
+                                'account' => new App\DomainAccount,
+                                'buttonText' => 'Create Domain',
+                                'cancelURL' => $site->path(),
+                                'registrars' => App\Registrar::all()
+                            ])
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="domainViewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Domain</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
 
 
