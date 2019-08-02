@@ -2,7 +2,6 @@
 // Fonts
 //@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,800&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Lora&display=swap');
 
 
 // Required Imports
@@ -13,6 +12,11 @@
 @tailwind base;
 
 // START - base styles
+
+body {
+	@apply font-body;
+	color: #333;
+}
 
 h1, .h1 {
 	@apply text-4xl font-display font-extrabold tracking-tight;
@@ -41,21 +45,23 @@ h6, .h6 {
 nav a {
 	@apply text-base font-sans;
 	&:hover {
-		@apply text-light-grey;
+		// @apply text-light-grey;
 	}
 }
 
 .container a:not(.button) {
-	@apply text-base font-body underline;
+	@apply font-body underline;
 	text-decoration-color: #F15B51;
 	&:hover {
-		@apply text-primary;
+		// @apply text-primary;
 	}
 }
 
 p {
 	@apply text-base font-body leading-normal;
 	margin-bottom: 0.75em;
+
+	&:last-child { margin-bottom: 0; }
 }
 
 ul {
@@ -126,6 +132,7 @@ hr {
 	}
 }
 
+
 // END - base styles
 
 @tailwind components;
@@ -147,7 +154,7 @@ hr {
 		&:hover { @apply bg-plum-300; }
 	}
 	&.btn-yellow {
-		@apply bg-yellow-500 text-dark-grey;
+		@apply bg-yellow-500;
 		&:hover { @apply bg-yellow-300; }
 	}
 	&.btn-blue {
@@ -174,7 +181,27 @@ hr {
 }
 
 .card {
-	@apply bg-white p-5 rounded-lg shadow mb-8;
+	@apply bg-white p-5 rounded-lg shadow mb-8 font-display;
+	color: #4B5783;
+
+	a:link, a:visited {
+		font-family: Montserrat, sans-serif;
+		text-decoration: none;
+		color: #4B5783;
+
+		&:hover, &:active {
+			opacity: 0.7;
+		}
+	}
+
+	.border-b-2:first-child {
+		padding-top: 0;
+	}
+
+	.border-b-2:last-child {
+		border-width: 0;
+		padding-bottom: 0;
+	}
 }
 
 .side-nav {
@@ -184,6 +211,11 @@ hr {
 		color: #929292;
 		font-size: 0.725rem;
 	}
+}
+
+.constrain-height {
+	max-height: 35vh;
+	overflow-y: scroll;
 }
 
 // END - components

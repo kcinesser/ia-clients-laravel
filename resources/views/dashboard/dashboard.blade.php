@@ -3,74 +3,64 @@
 @section('content')
     <header class="flex items-center mb-3 py-4">
         <div class="flex justify-between w-full items-center">
-            <p class="text-gray-500">Dashboard</p>
+            <h1>Dashboard</h1>
         </div>
     </header>
 
     <main>
-    	<div class="lg:flex -mx-3">
-    		<div class="lg:w-3/4 px-3">
-		   		<h2 class="text-gray-500 mb-3">Your Clients</h2>
-		   		<div  class="lg:flex lg:flex-wrap -mx-3">
+    	<div class="lg:flex">
+    		<div class="lg:w-3/4 pr-6">
+		   		<h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-user mr-1"></i> Your Clients</h2>
+		   		<div  class="lg:flex lg:flex-wrap card">
 			   		@forelse ($clients as $client)
-			            <div class="lg:w-1/3 px-3 pb-6">
-			                <div class="card" style="">
-			                    <h3 class="font-normal text-xl py-4 -ml-5 border-l-4 border-orange-500 pl-4">
-			                        <a href="{{ $client->path() }}" class="text-black no-underline">{{ $client->name }}</a>
-			                    </h3>
-			                </div>
-
-			            </div>
+						<div class="lg:w-full p-2">
+							<h3><a href="{{ $client->path() }}">{{ $client->name }}</a></h3>
+						</div>
 			        @empty
-			            <div class="lg:w-1/3 px-3 pb-6">
+			            <div class="lg:w-full p-2">
 			            	<p>No clients yet.</p>
 			        	</div>
 			        @endforelse
 		    	</div>
-		  		<h2 class="text-gray-500 mb-3">Your Jobs</h2>
-		   		<div  class="lg:flex lg:flex-wrap -mx-3">
+		  		<h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-tasks mr-1"></i> Your Jobs</h2>
+		   		<div  class="lg:flex lg:flex-wrap card">
 			  		@forelse ($jobs as $job)
-			            <div class="lg:w-1/3 px-3 pb-6">
-			                <div class="card" style="">
-			                    <h3 class="py-4 -ml-5 border-l-4 border-orange-500 pl-4">
-			                        <a href="{{ $job->path() }}" class="text-black no-underline">{{ $job->title }}</a>
-			                        <a href="{{ $job->client->path() }}" class="text-gray-500 text-sm font-normal">{{ $job->client->name }}</a>
-			                    </h3>
-			                </div>
-
-			            </div>
-			        @empty
-			            <div class="lg:w-1/3 px-3 pb-6">
+			            <div class="lg:w-full p-2">
+			            	<h3><a href="{{ $job->path() }}">{{ $job->title }}</a></h3>
+							<p><a href="{{ $job->client->path() }}" class="text-gray-500 text-sm font-normal">{{ $job->client->name }}</a></p>
+						</div>
+					@empty
+			            <div class="lg:w-full p-2">
 			            	<p>No jobs yet.</p>
 			        	</div>
 			        @endforelse
 				</div>
 			</div>
-			<div class="lg:w-1/4 px-3">
-		   		<h2 class="text-gray-500 mb-3">Activity Feed</h2>
-		   		@foreach ($activities as $activity)
-		   			<div class="card mb-3">
-                        <p class="text-gray-800 text-sm font-normal">{{ $activity->description }}</p>
-                    	<p class="text-gray-500 text-sm font-normal">{{ \Carbon\Carbon::parse($activity->created_at)->format('n/j/Y') }}</p>
-                    </div>
-		   		@endforeach
+			<div class="lg:w-1/4 pl-6">
+		   		<h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
+				<div class="card constrain-height">
+					@foreach ($activities as $activity)
+						<div class="border-b-2 py-6">
+							<span class="text-xs font-normal">{{ $activity->description }}</span>
+							<span class="text-gray-500 text-xs font-normal">{{ \Carbon\Carbon::parse($activity->created_at)->format('n/j/Y') }}</span>
+						</div>
+					@endforeach
+				</div>
 
-		   		<h2 class="text-gray-500 mb-3">Update Feed</h2>
-		   		@foreach ($updates as $update)
-		   			<a href="{{ $update->site->path() }}">
-			   			<div class="card mb-3">
-	                        <p class="text-gray-800">{{ $update->site->client->name }}</p>
-	                    	<p class="text-gray-500">{{ $update->site->name }}</p>
-                            <div class="flex justify-between items-center">
-                                <p class="w-3/4">{{ $update->description }}</p>
-                                <div>
-                                    <p class="text-gray-500">{{ $update->user->initials() }}</p>
-                                    <p class="text-gray-500">{{ \Carbon\Carbon::parse($update->updated_at)->format('n/j/Y')}}</p>
-                                </div>
-                            </div>
-	                    </div>
-	                </a>
-		   		@endforeach
+		   		<h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-cogs mr-1"></i> Update Feed</h2>
+				<div class="card constrain-height">
+					@foreach ($updates as $update)
+						<div class="border-b-2 py-6">
+							<a href="{{ $update->site->path() }}"><span class="text-orange-500 text-sm">{{ $update->site->client->name }}</span></a>
+							<span class="text-gray-500 text-sm"> / {{ $update->site->name }}</span><br>
+							<p class="mb-0 text-sm">{{ $update->description }}</p>
+							<div class="flex justify-end">
+								<span class="text-gray-500 text-xs">{{ $update->user->initials() }} - </span>
+								<span class="text-gray-500 text-xs">{{ \Carbon\Carbon::parse($update->updated_at)->format('n/j/Y')}}</span>
+							</div>
+						</div>
+					@endforeach
+				</div>
 			</div>
 		</div>
 	</main>
