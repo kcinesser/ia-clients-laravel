@@ -751,6 +751,11 @@ hr.with-text:after {
   margin-bottom: 2rem;
 }
 
+#logo {
+  height: 50px;
+  width: 50px;
+}
+
 .appearance-none{
   -webkit-appearance: none;
      -moz-appearance: none;
