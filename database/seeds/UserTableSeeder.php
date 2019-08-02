@@ -27,7 +27,7 @@ class UserTableSeeder extends Seeder
 
         DB::table('users')->insert([
         	'name' => 'Sergio Esquivel',
-        	'email' => 'Sergio.Esquivel@firespring.com',
+        	'email' => 'sergio.esquivel@firespring.com',
             'password' => bcrypt('password'),
             'role' => 0
         ]);
@@ -91,6 +91,20 @@ class UserTableSeeder extends Seeder
         DB::table('users')->insert([
         	'name' => 'Erin Soper',
         	'email' => 'erin.Soper@firespring.com',
+            'password' => bcrypt('password'),
+            'role' => 1
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Nicole Swanson',
+            'email' => 'nicole.swanson@firespring.com',
+            'password' => bcrypt('password'),
+            'role' => 1
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Maellyn Hain',
+            'email' => 'maellyn.hain@firespring.com',
             'password' => bcrypt('password'),
             'role' => 1
         ]);
