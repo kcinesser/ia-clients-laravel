@@ -1,4 +1,186 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat:400,500,800&display=swap);@import url(https://fonts.googleapis.com/css?family=Lora&display=swap);/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,500,800&display=swap);@import url(https://fonts.googleapis.com/css?family=Lora&display=swap);.modal-open {
+  overflow: hidden;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  display: none;
+  overflow: hidden;
+  outline: 0;
+}
+
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.fade {
+  opacity: 0;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.fade.show, .fade.in {
+  opacity: 1;
+}
+
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: 1.75rem auto;
+  pointer-events: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.modal.fade .modal-dialog {
+  -webkit-transform: translate(0, -25%);
+          transform: translate(0, -25%);
+}
+
+.modal.show .modal-dialog,
+.modal.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+
+.modal-dialog-centered {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: calc(100% - (1.75rem auto * 2));
+}
+
+.modal-content {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #F3F2EF;
+  border-radius: 0.3rem;
+  outline: 0;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000;
+}
+
+.modal-backdrop.fade {
+  opacity: 0;
+}
+
+.modal-backdrop.show, .modal-backdrop.in {
+  opacity: 0.5;
+}
+
+.modal-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #F3F2EF;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+}
+
+.modal-header .close {
+  padding: 1rem;
+  margin: -1rem -1rem -1rem auto;
+}
+
+.modal-title {
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+.modal-body {
+  position: relative;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  padding: 1rem;
+}
+
+.modal-footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: 1rem;
+  border-top: 1px solid #F3F2EF;
+}
+
+.modal-footer > :not(:first-child) {
+  margin-left: .25rem;
+}
+
+.modal-footer > :not(:last-child) {
+  margin-right: .25rem;
+}
+
+.modal-scrollbar-measure {
+  position: absolute;
+  top: -9999px;
+  width: 50px;
+  height: 50px;
+  overflow: scroll;
+}
+
+@media (min-width: 640px) {
+  .modal-dialog {
+    max-width: 980px;
+    margin: 1.75rem auto;
+  }
+
+  .modal-dialog-centered {
+    min-height: calc(100% - (1.75rem * 2));
+  }
+
+  .modal-sm {
+    max-width: 500px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .modal-lg {
+    max-width: 960px;
+  }
+}
+
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
    ========================================================================== */
@@ -640,16 +822,16 @@ h6, .h6 {
   letter-spacing: -0.025em;
 }
 
-a {
+nav a {
   font-size: 1rem;
   font-family: Montserrat, sans-serif;
 }
 
-a:hover {
+nav a:hover {
   color: #eeede9;
 }
 
-p > a:not(.button) {
+.container a:not(.button) {
   font-size: 1rem;
   font-family: Lora, serif;
   text-decoration: underline;
@@ -657,7 +839,7 @@ p > a:not(.button) {
           text-decoration-color: #F15B51;
 }
 
-p > a:not(.button):hover {
+.container a:not(.button):hover {
   color: #F15B39;
 }
 
@@ -665,6 +847,7 @@ p {
   font-size: 1rem;
   font-family: Lora, serif;
   line-height: 1.5;
+  margin-bottom: 0.75em;
 }
 
 ul {
@@ -680,7 +863,13 @@ ol {
   list-style-position: inside;
 }
 
-<<<<<<< HEAD
+pre {
+  border-width: 1px;
+  border-color: #a0aec0;
+  overflow: scroll;
+  margin-bottom: 0.75em;
+}
+
 code {
   font-size: 87.5%;
   color: #e83e8c;
@@ -702,7 +891,8 @@ td {
   border-right-width: 0;
   border-bottom-width: 0;
   padding: 0.75rem;
-=======
+}
+
 hr {
   border-width: 1px;
 }
@@ -738,7 +928,6 @@ hr.with-text:after {
   line-height: 1.5em;
   color: #818078;
   background-color: #fcfcfa;
->>>>>>> master
 }
 
 .container{
@@ -855,6 +1044,22 @@ hr.with-text:after {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   margin-bottom: 2rem;
+}
+
+.side-nav a:link, .side-nav a:visited {
+  font-size: 0.875rem;
+  font-family: Montserrat, sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  color: #929292;
+  font-size: 0.725rem;
+}
+
+#logo {
+  height: 50px;
+  width: 50px;
 }
 
 .appearance-none{

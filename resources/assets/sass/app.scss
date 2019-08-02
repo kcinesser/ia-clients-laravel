@@ -5,8 +5,10 @@
 @import url('https://fonts.googleapis.com/css?family=Lora&display=swap');
 
 
-// Variables
+// Required Imports
 @import "variables";
+@import "mixins";
+@import "modal";
 
 @tailwind base;
 
@@ -36,14 +38,14 @@ h6, .h6 {
 	@apply text-sm font-display font-extrabold tracking-tight;
 }
 
-a {
+nav a {
 	@apply text-base font-sans;
 	&:hover {
 		@apply text-light-grey;
 	}
 }
 
-p>a:not(.button) {
+.container a:not(.button) {
 	@apply text-base font-body underline;
 	text-decoration-color: #F15B51;
 	&:hover {
@@ -53,6 +55,7 @@ p>a:not(.button) {
 
 p {
 	@apply text-base font-body leading-normal;
+	margin-bottom: 0.75em;
 }
 
 ul {
@@ -63,7 +66,12 @@ ol {
 	@apply text-base font-body list-decimal list-inside;
 }
 
-<<<<<<< HEAD
+pre {
+	@apply border border-gray-500;
+	overflow: scroll;
+	margin-bottom: 0.75em;
+}
+
 code {
 	font-size: 87.5%;
 	color: #e83e8c;
@@ -116,16 +124,13 @@ hr {
 			background-color: #fcfcfa;
 		}
 	}
+}
 
 // END - base styles
 
 @tailwind components;
 
 // START - components
-
-@mixin transition($transition...) {
-	transition: $transition;
-}
 
 .button {
 	@apply bg-orange-500 text-white font-sans font-extrabold no-underline rounded-full text-base py-2 px-4 shadow;
@@ -170,6 +175,15 @@ hr {
 
 .card {
 	@apply bg-white p-5 rounded-lg shadow mb-8;
+}
+
+.side-nav {
+	a:link, a:visited {
+		@apply headline-lead;
+		text-decoration: none;
+		color: #929292;
+		font-size: 0.725rem;
+	}
 }
 
 // END - components

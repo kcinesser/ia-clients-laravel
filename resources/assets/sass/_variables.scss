@@ -36,3 +36,26 @@ $input-color-placeholder: lighten($text-color, 30%);
 
 // Panels
 $panel-default-heading-bg: #fff;
+
+// Modals
+$zindex-modal: 1050;
+$zindex-modal-backdrop: 1040;
+$modal-dialog-margin: 1.75rem auto;
+$modal-transition: all .3s ease;
+$modal-content-bg: #fff;
+$modal-content-border-width: 1px;
+$modal-content-border-color: #F3F2EF;
+$border-radius-lg: .3rem;
+$modal-backdrop-bg: #000;
+$modal-backdrop-opacity: 0.5;
+$modal-header-padding: 1rem;
+$modal-header-border-width: 1px;
+$modal-header-border-color: #F3F2EF;
+$modal-title-line-height: 1.5;
+$modal-inner-padding: 1rem;
+$modal-footer-border-width: 1px;
+$modal-footer-border-color: #F3F2EF;
+$modal-md: 980px;
+$modal-dialog-margin-y-sm-up: 1.75rem;
+$modal-sm: 500px;
+$modal-lg: 960px;
