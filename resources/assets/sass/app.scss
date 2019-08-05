@@ -135,7 +135,6 @@ hr {
 	}
 }
 
-
 // END - base styles
 
 @tailwind components;
@@ -244,6 +243,15 @@ p>.fa {
 #logo {
 	height: 50px;
 	width: 50px;
+}
+
+.license {
+	position: relative;
+}
+.delete-license {
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 
 @tailwind utilities;

@@ -1113,6 +1113,16 @@ p > .fa {
   width: 50px;
 }
 
+.license {
+  position: relative;
+}
+
+.delete-license {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .appearance-none{
   -webkit-appearance: none;
      -moz-appearance: none;

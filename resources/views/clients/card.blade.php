@@ -1,4 +1,4 @@
-<div class="card" style="">
+<div class="card">
     <h3 class="mb-3">
         <i class="fa fa-users mr-3"></i><a href="{{ $client->path() }}" class="no-underline">{{ $client->name }}</a>
     </h3>

@@ -12,14 +12,26 @@
     	<div class="lg:flex -mx-3">
     		<div class="lg:w-1/4 px-3">
  				@include ('clients.card')
+
+                <div class="mb-8">
+                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
+                    <div class="card constrain-height">
+                        @foreach ($client->activities as $activity)
+                            <div class="border-b-2 py-6">
+                                <span class="text-xs font-normal">{{ $activity->description }}</span>
+                                <span class="text-gray-500 text-xs font-normal">{{ \Carbon\Carbon::parse($activity->created_at)->format('n/j/Y') }}</span>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
     		</div>
-            <div class="lg:w-1/2 px-3">
+            <div class="lg:w-3/4 px-3">
                 <div class="mb-8">  
                     <div class="lg:flex lg:flex-wrap items-center mb-2">
                         <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-laptop mr-1"></i> Sites</h2>
                         <a href="{{ $client->path() . '/sites/create' }}" class="button btn-add-sm mb-1 -mt-1 ml-2"><i class="fa fa-plus"></i></a>
                     </div>
-                    <div  class="lg:flex lg:flex-wrap card">
+                    <div class="lg:flex lg:flex-wrap card">
                         @forelse ($sites as $site)
                             <div class="lg:w-full p-2">
                                 <h3><a href="{{ $site->path() }}">{{ $site->name }}</a></h3>
@@ -92,25 +104,8 @@
                             </form>
                         </div>
                     @endforeach
-
-                </div>
-            </div>
-            <div class="lg:w-1/4 px-3">
-                <div class="mb-8">
-                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
-                    <div class="card constrain-height">
-                        @foreach ($client->activities as $activity)
-                            <div class="border-b-2 py-6">
-                                <span class="text-xs font-normal">{{ $activity->description }}</span>
-                                <span class="text-gray-500 text-xs font-normal">{{ \Carbon\Carbon::parse($activity->created_at)->format('n/j/Y') }}</span>
-                            </div>
-                        @endforeach
-                    </div>
                 </div>
             </div>
     	</div>
     </main>
-
-
-
 @endsection
