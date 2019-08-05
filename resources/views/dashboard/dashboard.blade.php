@@ -41,8 +41,8 @@
 				<div class="card constrain-height">
 					@foreach ($activities as $activity)
 						<div class="border-b-2 py-6">
+							<span class="text-gray-500 text-xs font-normal block">{{ \Carbon\Carbon::parse($activity->created_at)->format('n/j/Y') }}</span>
 							<span class="text-xs font-normal">{{ $activity->description }}</span>
-							<span class="text-gray-500 text-xs font-normal">{{ \Carbon\Carbon::parse($activity->created_at)->format('n/j/Y') }}</span>
 						</div>
 					@endforeach
 				</div>
@@ -55,8 +55,8 @@
 							<span class="text-gray-500 text-sm"> / {{ $update->site->name }}</span><br>
 							<p class="mb-0 text-sm">{{ $update->description }}</p>
 							<div class="flex justify-end">
-								<span class="text-gray-500 text-xs">{{ $update->user->initials() }} - </span>
-								<span class="text-gray-500 text-xs">{{ \Carbon\Carbon::parse($update->updated_at)->format('n/j/Y')}}</span>
+								<span class="text-gray-500 text-xs mr-1">{{ $update->user->initials() }} - </span>
+								<span class="text-gray-500 text-xs"> {{ \Carbon\Carbon::parse($update->updated_at)->format('n/j/Y')}}</span>
 							</div>
 						</div>
 					@endforeach

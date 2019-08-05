@@ -240,6 +240,23 @@ p>.fa {
 
 // END - components
 
+// START - Forms
+.field label {
+	@apply text-sm mb-2 block;
+}
+
+.control input:not([type='checkbox']),
+.control select,
+.control textarea {
+	@apply block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight;
+	&:focus {
+		@apply outline-none bg-white border-gray-500;
+	}
+}
+
+
+// END - Forms
+
 #logo {
 	height: 50px;
 	width: 50px;

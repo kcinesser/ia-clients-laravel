@@ -1,12 +1,7 @@
 @extends ('layouts.app')
 
 @section('content')
-    <header class="flex items-center mb-3 py-4">
-        <div class="flex justify-start w-full items-center">
-            <h1><a href="{{ $client->path() }}" class="no-underline">{{ $client->name }}</a> / Job / {{ $job->title }}</h1>
-            <a href="{{ $job->path() . '/edit' }}" class="button btn-add ml-4"><i class="fa fa-pencil"></i></a>
-        </div>
-    </header>
+    <header class="flex items-center mb-3 py-4"></header>
 
     <main>
     	<div class="lg:flex -mx-3">
@@ -50,12 +45,13 @@
     		</div>
     		<div class="lg:w-3/4 px-3">
                 <div class="mb-8">
-                    <div class="lg:flex lg:flex-wrap items-center mb-2">
-                        <h2 class="text-blue-500 mb-1">{{ $job->title }}</h2>
-                        @if($job->site()->exists())
-                            <p class="text-gray-500">Site: <a class="text-blue-500" href="{{ $job->site->path() }}">{{ $job->site->name }}</a></p>
-                        @endif
+                    <div class="mb-2 flex items-center w-full ">
+                        <h2 class="text-blue-500"><i class="fa fa-tasks mr-1"></i> {{ $job->title }}</h2>
+                        <a href="{{ $job->path() . '/edit' }}" class="button btn-add ml-4"><i class="fa fa-pencil"></i></a>
                     </div>
+                    @if($job->site()->exists())
+                        <p class="text-gray-500 text-xs headline-lead">Site: <a class="text-blue-500 no-underline" href="{{ $job->site->path() }}">{{ $job->site->name }}</a></p>
+                    @endif
                     <p class="text-gray-500 text-sm font-normal">{{ $job->description }}</p>
                 </div>
 
@@ -119,7 +115,7 @@
                     <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-comment-o mr-1"></i> Comments / Updates</h2>
 
                     <div class="card mb-3">
-                        <form action="/comment/client/{{ $job->id }}" method="POST">
+                        <form action="/comment/job/{{ $job->id }}" method="POST">
                             {{ csrf_field() }}
                             <input name="body" class="w-full" placeholder="Add a comment.">
                         </form>

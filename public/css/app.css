@@ -1108,6 +1108,41 @@ p > .fa {
   text-align: center;
 }
 
+.field label {
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.control input:not([type='checkbox']),
+.control select,
+.control textarea {
+  display: block;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 100%;
+  background-color: #edf2f7;
+  border-width: 1px;
+  border-color: #edf2f7;
+  color: #4a5568;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-right: 2rem;
+  border-radius: 0.25rem;
+  line-height: 1.25;
+}
+
+.control input:not([type='checkbox']):focus,
+.control select:focus,
+.control textarea:focus {
+  outline: 0;
+  background-color: #fff;
+  border-color: #a0aec0;
+}
+
 #logo {
   height: 50px;
   width: 50px;
