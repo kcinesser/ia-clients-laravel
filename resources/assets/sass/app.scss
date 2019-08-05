@@ -55,6 +55,9 @@ nav a {
 	&:hover {
 		// @apply text-primary;
 	}
+	&.no-underline {
+		text-decoration: none;
+	}
 }
 
 p {
@@ -142,6 +145,7 @@ hr {
 .button {
 	@apply bg-orange-500 text-white font-sans font-extrabold no-underline rounded-full text-base py-2 px-4 shadow;
 	@include transition(all .25s ease-in-out);
+	display: inline-block;
 	&:hover {
 		@apply bg-orange-300 shadow-3;
 	}
@@ -169,6 +173,18 @@ hr {
 	&.btn-add {
 		padding-left: 0.75rem;
 		padding-right: 0.75rem;
+		height: 40px;
+		width: 40px;
+		text-align: center;
+		@apply bg-teal-500;
+		&:hover { @apply bg-teal-300; }
+	}
+	&.btn-add-sm {
+		font-size: 0.5em;
+		width: 20px;
+		height: 20px;
+		text-align: center;
+		padding: 3px;
 		@apply bg-teal-500;
 		&:hover { @apply bg-teal-300; }
 	}
@@ -216,6 +232,11 @@ hr {
 .constrain-height {
 	max-height: 35vh;
 	overflow-y: scroll;
+}
+
+p>.fa {
+	min-width: 14px;
+	text-align: center;
 }
 
 // END - components

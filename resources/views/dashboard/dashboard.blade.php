@@ -10,7 +10,7 @@
     <main>
     	<div class="lg:flex">
     		<div class="lg:w-3/4 pr-6">
-		   		<h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-user mr-1"></i> Your Clients</h2>
+		   		<h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-users mr-1"></i> Your Clients</h2>
 		   		<div  class="lg:flex lg:flex-wrap card">
 			   		@forelse ($clients as $client)
 						<div class="lg:w-full p-2">
