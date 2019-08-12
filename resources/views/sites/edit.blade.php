@@ -5,7 +5,7 @@
 <form method="POST" action="{{ $site->path() }}" class="lg:w-1/2 lg:mx-auto bg-white p-6 md:py-12 md:px-16 rounded shadow">
    	@csrf
    	@method('PATCH')
-    <h1 class="text-2xl font-normal mb-10 text-center">Edit {{ $site->name }}</h1>
+    <h1 class="mb-10 text-center">Edit {{ $site->name }}</h1>
 
     @include('sites.edit_form', [
         'buttonText' => 'Update Site',

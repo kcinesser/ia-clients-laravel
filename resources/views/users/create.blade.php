@@ -10,7 +10,7 @@
             <label for="name" class="label text-sm mb-2 block">Name</label>
 
             <div class="control">
-                <input id="name" type="text" class="input bg-transparent border border-grey-500 rounded p-2 text-xs w-full" name="name" value="{{ old('name') }}" required autofocus>
+                <input id="name" type="text" name="name" value="{{ old('name') }}" required>
 
                 @if ($errors->has('name'))
                     <span class="help-block">
@@ -24,7 +24,7 @@
             <label for="role" class="label text-sm mb-2 block">Role</label>
 
             <div class="control">
-                <select id="role" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state" name="role" value="{{ old('role') }}" required autofocus>
+                <select id="role" id="grid-state" name="role" value="{{ old('role') }}" required>
                     @foreach ($roles as $value => $role)
                         <option value="{{$value}}" >{{ $role }}</option>
                     @endforeach
@@ -42,7 +42,7 @@
             <label for="email" class="label text-sm mb-2 block">E-Mail Address</label>
 
             <div class="control">
-                <input id="email" type="email" class="input bg-transparent border border-grey-500 rounded p-2 text-xs w-full" name="email" value="{{ old('email') }}" required>
+                <input id="email" type="email" name="email" value="{{ old('email') }}" required>
 
                 @if ($errors->has('email'))
                     <span class="help-block">
@@ -56,7 +56,7 @@
             <label for="password" class="label text-sm mb-2 block">Password</label>
 
             <div class="control">
-                <input id="password" type="password" class="input bg-transparent border border-grey-500 rounded p-2 text-xs w-full" name="password" required>
+                <input id="password" type="password" name="password" required>
 
                 @if ($errors->has('password'))
                     <span class="help-block">
@@ -70,7 +70,7 @@
             <label for="password-confirm" class="label text-sm mb-2 block">Confirm Password</label>
 
             <div class="control">
-                <input id="password-confirm" type="password" class="input bg-transparent border border-grey-500 rounded p-2 text-xs w-full" name="password_confirmation" required>
+                <input id="password-confirm" type="password" name="password_confirmation" required>
             </div>
         </div>
 

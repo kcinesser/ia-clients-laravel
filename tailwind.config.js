@@ -8,9 +8,9 @@ module.exports = {
     },
     fontFamily: {
       'sans': 'Montserrat, sans-serif',
-      'serif': 'Lora, serif',
+      'serif': 'Montserrat, sans-serif',
       'display': 'Montserrat, sans-serif',
-      'body': 'Lora, serif',
+      'body': 'Montserrat, sans-serif',
     },
     boxShadow:{
       default: '0 1px 3px rgba(0, 0, 0, 0.12)',
@@ -26,19 +26,6 @@ module.exports = {
       '60': '0.6',
       '80': '0.8',
       '100': '1',
-    },
-    textColor: {
-      'primary': '#F15B39',
-      'secondary': '#4C2E3F',
-      'danger': '#F15B39',
-      'white': '#fff',
-      'orange': '#F15B39',
-      'plum': '#4c2e3f',
-      'blue': '#4B5783',
-      'yellow': '#FABE35',
-      'teal': '#70BEBF',
-      'light-grey': '#eeede9',
-      'dark-grey': '#333'
     },
     extend: {
       spacing: {
