@@ -77,7 +77,7 @@ Locally, or via vagrant box*, run:
     
     npm install
     
-*If you have issues running via vagrant box, modify Vagrantfile file, change from `:mount_options => ["dmode=777", "fmode=666"]` to `:mount_options => ["dmode=777", "fmode=777"]`
+*If you have issues running via vagrant box, modify Vagrantfile file, change from `:mount_options => ["dmode=777", "fmode=666"]` to `:mount_options => ["dmode=777", "fmode=777"]`. After changing, reload box `vagrant reload --provision`
     
 Then:
 
