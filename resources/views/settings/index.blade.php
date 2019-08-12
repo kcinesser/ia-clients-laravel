@@ -81,6 +81,24 @@
 
 				<a href="{{ route('services.create') }}" class="button is-link mb-4">Create New Service</a>
 			</div>
+
+			<div class="p-4 w-full mb-4">
+				@foreach($hosting as $host)
+					<div class="flex justify-between mb-4">
+						<div class="w-1/4">
+							{{ $host->name }} ({{\App\Enums\Owners::getKey($host->owner)}})
+						</div>
+						<div class="w-1/4">
+							{{ $host->details }}
+						</div>
+						<div class="w-1/4">
+							<a href="{{ route('hosting.edit', $host->id) }}" class="button">Edit</a>
+						</div>
+					</div>
+				@endforeach
+
+				<a href="{{ route('hosting.create') }}" class="button is-link mb-4">Create New Host</a>
+			</div>
 		</div>
 	</main>
 

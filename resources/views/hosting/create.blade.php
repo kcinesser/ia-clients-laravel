@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <form method="POST" action="/hosting" class="lg:w-1/2 lg:mx-auto bg-white p-6 md:py-12 md:px-16 rounded shadow">
+    <form method="POST" action="{{route('hosting.store')}}" class="lg:w-1/2 lg:mx-auto bg-white p-6 md:py-12 md:px-16 rounded shadow">
         @csrf
         <h1 class="mb-10 text-center">Create Host</h1>
 

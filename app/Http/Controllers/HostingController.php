@@ -16,7 +16,7 @@ class HostingController extends Controller
      */
     public function index()
     {
-        dd(Hosting::all());
+
         return redirect('/settings');
     }
 
@@ -49,7 +49,7 @@ class HostingController extends Controller
             'owner' => 'required|numeric'
         ]));
 
-        return redirect('/hosting');
+        return redirect('/settings');
     }
 
     /**
@@ -60,7 +60,7 @@ class HostingController extends Controller
      */
     public function show(Hosting $hosting)
     {
-        //
+        return view('hosting.show', compact('hosting'));
     }
 
     /**
@@ -90,7 +90,7 @@ class HostingController extends Controller
             'owner' => 'required|numeric'
         ]));
 
-        return redirect('/hosting');
+        return redirect('/settings');
     }
 
     /**

@@ -4,7 +4,7 @@
 
     <div class="lg:w-1/2 lg:mx-auto bg-white p-6 md:py-12 md:px-16 rounded shadow mb-10">
 
-        <form method="POST" action="/hosting/{{$hosting->id}}" class="mb-10" >
+        <form method="POST" action="{{route('hosting.update', $hosting->id)}}" class="mb-10" >
             @csrf
             @method('PATCH')
 
@@ -31,7 +31,7 @@
             </div>
         @endif
 
-        <form method="POST" action="/hosting/{{$hosting->id}}" class="delete-form mt-10">
+        <form method="POST" action="{{route('hosting.destroy', $hosting->id)}}" class="delete-form mt-10">
             @csrf
             @method('DELETE')
             <div class="field">
@@ -42,7 +42,7 @@
         </form>
     </div>
 
-    @if($hosting->sites)
+    @if(count($hosting->sites) >= 1)
         <div class="lg:w-1/2 lg:mx-auto bg-white p-6 md:py-12 md:px-16 rounded shadow">
             <p class="headline-lead">Hosting:</p>
             <ul>
