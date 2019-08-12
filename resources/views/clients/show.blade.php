@@ -2,13 +2,10 @@
 
 @section('content')
     <header class="flex items-center mb-3 py-4">
-        <div class="flex justify-between w-full items-center">
-            <p class="text-gray-500 font-normal font-sans">
-            	<a href="/clients" class="no-underline">Clients</a> / {{ $client->name }}
-            </p>
-            <button type="button" class="button btn-blue mb-3" data-toggle="modal" data-target="#editClientModal">
-                Edit Client
-            </button>
+
+        <div class="flex justify-start w-full items-center">
+            <h1><a href="/clients" class="no-underline">Client</a> / {{ $client->name }}</h1>
+            <a href="" class="button btn-add ml-4" data-toggle="modal" data-target="#editClientModal"><i class="fa fa-pencil"></i></a>
         </div>
     </header>
 
@@ -16,60 +13,62 @@
     	<div class="lg:flex -mx-3">
     		<div class="lg:w-1/4 px-3">
  				@include ('clients.card')
-    		</div>
-            <div class="lg:w-1/2 px-3">
-                <div class="mb-8">  
-                    <div class="lg:flex lg:flex-wrap items-center">          
-                        <h2 class="text-gray-500 mb-3 mr-3">Sites</h2>
-                        <button type="button" class="button btn-primary mb-3" data-toggle="modal" data-target="#siteModal">
-                            New Site
-                        </button>
-                    </div>
 
-                    <div class="lg:flex lg:flex-wrap">          
+                <div class="mb-8">
+                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
+                    <div class="card constrain-height">
+                        @foreach ($client->activities as $activity)
+                            <div class="border-b-2 py-6">
+                                <span class="text-xs font-normal">{{ $activity->description }}</span>
+                                <span class="text-gray-500 text-xs font-normal">{{ \Carbon\Carbon::parse($activity->created_at)->format('n/j/Y') }}</span>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+    		</div>
+            <div class="lg:w-3/4 px-3">
+                <div class="mb-8">  
+                    <div class="lg:flex lg:flex-wrap items-center mb-2">
+                        <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-laptop mr-1"></i> Sites</h2>
+                        <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#siteModal"><i class="fa fa-plus"></i></a>
+                    </div>
+                    <div class="lg:flex lg:flex-wrap card">
                         @forelse ($sites as $site)
-                            <div class="w-1/3 px-3 pb-6">
-                                <div class="card h-40">
-                                    <a href="{{ $site->path() }}">{{ $site->name }}</a>
-                                    <p class="text-gray-500">{{ \Illuminate\Support\Str::limit($site->description, 30) }}</p>
-                                </div>
+                            <div class="lg:w-full p-2">
+                                <h3><a href="{{ $site->path() }}">{{ $site->name }}</a></h3>
+                                <p class="text-gray-500 text-sm font-normal">{{ \Illuminate\Support\Str::limit($site->description, 30) }}</p>
                             </div>
                         @empty
-                            <div class="card mb-3">
+                            <div class="lg:w-full p-2">
                                 <p>No sites yet.</p>
                             </div>
                         @endforelse
+                        <a href="{{ $client->archivePath() }}" class="headline-lead text-xs no-underline text-right ml-auto">View Archived Sites</a>
                     </div>
-                    <a href="{{ $client->archivePath() }}" class="">View Archived Sites</a>
                 </div>
 
-                <div class="mb-8">  
-                    <div class="lg:flex lg:flex-wrap items-center">          
-                        <h2 class="text-gray-500 mb-3 mr-3">Jobs</h2>
-                        <button type="button" class="button btn-primary mb-3" data-toggle="modal" data-target="#jobModal">
-                            New Job
-                        </button>
+                <div class="mb-8">
+                    <div class="lg:flex lg:flex-wrap items-center mb-2">
+                        <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-tasks mr-1"></i> Jobs</h2>
+                        <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#jobModal"><i class="fa fa-plus"></i></a>
                     </div>
-
-                    <div class="lg:flex lg:flex-wrap">          
+                    <div class="lg:flex lg:flex-wrap card">
                         @forelse ($jobs as $job)
-                            <div class="w-1/3 px-3 pb-6">
-                                <div class="card h-40">
-                                    <a href="{{ $job->path() }}">{{ $job->title }}</a>
-                                    <p class="text-gray-500 text-sm font-normal">{{ \Illuminate\Support\Str::limit($job->description, 35) }}</p>
-                                </div>
+                            <div class="lg:w-full p-2">
+                                <h3><a href="{{ $job->path() }}">{{ $job->title }}</a></h3>
+                                <p class="text-gray-500 text-sm font-normal">{{ \Illuminate\Support\Str::limit($job->description, 65) }}</p>
                             </div>
                         @empty
-                            <div class="card mb-3">
+                            <div class="lg:w-full p-2">
                                 <p>No jobs yet.</p>
                             </div>
                         @endforelse
+                        <a href="{{ $client->archivePath() }}" class="headline-lead text-xs no-underline text-right ml-auto">View Archived Jobs</a>
                     </div>
-                    <a href="{{ $client->archivePath() }}" class="">View Archived Jobs</a>
                 </div>
 
-                <div class="mb-8">            
-                    <h2 class="text-gray-500 mb-3 mr-3">Notes</h2>
+                <div class="mb-8">
+                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-pencil-square-o mr-1"></i> Notes</h2>
 
                     <form method="POST" action="{{ $client->path() . '/notes' }}">
                         @csrf
@@ -79,8 +78,8 @@
                     </form>
                 </div>
 
-                <div>
-                    <h2 class="text-gray-500 mb-3 mr-3">Comments</h2>
+                <div class="mb-8">
+                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-comment-o mr-1"></i> Comments / Updates</h2>
 
                     <div class="card mb-3">
                         <form action="/comment/client/{{ $client->id }}" method="POST">
@@ -104,23 +103,6 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
-                    @endforeach
-
-                </div>
-            </div>
-            <div class="lg:w-1/4 px-3">
-                <div class="mb-8">
-                    <h2 class="text-gray-500 mb-3 mr-3">Activity</h2>
-
-                    @foreach ($client->activities as $activity)
-                        <div class="card mb-3">
-                            <div class="flex justify-between items-center">
-                                <p class="w-3/4 text-sm font-normal pr-3">{{ $activity->description }}</p>
-                                <div>
-                                    <p class="text-gray-500 text-sm font-normal">{{ \Carbon\Carbon::parse($activity->updated_at)->format('n/j/Y')}}</p>
-                                </div>
-                            </div>
                         </div>
                     @endforeach
                 </div>
@@ -149,9 +131,6 @@
                             ])
 
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="" class="button">Save</a>
                     </div>
                 </div>
             </div>
@@ -210,7 +189,4 @@
         </div>
 
     </main>
-
-
-
 @endsection

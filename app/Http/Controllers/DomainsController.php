@@ -97,7 +97,7 @@ class DomainsController extends Controller
     {
         $domain->update(request()->all());
 
-        return redirect($domain->path());
+        return redirect($site->path());
     }
 
     /**

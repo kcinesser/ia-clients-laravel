@@ -2,7 +2,6 @@
 // Fonts
 //@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,800&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Lora&display=swap');
 
 
 // Required Imports
@@ -13,6 +12,11 @@
 @tailwind base;
 
 // START - base styles
+
+body {
+	@apply font-body;
+	color: #333;
+}
 
 h1, .h1 {
 	@apply text-4xl font-display font-extrabold tracking-tight;
@@ -41,21 +45,26 @@ h6, .h6 {
 nav a {
 	@apply text-base font-sans;
 	&:hover {
-		@apply text-light-grey;
+		// @apply text-light-grey;
 	}
 }
 
 .container a:not(.button) {
-	@apply text-base font-body underline;
+	@apply font-body underline;
 	text-decoration-color: #F15B51;
 	&:hover {
-		@apply text-primary;
+		// @apply text-primary;
+	}
+	&.no-underline {
+		text-decoration: none;
 	}
 }
 
 p {
 	@apply text-base font-body leading-normal;
 	margin-bottom: 0.75em;
+
+	&:last-child { margin-bottom: 0; }
 }
 
 ul {
@@ -135,6 +144,7 @@ hr {
 .button {
 	@apply bg-orange-500 text-white font-sans font-extrabold no-underline rounded-full text-base py-2 px-4 shadow;
 	@include transition(all .25s ease-in-out);
+	display: inline-block;
 	&:hover {
 		@apply bg-orange-300 shadow-3;
 	}
@@ -147,7 +157,7 @@ hr {
 		&:hover { @apply bg-plum-300; }
 	}
 	&.btn-yellow {
-		@apply bg-yellow-500 text-dark-grey;
+		@apply bg-yellow-500;
 		&:hover { @apply bg-yellow-300; }
 	}
 	&.btn-blue {
@@ -162,6 +172,18 @@ hr {
 	&.btn-add {
 		padding-left: 0.75rem;
 		padding-right: 0.75rem;
+		height: 40px;
+		width: 40px;
+		text-align: center;
+		@apply bg-teal-500;
+		&:hover { @apply bg-teal-300; }
+	}
+	&.btn-add-sm {
+		font-size: 0.5em;
+		width: 20px;
+		height: 20px;
+		text-align: center;
+		padding: 3px;
 		@apply bg-teal-500;
 		&:hover { @apply bg-teal-300; }
 	}
@@ -174,7 +196,27 @@ hr {
 }
 
 .card {
-	@apply bg-white p-5 rounded-lg shadow mb-8;
+	@apply bg-white p-5 rounded-lg shadow mb-8 font-display;
+	color: #4B5783;
+
+	a:link, a:visited {
+		font-family: Montserrat, sans-serif;
+		text-decoration: none;
+		color: #4B5783;
+
+		&:hover, &:active {
+			opacity: 0.7;
+		}
+	}
+
+	.border-b-2:first-child {
+		padding-top: 0;
+	}
+
+	.border-b-2:last-child {
+		border-width: 0;
+		padding-bottom: 0;
+	}
 }
 
 .side-nav {
@@ -186,11 +228,47 @@ hr {
 	}
 }
 
+.constrain-height {
+	max-height: 35vh;
+	overflow-y: scroll;
+}
+
+p>.fa {
+	min-width: 14px;
+	text-align: center;
+}
+
 // END - components
+
+// START - Forms
+.field label {
+	@apply text-sm mb-2 block;
+}
+
+.control input:not([type='checkbox']),
+.control select,
+.control textarea {
+	@apply block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight;
+	&:focus {
+		@apply outline-none bg-white border-gray-500;
+	}
+}
+
+
+// END - Forms
 
 #logo {
 	height: 50px;
 	width: 50px;
+}
+
+.license {
+	position: relative;
+}
+.delete-license {
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 
 @tailwind utilities;

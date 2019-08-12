@@ -119,7 +119,6 @@ class SitesController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function services(Client $client, Site $site){
-        dd(request()->all());
         $site->services()->sync(request()->services);
         return back();
     }

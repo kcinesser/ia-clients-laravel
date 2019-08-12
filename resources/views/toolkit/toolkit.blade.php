@@ -13,11 +13,14 @@
                     <li><a href="#typography">Typography</a></li>
                     <li><a href="#buttons">Buttons</a></li>
                     <li><a href="#modals">Modals</a></li>
+                    <li><a href="#cards">Cards</a></li>
                 </ul>
             </div>
             <div class="lg:w-3/4 px-3">
                 <div class="lg:w-full px-3 mb-16" id="typography">
-                    <h2 class="text-gray-500 mb-3">Typography</h2>
+                    <h2 class="mb-3">Typography</h2>
+                    <p>The font-family we are using is Montserrat. The font styles are based off the Firespring Brand Guide.
+                        We're utilizing <a href="https://fontawesome.bootstrapcheatsheets.com" target="_blank">Font Awesome</a> to add icons to the site.</p>
 
                     <table class="lg:w-full">
                         <tbody>
@@ -58,7 +61,7 @@
             </div>
 
                 <div class="lg:w-full px-3 mb-16" id="buttons">
-                    <h2>Buttons</h2>
+                    <h2 class="mb-3">Buttons</h2>
 
                     <table class="lg:w-full">
                         <tbody>
@@ -87,6 +90,14 @@
                             <td><a href="" class="button btn-add">+</a></td>
                         </tr>
                         <tr>
+                            <td><code>.button.btn-add-sm</code></td>
+                            <td><a href="" class="button btn-add-sm"><i class="fa fa-plus"></i></a></td>
+                        </tr>
+                        <tr>
+                            <td><code>.button.btn-add</code></td>
+                            <td><a href="" class="button btn-add"><i class="fa fa-pencil"></i></a></td>
+                        </tr>
+                        <tr>
                             <td><code>.button.btn-large</code></td>
                             <td><a href="" class="button btn-large">Large Button</a></td>
                         </tr>
@@ -96,7 +107,7 @@
             </div>
 
                 <div class="lg:w-full px-3 mb-16" id="modals">
-                    <h2>Modals</h2>
+                    <h2 class="mb-3">Modals</h2>
                     <p>Since laravel comes with Twitter Bootstrap out of the box, we're going to utilize <a href="https://getbootstrap.com/docs/4.0/components/modal/" target="_blank">bootstrap's modal js library</a>.</p>
                     <p>To create a modal, all you'll need to do is wrap any element in a div with the modal classes. Then you'll set a data-target and data-toggle on a button. See the example below.</p>
 
@@ -149,6 +160,49 @@
                                     <a href="" class="button">Save</a>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:w-full px-3 mb-16" id="cards">
+                    <h2 class="mb-3">Cards</h2>
+                    <p>We use cards to group items together. Each card should get a Headline to note what the group is.</p>
+                    <p>To see these cards in use, please see the Dashboard or a Client page.</p>
+
+                    <h3 class="my-6">Example of a card list with an Add New button</h3>
+
+                    <div class="lg:flex lg:flex-wrap items-center mb-2">
+                        <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-laptop mr-1"></i> Example</h2>
+                        <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2"><i class="fa fa-plus"></i></a>
+                    </div>
+                    <div  class="lg:flex lg:flex-wrap card">
+                        <div class="lg:w-full p-2">
+                            <h3><a href="">Item One</a></h3>
+                            <p class="text-gray-500 text-sm font-normal">This is the first item.</p>
+                        </div>
+                        <div class="lg:w-full p-2">
+                            <h3><a href="">Item Two</a></h3>
+                            <p class="text-gray-500 text-sm font-normal">This is the second item.</p>
+                        </div>
+
+                        <a href="" class="headline-lead text-xs no-underline text-right ml-auto">View Archives</a>
+                    </div>
+
+                    <h3 class="my-6">Example of Activity Feed</h3>
+
+                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
+                    <div class="card constrain-height">
+                        <div class="border-b-2 py-6">
+                            <span class="text-xs font-normal">This is an activity that happened.</span>
+                            <span class="text-gray-500 text-xs font-normal">8/5/2019</span>
+                        </div>
+                        <div class="border-b-2 py-6">
+                            <span class="text-xs font-normal">This is an activity that happened.</span>
+                            <span class="text-gray-500 text-xs font-normal">8/3/2019</span>
+                        </div>
+                        <div class="border-b-2 py-6">
+                            <span class="text-xs font-normal">This is an activity that happened.</span>
+                            <span class="text-gray-500 text-xs font-normal">7/30/2019</span>
                         </div>
                     </div>
                 </div>

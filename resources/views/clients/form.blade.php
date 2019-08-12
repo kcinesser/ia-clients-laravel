@@ -2,7 +2,7 @@
     <label for="name" class="label text-sm mb-2 block">Name</label>
 
     <div class="control">
-        <input type="text" class="input bg-transparent border border-grey-500 rounded p-2 text-xs w-full" name="name" value="{{ $client->name }}" required>
+        <input type="text" name="name" value="{{ $client->name }}" required>
     </div>
 </div>
 
@@ -10,7 +10,7 @@
     <label for="account_manager_id" class="label text-sm mb-2 block">Account Manager</label>
 
     <div class="control">
-        <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="account_manager_id" required>
+        <select name="account_manager_id" required>
             <option>Select Account Manager</option>
             @foreach($account_managers as $account_manager)
                 <option value="{{ $account_manager->id }}" {{ $account_manager->id == $client->account_manager_id ? "selected" : "" }}>{{ $account_manager->name }}</option>
@@ -23,7 +23,7 @@
     <label for="primary_name" class="label text-sm mb-2 block">Primary Contact Name</label>
 
     <div class="control">
-        <input type="text" class="input bg-transparent border border-grey-500 rounded p-2 text-xs w-full" name="contact_name" value="{{ $client->contact_name }}" required>
+        <input type="text" name="contact_name" value="{{ $client->contact_name }}" required>
     </div>
 </div>
 
@@ -31,7 +31,7 @@
     <label for="primary_email" class="label text-sm mb-2 block">Primary Contact Email</label>
 
     <div class="control">
-        <input type="text" class="input bg-transparent border border-grey-500 rounded p-2 text-xs w-full" name="contact_email" value="{{ $client->contact_email }}" required>
+        <input type="text"  name="contact_email" value="{{ $client->contact_email }}" required>
     </div>
 </div>
 
@@ -39,14 +39,14 @@
     <label for="primary_phone" class="label text-sm mb-2 block">Primary Contact Phone</label>
 
     <div class="control">
-        <input type="text" class="input bg-transparent border border-grey-500 rounded p-2 text-xs w-full" name="contact_phone" value="{{ $client->contact_phone }}" required>
+        <input type="text" name="contact_phone" value="{{ $client->contact_phone }}" required>
     </div>
 </div>
 
 <div class="field">
     <div class="control">
-        <button type="submit" class="button mr-2">{{ $buttonText }}</button>
-        <a href="" class="button btn-blue" data-dismiss="modal">Close</a>
+        <button type="submit" class="button is-link mr-2">{{ $buttonText }}</button>
+        <a href="" class="button btn-secondary" data-dismiss="modal">Cancel</a>
     </div>
 </div>
 
