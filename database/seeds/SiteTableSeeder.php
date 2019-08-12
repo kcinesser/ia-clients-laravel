@@ -16,6 +16,7 @@ class SiteTableSeeder extends Seeder
         	'name' => 'Spikes Live',
         	'technology' => 0,
         	'status' => 1,
+            'host_id' => 1,
         ]);
 
         DB::table('sites')->insert([
@@ -23,6 +24,7 @@ class SiteTableSeeder extends Seeder
         	'name' => 'Spikes Staging',
         	'technology' => 0,
         	'status' => 2,
+            'host_id' => 1,
         ]);
 
         DB::table('sites')->insert([
@@ -30,6 +32,7 @@ class SiteTableSeeder extends Seeder
         	'name' => 'Lincoln Berean Live',
         	'technology' => 0,
         	'status' => 1,
+            'host_id' => 1,
         ]);
 
         DB::table('sites')->insert([
@@ -37,6 +40,7 @@ class SiteTableSeeder extends Seeder
         	'name' => 'Lincoln Berean Staging',
         	'technology' => 0,
         	'status' => 2,
+            'host_id' => 1,
         ]);
 
         DB::table('sites')->insert([
@@ -44,6 +48,8 @@ class SiteTableSeeder extends Seeder
         	'name' => 'SL Green',
         	'technology' => 1,
         	'status' => 1,
+            'host_id' => 3,
+
         ]);
 
         DB::table('sites')->insert([
@@ -51,6 +57,7 @@ class SiteTableSeeder extends Seeder
         	'name' => 'One Vanderbilt',
         	'technology' => 1,
         	'status' => 1,
+            'host_id' => 3,
         ]);
 
         DB::table('sites')->insert([
@@ -58,6 +65,7 @@ class SiteTableSeeder extends Seeder
         	'name' => '461 Fifth Ave',
         	'technology' => 1,
         	'status' => 1,
+            'host_id' => 3,
         ]);
 
         DB::table('sites')->insert([
@@ -65,6 +73,7 @@ class SiteTableSeeder extends Seeder
         	'name' => 'SLG Sustainability',
         	'technology' => 0,
         	'status' => 0,
+            'host_id' => 1,
         ]);
 
         DB::table('sites')->insert([
@@ -72,6 +81,7 @@ class SiteTableSeeder extends Seeder
         	'name' => 'LRS Healthcare Live',
         	'technology' => 0,
         	'status' => 1,
+            'host_id' => 4,
         ]);
 
         DB::table('sites')->insert([
@@ -79,6 +89,7 @@ class SiteTableSeeder extends Seeder
         	'name' => 'LRS Healthcare Staging',
         	'technology' => 0,
         	'status' => 2,
+            'host_id' => 1,
         ]);
 
         DB::table('sites')->insert([
@@ -86,6 +97,7 @@ class SiteTableSeeder extends Seeder
         	'name' => 'Travcon Takeover',
         	'technology' => 0,
         	'status' => 1,
+            'host_id' => 1,
         ]);
 
         DB::table('sites')->insert([
@@ -93,6 +105,7 @@ class SiteTableSeeder extends Seeder
         	'name' => 'NU Foundation Development',
         	'technology' => 0,
         	'status' => 1,
+            'host_id' => 5,
         ]);
 
         DB::table('sites')->insert([
@@ -100,6 +113,7 @@ class SiteTableSeeder extends Seeder
         	'name' => 'Firespring Blog Live',
         	'technology' => 0,
         	'status' => 1,
+            'host_id' => 1,
         ]);
 
         DB::table('sites')->insert([
@@ -107,6 +121,7 @@ class SiteTableSeeder extends Seeder
         	'name' => 'Firespring Blog Staging',
         	'technology' => 0,
         	'status' => 2,
+            'host_id' => 1,
         ]);
 
 
@@ -115,6 +130,7 @@ class SiteTableSeeder extends Seeder
         	'name' => 'Interactive Client DB',
         	'technology' => 2,
         	'status' => 0,
+            'host_id' => 6,
         ]);
 
     }

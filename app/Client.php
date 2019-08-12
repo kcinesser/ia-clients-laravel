@@ -26,7 +26,8 @@ class Client extends Model
         $site = $this->sites()->create([
             'name' => $attributes['name'],
             'technology' => $attributes['technology'],
-            'status' => $attributes['status']
+            'status' => $attributes['status'],
+            'host_id' => $attributes['host_id'],
         ]);
 
         if ($attributes['URL']) {
