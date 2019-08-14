@@ -2,7 +2,7 @@
 
 @section('content')
     <header class="flex items-center mb-3 py-4">
-        <div class="flex justify-between w-full items-center">
+        <div class="md:flex justify-between w-full items-center">
             <h2 class="text-blue-500"><i class="fa fa-cog mr-1"></i>Settings</h2>
 			<div><!-- we could potentially get rid of these after we add the Add dropdown to the header -->
 				<a href="/user/create" class="button btn-sm is-link"><i class="fa fa-plus mr-2"></i>User</a>
@@ -63,16 +63,16 @@
 
 				<div class="tab-pane fade" id="services" role="tabpanel" aria-labelledby="services-tab">
 					<div class="lg:flex justify-between p-3 sm:hidden hidden lg:block font-semibold text-blue-500">
-						<div class="lg:w-1/4"><p>Service Name</p></div>
-						<div class="lg:w-1/4"><p>Description</p></div>
-						<div class="lg:w-1/4"><p>Price</p></div>
+						<div class="lg:w-1/6"><p>Service Name</p></div>
+						<div class="lg:w-1/2"><p>Description</p></div>
+						<div class="lg:w-1/6"><p>Price</p></div>
 						<div class="lg:w-1/8"><i class="fa fa-search mr-1"></i></div>
 					</div>
 					@foreach($services as $service)
 						<div class="lg:flex justify-between p-3">
-							<div class="lg:w-1/4">{{ $service->name }}</div>
-							<div class="lg:w-1/4">{{ $service->description }}</div>
-							<div class="lg:w-1/4">
+							<div class="lg:w-1/6">{{ $service->name }}</div>
+							<div class="lg:w-1/2">{{ $service->description }}</div>
+							<div class="lg:w-1/6">
 								@if(isset($service->price))
 									${{ $service->priceFormat() }}
 								@endif
