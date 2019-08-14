@@ -85,7 +85,6 @@
 						</div>
 					@endforeach
 				</div>
-
 				<div class="tab-pane fade" id="hosting" role="tabpanel" aria-labelledby="hosting-tab">
 					<div class="lg:flex justify-between p-3 sm:hidden hidden lg:block font-semibold text-blue-500">
 						<div class="lg:w-1/6"><p>Host Name</p></div>
