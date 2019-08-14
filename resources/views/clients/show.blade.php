@@ -50,7 +50,7 @@
                 <div class="mb-8">
                     <div class="lg:flex lg:flex-wrap items-center mb-2">
                         <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-tasks mr-1"></i> Jobs</h2>
-                        <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#jobModal"><i class="fa fa-plus"></i></a>
+                        <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newJobModal"><i class="fa fa-plus"></i></a>
                     </div>
                     <div class="lg:flex lg:flex-wrap card">
                         @forelse ($jobs as $job)
@@ -109,84 +109,9 @@
             </div>
     	</div>
 
-        <div class="modal fade" id="siteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">New Site</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="POST" action="{{ $client->path() . '/sites' }}" class="lg:w-1/2 lg:mx-auto bg-white p-6 md:py-12 md:px-16">
-                            @csrf
-                            @include('sites.create_form', [
-                                'site' => new App\Site,
-                                'buttonText' => 'Create Site',
-                                'technologies' => App\Enums\Technologies::toSelectArray(),
-                                'services' => App\Service::all(),
-                                'statuses' => App\Enums\SiteStatus::toSelectArray(),
-                                'registrars' => App\Registrar::all()
-                            ])
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="editClientModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Edit {{ $client->name }}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="POST" action="{{ $client->path() }}" class="lg:w-1/2 lg:mx-auto bg-white p-6 md:py-12 md:px-16">
-                            @csrf
-                            @method('PATCH')
-                            @include('clients.form', [
-                                'buttonText' => 'Update Client',
-                                'account_managers' => App\User::all()->where('role', 1)
-                            ])
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="jobModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Create Job for {{ $client->name }}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="POST" action="{{ $client->path() . '/jobs' }}" class="lg:w-1/2 lg:mx-auto bg-white p-6 md:py-12 md:px-16">
-                            {{ csrf_field() }}
-                            @include('jobs.form', [
-                                'job' => new App\Job,
-                                'buttonText' => 'Create Job',
-                                'cancelURL' => $client->path(),
-                                'services' => App\Service::all(),
-                                'statuses' => App\Enums\JobStatus::toSelectArray(),
-                                'technologies' => App\Enums\Technologies::toSelectArray(),
-                                'developers' => App\User::all()->where('role', 0),
-                                'sites' => $client->sites,
-                            ])
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        @include('sites._new_site_modal')
+        @include('clients._edit_client_modal')
+        @include('jobs._new_job_modal')
+        
     </main>
 @endsection

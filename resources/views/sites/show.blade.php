@@ -47,13 +47,13 @@
                 <div class="mb-8">
                     <div class="lg:flex lg:flex-wrap items-center mb-2">
                         <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-globe mr-1"></i> Domains</h2>
-                        <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#domainModal"><i class="fa fa-plus"></i></a>
+                        <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newDomainModal"><i class="fa fa-plus"></i></a>
                     </div>
                     <div class="card mb-6">
                     @forelse ($site->domains as $domain)
                         <div class="flex justify-between">
                             <div>
-                                <a class="text-sm" href="" data-toggle="modal" data-target="#domainViewModal"  data-name="{{ $domain->name }}" data-registrar="{{ $domain->registrar->id }}" data-exp="{{ $domain->exp_date }}">{{ $domain->name }}</a>
+                                <a class="text-sm" href="" data-toggle="modal" data-target="#editDomainModal"  data-name="{{ $domain->name }}" data-registrar="{{ $domain->registrar->id }}" data-exp="{{ $domain->exp_date }}">{{ $domain->name }}</a>
                             </div>
                             <div class="text-sm">
                                 Exp: {{ \Carbon\Carbon::parse($domain->exp_date)->format('n-j-Y') }}
@@ -69,7 +69,7 @@
                 <div class="mb-8">  
                     <div class="lg:flex lg:flex-wrap items-center">
                         <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-check-square-o mr-1"></i> Jobs</h2>
-                        <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#jobModal"><i class="fa fa-plus"></i></a>
+                        <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newJobModal"><i class="fa fa-plus"></i></a>
                     </div>
 
                     <div class="lg:flex lg:flex-wrap card">
@@ -185,112 +185,10 @@
             </div>
         </div>
 
-        <div class="modal fade" id="editSiteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Edit {{ $site->name }}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="POST" action="{{ $site->path() }}" class="lg:w-1/2 lg:mx-auto bg-white p-6 md:py-12 md:px-16">
-                            @csrf
-                            @method('PATCH')
-
-                            @include('sites.edit_form', [
-                                'buttonText' => 'Update Site',
-                                'cancelURL' => $client->path(),
-                                'technologies' => App\Enums\Technologies::toSelectArray(),
-                                'services' => App\Service::all(),
-                                'statuses' => App\Enums\SiteStatus::toSelectArray(),
-                            ])
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="domainModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add Domain</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="POST" action="{{ $site->path() }}/domains" class="lg:w-1/2 lg:mx-auto bg-white p-6 md:py-12 md:px-16">
-                            @csrf
-                            @include('domains.form', [
-                                'domain' => new App\Domain,
-                                'account' => new App\DomainAccount,
-                                'buttonText' => 'Create Domain',
-                                'cancelURL' => $site->path(),
-                                'registrars' => App\Registrar::all()
-                            ])
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="domainViewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Edit Domain</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="POST" action="{{ $domain->path() }}" class="lg:w-1/2 lg:mx-auto bg-white p-6 md:py-12 md:px-16">
-                            @csrf
-                            @method('PATCH')
-                            @include('domains.form', [
-                                'account' => new App\DomainAccount,
-                                'buttonText' => 'Save Domain',
-                                'cancelURL' => $site->path(),
-                                'registrars' => App\Registrar::all()
-                            ])
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="jobModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Create a Job for {{ $site->name }}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="POST" action="{{ $client->path() . '/jobs' }}" class="lg:w-1/2 lg:mx-auto bg-white p-6 md:py-12 md:px-16 rounded shadow">
-                            @csrf
-                            @include('jobs.form', [
-                                'job' => new App\Job,
-                                'buttonText' => 'Create Job',
-                                'cancelURL' => $client->path(),
-                                'services' => App\Service::all(),
-                                'technologies' => App\Enums\Technologies::toSelectArray(),
-                                'developers' => App\User::all()->where('role', 0),
-                                'sites' => $client->sites,
-                                'statuses' => App\Enums\JobStatus::toSelectArray()
-                            ])
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('sites._edit_site_modal')
+        @include('domains._new_domain_modal')
+        @include('domains._edit_domain_modal')
+        @include('jobs._new_job_modal')
 
     </main>
 
