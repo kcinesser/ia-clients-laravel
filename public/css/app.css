@@ -180,6 +180,97 @@
   }
 }
 
+.nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+}
+
+.nav-link:hover, .nav-link:focus {
+  text-decoration: none;
+}
+
+.nav-link.disabled {
+  color: #6c757d;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid #ddd;
+}
+
+.nav-tabs .nav-item {
+  margin-bottom: -1px;
+}
+
+.nav-tabs .nav-link {
+  border: 1px solid transparent;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+.nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
+  border-color: #ddd;
+}
+
+.nav-tabs .nav-link.disabled {
+  color: #6c757d;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-item.active .nav-link {
+  color: #495057;
+  background-color: #fff;
+  border-color: #ddd;
+}
+
+.nav-tabs .dropdown-menu {
+  margin-top: -1px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.nav-fill .nav-item {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  text-align: center;
+}
+
+.nav-justified .nav-item {
+  -ms-flex-preferred-size: 0;
+      flex-basis: 0;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  text-align: center;
+}
+
+.tab-content > .tab-pane {
+  display: none;
+}
+
+.tab-content > .active {
+  display: block;
+}
+
+.tab-pane {
+  border: 1px solid #ddd;
+  border-top-color: transparent;
+}
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
@@ -994,6 +1085,14 @@ hr.with-text:after {
   padding-right: 2rem;
 }
 
+.button.btn-sm {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  font-size: 0.75rem;
+}
+
 .button.btn-secondary {
   background-color: #4c2e3f;
 }
@@ -1156,6 +1255,14 @@ p > .fa {
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.settings-tabs .tab-pane > div {
+  background: #fff;
+}
+
+.settings-tabs .tab-pane > div:nth-child(odd) {
+  background: #f1f1f1;
 }
 
 .appearance-none{
