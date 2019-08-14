@@ -10,7 +10,7 @@
             <div class="modal-body">
                 <form method="POST" action="{{ $client->path() . '/jobs' }}" class="lg:w-1/2 lg:mx-auto bg-white p-6 md:py-12 md:px-16">
                     {{ csrf_field() }}
-                    @include('jobs.form', [
+                    @include('jobs._form', [
                         'job' => new App\Job,
                         'buttonText' => 'Create Job',
                         'cancelURL' => $client->path(),

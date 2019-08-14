@@ -11,7 +11,7 @@
                 <form method="POST" action="{{ $domain->path() }}" class="lg:w-1/2 lg:mx-auto bg-white p-6 md:py-12 md:px-16">
                     @csrf
                     @method('PATCH')
-                    @include('domains.form', [
+                    @include('domains._form', [
                         'account' => new App\DomainAccount,
                         'buttonText' => 'Save Domain',
                         'cancelURL' => $site->path(),

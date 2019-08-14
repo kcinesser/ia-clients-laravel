@@ -20,10 +20,6 @@ class ClientsController extends Controller
         return view('clients.show', compact('client', 'jobs', 'sites'));
     }
 
-    public function create() {
-        return view('clients.create');
-    }
-
     public function store() {
 
 	  	$attributes = request()->validate([
@@ -37,10 +33,6 @@ class ClientsController extends Controller
         return redirect($client->path());
     }
 
-    public function edit(Client $client) {
-    	return view ('clients.edit', compact('client'));
-    }
-
     public function update(Client $client) {
         $attributes = request()->validate([
             'name' => 'sometimes', 
@@ -52,7 +44,7 @@ class ClientsController extends Controller
         return redirect($client->path());
     }
 
-        public function notes(Client $client) {
+    public function notes(Client $client) {
         $attributes = request()->all();
 
         $client->update($attributes);

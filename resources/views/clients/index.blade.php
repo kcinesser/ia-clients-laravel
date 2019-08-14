@@ -4,7 +4,7 @@
     <header class="flex items-center mb-3 py-4">
         <div class="flex justify-between w-full items-center">
             <h2 class="text-gray-500">Interactive Clients</h2>
-            <a href="" class="button btn-add mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newModal"><i class="fa fa-plus"></i></a>
+            <a href="" class="button btn-add mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newClientModal"><i class="fa fa-plus"></i></a>
         </div>
     </header>
 

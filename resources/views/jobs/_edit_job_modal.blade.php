@@ -12,7 +12,7 @@
                     @csrf
                     @method('PATCH')
 
-                    @include('jobs.form', [
+                    @include('jobs._form', [
                         'buttonText' => 'Update Job',
                         'cancelURL' => $job->path(),
                         'services' => App\Service::all(),

@@ -28,7 +28,7 @@ $('.edit-services').click(function(e){
     $('.services-form').slideToggle();
 });
 
-$('#domainViewModal').on('show.bs.modal', function (event) {
+$('#editDomainModal').on('show.bs.modal', function (event) {
   	var button = $(event.relatedTarget) // Button that triggered the modal
   	var name = button.data('name') // Extract info from data-* attributes
 	var registrar = button.data('registrar') // Extract info from data-* attributes
@@ -37,6 +37,9 @@ $('#domainViewModal').on('show.bs.modal', function (event) {
   	// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
  	 // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
   	var modal = $(this)
+
+  	console.log(name + " " + registrar + " " + exp_date);
+
   	modal.find('.modal-body input[name="name"]').val(name)
   	modal.find('.modal-body input[name="exp_date"]').val(exp_date)
   	modal.find('.modal-body select[name="registrar_id"]').val(registrar)
