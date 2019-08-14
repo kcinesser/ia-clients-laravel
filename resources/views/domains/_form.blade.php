@@ -27,7 +27,7 @@
 <div class="field">
     <div class="control">
         <button type="submit" class="button is-link mr-2">{{ $buttonText }}</button>
-        <a href="{{ $cancelURL }}" class="button btn-secondary">Cancel</a>
+        <a href="" class="button btn-secondary" data-dismiss="modal">Cancel</a>
     </div>
 </div>
 
