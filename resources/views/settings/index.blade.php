@@ -28,6 +28,12 @@
 			</ul>
 			<div class="tab-content settings-tabs" id="settingsTabContent">
 				<div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
+					<div class="lg:flex justify-between p-3 sm:hidden hidden lg:block font-semibold text-blue-500">
+						<div class="lg:w-1/4"><p>Name</p></div>
+						<div class="lg:w-1/4"><p>Email</p></div>
+						<div class="lg:w-1/4"><p>Role</p></div>
+						<div class="lg:w-1/8"><i class="fa fa-search mr-1"></i></div>
+					</div>
 					@foreach($users as $user)
 						<div class="lg:flex justify-between p-3">
 							<div class="lg:w-1/4"><p>{{ $user->name }}</p></div>
@@ -39,6 +45,12 @@
 				</div>
 
 				<div class="tab-pane fade" id="registrars" role="tabpanel" aria-labelledby="registrars-tab">
+					<div class="lg:flex justify-between p-3 sm:hidden hidden lg:block font-semibold text-blue-500">
+						<div class="lg:w-1/4"><p>Name</p></div>
+						<div class="lg:w-1/4"><p>Owner</p></div>
+						<div class="lg:w-1/4"><p>URL</p></div>
+						<div class="lg:w-1/8"><i class="fa fa-search mr-1"></i></div>
+					</div>
 					@foreach($registrars as $registrar)
 						<div class="lg:flex justify-between p-3">
 							<div class="lg:w-1/4">{{ $registrar->name }}</div>
@@ -50,6 +62,12 @@
 				</div>
 
 				<div class="tab-pane fade" id="services" role="tabpanel" aria-labelledby="services-tab">
+					<div class="lg:flex justify-between p-3 sm:hidden hidden lg:block font-semibold text-blue-500">
+						<div class="lg:w-1/4"><p>Service Name</p></div>
+						<div class="lg:w-1/4"><p>Description</p></div>
+						<div class="lg:w-1/4"><p>Price</p></div>
+						<div class="lg:w-1/8"><i class="fa fa-search mr-1"></i></div>
+					</div>
 					@foreach($services as $service)
 						<div class="lg:flex justify-between p-3">
 							<div class="lg:w-1/4">{{ $service->name }}</div>
