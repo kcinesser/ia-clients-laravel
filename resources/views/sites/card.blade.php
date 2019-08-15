@@ -10,8 +10,15 @@
         <p class="text-gray-800 text-xs headline-lead">Technology/Framework</p>
         <p class="text-gray-500 text-sm font-normal">{{ \App\Enums\Technologies::getDescription($site->technology) }}</p>
     </div>
+    
+    <div class="mb-4">
+        <p class="text-gray-800 text-xs headline-lead">Hosting</p>
+        <p class="text-gray-500 text-sm font-normal">{{$site->host->name}} ({{ \App\Enums\Owners::getKey($site->host->owner) }})</p>
+    </div>
+
     <div class="mb-4">
         <p class="text-gray-800 text-xs headline-lead">Services</p>
+
         @forelse ($site->services as $service)
             <p class="text-gray-500 text-sm font-normal">{{ $service->name }}</p>
         @empty
