@@ -11584,12 +11584,20 @@ const app = new Vue({
 
 //show/hide services list
 $('.edit-services').click(function (e) {
-  e.preventDefault();
-  $('.services-form').slideToggle();
+    e.preventDefault();
+    $('.services-form').slideToggle();
 });
 
 //date picker
 $('.date-field').datepicker();
+
+//confirm delete
+$('.delete-form').submit(function (e) {
+    e.preventDefault();
+    if (confirm('You sure you want to delete?')) {
+        this.submit();
+    }
+});
 
 /***/ }),
 /* 13 */

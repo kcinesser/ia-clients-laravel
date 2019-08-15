@@ -31,5 +31,15 @@ $('.edit-services').click(function(e){
     $('.services-form').slideToggle();
 });
 
+
 //date picker
 $('.date-field').datepicker();
+
+//confirm delete
+$('.delete-form').submit(function(e){
+    e.preventDefault();
+    if( confirm('You sure you want to delete?') ){
+        this.submit();
+    }
+});
+
