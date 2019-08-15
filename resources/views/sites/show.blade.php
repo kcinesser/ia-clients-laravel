@@ -53,10 +53,13 @@
                     @forelse ($site->domains as $domain)
                         <div class="flex justify-between">
                             <div>
-                                <a class="text-sm" href="" data-toggle="modal" data-target="#editDomainModal"  data-name="{{ $domain->name }}" data-registrar="{{ $domain->registrar->id }}" data-exp="{{ $domain->exp_date }}">{{ $domain->name }}</a>
+                                <a class="text-sm" href="{{ $domain->name }}" targe="_blank">{{ $domain->name }}</a>
                             </div>
                             <div class="text-sm">
                                 Exp: {{ \Carbon\Carbon::parse($domain->exp_date)->format('n-j-Y') }}
+                            </div>
+                            <div>
+                                <a href="" data-toggle="modal" data-target="#editDomainModal"  data-name="{{ $domain->name }}" data-registrar="{{ $domain->registrar->id }}" data-exp="{{ $domain->exp_date }}"><i class="fa fa-pencil"></i></a>
                             </div>
                         </div>
                     @empty

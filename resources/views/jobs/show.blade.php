@@ -134,7 +134,6 @@
                                     <div>
                                         {{ \Carbon\Carbon::parse($comment->created_at)->format('n/j/Y')}}
                                     </div>
-                                    <button type="submit" class="button btn-add"><i class="fa fa-pencil"></i></button>
                                 </div>
                             </form>
                         </div>
