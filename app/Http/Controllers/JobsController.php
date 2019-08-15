@@ -26,14 +26,7 @@ class JobsController extends Controller
     }
 
     public function store(Client $client) {
-        request()->validate([
-            'title' => 'required', 
-            'description' => 'required'
-        ]);
-        
-        $attributes = request()->all();
-
-        $job = $client->addJob($attributes);
+        $job = $client->addJob($this->validate_data());
 
         return redirect($job->path());
     }
@@ -45,21 +38,17 @@ class JobsController extends Controller
     }
 
     public function update(Client $client, Job $job) {
-        $attributes = request()->validate([
-            'title' => 'sometimes|required', 
-            'description' => 'sometimes|required'
-        ]);
-        $attributes = request()->all();
 
-        $job->update($attributes);
+        $job->update($this->validate_data());
 
         return redirect($job->path());
     }
 
     public function notes(Client $client, Job $job) {
-        $attributes = request()->all();
 
-        $job->update($attributes);
+        $job->update(request()->validate([
+            'notes' => 'nullable',
+        ]));
 
         return redirect($job->path());
     }
@@ -77,4 +66,19 @@ class JobsController extends Controller
 
         return redirect($client->path());
     }
+
+    private function validate_data(){
+        return request()->validate([
+            'title' => 'required',
+            'site_id' => 'nullable|numeric',
+            'description' => 'nullable',
+            'status' => 'required|numeric',
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date',
+            'go_live_date' => 'nullable|date',
+            'developer_id' => 'nullable|numeric',
+            'technology' => 'nullable|numeric'
+        ]);
+    }
+
 }

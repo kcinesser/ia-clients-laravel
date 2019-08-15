@@ -23,7 +23,7 @@
     <label for="primary_name" class="label text-sm mb-2 block">Primary Contact Name</label>
 
     <div class="control">
-        <input type="text" name="contact_name" value="{{ $client->contact_name }}" required>
+        <input type="text" name="contact_name" value="{{ $client->contact_name }}">
     </div>
 </div>
 
@@ -31,7 +31,7 @@
     <label for="primary_email" class="label text-sm mb-2 block">Primary Contact Email</label>
 
     <div class="control">
-        <input type="text"  name="contact_email" value="{{ $client->contact_email }}" required>
+        <input type="text"  name="contact_email" value="{{ $client->contact_email }}">
     </div>
 </div>
 
@@ -39,7 +39,7 @@
     <label for="primary_phone" class="label text-sm mb-2 block">Primary Contact Phone</label>
 
     <div class="control">
-        <input type="text" name="contact_phone" value="{{ $client->contact_phone }}" required>
+        <input type="text" name="contact_phone" value="{{ $client->contact_phone }}">
     </div>
 </div>
 

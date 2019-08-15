@@ -15,14 +15,19 @@ class UserController extends Controller
     }
 
     public function store() {
-    	$attributes = request()->all();
 
-        $user = User::create([
-            'name' => $attributes['name'],
-            'email' => $attributes['email'],
-            'password' => bcrypt($attributes['password']),
-            'role' => $attributes['role']
+    	$attributes = request()->validate([
+    	    'name' => 'required',
+            'email' => 'required|email',
+            'role' => 'required|numeric',
+            'password' => 'required|confirmed'
         ]);
+
+    	//encrypt password
+    	$attributes['password'] =  bcrypt($attributes['password']);
+
+        User::create($attributes);
+
         return redirect('/settings');
     }
 
@@ -33,9 +38,14 @@ class UserController extends Controller
     }
 
     public function update(User $user) {
-        $attributes = request()->all();
 
-        $user->update($attributes);
+        $user->update(
+            request()->validate([
+                'name' => 'required',
+                'role' => 'required|numeric',
+                'email' => 'required|email'
+            ])
+        );
 
         return redirect('/settings');
     }

@@ -12,7 +12,7 @@
     </div>
     <div class="mb-4">
         <p class="text-gray-800 text-xs headline-lead">Primary Developer</p>
-        <p class="text-gray-500 text-sm font-normal">{{ $job->developer->name }}</p>
+        <p class="text-gray-500 text-sm font-normal">{{ !empty($job->developer->name) ? $job->developer->name : 'None' }}</p>
     </div>
     <div class="mb-4">
         <p class="text-gray-800 text-xs headline-lead">Technology/Framework</p>

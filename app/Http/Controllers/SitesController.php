@@ -40,10 +40,7 @@ class SitesController extends Controller
      */
     public function store(Client $client)
     {
-        $attributes = request()->all();
-
-        $site = $client->addSite($attributes);
-
+        $site = $client->addSite($this->validate_data());
         return redirect($site->path());
     }
 
@@ -81,11 +78,13 @@ class SitesController extends Controller
      */
     public function update(Client $client, Site $site)
     {
-        $attributes = request()->all();
+        $attributes = $this->validate_data();
 
-        //update services and remove it from attributes
-        $site->services()->sync($attributes['services']);
-        unset($attributes['services']);
+        if(isset($attributes['services']) ){
+            //update services and remove it from attributes
+            $site->services()->sync($attributes['services']);
+            unset($attributes['services']);
+        }
 
         $site->update($attributes);
 
@@ -104,9 +103,11 @@ class SitesController extends Controller
     }
 
     public function notes(Client $client, Site $site) {
-        $attributes = request()->all();
-
-        $site->update($attributes);
+        $site->update(
+            request()->validate([
+                'notes' => 'nullable',
+            ])
+        );
 
         return redirect($site->path());
     }
@@ -119,7 +120,31 @@ class SitesController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function services(Client $client, Site $site){
-        $site->services()->sync(request()->services);
+        //validate data
+
+        $data = request()->validate([
+            'services' => 'nullable|array',
+            'services.*' => 'numeric'
+        ]);
+
+        $site->services()->sync(!empty($data['services']) ? $data['services'] : null);
         return back();
+    }
+
+    /**
+     * Validates form data
+     */
+    private function validate_data(){
+        return request()->validate([
+            'name' => 'required',
+            'URL' => 'nullable|url',
+            'registrar' => 'nullable|numeric',
+            'exp_date' => 'nullable|date',
+            'description' => 'nullable',
+            'status' => 'required|numeric',
+            'technology' => 'required|numeric',
+            'services' => 'nullable|array',
+            'services.*' => 'numeric',
+        ]);
     }
 }

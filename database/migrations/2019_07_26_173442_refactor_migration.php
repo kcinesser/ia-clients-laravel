@@ -171,7 +171,7 @@ class RefactorMigration extends Migration
             $table->bigIncrements('id');
             $table->morphs('licenseable');
             $table->string('description');
-            $table->string('key');
+            $table->string('key')->nullable();
             $table->string('url')->nullable();
             $table->timestamps();
         });

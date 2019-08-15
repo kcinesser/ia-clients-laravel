@@ -31,7 +31,7 @@
     <label for="exp_date" class="label text-sm mb-2 block">When does the domain expire? (optional)</label>
 
     <div class="control">
-        <input type="text" name="exp_date">
+        <input type="text" class="date-field" autocomplete="off" name="exp_date">
     </div>
 </div>
 

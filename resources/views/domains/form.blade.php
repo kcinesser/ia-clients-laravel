@@ -10,7 +10,7 @@
     <label for="exp_date" class="label text-sm mb-2 block">Expiration Date</label>
 
     <div class="control">
-        <input type="text" name="exp_date" value="{{ $domain->exp_date }}">
+        <input type="text" class="date-field" autocomplete="off" name="exp_date" value="{{ $domain->exp_date }}">
     </div>
 </div>
 

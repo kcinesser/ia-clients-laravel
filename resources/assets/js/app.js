@@ -22,8 +22,14 @@ const app = new Vue({
 });
  */
 
+//import jquery ui datepicker
+import 'jquery-ui/ui/widgets/datepicker.js';
+
 //show/hide services list
 $('.edit-services').click(function(e){
     e.preventDefault();
     $('.services-form').slideToggle();
 });
+
+//date picker
+$('.date-field').datepicker();

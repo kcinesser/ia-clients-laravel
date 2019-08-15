@@ -40,14 +40,8 @@ class RegistrarsController extends Controller
      */
     public function store()
     {
-        $attributes = request()->validate([
-            'name' => 'required',
-            'url' => 'required'
-        ]);
 
-        $attributes = request()->all();
-
-        $registrar = Registrar::create($attributes);
+        Registrar::create($this->validate_data());
 
         return redirect('/settings');
     }
@@ -84,15 +78,7 @@ class RegistrarsController extends Controller
      */
     public function update(Request $request, Registrar $registrar)
     {
-        request()->validate([
-            'name' => 'required',
-            'url' => 'required'
-        ]);
-
-        $attributes = request()->all();
-
-        $registrar->update($attributes);
-
+        $registrar->update($this->validate_data());
         return redirect('/settings');
     }
 
@@ -105,5 +91,16 @@ class RegistrarsController extends Controller
     public function destroy(Registrar $registrar)
     {
         //
+    }
+
+    /**
+     * Validate form data
+     */
+    private function validate_data(){
+        return request()->validate([
+            'name' => 'required',
+            'description' => 'nullable',
+            'url' => 'required|url'
+        ]);
     }
 }

@@ -10,7 +10,7 @@
    <label for="site" class="label text-sm mb-2 block">Site</label>
 
     <div class="control">
-        <select id="site_id" name="site_id" value="{{ old('side_id') }}">
+        <select id="site_id" name="site_id" value="{{ old('site_id') }}">
                 <option value="">None</option>
             @foreach ($sites as $site)
                 <option value="{{ $site->id }}">{{ $site->name }}</option>
@@ -37,7 +37,7 @@
     <label for="status" class="label text-sm mb-2 block">Status</label>
 
     <div class="control">
-        <select id="status" id="grid-state" name="status" value="{{ old('status') }}" required>
+        <select id="status" id="grid-state" name="status" required>
             @foreach ($statuses as $value => $status)
                 <option value="{{$value}}" {{ $value == $job->status ? "selected" : "" }}>{{ $status }}</option>
             @endforeach
@@ -55,7 +55,7 @@
     <label for="start_date" class="label text-sm mb-2 block">Start Date</label>
 
     <div class="control">
-       <input type="text" name="start_date" value="{{ $job->start_date }}">
+       <input type="text" class="date-field" autocomplete="off" name="start_date" value="{{ $job->start_date }}">
     </div>
 </div>
 
@@ -63,7 +63,7 @@
     <label for="end_date" class="label text-sm mb-2 block">End Date</label>
 
     <div class="control">
-       <input type="text" name="end_date" value="{{ $job->end_date }}">
+       <input type="text" class="date-field" autocomplete="off" name="end_date" value="{{ $job->end_date }}">
     </div>
 </div>
 
@@ -71,7 +71,7 @@
     <label for="go_live_date" class="label text-sm mb-2 block">Go Live Date</label>
 
     <div class="control">
-       <input type="text" name="go_live_date" value="{{ $job->go_live_date }}">
+       <input type="text" name="go_live_date" class="date-field" autocomplete="off" value="{{ $job->go_live_date }}">
     </div>
 </div>
 
@@ -79,8 +79,8 @@
     <label for="developer_id" class="label text-sm mb-2 block">Primary Developer</label>
 
     <div class="control">
-        <select name="developer_id" value="" required>
-                <option>Select Developer</option>
+        <select name="developer_id">
+                <option value="">Select Developer</option>
             @foreach($developers as $developer)
                 <option value="{{ $developer->id }}" {{ $developer->id == $job->developer_id ? "selected" : "" }}>{{ $developer->name }}</option>
             @endforeach
@@ -92,7 +92,7 @@
     <label for="technology" class="label text-sm mb-2 block">Technology</label>
 
     <div class="control">
-        <select name="technology" required>
+        <select name="technology">
             @foreach ($technologies as $value => $technology)
                 <option value="{{$value}}" {{ $value == $job->technology ? "selected" : "" }} >{{ $technology }}</option>
             @endforeach

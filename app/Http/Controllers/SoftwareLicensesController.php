@@ -13,15 +13,14 @@ class SoftwareLicensesController extends Controller
 
     public function store(Request $request, $model, $id)
     {
-        request()->validate([
-            'description' => 'required',
-            'key' => 'required'
-        ]);
+
+
+        $data = $this->validate_data();
 
         $license = new SoftwareLicense();
-        $license->description = request('description');
-        $license->key = request('key');
-        $license->url = request('url');
+        $license->description = $data['description'];
+        $license->key = $data['key'];
+        $license->url = $data['url'];
         $license->licenseable_type = 'App\\' . ucfirst($model);
         $license->licenseable_id = $id;
 
@@ -33,15 +32,7 @@ class SoftwareLicensesController extends Controller
 
     public function update(SoftwareLicense $softwareLicense)
     {
-        request()->validate([
-            'description' => 'required',
-            'key' => 'required'
-        ]);
-
-        $attributes = request()->all();
-
-        $softwareLicense->update($attributes);
-
+        $softwareLicense->update($this->validate_data());
         return redirect()->back();
     }
 
@@ -50,5 +41,16 @@ class SoftwareLicensesController extends Controller
         $softwareLicense->delete();
 
         return redirect()->back();
+    }
+
+    /**
+     * Validates form data
+     */
+    private function validate_data(){
+        return request()->validate([
+            'description' => 'required',
+            'key' => 'nullable',
+            'url' => 'nullable|url'
+        ]);
     }
 }
