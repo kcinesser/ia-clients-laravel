@@ -8,7 +8,7 @@
     <main>
         <div class="lg:flex lg:flex-wrap -mx-3">
             <div class="lg:w-1/4 px-3">
-                <ul class="side-nav fixed">
+                <ul class="side-nav lg:fixed hidden lg:block">
                     <li class="headline-lead">Table of Contents</li>
                     <li><a href="#typography">Typography</a></li>
                     <li><a href="#buttons">Buttons</a></li>
