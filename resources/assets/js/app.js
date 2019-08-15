@@ -45,3 +45,10 @@ $('#editDomainModal').on('show.bs.modal', function (event) {
   	modal.find('.modal-body select[name="registrar_id"]').val(registrar)
 })
 
+//confirm delete
+$('.delete-form').submit(function(e){
+    e.preventDefault();
+    if( confirm('You sure you want to delete?') ){
+        this.submit();
+    }
+});

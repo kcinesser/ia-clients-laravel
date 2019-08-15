@@ -6,10 +6,24 @@ use App\Site;
 use App\Client;
 use App\Service;
 use App\Domain;
+use App\Hosting;
 use Illuminate\Http\Request;
 
 class SitesController extends Controller
 {
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Client $client)
+    {
+        $services = Service::all();
+        $hosting = Hosting::all()->sortBy('name');
+
+        return view('sites.create', compact('client', 'services', 'hosting'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -38,7 +52,6 @@ class SitesController extends Controller
 
         return view('sites.show' , compact('client', 'site', 'services'));
     }
-
 
     /**
      * Update the specified resource in storage.

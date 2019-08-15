@@ -6,13 +6,13 @@
     @csrf
     @method('PATCH')
     
-    <h1 class="text-2xl font-normal mb-10 text-center">Edit {{ $service->name }}</h1>
+    <h1 class="mb-10 text-center">Edit {{ $service->name }}</h1>
 
 	<div class="field mb-6">
 	    <label for="name" class="label text-sm mb-2 block">Name</label>
 
 	    <div class="control">
-	        <input type="text" class="input bg-transparent border border-grey-500 rounded p-2 text-xs w-full" name="name" value="{{ $service->name }}" required>
+	        <input type="text" name="name" value="{{ $service->name }}" required>
 	    </div>
 	</div>
 
@@ -20,22 +20,22 @@
 	    <label for="description" class="label text-sm mb-2 block">Description</label>
 
 	    <div class="control">
-	        <textarea name="description" rows="10" class="bg-transparent border border-grey-500 rounded p-2 text-xs w-full" required>{{ $service->description }}</textarea>
+	        <textarea name="description" rows="10" required>{{ $service->description }}</textarea>
 	    </div>
 	</div>
 
 	<div class="field mb-6">
-	    <label for="price" class="label text-sm mb-2 block">Price</label>
+	    <label for="price" class="label text-sm mb-2 block">Price ($)</label>
 
 	    <div class="control">
-	        $ <input name="price" class="bg-transparent border border-grey-500 rounded p-2 text-xs" value="{{ $service->priceFormat() }}">
+	        <input name="price" value="{{ $service->priceFormat() }}">
 	    </div>
 	</div>
 
 	<div class="field">
 	    <div class="control">
 	        <button type="submit" class="button is-link mr-2">Save Service</button>
-	        <a href="/settings" class="button">Cancel</a>
+	        <a href="/settings" class="button btn-secondary">Cancel</a>
 	    </div>
 	</div>
 

@@ -47,4 +47,8 @@ class Site extends Model
     public function addDomain($attributes) {
         return $this->domains()->create($attributes);
     }
+
+    public function host(){
+        return $this->belongsTo(Hosting::class);
+    }
 }
