@@ -7,7 +7,7 @@ Project intended to provide realtime information regarding Firespring Interactiv
 
 1. [Vagrant](https://www.vagrantup.com/downloads.html)
 2. [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-3. [Node/npm] Using homebrew is easiest (brew install node), otherwise (https://nodejs.org/en/download/)
+3. (Optional) [Node/npm] Using homebrew is easiest (brew install node), otherwise (https://nodejs.org/en/download/)
 
 
 
@@ -73,9 +73,11 @@ After installing successfully, you only need to run `vagrant up` (inside the pro
 
 ### Step 4
 
-Locally, run:
+Locally, or via vagrant box*, run:
     
     npm install
+    
+*If you have issues running via vagrant box, modify Vagrantfile file, change from `:mount_options => ["dmode=777", "fmode=666"]` to `:mount_options => ["dmode=777", "fmode=777"]`. After changing, reload box `vagrant reload --provision`
     
 Then:
 

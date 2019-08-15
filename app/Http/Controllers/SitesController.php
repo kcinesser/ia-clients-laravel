@@ -6,6 +6,7 @@ use App\Site;
 use App\Client;
 use App\Service;
 use App\Domain;
+use App\Hosting;
 use Illuminate\Http\Request;
 
 class SitesController extends Controller
@@ -28,8 +29,9 @@ class SitesController extends Controller
     public function create(Client $client)
     {
         $services = Service::all();
+        $hosting = Hosting::all()->sortBy('name');
 
-        return view('sites.create', compact('client', 'services'));
+        return view('sites.create', compact('client', 'services', 'hosting'));
     }
 
     /**
@@ -69,7 +71,9 @@ class SitesController extends Controller
     public function edit(Client $client, Site $site)
     {
         $services = Service::all();
-        return view('sites.edit', compact('client', 'site', 'services'));
+        $hosting = Hosting::all()->sortBy('name');
+
+        return view('sites.edit', compact('client', 'site', 'services', 'hosting'));
     }
 
     /**

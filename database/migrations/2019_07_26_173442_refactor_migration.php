@@ -185,20 +185,20 @@ class RefactorMigration extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
-        Schema::dropIfExists('sites');
-        Schema::dropIfExists('password_resets');
-        Schema::dropIfExists('clients');
-        Schema::dropIfExists('jobs');
-        Schema::dropIfExists('tasks');
-        Schema::dropIfExists('registrars');
-        Schema::dropIfExists('domain_accounts');
-        Schema::dropIfExists('domains');
-        Schema::dropIfExists('comments');
-        Schema::dropIfExists('updates');
-        Schema::dropIfExists('services');
-        Schema::dropIfExists('site_services');
-        Schema::dropIfExists('activities');
         Schema::dropIfExists('software_licenses');
+        Schema::dropIfExists('activities');
+        Schema::dropIfExists('service_site');
+        Schema::dropIfExists('services');
+        Schema::dropIfExists('updates');
+        Schema::dropIfExists('comments');
+        Schema::dropIfExists('domains');
+        Schema::dropIfExists('domain_accounts');
+        Schema::dropIfExists('registrars');
+        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('jobs');
+        Schema::dropIfExists('sites');
+        Schema::dropIfExists('clients');
+        Schema::dropIfExists('password_resets');
+        Schema::dropIfExists('users');
     }
 }

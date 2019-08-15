@@ -8,6 +8,7 @@
 				<a href="/user/create" class="button btn-sm is-link"><i class="fa fa-plus mr-2"></i>User</a>
 				<a href="{{ route('registrars.create') }}" class="button btn-sm is-link"><i class="fa fa-plus mr-2"></i>Registrar</a>
 				<a href="{{ route('services.create') }}" class="button btn-sm is-link"><i class="fa fa-plus mr-2"></i>Service</a>
+				<a href="{{ route('hosting.create') }}" class="button btn-sm is-link"><i class="fa fa-plus mr-2"></i>Host</a>
 			</div>
         </div>
     </header>
@@ -24,6 +25,9 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link no-underline" id="services-tab" data-toggle="tab" href="#services" role="tab" aria-controls="contact" aria-selected="false">Services</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link no-underline" id="hosting-tab" data-toggle="tab" href="#hosting" role="tab" aria-controls="contact" aria-selected="false">Hosts</a>
 				</li>
 			</ul>
 			<div class="tab-content settings-tabs" id="settingsTabContent">
@@ -81,8 +85,22 @@
 						</div>
 					@endforeach
 				</div>
-			</div>
 
+				<div class="tab-pane fade" id="hosting" role="tabpanel" aria-labelledby="hosting-tab">
+					<div class="lg:flex justify-between p-3 sm:hidden hidden lg:block font-semibold text-blue-500">
+						<div class="lg:w-1/6"><p>Host Name</p></div>
+						<div class="lg:w-1/2"><p>Details</p></div>
+						<div class="lg:w-1/8"><i class="fa fa-search mr-1"></i></div>
+					</div>
+					@foreach($hosting as $host)
+						<div class="lg:flex justify-between p-3">
+							<div class="lg:w-1/6">{{ $host->name }} ({{\App\Enums\Owners::getKey($host->owner)}})</div>
+							<div class="lg:w-1/2">{{ $host->details }}</div>
+							<div class="lg:w-1/8"><a href="{{ route('hosting.edit', $host->id) }}" class="button btn-add-sm"><i class="fa fa-pencil"></i></a></div>
+						</div>
+					@endforeach
+				</div>
+			</div>
 		</div>
 	</main>
 
