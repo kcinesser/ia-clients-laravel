@@ -12,7 +12,7 @@
 			</div>
         </div>
     </header>
-	
+
 
     <main class="lg:flex lg:flex-wrap">
     	<div class="w-full">
