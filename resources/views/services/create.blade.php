@@ -10,7 +10,7 @@
 	    <label for="name" class="label text-sm mb-2 block">Name</label>
 
 	    <div class="control">
-	        <input type="text" class="input bg-transparent border border-grey-500 rounded p-2 text-xs w-full" name="name" required>
+	        <input type="text" name="name" required>
 	    </div>
 	</div>
 
@@ -18,22 +18,22 @@
 	    <label for="description" class="label text-sm mb-2 block">Description</label>
 
 	    <div class="control">
-	        <textarea name="description" rows="10" class="bg-transparent border border-grey-500 rounded p-2 text-xs w-full" required></textarea>
+	        <textarea name="description" rows="10" required></textarea>
 	    </div>
 	</div>
 
 	<div class="field mb-6">
-	    <label for="price" class="label text-sm mb-2 block">Price</label>
+	    <label for="price" class="label text-sm mb-2 block">Price ($)</label>
 
 	    <div class="control">
-	        $ <input type="number" min="0" step="0.01" name="price" class="bg-transparent border border-grey-500 rounded p-2 text-xs" placeholder="0.00" required>
+	        $<input type="number" min="0" step="0.01" name="price" class="bg-transparent border border-grey-500 rounded p-2 text-xs" placeholder="0.00" required>
 	    </div>
 	</div>
 
 	<div class="field">
 	    <div class="control">
 	        <button type="submit" class="button is-link mr-2">Create Service</button>
-	        <a href="/registrars" class="button">Cancel</a>
+	        <a href="/registrars" class="button btn-secondary">Cancel</a>
 	    </div>
 	</div>
 

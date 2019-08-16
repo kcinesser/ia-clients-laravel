@@ -11,6 +11,7 @@
 @import "variables";
 @import "mixins";
 @import "modal";
+@import "tabs";
 
 @tailwind base;
 
@@ -155,6 +156,10 @@ hr {
 		@apply py-4 px-8;
 	}
 
+	&.btn-sm {
+		@apply py-1 px-3 text-xs;
+	}
+
 	&.btn-secondary {
 		@apply bg-plum-500;
 		&:hover { @apply bg-plum-300; }
@@ -256,8 +261,6 @@ p>.fa {
 		@apply outline-none bg-white border-gray-500;
 	}
 }
-
-
 // END - Forms
 
 #logo {
@@ -273,6 +276,14 @@ p>.fa {
 	top: 0;
 	right: 0;
 }
+
+.settings-tabs {
+	.tab-pane > div { background: #fff; }
+	.tab-pane > div:nth-child(odd) {
+		background: #f1f1f1;
+	}
+}
+
 
 @tailwind utilities;
 

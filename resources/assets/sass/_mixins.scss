@@ -25,3 +25,14 @@
   border-top-left-radius: $radius;
   border-bottom-left-radius: $radius;
 }
+
+@mixin hover {
+  &:hover { @content; }
+}
+
+@mixin hover-focus {
+  &:hover,
+  &:focus {
+    @content;
+  }
+}
