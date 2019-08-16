@@ -5,10 +5,10 @@
         <div class="md:flex justify-between w-full items-center">
             <h2 class="text-blue-500"><i class="fa fa-cog mr-1"></i>Settings</h2>
 			<div><!-- we could potentially get rid of these after we add the Add dropdown to the header -->
-				<a href="/user/create" class="button btn-sm is-link"><i class="fa fa-plus mr-2"></i>User</a>
-				<a href="{{ route('registrars.create') }}" class="button btn-sm is-link"><i class="fa fa-plus mr-2"></i>Registrar</a>
-				<a href="{{ route('services.create') }}" class="button btn-sm is-link"><i class="fa fa-plus mr-2"></i>Service</a>
-				<a href="{{ route('hosting.create') }}" class="button btn-sm is-link"><i class="fa fa-plus mr-2"></i>Host</a>
+				<a href="" class="button btn-sm is-link" data-toggle="modal" data-target="#newUserModal"><i class="fa fa-plus mr-2"></i>User</a>
+				<a href="" class="button btn-sm is-link" data-toggle="modal" data-target="#newRegistrarModal"><i class="fa fa-plus mr-2"></i>Registrar</a>
+				<a href="" class="button btn-sm is-link" data-toggle="modal" data-target="#newServiceModal"><i class="fa fa-plus mr-2"></i>Service</a>
+				<a href="" class="button btn-sm is-link" data-toggle="modal" data-target="#newHostModal"><i class="fa fa-plus mr-2"></i>Host</a>
 			</div>
         </div>
     </header>
@@ -44,7 +44,7 @@
 							<div class="lg:w-1/4"><p>{{ $user->name }}</p></div>
 							<div class="lg:w-1/4"><p>{{ $user->email }}</p></div>
 							<div class="lg:w-1/4"><p>{{ App\Enums\UserTypes::getDescription($user->role) }}</p></div>
-							<div class="lg:w-1/8"><a href="{{ route('user.edit', $user->id) }}" class="button btn-add-sm"><i class="fa fa-pencil"></i></a></div>
+							<div class="lg:w-1/8"><a href="" class="button btn-add-sm" data-toggle="modal" data-target="#editUserModal" data-name="{{ $user->name }}" data-id="{{ $user->id }}" data-role="{{ $user->role }}" data-email="{{ $user->email }}" data><i class="fa fa-pencil"></i></a></div>
 						</div>
 					@endforeach
 				</div>
@@ -61,7 +61,7 @@
 							<div class="lg:w-1/4">{{ $registrar->name }}</div>
 							<div class="lg:w-1/4">{{ App\Enums\Owners::getDescription($registrar->owner) }}</div>
 							<div class="lg:w-1/4">{{ $registrar->url }}</div>
-							<div class="lg:w-1/8"><a href="{{ route('registrars.edit', $registrar->id) }}" class="button btn-add-sm"><i class="fa fa-pencil"></i></a></div>
+							<div class="lg:w-1/8"><a href="" class="button btn-add-sm" data-toggle="modal" data-target="#editRegistrarModal" data-name="{{ $registrar->name }}" data-url="{{ $registrar->url }}" data-description="{{ $registrar->description }}" data-id="{{ $registrar->id }}"><i class="fa fa-pencil"></i></a></div>
 						</div>
 					@endforeach
 				</div>
@@ -82,7 +82,7 @@
 									${{ $service->priceFormat() }}
 								@endif
 							</div>
-							<div class="lg:w-1/8"><a href="{{ route('services.edit', $service->id) }}" class="button btn-add-sm"><i class="fa fa-pencil"></i></a></div>
+							<div class="lg:w-1/8"><a href="" class="button btn-add-sm" data-toggle="modal" data-target="#editServiceModal" data-name="{{ $service->name }}" data-description="{{ $service->description }}" data-price="{{ $service->price }}" data-id="{{ $service->id }}"><i class="fa fa-pencil"></i></a></div>
 						</div>
 					@endforeach
 				</div>
@@ -96,12 +96,24 @@
 						<div class="lg:flex justify-between p-3">
 							<div class="lg:w-1/6">{{ $host->name }} ({{\App\Enums\Owners::getKey($host->owner)}})</div>
 							<div class="lg:w-1/2">{{ $host->details }}</div>
-							<div class="lg:w-1/8"><a href="{{ route('hosting.edit', $host->id) }}" class="button btn-add-sm"><i class="fa fa-pencil"></i></a></div>
+							<div class="lg:w-1/8"><a href="" class="button btn-add-sm" data-toggle="modal" data-target="#editHostModal" data-name="{{ $host->name }}" data-details="{{ $host->details }}" data-owner="{{ $host->owner }}" data-id="{{ $host->id }}"><i class="fa fa-pencil"></i></a></div>
 						</div>
 					@endforeach
 				</div>
 			</div>
 		</div>
+
+
+        @include('users._new_user_modal')
+        @include('users._edit_user_modal')
+    	@include('registrars._new_registrar_modal')
+    	@include('registrars._edit_registrar_modal')
+    	@include('services._new_service_modal')
+    	@include('services._edit_service_modal')
+    	@include('hosting._new_host_modal')
+    	@include('hosting._edit_host_modal')
+
+
 	</main>
 
 @endsection
