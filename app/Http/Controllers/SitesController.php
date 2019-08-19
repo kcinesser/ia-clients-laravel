@@ -126,4 +126,18 @@ class SitesController extends Controller
         $site->services()->sync(request()->services);
         return back();
     }
+
+    public function archives(Client $client) {
+        $archived_sites = Site::all()->where('status', 4);
+
+        return view('sites.archive', compact('archived_sites', 'client'));
+    }
+
+    public function archive(Client $client, Site $site) {
+        $site->update([
+            'status' => 4
+        ]);
+
+        return redirect($client->path());
+    }
 }

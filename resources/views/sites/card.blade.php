@@ -33,6 +33,15 @@
                 <button type="submit" class="button mt-2">Save</button>
             </form>
         </div>
+    </div>
 
+    <div class="text-right">
+        @if ($site->status != 4)
+            <form method="POST" action="{{ $site->path() . '/archive' }}">
+                {{ method_field('PATCH') }}
+                {{ csrf_field() }}
+                <button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500"><i class="fa fa-archive mr-1"></i> Archive Site</button>
+            </form>
+        @endif
     </div>
 </div>
