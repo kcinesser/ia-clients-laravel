@@ -35,7 +35,7 @@
             <form method="POST" action="{{ $job->path() . '/archive' }}">
                 {{ method_field('PATCH') }}
                 {{ csrf_field() }}
-                <button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500"><i class="fa fa-archive mr-1"></i> Archive Project</button>
+                <button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500"><i class="fa fa-archive mr-1"></i> Archive Job</button>
             </form>
         @endif
     </div>
