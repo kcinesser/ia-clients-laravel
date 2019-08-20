@@ -2,104 +2,118 @@
 
 @section('content')
     <header class="flex items-center mb-3 py-4">
-        <div class="flex justify-between w-full items-center">
-            <h2 class="text-gray-500">Settings</h2>
+        <div class="md:flex justify-between w-full items-center">
+            <h2 class="text-blue-500"><i class="fa fa-cog mr-1"></i>Settings</h2>
+			<div><!-- we could potentially get rid of these after we add the Add dropdown to the header -->
+				<a href="" class="button btn-sm is-link" data-toggle="modal" data-target="#newUserModal"><i class="fa fa-plus mr-2"></i>User</a>
+				<a href="" class="button btn-sm is-link" data-toggle="modal" data-target="#newRegistrarModal"><i class="fa fa-plus mr-2"></i>Registrar</a>
+				<a href="" class="button btn-sm is-link" data-toggle="modal" data-target="#newServiceModal"><i class="fa fa-plus mr-2"></i>Service</a>
+				<a href="" class="button btn-sm is-link" data-toggle="modal" data-target="#newHostModal"><i class="fa fa-plus mr-2"></i>Host</a>
+			</div>
         </div>
     </header>
 
-    <main class="lg:flex lg:flex-wrap -mx-3">
+
+    <main class="lg:flex lg:flex-wrap">
     	<div class="w-full">
-			<ul class="list-reset flex border-b">
-			  <li class="-mb-px mr-1">
-			    <a class="bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-dark font-semibold" href="#">Users</a>
-			  </li>
-			  <li class="mr-1">
-			    <a class="bg-white inline-block py-2 px-4 text-blue hover:text-blue-darker font-semibold" href="#">Registrars</a>
-			  </li>
-			  <li class="mr-1">
-			    <a class="bg-white inline-block py-2 px-4 text-blue hover:text-blue-darker font-semibold" href="#">Tab</a>
-			  </li>
-			  <li class="mr-1">
-			    <a class="bg-white inline-block py-2 px-4 text-grey-light font-semibold" href="#">Tab</a>
-			  </li>
+
+			<ul class="nav nav-tabs" id="settingsTabs" role="tablist">
+				<li class="nav-item active">
+					<a class="nav-link show no-underline" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="home" aria-selected="true">Users</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link no-underline" id="registrars-tab" data-toggle="tab" href="#registrars" role="tab" aria-controls="profile" aria-selected="false">Registrars</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link no-underline" id="services-tab" data-toggle="tab" href="#services" role="tab" aria-controls="contact" aria-selected="false">Services</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link no-underline" id="hosting-tab" data-toggle="tab" href="#hosting" role="tab" aria-controls="contact" aria-selected="false">Hosts</a>
+				</li>
 			</ul>
-
-
-			<div class="p-4 w-full mb-4">
-				@foreach($users as $user)
-					<div class="flex justify-between mb-4">
-						<div class="w-1/4"><p>{{ $user->name }}</p></div>
-						<div class="w-1/4"><p>{{ $user->email }}</p></div>
-						<div class="w-1/4"><p>{{ App\Enums\UserTypes::getDescription($user->role) }}</p></div>
-						<div class="w-1/4"><a href="{{ route('user.edit', $user->id) }}" class="button">Edit</a></div>
+			<div class="tab-content settings-tabs" id="settingsTabContent">
+				<div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
+					<div class="lg:flex justify-between p-3 sm:hidden hidden lg:block font-semibold text-blue-500">
+						<div class="lg:w-1/4"><p>Name</p></div>
+						<div class="lg:w-1/4"><p>Email</p></div>
+						<div class="lg:w-1/4"><p>Role</p></div>
+						<div class="lg:w-1/8"><i class="fa fa-search mr-1"></i></div>
 					</div>
-				@endforeach
+					@foreach($users as $user)
+						<div class="lg:flex justify-between p-3">
+							<div class="lg:w-1/4"><p>{{ $user->name }}</p></div>
+							<div class="lg:w-1/4"><p>{{ $user->email }}</p></div>
+							<div class="lg:w-1/4"><p>{{ App\Enums\UserTypes::getDescription($user->role) }}</p></div>
+							<div class="lg:w-1/8"><a href="" class="button btn-add-sm" data-toggle="modal" data-target="#editUserModal" data-name="{{ $user->name }}" data-id="{{ $user->id }}" data-role="{{ $user->role }}" data-email="{{ $user->email }}" data><i class="fa fa-pencil"></i></a></div>
+						</div>
+					@endforeach
+				</div>
 
-				<a href="/user/create" class="button is-link mb-4">Register New User</a>
-			</div>
-
-			<div class="p-4 w-full mb-4">
-				@foreach($registrars as $registrar)
-					<div class="flex justify-between mb-4">
-						<div class="w-1/4">
-							{{ $registrar->name }}
-						</div>
-						<div class="w-1/4">
-							{{ App\Enums\Owners::getDescription($registrar->owner) }}
-						</div>
-						<div class="w-1/4">
-							{{ $registrar->url }}
-						</div>
-						<div class="w-1/4">
-							<a href="{{ route('registrars.edit', $registrar->id) }}" class="button">Edit</a>
-						</div>
+				<div class="tab-pane fade" id="registrars" role="tabpanel" aria-labelledby="registrars-tab">
+					<div class="lg:flex justify-between p-3 sm:hidden hidden lg:block font-semibold text-blue-500">
+						<div class="lg:w-1/4"><p>Name</p></div>
+						<div class="lg:w-1/4"><p>Owner</p></div>
+						<div class="lg:w-1/4"><p>URL</p></div>
+						<div class="lg:w-1/8"><i class="fa fa-search mr-1"></i></div>
 					</div>
-				@endforeach
+					@foreach($registrars as $registrar)
+						<div class="lg:flex justify-between p-3">
+							<div class="lg:w-1/4">{{ $registrar->name }}</div>
+							<div class="lg:w-1/4">{{ App\Enums\Owners::getDescription($registrar->owner) }}</div>
+							<div class="lg:w-1/4">{{ $registrar->url }}</div>
+							<div class="lg:w-1/8"><a href="" class="button btn-add-sm" data-toggle="modal" data-target="#editRegistrarModal" data-name="{{ $registrar->name }}" data-url="{{ $registrar->url }}" data-description="{{ $registrar->description }}" data-id="{{ $registrar->id }}"><i class="fa fa-pencil"></i></a></div>
+						</div>
+					@endforeach
+				</div>
 
-				<a href="{{ route('registrars.create') }}" class="button is-link mb-4">Create New Registrar</a>
-			</div>
-
-			<div class="p-4 w-full mb-4">
-				@foreach($services as $service)
-					<div class="flex justify-between mb-4">
-						<div class="w-1/4">
-							{{ $service->name }}
-						</div>
-						<div class="w-1/4">
-							{{ $service->description }}
-						</div>
-						<div class="w-1/4">
-							@if(isset($service->price))
-								${{ $service->priceFormat() }}
-							@endif
-						</div>
-						<div class="w-1/4">
-							<a href="{{ route('services.edit', $service->id) }}" class="button">Edit</a>
-						</div>
+				<div class="tab-pane fade" id="services" role="tabpanel" aria-labelledby="services-tab">
+					<div class="lg:flex justify-between p-3 sm:hidden hidden lg:block font-semibold text-blue-500">
+						<div class="lg:w-1/6"><p>Service Name</p></div>
+						<div class="lg:w-1/2"><p>Description</p></div>
+						<div class="lg:w-1/6"><p>Price</p></div>
+						<div class="lg:w-1/8"><i class="fa fa-search mr-1"></i></div>
 					</div>
-				@endforeach
-
-				<a href="{{ route('services.create') }}" class="button is-link mb-4">Create New Service</a>
-			</div>
-
-			<div class="p-4 w-full mb-4">
-				@foreach($hosting as $host)
-					<div class="flex justify-between mb-4">
-						<div class="w-1/4">
-							{{ $host->name }} ({{\App\Enums\Owners::getKey($host->owner)}})
+					@foreach($services as $service)
+						<div class="lg:flex justify-between p-3">
+							<div class="lg:w-1/6">{{ $service->name }}</div>
+							<div class="lg:w-1/2">{{ $service->description }}</div>
+							<div class="lg:w-1/6">
+								@if(isset($service->price))
+									${{ $service->priceFormat() }}
+								@endif
+							</div>
+							<div class="lg:w-1/8"><a href="" class="button btn-add-sm" data-toggle="modal" data-target="#editServiceModal" data-name="{{ $service->name }}" data-description="{{ $service->description }}" data-price="{{ $service->price }}" data-id="{{ $service->id }}"><i class="fa fa-pencil"></i></a></div>
 						</div>
-						<div class="w-1/4">
-							{{ $host->details }}
-						</div>
-						<div class="w-1/4">
-							<a href="{{ route('hosting.edit', $host->id) }}" class="button">Edit</a>
-						</div>
+					@endforeach
+				</div>
+				<div class="tab-pane fade" id="hosting" role="tabpanel" aria-labelledby="hosting-tab">
+					<div class="lg:flex justify-between p-3 sm:hidden hidden lg:block font-semibold text-blue-500">
+						<div class="lg:w-1/6"><p>Host Name</p></div>
+						<div class="lg:w-1/2"><p>Details</p></div>
+						<div class="lg:w-1/8"><i class="fa fa-search mr-1"></i></div>
 					</div>
-				@endforeach
-
-				<a href="{{ route('hosting.create') }}" class="button is-link mb-4">Create New Host</a>
+					@foreach($hosting as $host)
+						<div class="lg:flex justify-between p-3">
+							<div class="lg:w-1/6">{{ $host->name }} ({{\App\Enums\Owners::getKey($host->owner)}})</div>
+							<div class="lg:w-1/2">{{ $host->details }}</div>
+							<div class="lg:w-1/8"><a href="" class="button btn-add-sm" data-toggle="modal" data-target="#editHostModal" data-name="{{ $host->name }}" data-details="{{ $host->details }}" data-owner="{{ $host->owner }}" data-id="{{ $host->id }}"><i class="fa fa-pencil"></i></a></div>
+						</div>
+					@endforeach
+				</div>
 			</div>
 		</div>
+
+
+        @include('users._new_user_modal')
+        @include('users._edit_user_modal')
+    	@include('registrars._new_registrar_modal')
+    	@include('registrars._edit_registrar_modal')
+    	@include('services._new_service_modal')
+    	@include('services._edit_service_modal')
+    	@include('hosting._new_host_modal')
+    	@include('hosting._edit_host_modal')
+
+
 	</main>
 
 @endsection

@@ -11,15 +11,6 @@ use Illuminate\Http\Request;
 
 class SitesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -63,20 +54,6 @@ class SitesController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Site  $site
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Client $client, Site $site)
-    {
-        $services = Service::all();
-        $hosting = Hosting::all()->sortBy('name');
-
-        return view('sites.edit', compact('client', 'site', 'services', 'hosting'));
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -88,7 +65,7 @@ class SitesController extends Controller
         $attributes = request()->all();
 
         //update services and remove it from attributes
-        $site->services()->sync($attributes['services']);
+        $site->services()->sync(request()->services);
         unset($attributes['services']);
 
         $site->update($attributes);
@@ -96,16 +73,6 @@ class SitesController extends Controller
         return redirect($site->path());
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Site  $site
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Site $site)
-    {
-        //
-    }
 
     public function notes(Client $client, Site $site) {
         $attributes = request()->all();

@@ -47,7 +47,7 @@
                 <div class="mb-8">
                     <div class="mb-2 flex items-center w-full ">
                         <h2 class="text-blue-500"><i class="fa fa-tasks mr-1"></i> {{ $job->title }}</h2>
-                        <a href="{{ $job->path() . '/edit' }}" class="button btn-add ml-4"><i class="fa fa-pencil"></i></a>
+                        <a href="" class="button btn-add ml-4" data-toggle="modal" data-target="#editJobModal"><i class="fa fa-pencil"></i></a>
                     </div>
                     @if($job->site()->exists())
                         <p class="text-gray-500 text-xs headline-lead">Site: <a class="text-blue-500 no-underline" href="{{ $job->site->path() }}">{{ $job->site->name }}</a></p>
@@ -134,7 +134,6 @@
                                     <div>
                                         {{ \Carbon\Carbon::parse($comment->created_at)->format('n/j/Y')}}
                                     </div>
-                                    <button type="submit" class="button btn-add"><i class="fa fa-pencil"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -143,6 +142,10 @@
 
 			</div>
     	</div>
+
+        @include('jobs._edit_job_modal')
+     
+
     </main>
 
 @endsection

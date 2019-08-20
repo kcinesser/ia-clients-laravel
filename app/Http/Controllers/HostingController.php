@@ -20,19 +20,6 @@ class HostingController extends Controller
         return redirect('/settings');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-
-        $hosting = new Hosting();
-        $owners = Owners::toSelectArray();
-
-        return view('hosting.create', compact('hosting', 'owners'));
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -52,28 +39,6 @@ class HostingController extends Controller
         return redirect('/settings');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Hosting  $hosting
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Hosting $hosting)
-    {
-        return view('hosting.show', compact('hosting'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Hosting  $hosting
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Hosting $hosting)
-    {
-        $owners = Owners::toSelectArray();
-        return view('hosting.edit', compact('hosting', 'owners'));
-    }
 
     /**
      * Update the specified resource in storage.

@@ -2,9 +2,10 @@
 
 @section('content')
     <header class="flex items-center mb-3 py-4">
+
         <div class="flex justify-start w-full items-center">
             <h1><a href="/clients" class="no-underline">Client</a> / {{ $client->name }}</h1>
-            <a href="{{ $client->path() . '/edit' }}" class="button btn-add ml-4"><i class="fa fa-pencil"></i></a>
+            <a href="" class="button btn-add ml-4" data-toggle="modal" data-target="#editClientModal"><i class="fa fa-pencil"></i></a>
         </div>
     </header>
 
@@ -29,7 +30,7 @@
                 <div class="mb-8">  
                     <div class="lg:flex lg:flex-wrap items-center mb-2">
                         <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-laptop mr-1"></i> Sites</h2>
-                        <a href="{{ $client->path() . '/sites/create' }}" class="button btn-add-sm mb-1 -mt-1 ml-2"><i class="fa fa-plus"></i></a>
+                        <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#siteModal"><i class="fa fa-plus"></i></a>
                     </div>
                     <div class="lg:flex lg:flex-wrap card">
                         @forelse ($sites as $site)
@@ -49,7 +50,7 @@
                 <div class="mb-8">
                     <div class="lg:flex lg:flex-wrap items-center mb-2">
                         <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-tasks mr-1"></i> Jobs</h2>
-                        <a href="{{ $client->path() . '/jobs/create' }}" class="button btn-add-sm mb-1 -mt-1 ml-2"><i class="fa fa-plus"></i></a>
+                        <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newJobModal"><i class="fa fa-plus"></i></a>
                     </div>
                     <div class="lg:flex lg:flex-wrap card">
                         @forelse ($jobs as $job)
@@ -107,5 +108,10 @@
                 </div>
             </div>
     	</div>
+
+        @include('sites._new_site_modal')
+        @include('clients._edit_client_modal')
+        @include('jobs._new_job_modal')
+        
     </main>
 @endsection

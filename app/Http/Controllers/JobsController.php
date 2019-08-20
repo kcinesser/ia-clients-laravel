@@ -19,12 +19,6 @@ class JobsController extends Controller
         return view('jobs.show', compact('job', 'client'));
     }
 
-    public function create(Client $client) {
-        $statuses = JobStatus::toSelectArray();
-
-        return view('jobs.create', compact('client', 'statuses'));
-    }
-
     public function store(Client $client) {
         request()->validate([
             'title' => 'required', 
@@ -36,12 +30,6 @@ class JobsController extends Controller
         $job = $client->addJob($attributes);
 
         return redirect($job->path());
-    }
-
-    public function edit(Client $client, Job $job) {
-        $statuses = JobStatus::toSelectArray();
-
-        return view('jobs.edit', compact('client', 'job', 'statuses'));
     }
 
     public function update(Client $client, Job $job) {

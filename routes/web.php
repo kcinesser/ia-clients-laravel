@@ -13,12 +13,14 @@
 
 Route::group(['middleware' => 'auth'], function(){
     Route::resource('activities', 'ActivitiesController')->only(['index']);
+    Route::get('/clients/archives', 'ClientsController@archives');
     Route::resource('clients', 'ClientsController');
     Route::resource('registrars', 'RegistrarsController');
     Route::get('/clients/{client}/jobs/archives', 'JobsController@archives');
     Route::patch('/clients/{client}/jobs/{job}/archive', 'JobsController@archive');
     Route::patch('/clients/{client}/sites/{site}/archive', 'SitesController@archive');
     Route::get('/clients/{client}/sites/archives', 'SitesController@archives');
+    Route::patch('/clients/{client}/archive', 'ClientsController@archive');
     Route::resource('clients.jobs', 'JobsController');
     Route::resource('clients.sites', 'SitesController');
     Route::resource('clients.sites.domains', 'DomainsController');
