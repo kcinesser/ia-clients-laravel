@@ -22,6 +22,9 @@
 			        	</div>
 			        @endforelse
 		    	</div>
+		    	<div class="text-right">
+		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#clientsModal"><i class="fa fa-th-list mr-1"></i> View All Clients</button>
+		    	</div>
 		  		<h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-tasks mr-1"></i> Your Jobs</h2>
 		   		<div  class="lg:flex lg:flex-wrap card">
 			  		@forelse ($jobs as $job)
@@ -35,6 +38,26 @@
 			        	</div>
 			        @endforelse
 				</div>
+		    	<div class="text-right">
+		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#jobsModal"><i class="fa fa-th-list mr-1"></i> View All Jobs</button>
+		    	</div>
+
+		    	<h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-window-maximize mr-1"></i> Your Sites</h2>
+		   		<div  class="lg:flex lg:flex-wrap card">
+			  		@forelse ($sites as $site)
+			            <div class="lg:w-full p-2">
+			            	<h3><a href="{{ $site->path() }}">{{ $site->name }}</a></h3>
+							<p><a href="{{ $site->client->path() }}" class="text-gray-500 text-sm font-normal">{{ $site->client->name }}</a></p>
+						</div>
+					@empty
+			            <div class="lg:w-full p-2">
+			            	<p>No jobs yet.</p>
+			        	</div>
+			        @endforelse
+				</div>
+		    	<div class="text-right">
+		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#sitesModal"><i class="fa fa-th-list mr-1"></i> View All Sites</button>
+		    	</div>
 			</div>
 			<div class="lg:w-1/4 pl-6">
 		   		<h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
@@ -63,5 +86,19 @@
 				</div>
 			</div>
 		</div>
+
+
+		@include('dashboard._clients_modal', [
+			'clients' => App\Client::all()->sortBy('name')
+		])
+
+		@include('dashboard._jobs_modal', [
+			'jobs' => App\Job::all()->sortBy('title')
+		])
+
+		@include('dashboard._sites_modal', [
+			'sites' => App\Site::all()->sortBy('name')
+		])
+
 	</main>
 @endsection
