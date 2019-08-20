@@ -43,6 +43,24 @@
     </div>
 </div>
 
+<div class="field mb-6{{ $errors->has('status') ? ' has-error' : '' }}">
+    <label for="status" class="label text-sm mb-2 block">Status</label>
+
+    <div class="control">
+        <select id="status" id="grid-state" name="status" value="{{ old('status') }}" required>
+            @foreach ($statuses as $value => $status)
+                <option value="{{$value}}" {{ $value == $client->status ? "selected" : "" }}>{{ $status }}</option>
+            @endforeach
+        </select>
+
+        @if ($errors->has('role'))
+            <span class="help-block">
+                <strong>{{ $errors->first('role') }}</strong>
+            </span>
+        @endif
+    </div>
+</div>
+
 <div class="modal-footer">
     <a href="" class="button btn-blue" data-dismiss="modal">Cancel</a>
     <button type="submit" class="button is-link mr-2">{{ $buttonText }}</button>

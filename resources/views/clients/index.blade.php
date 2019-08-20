@@ -20,10 +20,12 @@
         @empty
             <div>No clients yet.</div>
         @endforelse
-
        
         @include('clients._new_client_modal')
 
     </main>
+    <div>
+        <a href="/clients/archives" class="headline-lead text-xs text-gray-500 hover:text-orange-500 no-underline"><i class="fa fa-archive mr-1"></i> View archived clients</a>
+    </div>
 
 @endsection
