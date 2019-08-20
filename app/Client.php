@@ -12,8 +12,12 @@ class Client extends Model
         return "/clients/{$this->id}";
     }  
 
-    public function archivePath() {
+    public function jobArchivePath() {
         return "/clients/{$this->id}/jobs/archives";
+    }
+
+    public function siteArchivePath() {
+        return "/clients/{$this->id}/sites/archives";
     }
 
     public function addJob($attributes) {

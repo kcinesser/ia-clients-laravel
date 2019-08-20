@@ -86,7 +86,7 @@
                                 <p>No jobs yet.</p>
                             </div>
                         @endforelse
-                            <a href="{{ $client->archivePath() }}" class="headline-lead text-xs no-underline text-right ml-auto">View Archived Jobs</a>
+                            <a href="{{ $client->jobArchivePath() }}" class="headline-lead text-xs no-underline text-right ml-auto">View Archived Jobs</a>
                     </div>
                 </div>
                 @endif
