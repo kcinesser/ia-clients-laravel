@@ -43,7 +43,7 @@
                                 <p>No sites yet.</p>
                             </div>
                         @endforelse
-                        <a href="{{ $client->archivePath() }}" class="headline-lead text-xs no-underline text-right ml-auto">View Archived Sites</a>
+                        <a href="{{ $client->siteArchivePath() }}" class="headline-lead text-xs no-underline text-right ml-auto">View Archived Sites</a>
                     </div>
                 </div>
 
@@ -63,7 +63,7 @@
                                 <p>No jobs yet.</p>
                             </div>
                         @endforelse
-                        <a href="{{ $client->archivePath() }}" class="headline-lead text-xs no-underline text-right ml-auto">View Archived Jobs</a>
+                        <a href="{{ $client->jobArchivePath() }}" class="headline-lead text-xs no-underline text-right ml-auto">View Archived Jobs</a>
                     </div>
                 </div>
 

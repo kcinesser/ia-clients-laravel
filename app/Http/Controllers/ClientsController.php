@@ -16,7 +16,7 @@ class ClientsController extends Controller
 
     public function show(Client $client) {
         $jobs = $client->jobs->whereNotIn('status', 3);
-        $sites = $client->sites;
+        $sites = $client->sites->whereNotIn('status', 4);
 
         return view('clients.show', compact('client', 'jobs', 'sites'));
     }
