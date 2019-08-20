@@ -24,6 +24,9 @@
                             @endforeach
                         </div>
                     </div>
+                    <div class="text-right mt-3">
+                        <a href="/clients/archives" class="headline-lead text-xs text-gray-500 hover:text-orange-500 no-underline"><i class="fa fa-archive mr-1"></i> View archived clients</a>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <a href="" class="button btn-blue" data-dismiss="modal">Close</a>

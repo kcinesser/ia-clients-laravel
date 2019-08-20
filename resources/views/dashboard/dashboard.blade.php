@@ -89,15 +89,15 @@
 
 
 		@include('dashboard._clients_modal', [
-			'clients' => App\Client::all()->sortBy('name')
+			'clients' => App\Client::all()->whereNotIn('status', 3)->sortBy('name')
 		])
 
 		@include('dashboard._jobs_modal', [
-			'jobs' => App\Job::all()->sortBy('title')
+			'jobs' => App\Job::all()->whereNotIn('status', 3)->sortBy('title')
 		])
 
 		@include('dashboard._sites_modal', [
-			'sites' => App\Site::all()->sortBy('name')
+			'sites' => App\Site::all()->whereNotIn('status', 4)->sortBy('name')
 		])
 
 	</main>

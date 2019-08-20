@@ -26,6 +26,7 @@
                             @endforeach
                         </div>
                     </div>
+                    
                 </div>
                 <div class="modal-footer">
                     <a href="" class="button btn-blue" data-dismiss="modal">Close</a>

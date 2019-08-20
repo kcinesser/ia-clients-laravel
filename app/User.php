@@ -56,9 +56,9 @@ class User extends Authenticatable
         
         if ($this->role == 0) {
             $client_ids = Job::where('developer_id', $this->id)->pluck('client_id');
-            $clients = Client::find($client_ids);
+            $clients = Client::find($client_ids)->whereNotIn('status', 3);
         } else {
-            $clients = $this->clients;
+            $clients = $this->clients->whereNotIn('status', 3);
         }
         
         return $clients;
@@ -69,9 +69,9 @@ class User extends Authenticatable
 
         if ($this->role == 0) {
             $site_ids = Job::where('developer_id', $this->id)->pluck('site_id');
-            $sites = Site::find($site_ids);
+            $sites = Site::find($site_ids)->whereNotIn('status', 4);
         } else {
-            $sites = Site::whereIn('client_id', $this->clients->pluck('id'))->get();
+            $sites = Site::whereIn('client_id', $this->clients->pluck('id'))->get()->whereNotIn('status', 4);
         }
         
         return $sites;
