@@ -21,6 +21,7 @@ class ClientsController extends Controller
         return view('clients.show', compact('client', 'jobs', 'sites'));
     }
 
+
     public function create() {
         $statuses = JobStatus::toSelectArray();
 
@@ -39,6 +40,7 @@ class ClientsController extends Controller
 
         return redirect($client->path());
     }
+
 
     public function edit(Client $client) {
         $statuses = JobStatus::toSelectArray();

@@ -11,28 +11,6 @@ use Illuminate\Http\Request;
 
 class DomainsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Client $client, Site $site)
-    {
-        $registrars = Registrar::all();
-        $owners = \App\Enums\Owners::toSelectArray();
-
-        return view('domains.create', compact('site', 'registrars'));
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -63,30 +41,6 @@ class DomainsController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Domain  $domain
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Client $client, Site $site, Domain $domain)
-    {
-        return view('domains.show', compact('domain'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Domain  $domain
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Client $client, Site $site, Domain $domain)
-    {
-        $registrars = Registrar::all();
-
-        return view('domains.edit', compact('domain', 'site', 'registrars'));
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -97,7 +51,7 @@ class DomainsController extends Controller
     {
         $domain->update(request()->all());
 
-        return redirect($domain->path());
+        return redirect($site->path());
     }
 
     /**

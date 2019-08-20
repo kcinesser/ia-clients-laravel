@@ -7,10 +7,6 @@ use Illuminate\Http\Request;
 
 class ServicesController extends Controller
 {
-    public function create() {
-    	return view('services.create');
-    }
-
     public function store() {
         $request = request()->all();
         $request['price'] = preg_replace('/[^0-9.]/', '', request('price'));
@@ -26,10 +22,6 @@ class ServicesController extends Controller
         $registrar = Service::create($attributes);
 
         return redirect('/settings');
-    }
-
-    public function edit(Service $service) {
-    	return view('services.edit', compact('service'));
     }
 
     public function update(Service $service) {

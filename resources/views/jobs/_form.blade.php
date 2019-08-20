@@ -100,12 +100,11 @@
     </div>
 </div>
 
-<div class="field">
-    <div class="control">
-        <button type="submit" class="button is-link mr-2">{{ $buttonText }}</button>
-        <a href="{{ $cancelURL }}" class="button btn-secondary">Cancel</a>
-    </div>
+<div class="modal-footer">
+    <a href="" class="button btn-blue" data-dismiss="modal">Cancel</a>
+    <button type="submit" class="button is-link mr-2">{{ $buttonText }}</button>
 </div>
+
 
 @if ($errors->any())
     <div class="field mt-6">
