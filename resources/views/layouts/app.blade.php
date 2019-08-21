@@ -42,7 +42,6 @@
                         <!-- Authentication Links -->
                         @guest
                             <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <div class="mr-3 items-center">
                                 <a href="/settings"><i class="fa fa-2x fa-cog mr-1"></i></a>
