@@ -42,9 +42,17 @@ class RegistrarsController extends Controller
      * @param  \App\Registrar  $registrar
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Registrar $registrar)
-    {
-        //
+    public function destroy(Registrar $registrar) {
+        try{
+            $registrar->delete();
+        }
+        catch(\Exception $e){
+            if($e->getCode() == 23503){
+                return back()->withErrors(['InUse' => 'Unable to delete registrar. Remove from domains first.']);
+            }
+        }
+
+        return redirect('/settings');
     }
 
     /**
@@ -58,16 +66,4 @@ class RegistrarsController extends Controller
         ]);
     }
 
-    public function destroy(Registrar $registrar) {
-        try{
-            $registrar->delete();
-        }
-        catch(\Exception $e){
-           if($e->getCode() == 23503){
-               return back()->withErrors(['InUse' => 'Unable to delete registrar. Remove from domains first.']);
-           }
-        }
-
-        return redirect('/settings');
-    }
 }
