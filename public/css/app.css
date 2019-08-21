@@ -1154,6 +1154,24 @@ hr.with-text:after {
 .button.btn-delete {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
+  background-color: #c53030;
+}
+
+.button.btn-delete:hover {
+  background-color: #feb2b2;
+}
+
+.button.btn-delete-sm {
+  font-size: 0.5em;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  padding: 3px;
+  background-color: #c53030;
+}
+
+.button.btn-delete-sm:hover {
+  background-color: #feb2b2;
 }
 
 .card {

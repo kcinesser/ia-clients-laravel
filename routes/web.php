@@ -46,7 +46,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/settings', 'SettingsController@index');
 
-    Route::resource('user', 'UserController');
+    Route::resource('user', 'UserController')->only(['create', 'store', 'edit', 'update', 'destroy']);
 
     Route::get('/', 'DashboardController@index');
 
