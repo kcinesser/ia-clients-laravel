@@ -14,7 +14,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
@@ -35,18 +35,7 @@
             </div>
             <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
                 <div class="text-sm lg:flex-grow">
-                    <a href="/clients" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 mr-4">
-                        Clients
-                    </a>
-                    <a href="/jobs" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 mr-4">
-                        Jobs
-                    </a>
-                    <a href="/settings" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 mr-4">
-                        Settings
-                    </a>
-                    <a href="/activities" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300">
-                        Activities
-                    </a>
+
                 </div>
                 <div class="text-sm text-white">
                     <ul class="nav navbar-nav navbar-right">
@@ -55,6 +44,9 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+                            <div class="mr-3 items-center">
+                                <a href="/settings"><i class="fa fa-2x fa-cog mr-1"></i></a>
+                            </div>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                                     @if(auth()->user()->avatar)
@@ -89,6 +81,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="/js/app.js"></script>
 </body>
 </html>

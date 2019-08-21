@@ -2,26 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\JobStatus;
 use Illuminate\Http\Request;
 use App\Client;
 
 class ClientsController extends Controller
 {
     public function index() {
-    	$clients = Client::all();
+    	$clients = Client::all()->whereNotIn('status', 3);
 
     	return view('clients.index', compact('clients'));
     }
 
     public function show(Client $client) {
         $jobs = $client->jobs->whereNotIn('status', 3);
-        $sites = $client->sites;
+        $sites = $client->sites->whereNotIn('status', 4);
 
         return view('clients.show', compact('client', 'jobs', 'sites'));
     }
 
+
     public function create() {
-        return view('clients.create');
+        $statuses = JobStatus::toSelectArray();
+
+        return view('clients.create', compact('statuses'));
     }
 
     public function store() {
@@ -33,8 +37,11 @@ class ClientsController extends Controller
         return redirect($client->path());
     }
 
+
     public function edit(Client $client) {
-    	return view ('clients.edit', compact('client'));
+        $statuses = JobStatus::toSelectArray();
+
+    	return view ('clients.edit', compact('client', 'statuses'));
     }
 
     public function update(Client $client) {
@@ -46,7 +53,6 @@ class ClientsController extends Controller
     }
 
     public function notes(Client $client) {
-
         $client->update(
             request()->validate([
                 'notes' => 'nullable'
@@ -56,7 +62,8 @@ class ClientsController extends Controller
         return redirect($client->path());
     }
 
-    private function validate_data(){
+
+    private function validate_data() {
         return request()->validate([
             'name' => 'required',
             'contact_name' => 'nullable',
@@ -64,5 +71,19 @@ class ClientsController extends Controller
             'contact_phone' => 'nullable',
             'account_manager_id' => 'required|numeric'
         ]);
+    }
+
+    public function archives() {
+        $archived_clients = Client::all()->where('status', 3);
+
+        return view('clients.archive', compact('archived_clients'));
+    }
+
+    public function archive(Client $client) {
+        $client->update([
+            'status' => 3
+        ]);
+
+        return redirect('/');
     }
 }

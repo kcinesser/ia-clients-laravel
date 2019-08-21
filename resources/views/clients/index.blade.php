@@ -4,7 +4,7 @@
     <header class="flex items-center mb-3 py-4">
         <div class="flex justify-between w-full items-center">
             <h2 class="text-gray-500">Interactive Clients</h2>
-            <a href="/clients/create" class="button btn-secondary">Create New Client</a>
+            <a href="" class="button btn-add mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newClientModal"><i class="fa fa-plus"></i></a>
         </div>
     </header>
 
@@ -20,6 +20,12 @@
         @empty
             <div>No clients yet.</div>
         @endforelse
+       
+        @include('clients._new_client_modal')
+
     </main>
+    <div>
+        <a href="/clients/archives" class="headline-lead text-xs text-gray-500 hover:text-orange-500 no-underline"><i class="fa fa-archive mr-1"></i> View archived clients</a>
+    </div>
 
 @endsection

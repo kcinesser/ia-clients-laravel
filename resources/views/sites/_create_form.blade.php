@@ -7,10 +7,39 @@
 </div>
 
 <div class="field mb-6">
+    <label for="url" class="label text-sm mb-2 block">URL (optional)</label>
+
+    <div class="control">
+        <input type="text" name="URL">
+    </div>
+</div>
+
+<div class="field mb-6">
+    <label for="registrar" class="label text-sm mb-2 block">Where is the site registered? (optional)</label>
+
+    <div class="control">
+        <select name="registrar">
+                <option>Select Registrar</option>
+            @foreach($registrars as $registrar)
+                <option value="{{ $registrar->id }}">{{ $registrar->name }}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
+
+<div class="field mb-6">
+    <label for="exp_date" class="label text-sm mb-2 block">When does the domain expire? (optional)</label>
+
+    <div class="control">
+        <input type="text" class="date-field" autocomplete="off" name="exp_date">
+    </div>
+</div>
+
+<div class="field mb-6">
     <label for="description" class="label text-sm mb-2 block">Description</label>
 
     <div class="control">
-        <input type="text" name="description">{{ $site->description }}</textarea>
+        <input type="text" name="description" >{{ $site->description }}</textarea>
     </div>
 </div>
 
@@ -40,7 +69,7 @@
 
 <div class="field mb-6">
     <label for="services" class="label text-sm mb-2 block">Hosting</label>
-    @include('hosting.select')
+    @include('hosting.select', ['hosting' => App\Hosting::all()])
 </div>
 
 <div class="field mb-6">
@@ -48,11 +77,9 @@
     @include('services.form')
 </div>
 
-<div class="field">
-    <div class="control">
-        <button type="submit" class="button is-link mr-2">{{ $buttonText }}</button>
-        <a href="{{ $cancelURL }}" class="button btn-secondary">Cancel</a>
-    </div>
+<div class="modal-footer">
+    <a href="" class="button btn-blue" data-dismiss="modal">Cancel</a>
+    <button type="submit" class="button is-link mr-2">{{ $buttonText }}</button>
 </div>
 
 
