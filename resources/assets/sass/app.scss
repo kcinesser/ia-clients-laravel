@@ -196,6 +196,18 @@ hr {
 	&.btn-delete {
 		padding-left: 0.75rem;
 		padding-right: 0.75rem;
+		@apply bg-red-700;
+		&:hover { @apply bg-red-300; }
+	}
+
+	&.btn-delete-sm {
+		font-size: 0.5em;
+		width: 20px;
+		height: 20px;
+		text-align: center;
+		padding: 3px;
+		@apply bg-red-700;
+		&:hover { @apply bg-red-300; }
 	}
 
 }

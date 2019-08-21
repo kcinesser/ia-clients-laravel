@@ -74,7 +74,7 @@ class RefactorMigration extends Migration
             $table->timestamps();
             $table->tinyInteger('status')->unsigned()->default(JobStatus::Incoming)->nullable();
 
-            $table->foreign('developer_id')->references('id')->on('users');
+            $table->foreign('developer_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->foreign('site_id')->references('id')->on('sites');
         });
@@ -111,11 +111,11 @@ class RefactorMigration extends Migration
             $table->date('exp_date')->nullable();
             $table->timestamps();
             $table->unsignedInteger('site_id');
-            $table->unsignedInteger('registrar_id');
+            $table->unsignedInteger('registrar_id')->nullable();
             $table->unsignedInteger('domain_account_id')->nullable();
 
             $table->foreign('site_id')->references('id')->on('sites');
-            $table->foreign('registrar_id')->references('id')->on('registrars');
+            $table->foreign('registrar_id')->references('id')->on('registrars')->onDelete('cascade');
             $table->foreign('domain_account_id')->references('id')->on('domain_accounts');
         });
 

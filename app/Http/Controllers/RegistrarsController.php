@@ -49,4 +49,10 @@ class RegistrarsController extends Controller
 
         return redirect('/settings');
     }
+
+    public function destroy(Registrar $registrar) {
+        $registrar->delete();
+
+        return redirect('/settings');
+    }
 }
