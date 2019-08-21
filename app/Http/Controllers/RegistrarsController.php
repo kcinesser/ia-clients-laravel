@@ -58,4 +58,16 @@ class RegistrarsController extends Controller
         ]);
     }
 
+    public function destroy(Registrar $registrar) {
+        try{
+            $registrar->delete();
+        }
+        catch(\Exception $e){
+           if($e->getCode() == 23503){
+               return back()->withErrors(['InUse' => 'Unable to delete registrar. Remove from hosted sites first.']);
+           }
+        }
+
+        return redirect('/settings');
+    }
 }

@@ -26,4 +26,10 @@ class ServicesController extends Controller
             'price' => 'required|numeric'
         ]);
     }
+
+    public function destroy(Service $service) {
+        $service->delete();
+
+        return redirect('/settings');
+    }
 }
