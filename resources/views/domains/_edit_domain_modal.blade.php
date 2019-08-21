@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ $domain->path() }}">
+                <form method="POST" action="">
                     @csrf
                     @method('PATCH')
                     @include('domains._form', [

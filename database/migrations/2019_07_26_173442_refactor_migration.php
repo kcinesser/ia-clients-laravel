@@ -74,8 +74,8 @@ class RefactorMigration extends Migration
             $table->timestamps();
             $table->tinyInteger('status')->unsigned()->default(JobStatus::Incoming)->nullable();
 
-            $table->foreign('developer_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+            $table->foreign('developer_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('set null');
             $table->foreign('site_id')->references('id')->on('sites');
         });
 
@@ -115,7 +115,7 @@ class RefactorMigration extends Migration
             $table->unsignedInteger('domain_account_id')->nullable();
 
             $table->foreign('site_id')->references('id')->on('sites');
-            $table->foreign('registrar_id')->references('id')->on('registrars')->onDelete('cascade');
+            $table->foreign('registrar_id')->references('id')->on('registrars')->onDelete('set null');
             $table->foreign('domain_account_id')->references('id')->on('domain_accounts');
         });
 
@@ -156,7 +156,7 @@ class RefactorMigration extends Migration
             $table->timestamps();
 
             $table->foreign('site_id')->references('id')->on('sites');
-            $table->foreign('service_id')->references('id')->on('services');
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
         });
 
         Schema::create('activities', function (Blueprint $table) {
