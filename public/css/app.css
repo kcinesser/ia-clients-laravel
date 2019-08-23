@@ -279,7 +279,7 @@
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  right: 0;
+  left: 0;
   z-index: 1000;
   display: none;
   float: left;
@@ -294,6 +294,11 @@
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25rem;
+}
+
+.dropdown-menu.right-drop {
+  left: auto;
+  right: 0;
 }
 
 .dropdown-divider {
@@ -1248,7 +1253,7 @@ hr.with-text:after {
   border-radius: 0.5rem;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   font-family: Montserrat, sans-serif;
   color: #4B5783;
 }
