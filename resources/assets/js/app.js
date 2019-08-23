@@ -22,8 +22,16 @@ const app = new Vue({
 });
  */
 
+
 //import jquery ui datepicker
 import 'jquery-ui/ui/widgets/datepicker.js';
+
+ $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
 
 //show/hide services list
 $('.edit-services').click(function(e){
@@ -55,7 +63,7 @@ $('#editDomainModal').on('show.bs.modal', function (event) {
 	// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 	var modal = $(this)
 
-  modal.find('.modal-body form').attr('action', path)
+  	modal.find('.modal-body form').attr('action', path)
 	modal.find('.modal-body input[name="name"]').val(name)
 	modal.find('.modal-body input[name="exp_date"]').val(exp_date)
 	modal.find('.modal-body select[name="registrar_id"]').val(registrar)
@@ -128,4 +136,29 @@ $('#editHostModal').on('show.bs.modal', function (event) {
 	modal.find('.modal-body select[name="owner"]').val(owner)
 	modal.find('.modal-body textarea[name="details"]').val(details)
 })
+
+$('select#site-client-select').change(function() {
+	var form = $(this).closest('form')
+  	$(form).attr('action', '/clients/' + $(this).val() + '/sites')
+})
+
+$('select#job-client-select').change(function() {
+	var form = $(this).closest('form');
+	var id = $(this).val()
+	
+  	$(form).attr('action', '/clients/' + $(this).val() + '/jobs')
+
+	$.ajax({
+	   type:'GET',
+	   url:'/clients/' + id + '/client-sites',
+	   success:function(data){
+      	  	$('#job-site-select').empty()
+			$('#job-site-select').append($('<option value="">None</option>'))
+
+		    $.each(data, function(i) {
+		    	$('#job-site-select').append($('<option>' + data[i].name + '</option>').val(data[i].id))
+		    })
+		}
+	});
+}) 
 

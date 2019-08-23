@@ -11582,6 +11582,12 @@ const app = new Vue({
 //import jquery ui datepicker
 
 
+$.ajaxSetup({
+	headers: {
+		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	}
+});
+
 //show/hide services list
 $('.edit-services').click(function (e) {
 	e.preventDefault();
@@ -11684,6 +11690,31 @@ $('#editHostModal').on('show.bs.modal', function (event) {
 	modal.find('.modal-body textarea[name="details"]').val(details);
 });
 
+$('select#site-client-select').change(function () {
+	var form = $(this).closest('form');
+	$(form).attr('action', '/clients/' + $(this).val() + '/sites');
+});
+
+$('select#job-client-select').change(function () {
+	var form = $(this).closest('form');
+	var id = $(this).val();
+
+	$(form).attr('action', '/clients/' + $(this).val() + '/jobs');
+
+	$.ajax({
+		type: 'GET',
+		url: '/clients/' + id + '/client-sites',
+		success: function success(data) {
+			$('#job-site-select').empty();
+			$('#job-site-select').append($('<option value="">None</option>'));
+
+			$.each(data, function (i) {
+				$('#job-site-select').append($('<option>' + data[i].name + '</option>').val(data[i].id));
+			});
+		}
+	});
+});
+
 /***/ }),
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -11699,6 +11730,7 @@ window._ = __webpack_require__(14);
 
 try {
   window.$ = window.jQuery = __webpack_require__(1);
+  window.Popper = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"popper.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())).default;
 
   __webpack_require__(17);
 } catch (e) {}

@@ -86,4 +86,9 @@ class ClientsController extends Controller
 
         return redirect('/');
     }
+
+    public function clientSites (Client $client) {
+
+        return response()->json($client->sites);
+    }
 }

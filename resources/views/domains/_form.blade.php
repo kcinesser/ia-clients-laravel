@@ -10,7 +10,9 @@
     <label for="exp_date" class="label text-sm mb-2 block">Expiration Date </label>
 
     <div class="control">
+
         <input type="text" class="date-field" autocomplete="off" name="exp_date" value="">
+
     </div>
 </div>
 
@@ -19,7 +21,11 @@
 
     <select name="registrar_id" id="grid-state">
         @foreach ($registrars as $registrar)
+<<<<<<< HEAD
             <option value="{{ $registrar->id }}" >{{ $registrar->name }}</option>
+=======
+            <option value="{{ $registrar->id }}">{{ $registrar->name }}</option>
+>>>>>>> df88a0d3ddc57be65fb6fc49e2e7760b93e717ef
         @endforeach
     </select>
 </div>

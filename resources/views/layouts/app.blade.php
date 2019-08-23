@@ -42,8 +42,21 @@
                         <!-- Authentication Links -->
                         @guest
                             <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+
+                            <div class="mr-3 items-center">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="addMenuButton" data-toggle="dropdown"><i class="fa fa-2x fa-plus mr-1"></i></button>
+                                    <div class="dropdown-menu" aria-labelledby="addMenuButton">
+                                        <h6 class="dropdown-header">Create New</h6>
+                                        <button class="dropdown-item" data-toggle="modal" data-target="#newClientMenuModal">Client</button>
+                                        <button class="dropdown-item" data-toggle="modal" data-target="#newSiteMenuModal">Site</button>
+                                        <button class="dropdown-item" data-toggle="modal" data-target="#newJobMenuModal">Job</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
                             <div class="mr-3 items-center">
                                 <a href="/settings"><i class="fa fa-2x fa-cog mr-1"></i></a>
                             </div>
@@ -51,13 +64,15 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                                     @if(auth()->user()->avatar)
                                         <img src="{{ auth()->user()->avatar }}" alt="avatar" width="32" height="32" style="margin-right: 8px;">
+                                    @else
+                                        {{ Auth::user()->name }} <span class="caret"></span>
                                     @endif
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+
                                 </a>
 
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="{{ route('logout') }}"
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
                                             Logout
@@ -77,6 +92,10 @@
 
         <main class="container mx-auto p-6">
             @yield('content')
+
+            @include('layouts.partials._new_client_modal')
+            @include('layouts.partials._new_site_modal')
+            @include('layouts.partials._new_job_modal')
         </main>
     </div>
 
