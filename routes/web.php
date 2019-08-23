@@ -22,6 +22,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/clients/{client}/sites/archives', 'SitesController@archives');
     Route::patch('/clients/{client}/archive', 'ClientsController@archive');
     Route::resource('clients.jobs', 'JobsController');
+    Route::get('/clients/{client}/client-sites', 'ClientsController@clientSites');
     Route::resource('clients.sites', 'SitesController');
     Route::resource('clients.sites.domains', 'DomainsController');
     Route::resource('clients.sites.updates', 'UpdatesController');
