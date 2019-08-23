@@ -23,7 +23,7 @@ class ServicesController extends Controller
         return request()->validate([
             'name' => 'required',
             'description' => 'required',
-            'price' => 'required|numeric'
+            'price' => 'nullable|numeric'
         ]);
     }
 

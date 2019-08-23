@@ -6,6 +6,7 @@ use App\SoftwareLicense;
 use App\Client;
 use App\Job;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 
 class SoftwareLicensesController extends Controller
@@ -15,7 +16,13 @@ class SoftwareLicensesController extends Controller
     {
 
 
-        $data = $this->validate_data();
+        $validator = $this->validate_data();
+
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator, 'license_errors');
+        }
+
+        $data = $validator->valid();
 
         $license = new SoftwareLicense();
         $license->description = $data['description'];
@@ -47,10 +54,17 @@ class SoftwareLicensesController extends Controller
      * Validates form data
      */
     private function validate_data(){
-        return request()->validate([
-            'description' => 'required',
-            'key' => 'nullable',
-            'url' => 'nullable|url'
-        ]);
+
+        $validator = Validator::make(
+            request()->all(),
+            [
+                'description' => 'required',
+                'key' => 'nullable',
+                'url' => 'nullable|url'
+            ]
+        );
+
+
+        return $validator;
     }
 }

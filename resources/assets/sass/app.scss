@@ -91,6 +91,11 @@ code {
 	word-break: break-word;
 }
 
+.required-text {
+	color: $brand-danger;
+	font-weight: bold;
+}
+
 .headline-lead {
 	@apply text-sm font-display font-medium uppercase tracking-wider;
 }

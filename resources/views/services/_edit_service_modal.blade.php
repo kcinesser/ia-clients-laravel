@@ -14,7 +14,7 @@
 			    @method('PATCH')
 			    
 				<div class="field mb-6">
-				    <label for="name" class="label text-sm mb-2 block">Name</label>
+				    <label for="name" class="label text-sm mb-2 block">Name <span class="required-text">*</span></label>
 
 				    <div class="control">
 				        <input type="text" name="name" value="" required>
@@ -22,7 +22,7 @@
 				</div>
 
 				<div class="field mb-6">
-				    <label for="description" class="label text-sm mb-2 block">Description</label>
+				    <label for="description" class="label text-sm mb-2 block">Description <span class="required-text">*</span></label>
 
 				    <div class="control">
 				        <textarea name="description" rows="10" required></textarea>

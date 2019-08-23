@@ -1,5 +1,5 @@
 <div class="field mb-6">
-    <label for="title" class="label text-sm mb-2 block">Title</label>
+    <label for="title" class="label text-sm mb-2 block">Title <span class="required-text">*</span></label>
 
     <div class="control">
         <input type="text" name="title" value="{{ $job->title }}" required>
@@ -34,7 +34,7 @@
 </div>
 
  <div class="field mb-6{{ $errors->has('status') ? ' has-error' : '' }}">
-    <label for="status" class="label text-sm mb-2 block">Status</label>
+    <label for="status" class="label text-sm mb-2 block">Status <span class="required-text">*</span></label>
 
     <div class="control">
         <select id="status" id="grid-state" name="status" required>
@@ -89,7 +89,7 @@
 </div>
 
 <div class="field mb-6">
-    <label for="technology" class="label text-sm mb-2 block">Technology</label>
+    <label for="technology" class="label text-sm mb-2 block">Technology <span class="required-text">*</span></label>
 
     <div class="control">
         <select name="technology">

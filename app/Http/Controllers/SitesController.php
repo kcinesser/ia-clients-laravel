@@ -33,6 +33,7 @@ class SitesController extends Controller
      */
     public function store(Client $client)
     {
+
         $site = $client->addSite($this->validate_data());
         return redirect($site->path());
     }
@@ -108,12 +109,13 @@ class SitesController extends Controller
     private function validate_data(){
         return request()->validate([
             'name' => 'required',
-            'URL' => 'nullable|url',
-            'registrar' => 'nullable|numeric',
+            'URL' => 'required',
+            'registrar' => 'required|numeric',
             'exp_date' => 'nullable|date',
             'description' => 'nullable',
             'status' => 'required|numeric',
             'technology' => 'required|numeric',
+            'host_id' => 'required|numeric',
             'services' => 'nullable|array',
             'services.*' => 'numeric',
         ]);

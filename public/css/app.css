@@ -3038,6 +3038,11 @@ code {
   word-break: break-word;
 }
 
+.required-text {
+  color: #bf5329;
+  font-weight: bold;
+}
+
 .headline-lead {
   font-size: 0.875rem;
   font-family: Montserrat, sans-serif;
