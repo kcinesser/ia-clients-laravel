@@ -8,20 +8,25 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div id="client-filter" class="mb-3 flex items-center">
+                        <p class="mb-0 mr-3">Filter:</p>
+                        <input type="text" class="mr-3" data-target="name" data-model="client" placeholder="Client Name"></input>
+                        <input type="text" data-target="AM" data-model="client" placeholder="Accout Manager"></input>
+                    </div>
                     <div class="tab-content settings-tabs" id="settingsTabContent">
                         <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
                             <div class="lg:flex justify-between p-3 sm:hidden hidden lg:block font-semibold text-blue-500">
-                                <div class="lg:w-1/4"><p>Client Name</p></div>
-                                <div class="lg:w-1/4"><p>Account Manager</p></div>
-                                <div class="lg:w-1/8"><i class="fa fa-search mr-1"></i></div>
+                                <div class="lg:w-1/4"><p>Client Name <button class="sort" data-order="asc" data-sort="name" data-model="client"><i class="fa fa-sort mr-1"></i></button></p></div>
+                                <div class="lg:w-1/4"><p>Account Manager <button class="sort" data-order="asc" data-sort="AM" data-model="client"><i class="fa fa-sort mr-1"></i></button></p></div>
                             </div>
-                            @foreach($clients as $client)
-                                <div class="lg:flex justify-between p-3">
-                                    <div class="lg:w-1/4"><a href="{{ $client->path() }}">{{ $client->name }}</a></div>
-                                    <div class="lg:w-1/4"><p>{{ $client->accountManager->name }}</p></div>
-                                    <div class="lg:w-1/8"></div>
-                                </div>
-                            @endforeach
+                            <div id="client-modal-list">
+                                @foreach($clients as $client)
+                                    <div class="lg:flex justify-between p-3">
+                                        <div class="lg:w-1/4"><a href="{{ $client->path() }}">{{ $client->name }}</a></div>
+                                        <div class="lg:w-1/4"><p>{{ $client->accountManager->name }}</p></div>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                     <div class="text-right mt-3">

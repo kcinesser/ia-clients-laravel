@@ -53,6 +53,9 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/toolkit', 'ToolkitController@index');
 
+    Route::get('/sort', 'FilterController@sort');
+    Route::get('/filter', 'FilterController@filter');
+
 });
 
 Route::get('redirect/{driver}', 'Auth\LoginController@redirectToProvider')
