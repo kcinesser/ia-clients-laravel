@@ -129,7 +129,7 @@ $('#editHostModal').on('show.bs.modal', function (event) {
 
 $('select#site-client-select').change(function() {
 	var form = $(this).closest('form')
-  	$(form).attr('action', '/clients/' + id + '/sites')
+  	$(form).attr('action', '/clients/' + $(this).val() + '/sites')
 })
 
 $('select#job-client-select').change(function() {
