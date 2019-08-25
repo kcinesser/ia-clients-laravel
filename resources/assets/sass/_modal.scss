@@ -157,6 +157,25 @@
   overflow: scroll;
 }
 
+span.deleteicon {
+  position: relative;
+}
+span.deleteicon span {
+  position: absolute;
+  display: block;
+  top: 5px;
+  right: 0px;
+  width: 16px;
+  height: 16px;
+  content: "\f057";
+  font-family: normal normal normal 14px/1 FontAwesome;
+  cursor: pointer;
+}
+span.deleteicon input {
+  padding-right: 16px;
+  box-sizing: border-box;
+}
+
 // Scale up the modal
 @media (min-width: 640px) {
   // Automatically set modal's width for larger viewports

@@ -9,9 +9,10 @@
                 </div>
                 <div class="modal-body">
                     <div id="client-filter" class="mb-3 flex items-center">
-                        <p class="mb-0 mr-3">Filter:</p>
-                        <input type="text" class="mr-3" data-target="name" data-model="client" placeholder="Client Name"></input>
-                        <input type="text" data-target="AM" data-model="client" placeholder="Accout Manager"></input>
+                        <div class="control flex items-center">
+                            <p class="mb-0 mr-3">Filter:</p>
+                            <input type="text" data-model="client" placeholder="Search clients...">
+                        </div>
                     </div>
                     <div class="tab-content settings-tabs" id="settingsTabContent">
                         <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">

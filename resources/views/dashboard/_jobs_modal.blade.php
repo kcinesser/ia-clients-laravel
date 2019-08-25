@@ -8,6 +8,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div id="job-filter" class="mb-3 flex items-center">
+                        <div class="control flex items-center">
+                            <p class="mb-0 mr-3">Filter:</p>
+                            <input type="text" data-model="job" placeholder="Search jobs...">
+                        </div>
+                    </div>
                     <div class="tab-content settings-tabs" id="settingsTabContent">
                         <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
                             <div class="lg:flex justify-between p-3 sm:hidden hidden lg:block font-semibold text-blue-500">

@@ -196,7 +196,7 @@ $('.sort').click(function(e) {
 				case "site":
 		      	  	$('#site-modal-list').empty()
 				    $.each(data, function(i) {
-				    	$('#site-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/5"><a href="">' + data[i].name + '</a></div><div class="lg:w-1/5"><p>' + data[i].clientName + '</p></div><div class="lg:w-1/5"><p>' + data[i].status + '</p></div></div>')
+				    	$('#site-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/5"><a href="' + data[i].URL + '">' + data[i].name + '</a></div><div class="lg:w-1/5"><p>' + data[i].clientName + '</p></div><div class="lg:w-1/5"><p>' + data[i].status + '</p></div></div>')
 				    })
 					break;
 			}
@@ -206,25 +206,85 @@ $('.sort').click(function(e) {
 
 $('#client-filter input').keyup(function(e){
   	var input = $(this)
-  	var attribute = input.data('target')
   	var model = input.data('model')
-  	var value = input.val()
-
+	var value = input.val()
+	  
 	$.ajax({
 	   type:'GET',
 	   url:'/filter',
 	   data: {
-	   	attribute: attribute,
 	   	model: model,
-	   	value: value
+		value: value 
 	   },
 	   success:function(data) {
       	  	$('#client-modal-list').empty()
 
-		    $.each(data, function(i) {
-		    	$('#client-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/4"><a href="' + data[i].URL + '">' + data[i].name + '</a></div><div class="lg:w-1/4"><p>' + data[i].AM + '</p></div></div>')
-		    })
+			if (jQuery.type(data) === "string") {
+				$('#client-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/4">' + data + '</div></div>')
+			} else {
+				$.each(data, function(i) {
+					$('#client-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/4"><a href="' + data[i].URL + '">' + data[i].name + '</a></div><div class="lg:w-1/4"><p>' + data[i].AM + '</p></div></div>')
+				})
+			}
 	   }
 	})
 })
+
+$('#site-filter input').keyup(function(e){
+	var input = $(this)
+	var attribute = input.data('target')
+	var model = input.data('model')
+	var value = input.val()
+
+  $.ajax({
+	 type:'GET',
+	 url:'/filter',
+	 data: {
+		 attribute: attribute,
+		 model: model,
+		 value: value
+	 },
+	 success:function(data) {
+		console.log(data)
+		$('#site-modal-list').empty()
+
+		if (jQuery.type(data) === "string") {
+			$('#site-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/4">' + data + '</div></div>')
+		} else {
+			$.each(data, function(i) {
+				$('#site-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/5"><a href="' + data[i].URL + '">' + data[i].name + '</a></div><div class="lg:w-1/5"><p>' + data[i].client_name + '</p></div><div class="lg:w-1/5"><p>' + data[i].status + '</p></div></div>')
+			})
+		}
+	 }
+  })
+})
+
+$('#job-filter input').keyup(function(e){
+	var input = $(this)
+	var attribute = input.data('target')
+	var model = input.data('model')
+	var value = input.val()
+
+  $.ajax({
+	 type:'GET',
+	 url:'/filter',
+	 data: {
+		 attribute: attribute,
+		 model: model,
+		 value: value
+	 },
+	 success:function(data) {
+		$('#job-modal-list').empty()
+
+		if (jQuery.type(data) === "string") {
+			$('#job-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/4">' + data + '</div></div>')
+		} else {
+			$.each(data, function(i) {
+				$('#job-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/5"><a href="' + data[i].URL + '">' + data[i].title + '</a></div><div class="lg:w-1/5"><p>' + data[i].client_name + '</p></div><div class="lg:w-1/5"><p>' + data[i].status + '</p></div><div class="lg:w-1/5"><p>' + data[i].developer_name + '</p></div></div>')
+			})
+		}
+	 }
+  })
+})
+
 
