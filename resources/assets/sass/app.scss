@@ -256,6 +256,12 @@ p>.fa {
 	text-align: center;
 }
 
+@media (max-width: 830px) {
+	.table-row .table-cell {
+		display: block;
+	}
+}
+
 // END - components
 
 // START - Forms
@@ -275,6 +281,14 @@ p>.fa {
 		@apply outline-none bg-white border-gray-500;
 	}
 }
+
+select {
+	@apply block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight;
+	&:focus {
+		@apply outline-none bg-white border-gray-500
+	}
+}
+
 // END - Forms
 
 #logo {
@@ -292,11 +306,25 @@ p>.fa {
 }
 
 .settings-tabs {
+	.tab-pane {
+		border-top-color: #ddd;
+	}
+
 	.tab-pane > div { background: #fff; }
 	.tab-pane > div:nth-child(odd) {
 		background: #f1f1f1;
 	}
+
+	@media (max-width: 830px) {
+		.edit-buttons {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+		}
+	}
 }
+
+
 
 
 @tailwind utilities;

@@ -37,7 +37,7 @@
 
                     <div class="modal-footer">
                         <a href="/registrars" class="button btn-blue">Cancel</a>
-                        <button type="submit" class="button is-link mr-2">Create Registrar</button>
+                        <button type="submit" class="button is-link">Create Registrar</button>
                     </div>
 
 

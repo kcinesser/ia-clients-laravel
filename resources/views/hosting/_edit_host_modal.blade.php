@@ -17,7 +17,7 @@
 
                     <div class="modal-footer">
                         <a href="/settings" class="button btn-blue">Cancel</a>
-                        <button type="submit" class="button is-link mr-2">Save Changes</button>
+                        <button type="submit" class="button is-link">Save Changes</button>
                     </div>
 
                 </form>

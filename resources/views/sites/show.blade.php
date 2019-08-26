@@ -4,36 +4,8 @@
 
     <header class="flex items-center mb-3 py-4"></header>
 
-    <main>
-    	<div class="lg:flex -mx-3">
-    		<div class="lg:w-1/4 px-3">
- 				@include ('sites.card')
-
-                <div class="mb-8">
-                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-cogs mr-1"></i> Update History</h2>
-                    <div class="card">
-                    @foreach ($site->updates->sortByDesc('updated_at') as $update)
-                        <form method="POST" action="{{ $update->path() }}">
-                            @method('PATCH')
-                            @csrf
-
-                            <div class="flex justify-between items-center mb-3">
-                                <p class="mb-0 text-xs mb-0">{{ $update->description }}</p>
-                                <div>
-                                    <span class="text-gray-500 text-xs mr-1">{{ $update->user->initials() }} - </span>
-                                    <span class="text-gray-500 text-xs"> {{ \Carbon\Carbon::parse($update->updated_at)->format('n/j/Y')}}</span>
-                                </div>
-                            </div>
-                        </form>
-                    @endforeach
-
-                    <form action="{{ $site->path() . '/updates' }}" method="POST" class="flex justify-between">
-                        @csrf
-                        <input name="description" class="w-full text-xs" placeholder="Create new update.">
-                    </form>
-                    </div>
-                </div>
-    		</div>
+    <main class="sites-show">
+    	<div class="lg:flex -mx-3 flex-row-reverse">
     		<div class="lg:w-3/4 px-3">
                 <div class="mb-8">
                     <div class="flex items-center w-full mb-2">
@@ -45,7 +17,7 @@
 
 
                 <div class="mb-8">
-                    <div class="lg:flex lg:flex-wrap items-center mb-2">
+                    <div class="flex flex-wrap items-center mb-2">
                         <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-globe mr-1"></i> Domains</h2>
                         <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newDomainModal"><i class="fa fa-plus"></i></a>
                     </div>
@@ -184,6 +156,34 @@
                         </div>
                     @endforeach
 
+                </div>
+            </div>
+            <div class="lg:w-1/4 px-3">
+                @include ('sites.card')
+
+                <div class="mb-8">
+                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-cogs mr-1"></i> Update History</h2>
+                    <div class="card">
+                        @foreach ($site->updates->sortByDesc('updated_at') as $update)
+                            <form method="POST" action="{{ $update->path() }}">
+                                @method('PATCH')
+                                @csrf
+
+                                <div class="flex justify-between items-center mb-3">
+                                    <p class="mb-0 text-xs mb-0">{{ $update->description }}</p>
+                                    <div>
+                                        <span class="text-gray-500 text-xs mr-1">{{ $update->user->initials() }} - </span>
+                                        <span class="text-gray-500 text-xs"> {{ \Carbon\Carbon::parse($update->updated_at)->format('n/j/Y')}}</span>
+                                    </div>
+                                </div>
+                            </form>
+                        @endforeach
+
+                        <form action="{{ $site->path() . '/updates' }}" method="POST" class="flex justify-between">
+                            @csrf
+                            <input name="description" class="w-full text-xs" placeholder="Create new update.">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

@@ -23,7 +23,7 @@
 
                     <div class="modal-footer">
                         <a href="/settings" class="button btn-blue">Cancel</a>
-                        <button type="submit" class="button is-link mr-2">Create Host</button>
+                        <button type="submit" class="button is-link">Create Host</button>
                     </div>
 
                 </form>

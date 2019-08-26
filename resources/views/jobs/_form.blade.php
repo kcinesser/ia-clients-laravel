@@ -33,7 +33,7 @@
     @endif
 </div>
 
- <div class="field mb-6{{ $errors->has('status') ? ' has-error' : '' }}">
+ <div class="field mb-6 {{ $errors->has('status') ? ' has-error' : '' }}">
     <label for="status" class="label text-sm mb-2 block">Status</label>
 
     <div class="control">
@@ -51,7 +51,7 @@
     </div>
 </div>
 
- <div class="field mb-6{{ $errors->has('status') ? ' has-error' : '' }}">
+ <div class="field mb-6 {{ $errors->has('status') ? ' has-error' : '' }}">
     <label for="start_date" class="label text-sm mb-2 block">Start Date</label>
 
     <div class="control">
@@ -102,7 +102,7 @@
 
 <div class="modal-footer">
     <a href="" class="button btn-blue" data-dismiss="modal">Cancel</a>
-    <button type="submit" class="button is-link mr-2">{{ $buttonText }}</button>
+    <button type="submit" class="button is-link">{{ $buttonText }}</button>
 </div>
 
 
