@@ -16,7 +16,7 @@
                     </div>
                     <div class="tab-content settings-tabs" id="settingsTabContent">
                         <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
-                            <div class="lg:flex justify-between p-3 sm:hidden hidden lg:block font-semibold text-blue-500">
+                            <div class="lg:flex justify-between p-3 lg:block font-semibold text-blue-500">
                                 <div class="lg:w-1/5"><p>Site <button class="sort" data-order="asc" data-sort="name" data-model="site"><i class="fa fa-sort mr-1"></i></button></p></div>
                                 <div class="lg:w-1/5"><p>Client <button class="sort" data-order="asc" data-sort="clientName" data-model="site"><i class="fa fa-sort mr-1"></i></button></p></div>
                                 <div class="lg:w-1/5"><p>Status <button class="sort" data-order="asc" data-sort="status" data-model="site"><i class="fa fa-sort mr-1"></i></button></p></div>
