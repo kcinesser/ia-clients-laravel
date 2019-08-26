@@ -8,24 +8,30 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div id="job-filter" class="mb-3 flex items-center search-bar">
+                        <div class="control flex items-center">
+                            <p class="mb-0 mr-3">Filter:</p>
+                            <input type="text" data-model="job" placeholder="Search jobs...">
+                        </div>
+                    </div>
                     <div class="tab-content settings-tabs" id="settingsTabContent">
                         <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
-                            <div class="lg:flex justify-between p-3 sm:hidden hidden lg:block font-semibold text-blue-500">
-                                <div class="lg:w-1/5"><p>Job Title</p></div>
-                                <div class="lg:w-1/5"><p>Client</p></div>
-                                <div class="lg:w-1/5"><p>Status</p></div>
-                                <div class="lg:w-1/5"><p>Developer</p></div>
-                                <div class="lg:w-1/8"><i class="fa fa-search mr-1"></i></div>
+                            <div class="lg:flex justify-between p-3 lg:block font-semibold text-blue-500">
+                                <div class="lg:w-1/5"><p>Job Title <button class="sort" data-order="asc" data-sort="title" data-model="job"><i class="fa fa-sort mr-1"></i></button></p></div>
+                                <div class="lg:w-1/5"><p>Client <button class="sort" data-order="asc" data-sort="clientName" data-model="job"><i class="fa fa-sort mr-1"></i></button></p></div>
+                                <div class="lg:w-1/5"><p>Status <button class="sort" data-order="asc" data-sort="status" data-model="job"><i class="fa fa-sort mr-1"></i></button></p></div>
+                                <div class="lg:w-1/5"><p>Developer <button class="sort" data-order="asc" data-sort="developerName" data-model="job"><i class="fa fa-sort mr-1"></i></button></p></div>
                             </div>
-                            @foreach($jobs as $job)
-                                <div class="lg:flex justify-between p-3">
-                                    <div class="lg:w-1/5"><a href="{{ $job->path() }}">{{ $job->title }}</a></div>
-                                    <div class="lg:w-1/5"><p>{{ $job->client->name }}</p></div>
-                                    <div class="lg:w-1/5"><p>{{ \App\Enums\JobStatus::getDescription($job->status) }}</p></div>
-                                    <div class="lg:w-1/5"><p>{{ $job->developer->name }}</p></div>
-                                    <div class="lg:w-1/8"></div>
-                                </div>
-                            @endforeach
+                            <div id="job-modal-list">
+                                @foreach($jobs as $job)
+                                    <div class="lg:flex justify-between p-3">
+                                        <div class="lg:w-1/5"><a href="{{ $job->path() }}">{{ $job->title }}</a></div>
+                                        <div class="lg:w-1/5"><p>{{ $job->client->name }}</p></div>
+                                        <div class="lg:w-1/5"><p>{{ \App\Enums\JobStatus::getDescription($job->status) }}</p></div>
+                                        <div class="lg:w-1/5"><p>{{ $job->developer->name }}</p></div>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
