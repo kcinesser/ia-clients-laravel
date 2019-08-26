@@ -8,7 +8,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div id="site-filter" class="mb-3 flex items-center">
+                    <div id="site-filter" class="mb-3 flex items-center search-bar">
                         <div class="control flex items-center">
                             <p class="mb-0 mr-3">Filter:</p>
                             <input type="text" data-model="site" placeholder="Search sites...">
