@@ -159,28 +159,6 @@
   overflow: scroll;
 }
 
-span.deleteicon {
-  position: relative;
-}
-
-span.deleteicon span {
-  position: absolute;
-  display: block;
-  top: 5px;
-  right: 0px;
-  width: 16px;
-  height: 16px;
-  content: "\F057";
-  font-family: normal normal normal 14px/1 FontAwesome;
-  cursor: pointer;
-}
-
-span.deleteicon input {
-  padding-right: 16px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
 @media (min-width: 640px) {
   .modal-dialog {
     max-width: 980px;
