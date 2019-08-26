@@ -78,6 +78,7 @@ class SitesController extends Controller
         $site->update(
             request()->validate([
                 'notes' => 'nullable',
+                'update_instructions' => 'nullable'
             ])
         );
 
