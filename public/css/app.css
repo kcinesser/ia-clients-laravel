@@ -68,13 +68,20 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 100%;
+  width: 90%;
+  margin: 0 auto;
   pointer-events: auto;
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #F3F2EF;
   border-radius: 0.3rem;
   outline: 0;
+}
+
+@media (min-width: 1000px) {
+  .modal-content {
+    width: 100%;
+  }
 }
 
 .modal-backdrop {
@@ -139,7 +146,7 @@
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  padding: 1rem;
+  padding: 1rem 0;
   border-top: 1px solid #F3F2EF;
 }
 
@@ -1302,6 +1309,10 @@ p > .fa {
   font-size: 0.875rem;
   margin-bottom: 0.5rem;
   display: block;
+}
+
+.field input[type='checkbox'] ~ label {
+  display: inline;
 }
 
 .control input:not([type='checkbox']),

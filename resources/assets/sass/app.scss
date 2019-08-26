@@ -263,6 +263,10 @@ p>.fa {
 	@apply text-sm mb-2 block;
 }
 
+.field input[type='checkbox'] ~ label {
+	@apply inline;
+}
+
 .control input:not([type='checkbox']),
 .control select,
 .control textarea {
