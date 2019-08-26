@@ -1088,6 +1088,118 @@ var i,
 			return ch.slice( 0, -1 ) + "\\" + ch.charCodeAt( ch.length - 1 ).toString( 16 ) + " ";
 		}
 
+	});
+});
+
+$('.sort').click(function (e) {
+
+	var button = $(this);
+	var order = button.data('order');
+	var model = button.data('model');
+	var attribute = button.data('sort');
+
+	$.ajax({
+		type: 'GET',
+		url: '/sort',
+		data: {
+			order: order,
+			model: model,
+			attribute: attribute
+		},
+		success: function success(data) {
+			if (order == "asc") {
+				button.data('order', 'desc');
+				button.find('i').removeClass('fa-sort');
+				button.find('i').removeClass('fa-sort-desc');
+				button.find('i').addClass('fa-sort-asc');
+			} else {
+				button.data('order', 'asc');
+				button.find('i').removeClass('fa-sort');
+				button.find('i').removeClass('fa-sort-asc');
+				button.find('i').addClass('fa-sort-desc');
+			}
+
+			switch (model) {
+				case "client":
+					$('#client-modal-list').empty();
+					$.each(data, function (i) {
+						$('#client-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/4"><a href="' + data[i].URL + '">' + data[i].name + '</a></div><div class="lg:w-1/4"><p>' + data[i].AM + '</p></div></div>');
+					});
+					break;
+				case "job":
+					$('#job-modal-list').empty();
+					$.each(data, function (i) {
+						$('#job-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/5"><a href="' + data[i].URL + '">' + data[i].title + '</a></div><div class="lg:w-1/5"><p>' + data[i].clientName + '</p></div><div class="lg:w-1/5"><p>' + data[i].status + '</p></div><div class="lg:w-1/5"><p>' + data[i].developerName + '</p></div></div>');
+					});
+					break;
+				case "site":
+					$('#site-modal-list').empty();
+					$.each(data, function (i) {
+						$('#site-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/5"><a href="' + data[i].URL + '">' + data[i].name + '</a></div><div class="lg:w-1/5"><p>' + data[i].clientName + '</p></div><div class="lg:w-1/5"><p>' + data[i].status + '</p></div></div>');
+					});
+					break;
+			}
+		}
+	});
+});
+
+$('.search-bar input').keyup(function (e) {
+	var input = $(this);
+	var model = input.data('model');
+	var value = input.val();
+
+	$.ajax({
+		type: 'GET',
+		url: '/filter',
+		data: {
+			model: model,
+			value: value
+		},
+		success: function success(data) {
+
+			switch (model) {
+				case "site":
+					$('#site-modal-list').empty();
+
+					if (jQuery.type(data) === "string") {
+						$('#site-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/4">' + data + '</div></div>');
+					} else {
+						$.each(data, function (i) {
+							$('#site-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/5"><a href="' + data[i].URL + '">' + data[i].name + '</a></div><div class="lg:w-1/5"><p>' + data[i].client_name + '</p></div><div class="lg:w-1/5"><p>' + data[i].status + '</p></div></div>');
+						});
+					}
+					break;
+				case "client":
+					$('#client-modal-list').empty();
+
+					if (jQuery.type(data) === "string") {
+						$('#client-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/4">' + data + '</div></div>');
+					} else {
+						$.each(data, function (i) {
+							$('#client-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/4"><a href="' + data[i].URL + '">' + data[i].name + '</a></div><div class="lg:w-1/4"><p>' + data[i].AM + '</p></div></div>');
+						});
+					}
+					break;
+				case "job":
+					$('#job-modal-list').empty();
+
+					if (jQuery.type(data) === "string") {
+						$('#job-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/4">' + data + '</div></div>');
+					} else {
+						$.each(data, function (i) {
+							$('#job-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/5"><a href="' + data[i].URL + '">' + data[i].title + '</a></div><div class="lg:w-1/5"><p>' + data[i].client_name + '</p></div><div class="lg:w-1/5"><p>' + data[i].status + '</p></div><div class="lg:w-1/5"><p>' + data[i].developer_name + '</p></div></div>');
+						});
+					}
+					break;
+			}
+		}
+	});
+});
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
 		// Other potentially-special ASCII characters get backslash-escaped
 		return "\\" + ch;
 	},
