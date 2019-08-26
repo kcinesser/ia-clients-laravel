@@ -11,9 +11,7 @@ use Auth;
 class UpdatesController extends Controller
 {
 	public function store(Client $client, Site $site) {
-    	request()->validate(['description' => 'required']);
-    	$attributes = request()->all();
-
+    	$attributes = $this->validate_data();
     	$attributes['user_id'] = Auth::id();
 
     	$site->updates()->create($attributes);
@@ -22,12 +20,14 @@ class UpdatesController extends Controller
 	}
 
 	public function update(Client $client, Site $site, Update $update) {
-        $attributes = request()->validate([
-            'description' => 'required', 
-        ]);
-
-        $update->update($attributes);
-
+        $update->update($this->validate_data());
     	return redirect($site->path());
 	}
+
+    /**
+     * Validates form data
+     */
+	private function validate_data(){
+	    return request()->validate(['description' => 'required']);
+    }
 }

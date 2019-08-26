@@ -57,8 +57,14 @@
                                 </div>
                             </div>
                         </form>
+                        @if ($errors->license_errors->all())
+                            <div class="field mt-6">
+                                @foreach ($errors->license_errors->all() as $error)
+                                    <li class="text-sm text-red-500">{{ $error }}</li>
+                                @endforeach
+                            </div>
+                        @endif
                     </div>
-
 
                 </div>
 
@@ -104,28 +110,38 @@
 
             </div>
     		<div class="lg:w-1/4 px-3">
- 				@include ('jobs.card')
+                @include ('jobs.card')
 
-                <div class="mb-8">            
+                <div class="mb-8">
                     <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-list-ol mr-1"></i> Tasks</h2>
                     <div class="card">
 
-                    @foreach ($job->tasks as $task)
-                        <form method="POST" action="{{ $task->path() }}">
-                            {{ method_field('PATCH') }}
-                            {{ csrf_field() }}
+                        @foreach ($job->tasks as $task)
+                            <form method="POST" action="{{ $task->path() }}">
+                                {{ method_field('PATCH') }}
+                                {{ csrf_field() }}
 
-                            <div class="flex items-center mb-3">
-                                <input class="w-full {{ $task->completed ? 'text-gray-500' : '' }}" name="body" value="{{ $task->body }}">
-                                <input name="completed" type="checkbox" onChange="this.form.submit()" {{ $task->completed ? 'checked' : '' }}>
-                            </div>
-                        </form>
-                    @endforeach
+                                <div class="flex items-center mb-3">
+                                    <input class="w-full {{ $task->completed ? 'text-gray-500' : '' }}" name="body" value="{{ $task->body }}">
+                                    <input name="completed" type="checkbox" onChange="this.form.submit()" {{ $task->completed ? 'checked' : '' }}>
+                                </div>
+                            </form>
+                        @endforeach
                         <form action="{{ $job->path() . '/tasks' }}" method="POST">
                             @csrf
                             <input name="body" class="w-full" placeholder="Add a task">
                         </form>
+
+
+                        @if ($errors->any())
+                            <div class="field mt-6">
+                                @foreach ($errors->all() as $error)
+                                    <li class="text-sm text-red-500">{{ $error }}</li>
+                                @endforeach
+                            </div>
+                        @endif
                     </div>
+
                 </div>
 
                 <div class="mb-8">

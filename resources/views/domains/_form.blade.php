@@ -1,25 +1,31 @@
 <div class="field mb-6">
-    <label for="title" class="label text-sm mb-2 block">URL</label>
+    <label for="title" class="label text-sm mb-2 block">URL <span class="required-text">*</span></label>
 
     <div class="control">
-        <input type="text" name="name" value="{{ $domain->name }}" required>
+        <input type="text" name="name" value="" required>
     </div>
 </div>
 
 <div class="field mb-6">
-    <label for="exp_date" class="label text-sm mb-2 block">Expiration Date</label>
+    <label for="exp_date" class="label text-sm mb-2 block">Expiration Date </label>
 
     <div class="control">
-        <input type="text" name="exp_date" value="{{ $domain->exp_date }}">
+
+        <input type="text" class="date-field" autocomplete="off" name="exp_date" value="">
+
     </div>
 </div>
 
 <div class="field mb-6">
-    <label for="registrar_id" class="label text-sm mb-2 block">Registrar</label>
+    <label for="registrar_id" class="label text-sm mb-2 block">Registrar <span class="required-text">*</span></label>
 
     <select name="registrar_id" id="grid-state">
         @foreach ($registrars as $registrar)
-            <option value="{{ $registrar->id }}" {{ $registrar->id == $domain->registrar_id ? "selected" : "" }}>{{ $registrar->name }}</option>
+<<<<<<< HEAD
+            <option value="{{ $registrar->id }}" >{{ $registrar->name }}</option>
+=======
+            <option value="{{ $registrar->id }}">{{ $registrar->name }}</option>
+>>>>>>> df88a0d3ddc57be65fb6fc49e2e7760b93e717ef
         @endforeach
     </select>
 </div>

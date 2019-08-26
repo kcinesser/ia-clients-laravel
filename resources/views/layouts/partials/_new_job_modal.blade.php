@@ -47,7 +47,7 @@
                         <label for="description" class="label text-sm mb-2 block">Description</label>
 
                         <div class="control">
-                            <textarea name="description" rows="10"></textarea>
+                            <textarea name="description" rows="10" required></textarea>
                         </div>
                     </div>
 

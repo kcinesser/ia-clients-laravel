@@ -30,11 +30,7 @@ class ClientsController extends Controller
 
     public function store() {
 
-	  	$attributes = request()->validate([
-            'name' => 'required', 
-        ]);
-
-        $attributes = request()->all();
+	  	$attributes = $this->validate_data();
 
         $client = Client::create($attributes);
 
@@ -49,22 +45,32 @@ class ClientsController extends Controller
     }
 
     public function update(Client $client) {
-        $attributes = request()->validate([
-            'name' => 'sometimes', 
-        ]);
-        $attributes = request()->all();
 
+        $attributes = $this->validate_data();
         $client->update($attributes);
 
         return redirect($client->path());
     }
 
     public function notes(Client $client) {
-        $attributes = request()->all();
-
-        $client->update($attributes);
+        $client->update(
+            request()->validate([
+                'notes' => 'nullable'
+            ])
+        );
 
         return redirect($client->path());
+    }
+
+
+    private function validate_data() {
+        return request()->validate([
+            'name' => 'required',
+            'contact_name' => 'nullable',
+            'contact_email' => 'nullable',
+            'contact_phone' => 'nullable',
+            'account_manager_id' => 'required|numeric'
+        ]);
     }
 
     public function archives() {

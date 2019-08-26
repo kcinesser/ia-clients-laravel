@@ -26,7 +26,7 @@
             <label for="role" class="label text-sm mb-2 block">Role</label>
 
             <div class="control">
-                <select id="role" id="grid-state" name="role" value="{{ old('role') }}" required autofocus>
+                <select id="role" id="grid-state" name="role" value="{{ old('role') }}" required>
                     @foreach ($roles as $value => $role)
                         <option value="{{$value}}" {{ $user->role == $value ? "selected" : "" }}>{{ $role }}</option>
                     @endforeach

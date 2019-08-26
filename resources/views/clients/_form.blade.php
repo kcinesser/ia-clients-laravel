@@ -1,5 +1,5 @@
 <div class="field mb-6">
-    <label for="name" class="label text-sm mb-2 block">Name</label>
+    <label for="name" class="label text-sm mb-2 block">Name <span class="required-text">*</span></label>
 
     <div class="control">
         <input type="text" name="name" value="{{ $client->name }}" required>
@@ -7,11 +7,11 @@
 </div>
 
 <div class="field mb-6">
-    <label for="account_manager_id" class="label text-sm mb-2 block">Account Manager</label>
+    <label for="account_manager_id" class="label text-sm mb-2 block">Account Manager <span class="required-text">*</span></label>
 
     <div class="control">
         <select name="account_manager_id" required>
-            <option>Select Account Manager</option>
+            <option value="">Select Account Manager</option>
             @foreach($account_managers as $account_manager)
                 <option value="{{ $account_manager->id }}" {{ $account_manager->id == $client->account_manager_id ? "selected" : "" }}>{{ $account_manager->name }}</option>
             @endforeach
@@ -44,7 +44,7 @@
 </div>
 
 <div class="field mb-6{{ $errors->has('status') ? ' has-error' : '' }}">
-    <label for="status" class="label text-sm mb-2 block">Status</label>
+    <label for="status" class="label text-sm mb-2 block">Status <span class="required-text">*</span></label>
 
     <div class="control">
         <select id="status" id="grid-state" name="status" value="{{ old('status') }}" required>

@@ -12,7 +12,7 @@
                 <form method="POST" action="/user">
                     @csrf
                     <div class="field mb-6{{ $errors->has('name') ? ' has-error' : '' }}">
-                        <label for="name" class="label text-sm mb-2 block">Name</label>
+                        <label for="name" class="label text-sm mb-2 block">Name <span class="required-text">*</span></label>
 
                         <div class="control">
                             <input type="text" name="name" value="{{ old('name') }}" required>
@@ -26,7 +26,7 @@
                     </div>
 
                     <div class="field mb-6{{ $errors->has('name') ? ' has-error' : '' }}">
-                        <label for="role" class="label text-sm mb-2 block">Role</label>
+                        <label for="role" class="label text-sm mb-2 block">Role <span class="required-text">*</span></label>
 
                         <div class="control">
                             <select id="grid-state" name="role" value="{{ old('role') }}" required>
@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="field mb-6{{ $errors->has('email') ? ' has-error' : '' }}">
-                        <label for="email" class="label text-sm mb-2 block">E-Mail Address</label>
+                        <label for="email" class="label text-sm mb-2 block">E-Mail Address <span class="required-text">*</span></label>
 
                         <div class="control">
                             <input type="email" name="email" value="{{ old('email') }}" required>
@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="field mb-6{{ $errors->has('password') ? ' has-error' : '' }}">
-                        <label for="password" class="label text-sm mb-2 block">Password</label>
+                        <label for="password" class="label text-sm mb-2 block">Password <span class="required-text">*</span></label>
 
                         <div class="control">
                             <input type="password" name="password" required>
@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="field mb-6">
-                        <label for="password-confirm" class="label text-sm mb-2 block">Confirm Password</label>
+                        <label for="password-confirm" class="label text-sm mb-2 block">Confirm Password <span class="required-text">*</span></label>
 
                         <div class="control">
                             <input type="password" name="password_confirmation" required>

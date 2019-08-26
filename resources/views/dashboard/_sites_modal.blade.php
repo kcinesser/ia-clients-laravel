@@ -8,20 +8,28 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div id="site-filter" class="mb-3 flex items-center search-bar">
+                        <div class="control flex items-center">
+                            <p class="mb-0 mr-3">Filter:</p>
+                            <input type="text" data-model="site" placeholder="Search sites...">
+                        </div>
+                    </div>
                     <div class="tab-content settings-tabs" id="settingsTabContent">
                         <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
                             <div class="lg:flex justify-between p-3 sm:hidden hidden lg:block font-semibold text-blue-500">
-                                <div class="lg:w-1/3"><p>Site</p></div>
-                                <div class="lg:w-1/3"><p>Client</p></div>
-                                <div class="lg:w-1/3"><p>Status</p></div>
+                                <div class="lg:w-1/3"><p>Site <button class="sort" data-order="asc" data-sort="name" data-model="site"><i class="fa fa-sort mr-1"></i></button></p></div>
+                                <div class="lg:w-1/3"><p>Client <button class="sort" data-order="asc" data-sort="clientName" data-model="site"><i class="fa fa-sort mr-1"></i></button></p></div>
+                                <div class="lg:w-1/3"><p>Status <button class="sort" data-order="asc" data-sort="status" data-model="site"><i class="fa fa-sort mr-1"></i></button></p></div>
                             </div>
-                            @foreach($sites as $site)
-                                <div class="lg:flex justify-between p-3">
-                                    <div class="lg:w-1/3"><a href="{{ $site->path() }}" class="text-orange-500 no-underline lg:text-sm">{{ $site->name }}</a></div>
-                                    <div class="lg:w-1/3"><p class="text-sm text-gray-500">{{ $site->client->name }}</p></div>
-                                    <div class="lg:w-1/3"><p class="text-sm text-gray-500">{{ \App\Enums\SiteStatus::getDescription($site->status) }}</p></div>
-                                </div>
-                            @endforeach
+                            <div id="site-modal-list">
+                                @foreach($sites as $site)
+                                    <div class="lg:flex justify-between p-3">
+                                        <div class="lg:w-1/3"><a href="{{ $site->path() }}">{{ $site->name }}</a></div>
+                                        <div class="lg:w-1/3"><p>{{ $site->client->name }}</p></div>
+                                        <div class="lg:w-1/3"><p>{{ \App\Enums\SiteStatus::getDescription($site->status) }}</p></div>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
