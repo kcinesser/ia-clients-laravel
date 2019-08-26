@@ -29,7 +29,7 @@
 
                     <form action="{{ $site->path() . '/updates' }}" method="POST" class="flex justify-between">
                         @csrf
-                        <input name="description" class="w-full text-xs" placeholder="Create new update.">
+                        <input name="description" class="w-full text-xs" placeholder="Create new update." required autocomplete="off">
                     </form>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                                     @csrf
                                     <div class="table w-full">
                                         <div class="table-row">
-                                            <div class="table-cell text-sm text-left"><input name="description" placeholder="{{ $license->description }}"></div>
+                                            <div class="table-cell text-sm text-left"><input name="description" placeholder="{{ $license->description }}" required></div>
                                             <div class="table-cell text-sm"><input name="key" placeholder="{{ $license->key }}"></div>
                                             <div class="table-cell text-sm"><input name="url" placeholder="{{ $license->url }}"></div>
                                             <div class="table-cell"><button type="submit" class="text-orange-500 text-sm font-normal">Update</button></div>
@@ -130,6 +130,14 @@
                                 </div>
                             </div>
                         </form>
+
+                            @if ($errors->license_errors->all())
+                                <div class="field mt-6">
+                                    @foreach ($errors->license_errors->all() as $error)
+                                        <li class="text-sm text-red-500">{{ $error }}</li>
+                                    @endforeach
+                                </div>
+                            @endif
                     </div>
                 </div>
 

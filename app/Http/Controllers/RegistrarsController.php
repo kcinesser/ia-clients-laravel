@@ -17,14 +17,8 @@ class RegistrarsController extends Controller
      */
     public function store()
     {
-        $attributes = request()->validate([
-            'name' => 'required',
-            'url' => 'required'
-        ]);
 
-        $attributes = request()->all();
-
-        $registrar = Registrar::create($attributes);
+        Registrar::create($this->validate_data());
 
         return redirect('/settings');
     }
@@ -38,28 +32,38 @@ class RegistrarsController extends Controller
      */
     public function update(Request $request, Registrar $registrar)
     {
-        request()->validate([
-            'name' => 'required',
-            'url' => 'required'
-        ]);
-
-        $attributes = request()->all();
-
-        $registrar->update($attributes);
-
+        $registrar->update($this->validate_data());
         return redirect('/settings');
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Registrar  $registrar
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(Registrar $registrar) {
         try{
             $registrar->delete();
         }
         catch(\Exception $e){
-           if($e->getCode() == 23503){
-               return back()->withErrors(['InUse' => 'Unable to delete registrar. Remove from domains first.']);
-           }
+            if($e->getCode() == 23503){
+                return back()->withErrors(['InUse' => 'Unable to delete registrar. Remove from domains first.']);
+            }
         }
 
         return redirect('/settings');
     }
+
+    /**
+     * Validate form data
+     */
+    private function validate_data(){
+        return request()->validate([
+            'name' => 'required',
+            'description' => 'nullable',
+            'url' => 'required|url'
+        ]);
+    }
+
 }

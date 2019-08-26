@@ -13,6 +13,7 @@ final class Technologies extends Enum
     const HTML = 4;
     const Drupal = 5;
     const PHP = 6;
+    const Other = 7;
 
     public static function getDescription($value): string {
 	    switch ($value) {

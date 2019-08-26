@@ -22,25 +22,35 @@ const app = new Vue({
 });
  */
 
+
+//import jquery ui datepicker
+import 'jquery-ui/ui/widgets/datepicker.js';
+
  $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
 
+
 //show/hide services list
 $('.edit-services').click(function(e){
-  e.preventDefault();
-  $('.services-form').slideToggle();
+	e.preventDefault();
+	$('.services-form').slideToggle();
 });
+
+
+//date picker
+$('.date-field').datepicker();
 
 //confirm delete
 $('.delete-form').submit(function(e){
-  e.preventDefault();
-  if( confirm('You sure you want to delete?') ){
-      this.submit();
-  }
+	e.preventDefault();
+	if( confirm('You sure you want to delete?') ){
+	  this.submit();
+	}
 });
+
 
 $('#editDomainModal').on('show.bs.modal', function (event) {
 	var button = $(event.relatedTarget) // Button that triggered the modal
