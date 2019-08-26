@@ -43,6 +43,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/software_license/{model}/{id}', 'SoftwareLicensesController@store')->where('model', ('job|site'));
     Route::patch('/software_license/{software_license}', 'SoftwareLicensesController@update');
     Route::delete('/software_license/{software_license}', 'SoftwareLicensesController@destroy');
+    Route::post('/upload/{model}/{id}', 'UploadsController@store');
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/settings', 'SettingsController@index');

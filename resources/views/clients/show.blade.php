@@ -68,6 +68,19 @@
                 </div>
 
                 <div class="mb-8">
+                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-file-o mr-1"></i> Files</h2>
+
+                    <form method="post" action="/upload/client/{{ $client->id }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="control" >
+                            <input type="file" name="file" class="mb-3">
+                        </div>
+
+                        <button type="submit" class="button btn-primary">Submit</button>
+                    </form>
+                </div>
+
+                <div class="mb-8">
                     <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-pencil-square-o mr-1"></i> Notes</h2>
 
                     <form method="POST" action="{{ $client->path() . '/notes' }}">

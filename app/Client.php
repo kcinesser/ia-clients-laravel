@@ -66,6 +66,10 @@ class Client extends Model
         return $this->morphMany(Comment::class, 'commentable');
     }
 
+    public function uploads() {
+        return $this->morphMany(Upload::class, 'uploadable');
+    }
+
     public function accountManager() {
         return $this->belongsTo(User::class);
     }
