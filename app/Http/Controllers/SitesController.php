@@ -110,8 +110,8 @@ class SitesController extends Controller
     private function validate_data(){
         return request()->validate([
             'name' => 'required',
-            'URL' => 'required',
-            'registrar' => 'required|numeric',
+            'URL' => 'required|sometimes',
+            'registrar' => 'required|numeric|sometimes',
             'exp_date' => 'nullable|date',
             'description' => 'nullable',
             'status' => 'required|numeric',
