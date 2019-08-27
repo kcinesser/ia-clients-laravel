@@ -45,11 +45,16 @@ class ClientsController extends Controller
     }
 
     public function update(Client $client) {
-
         $attributes = $this->validate_data();
         $client->update($attributes);
 
         return redirect($client->path());
+    }
+
+    public function destroy (Client $client) {
+        $client->delete();
+
+        return redirect('/');
     }
 
     public function notes(Client $client) {
@@ -65,11 +70,12 @@ class ClientsController extends Controller
 
     private function validate_data() {
         return request()->validate([
-            'name' => 'required',
+            'name' => 'required|sometimes',
             'contact_name' => 'nullable',
             'contact_email' => 'nullable',
             'contact_phone' => 'nullable',
-            'account_manager_id' => 'required|numeric'
+            'account_manager_id' => 'required|numeric|sometimes',
+            'status' => 'numeric|sometimes'
         ]);
     }
 
@@ -83,6 +89,18 @@ class ClientsController extends Controller
         $client->update([
             'status' => 3
         ]);
+
+        foreach($client->sites as $site) {
+            $site->update([
+                'status' => 4
+            ]);
+        }
+
+        foreach($client->jobs as $job) {
+            $job->update([
+                'status' => 3
+            ]);
+        }
 
         return redirect('/');
     }

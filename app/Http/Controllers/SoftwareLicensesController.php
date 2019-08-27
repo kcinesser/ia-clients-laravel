@@ -28,6 +28,7 @@ class SoftwareLicensesController extends Controller
         $license->description = $data['description'];
         $license->key = $data['key'];
         $license->url = $data['url'];
+        $license->exp_date = $data['exp_date'];
         $license->licenseable_type = 'App\\' . ucfirst($model);
         $license->licenseable_id = $id;
 
@@ -39,6 +40,7 @@ class SoftwareLicensesController extends Controller
 
     public function update(SoftwareLicense $softwareLicense)
     {
+        dd($softwareLicense);
         $softwareLicense->update($this->validate_data());
         return redirect()->back();
     }
@@ -60,7 +62,8 @@ class SoftwareLicensesController extends Controller
             [
                 'description' => 'required',
                 'key' => 'nullable',
-                'url' => 'nullable|url'
+                'url' => 'nullable|url',
+                'exp_date' => 'date|nullable'
             ]
         );
 

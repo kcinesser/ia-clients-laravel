@@ -16,7 +16,7 @@
                     @include('hosting.form', ['owners' => App\Enums\Owners::toSelectArray()])
 
                     <div class="modal-footer">
-                        <a href="/settings" class="button btn-blue">Cancel</a>
+                        <a href="" class="button btn-blue" data-dismiss="modal">Cancel</a>
                         <button type="submit" class="button is-link mr-2">Save Changes</button>
                     </div>
 

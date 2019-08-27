@@ -47,8 +47,9 @@ class SitesController extends Controller
     public function show(Client $client, Site $site)
     {
         $services = Service::all();
+        $jobs = $site->jobs->whereNotIn('status', 3);
 
-        return view('sites.show' , compact('client', 'site', 'services'));
+        return view('sites.show' , compact('client', 'site', 'services', 'jobs'));
     }
 
     /**
@@ -71,6 +72,12 @@ class SitesController extends Controller
         $site->update($attributes);
 
         return redirect($site->path());
+    }
+
+    public function destroy(Client $client, Site $site) {
+        $site->delete();
+
+        return redirect($client->path());
     }
 
 
@@ -109,17 +116,23 @@ class SitesController extends Controller
      */
     private function validate_data(){
         return request()->validate([
-            'name' => 'required',
+            'name' => 'required|sometimes',
             'URL' => 'required|sometimes',
             'registrar' => 'required|numeric|sometimes',
             'exp_date' => 'nullable|date',
             'description' => 'nullable',
-            'status' => 'required|numeric',
-            'technology' => 'required|numeric',
-            'host_id' => 'required|numeric',
+            'status' => 'required|numeric|sometimes',
+            'technology' => 'required|numeric|sometimes',
+            'host_id' => 'required|numeric|sometimes',
             'services' => 'nullable|array',
             'services.*' => 'numeric',
         ]);
+    }
+
+    public function all_archives() {
+        $archive_sites = Site::all()->where('status', 4);
+
+        return view('sites.all_archive', compact('archive_sites'));
     }
 
     public function archives(Client $client) {

@@ -44,7 +44,7 @@
 							<div class="lg:w-1/4"><p>{{ $user->name }}</p></div>
 							<div class="lg:w-1/4"><p>{{ $user->email }}</p></div>
 							<div class="lg:w-1/4"><p>{{ App\Enums\UserTypes::getDescription($user->role) }}</p></div>
-							<div class="lg:w-1/8">
+							<div class="lg:w-1/8 ">
 								<a href="" class="button btn-add-sm mr-1" data-toggle="modal" data-target="#editUserModal" data-name="{{ $user->name }}" data-id="{{ $user->id }}" data-role="{{ $user->role }}" data-email="{{ $user->email }}"><i class="fa fa-pencil"></i></a>
 								<form method="POST" action="user/{{ $user->id }}" class="delete-form">
 									@method('DELETE')

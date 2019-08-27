@@ -60,9 +60,11 @@ class DomainsController extends Controller
      * @param  \App\Domain  $domain
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Domain $domain)
+    public function destroy(Client $client, Site $site, Domain $domain)
     {
-        //
+        $domain->delete();
+
+        return redirect($site->path());
     }
 
     /**

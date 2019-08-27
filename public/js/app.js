@@ -11627,7 +11627,28 @@ $('.date-field').datepicker();
 //confirm delete
 $('.delete-form').submit(function (e) {
 	e.preventDefault();
-	if (confirm('You sure you want to delete?')) {
+	if (confirm('Are you sure you want to delete? This can\'t be undone.')) {
+		this.submit();
+	}
+});
+
+$('.archive-client-form').submit(function (e) {
+	e.preventDefault();
+	if (confirm('Are you sure you want to archive this client? This will also archive any sites and job associated with this client.')) {
+		this.submit();
+	}
+});
+
+$('.archive-site-form').submit(function (e) {
+	e.preventDefault();
+	if (confirm('Are you sure you want to archive this site?')) {
+		this.submit();
+	}
+});
+
+$('.archive-job-form').submit(function (e) {
+	e.preventDefault();
+	if (confirm('Are you sure you want to archive this job?')) {
 		this.submit();
 	}
 });

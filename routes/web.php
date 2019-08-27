@@ -29,7 +29,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('services', 'ServicesController');
     Route::resource('hosting', 'HostingController');
 
-    Route::get('/jobs', 'JobsController@index');
+    Route::get('/jobs/archives', 'JobsController@all_archives');
+    Route::get('/sites/archives', 'SitesController@all_archives');
     Route::patch('/clients/{client}/jobs/{job}/notes', 'JobsController@notes');
     Route::patch('/clients/{client}/sites/{site}/notes', 'SitesController@notes');
     Route::patch('/clients/{client}/sites/{site}/services', 'SitesController@services');

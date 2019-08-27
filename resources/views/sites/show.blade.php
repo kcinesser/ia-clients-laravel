@@ -52,14 +52,24 @@
                     <div class="card mb-6">
                     @forelse ($site->domains as $domain)
                         <div class="flex justify-between">
-                            <div>
+                            <div class="w-1/3">
                                 <a class="text-sm" href="{{ $domain->name }}" target="_blank">{{ $domain->name }}</a>
                             </div>
-                            <div class="text-sm">
-                                Exp: {{ \Carbon\Carbon::parse($domain->exp_date)->format('n-j-Y') }}
+                            <div class="w-1/4 text-sm">
+                                @if($domain->exp_date)
+                                    Exp: {{ \Carbon\Carbon::parse($domain->exp_date)->format('n-j-Y') }}
+                                @endif
                             </div>
-                            <div>
-                                <a href="" data-toggle="modal" data-target="#editDomainModal"  data-name="{{ $domain->name }}" data-registrar="{{ $domain->registrar->id }}" data-exp="{{ $domain->exp_date }}" data-path="{{ $domain->path() }}"><i class="fa fa-pencil"></i></a>
+                            <div class="w-1/4 text-sm">
+                                {{ $domain->registrar->name }}
+                            </div>
+                            <div class="w-1/8 flex">
+                                <a  class="mr-3" href="" data-toggle="modal" data-target="#editDomainModal"  data-name="{{ $domain->name }}" data-registrar="{{ $domain->registrar->id }}" data-exp="{{ $domain->exp_date }}" data-path="{{ $domain->path() }}"><i class="fa fa-pencil"></i></a>
+                                <form method="POST" action="{{ $site->path() }}/domains/{{ $domain->id }}" class="delete-form">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="button btn-delete-sm"><i class="fa fa-trash-o"></i></button>
+                                </form>
                             </div>
                         </div>
                     @empty
@@ -76,7 +86,7 @@
                     </div>
 
                     <div class="lg:flex lg:flex-wrap card">
-                        @forelse ($site->jobs as $job)
+                        @forelse ($jobs as $job)
                             <div class="lg:w-full p-2">
                                 <h3><a href="{{ $job->path() }}">{{ $job->title }}</a></h3>
                                 <p class="text-gray-500 text-sm font-normal">{{ \Illuminate\Support\Str::limit($job->description, 30) }}</p>
@@ -86,7 +96,9 @@
                                 <p>No jobs yet.</p>
                             </div>
                         @endforelse
+                        @if($site->hasJobArchive())
                             <a href="{{ $client->jobArchivePath() }}" class="headline-lead text-xs no-underline text-right ml-auto">View Archived Jobs</a>
+                        @endif
                     </div>
                 </div>
                 @endif
@@ -102,9 +114,10 @@
                                     @csrf
                                     <div class="table w-full">
                                         <div class="table-row">
-                                            <div class="table-cell text-sm text-left"><input name="description" placeholder="{{ $license->description }}" required></div>
-                                            <div class="table-cell text-sm"><input name="key" placeholder="{{ $license->key }}"></div>
-                                            <div class="table-cell text-sm"><input name="url" placeholder="{{ $license->url }}"></div>
+                                            <div class="table-cell text-sm text-left"><input name="description" value="{{ $license->description }}" required></div>
+                                            <div class="table-cell text-sm"><input name="key" value="{{ $license->key }}"></div>
+                                            <div class="table-cell text-sm"><input class="date-field" autocomplete="off" name="exp_date" value="{{ $license->exp_date }}"></div>
+                                            <div class="table-cell text-sm"><input name="url" value="{{ $license->url }}"></div>
                                             <div class="table-cell"><button type="submit" class="text-orange-500 text-sm font-normal">Update</button></div>
                                         </div>
                                     </div>
@@ -125,6 +138,7 @@
                                 <div class="table-row">
                                     <div class="table-cell text-sm"><input name="description" placeholder="Description"></div>
                                     <div class="table-cell text-sm"><input name="key" placeholder="Key"></div>
+                                    <div class="table-cell text-sm"><input class="date-field" autocomplete="off" name="exp_date" placeholder="Expiration Date"></div>
                                     <div class="table-cell text-sm"><input name="url" placeholder="URL"></div>
                                     <div class="table-cell"><button type="submit" class="text-orange-500 text-sm font-normal">Save</button></div>
                                 </div>
