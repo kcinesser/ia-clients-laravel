@@ -4,7 +4,7 @@
     <header class="flex items-center mb-3 py-4">
         <div class="w-full">
             <h2 class="text-blue-500"><i class="fa fa-cog mr-1"></i>MMA Updates List</h2>
-            <p class="text-gray-500 text-sm font-normal">For: {{ Carbon\Carbon::now()->format('F, Y') }}</p>
+            <p class="text-gray-500 text-sm font-normal">For: {{ Carbon\Carbon::now()->format('F Y') }}</p>
         </div>
     </header>
 

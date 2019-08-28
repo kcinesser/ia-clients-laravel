@@ -3,7 +3,7 @@
 @section('content')
     <header class="flex items-center mb-3 py-4">
         <div class="flex justify-between w-full items-center">
-            <h2 class="text-blue-500 text-sm font-normal"><i class="fa fa-archive"></i> Archived Sites</h2>
+            <h2 class="text-blue-500"><i class="fa fa-archive"></i> Archived Sites</h2>
             <a href="/" class="button">Back to dashboard</a>
         </div>
     </header>
