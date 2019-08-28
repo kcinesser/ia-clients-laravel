@@ -155,7 +155,7 @@ class RefactorMigration extends Migration
             $table->unsignedInteger('service_id');
             $table->timestamps();
 
-            $table->foreign('site_id')->references('id')->on('sites');
+            $table->foreign('site_id')->references('id')->on('sites')->onDelete('cascade');
             $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
         });
 

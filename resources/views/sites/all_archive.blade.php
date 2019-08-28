@@ -3,12 +3,12 @@
 @section('content')
     <header class="flex items-center mb-3 py-4">
         <div class="flex justify-between w-full items-center">
-            <h2 class="text-gray-500 text-sm font-normal">Archived Sites</h2>
+            <h2 class="text-blue-500 text-sm font-normal"><i class="fa fa-archive"></i> Archived Sites</h2>
             <a href="/" class="button">Back to dashboard</a>
         </div>
     </header>
 
-    <main class="lg:flex lg:flex-wrap -mx-3">
+    <main class="lg:flex lg:flex-wrap">
         @forelse ($archive_sites as $site)
             <div class="lg:w-1/3 px-3 pb-6">
                 <div class="card" style="">

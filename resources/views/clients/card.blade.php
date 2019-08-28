@@ -32,7 +32,7 @@
                 @method('PATCH')
                 @csrf
                 <input type="hidden" name="status" value="1">
-                <button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500"><i class="fa fa-archive mr-1"></i> Restore Job</button>
+                <button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500"><i class="fa fa-archive mr-1"></i> Restore Client</button>
             </form>
             <form class="delete-form" method="POST" action="{{ $client->path() }}">
                 @method('DELETE')

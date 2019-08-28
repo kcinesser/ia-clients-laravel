@@ -82,7 +82,7 @@ class SiteTableSeeder extends Seeder
         	'client_id' => 4,
         	'name' => 'LRS Healthcare',
         	'technology' => 0,
-        	'status' => 1,
+        	'status' => 4,
             'host_id' => 4,
         ]);
 
@@ -90,7 +90,7 @@ class SiteTableSeeder extends Seeder
         	'client_id' => 4,
         	'name' => 'LRS Healthcare Staging',
         	'technology' => 0,
-        	'status' => 2,
+        	'status' => 4,
             'host_id' => 1,
         ]);
 
@@ -98,7 +98,7 @@ class SiteTableSeeder extends Seeder
         	'client_id' => 4,
         	'name' => 'Travcon Takeover',
         	'technology' => 0,
-        	'status' => 1,
+        	'status' => 4,
             'host_id' => 1,
         ]);
 
@@ -106,7 +106,7 @@ class SiteTableSeeder extends Seeder
         	'client_id' => 5,
         	'name' => 'NU Foundation Development',
         	'technology' => 0,
-        	'status' => 1,
+        	'status' => 4,
             'host_id' => 5,
         ]);
 
