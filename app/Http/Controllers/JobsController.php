@@ -48,7 +48,7 @@ class JobsController extends Controller
     }
 
     public function archives(Client $client) {
-        $archived_jobs = Job::all()->where('status', 3);
+        $archived_jobs = $client->jobs->where('status', 3);
 
         return view('jobs.archive', compact('archived_jobs', 'client'));
     }

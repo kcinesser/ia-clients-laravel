@@ -137,7 +137,7 @@ class SitesController extends Controller
     }
 
     public function archives(Client $client) {
-        $archived_sites = Site::all()->where('status', 4);
+        $archived_sites = $client->sites->where('status', 4);
 
         return view('sites.archive', compact('archived_sites', 'client'));
     }
