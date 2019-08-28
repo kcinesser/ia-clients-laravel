@@ -42,6 +42,6 @@ class UpdatesController extends Controller
      * Validates form data
      */
 	private function validate_data(){
-	    return request()->validate(['description' => 'required']);
+	    return request()->validate(['description' => 'required', 'mma' => 'integer|sometimes']);
     }
 }
