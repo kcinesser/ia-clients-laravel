@@ -110,7 +110,6 @@
                         </div>
                     </div>
 
-
                     <div class="field mb-6">
                         <label for="services" class="label text-sm mb-2 block">Services</label>
                             @foreach(App\Service::all() as $service)

@@ -47,7 +47,7 @@
     <label for="prev_dev" class="label text-sm mb-2 block">Previous Developers</label>
 
     <div class="control">
-        <input type="text" name="prev_dev">
+        <input type="text" name="prev_dev" value="{{ $site->prev_dev }}">
     </div>
 </div>
 
