@@ -40,7 +40,7 @@
                                 <form method="POST" action="{{ $site->path() }}/domains/{{ $domain->id }}" class="delete-form">
                                     @method('DELETE')
                                     @csrf
-                                    <button type="submit" class="button btn-delete-sm"><i class="fa fa-trash-o"></i></button>
+                                    <button type="submit" class="text-red-500 text-sm font-normal"><i class="fa fa-trash"></i></button>
                                 </form>
                             </div>
                         </div>
