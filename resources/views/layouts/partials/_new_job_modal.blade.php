@@ -114,7 +114,7 @@
 
                     <div class="modal-footer">
                         <a href="" class="button btn-blue" data-dismiss="modal">Cancel</a>
-                        <button type="submit" class="button is-link mr-2">Create Job</button>
+                        <button type="submit" class="button is-link">Create Job</button>
                     </div>
 
 

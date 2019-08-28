@@ -9,7 +9,7 @@
 
     <main>
     	<div class="lg:flex">
-    		<div class="lg:w-3/4 pr-6">
+    		<div class="lg:w-3/4 lg:pr-6">
 		   		<h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-users mr-1"></i> Your Clients</h2>
 		   		<div  class="lg:flex lg:flex-wrap card">
 			   		@forelse ($clients as $client)
@@ -22,7 +22,7 @@
 			        	</div>
 			        @endforelse
 		    	</div>
-		    	<div class="text-right">
+		    	<div class="text-right mb-4">
 		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#clientsModal"><i class="fa fa-th-list mr-1"></i> View All Clients</button>
 		    	</div>
 		  		<h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-tasks mr-1"></i> Your Jobs</h2>
@@ -38,7 +38,7 @@
 			        	</div>
 			        @endforelse
 				</div>
-		    	<div class="text-right">
+		    	<div class="text-right mb-4">
 		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#jobsModal"><i class="fa fa-th-list mr-1"></i> View All Jobs</button>
 		    	</div>
 
@@ -55,11 +55,11 @@
 			        	</div>
 			        @endforelse
 				</div>
-		    	<div class="text-right">
+		    	<div class="text-right mb-4">
 		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#sitesModal"><i class="fa fa-th-list mr-1"></i> View All Sites</button>
 		    	</div>
 			</div>
-			<div class="lg:w-1/4 pl-6">
+			<div class="lg:w-1/4 lg:pl-6">
 		   		<h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
 				<div class="card constrain-height">
 					@foreach ($activities as $activity)

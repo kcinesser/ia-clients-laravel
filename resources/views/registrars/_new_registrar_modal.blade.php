@@ -37,10 +37,8 @@
 
                     <div class="modal-footer">
                         <a href="" class="button btn-blue" data-dismiss="modal">Cancel</a>
-                        <button type="submit" class="button is-link mr-2">Create Registrar</button>
+                        <button type="submit" class="button is-link">Create Registrar</button>
                     </div>
-
-
 
                     @if ($errors->any())
                         <div class="field mt-6">

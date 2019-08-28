@@ -2135,13 +2135,20 @@ a.ui-button:active,
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 100%;
+  width: 90%;
+  margin: 0 auto;
   pointer-events: auto;
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #F3F2EF;
   border-radius: 0.3rem;
   outline: 0;
+}
+
+@media (min-width: 1000px) {
+  .modal-content {
+    width: 100%;
+  }
 }
 
 .modal-backdrop {
@@ -2206,7 +2213,7 @@ a.ui-button:active,
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  padding: 1rem;
+  padding: 1rem 0;
   border-top: 1px solid #F3F2EF;
 }
 
@@ -2346,7 +2353,7 @@ a.ui-button:active,
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  right: 0;
+  left: 0;
   z-index: 1000;
   display: none;
   float: left;
@@ -2361,6 +2368,11 @@ a.ui-button:active,
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25rem;
+}
+
+.dropdown-menu.right-drop {
+  left: auto;
+  right: 0;
 }
 
 .dropdown-divider {
@@ -3320,7 +3332,7 @@ hr.with-text:after {
   border-radius: 0.5rem;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   font-family: Montserrat, sans-serif;
   color: #4B5783;
 }
@@ -3365,10 +3377,20 @@ p > .fa {
   text-align: center;
 }
 
+@media (max-width: 830px) {
+  .table-row .table-cell {
+    display: block;
+  }
+}
+
 .field label {
   font-size: 0.875rem;
   margin-bottom: 0.5rem;
   display: block;
+}
+
+.field input[type='checkbox'] ~ label {
+  display: inline;
 }
 
 .control input:not([type='checkbox']),
@@ -3400,6 +3422,31 @@ p > .fa {
   border-color: #a0aec0;
 }
 
+select {
+  display: block;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 100%;
+  background-color: #edf2f7;
+  border-width: 1px;
+  border-color: #edf2f7;
+  color: #4a5568;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-right: 2rem;
+  border-radius: 0.25rem;
+  line-height: 1.25;
+}
+
+select:focus {
+  outline: 0;
+  background-color: #fff;
+  border-color: #a0aec0;
+}
+
 #logo {
   height: 50px;
   width: 50px;
@@ -3415,12 +3462,46 @@ p > .fa {
   right: 0;
 }
 
+.settings-tabs .tab-pane {
+  border-top-color: #ddd;
+}
+
 .settings-tabs .tab-pane > div {
   background: #fff;
 }
 
 .settings-tabs .tab-pane > div:nth-child(odd) {
   background: #f1f1f1;
+}
+
+@media (max-width: 830px) {
+  .settings-tabs .edit-buttons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+}
+
+#client-modal-list p,
+#site-modal-list p,
+#job-modal-list p {
+  font-size: 0.875rem;
+  color: #a0aec0;
+}
+
+#client-modal-list a,
+#site-modal-list a,
+#job-modal-list a {
+  color: #F15B39;
+  text-decoration: none;
+}
+
+@media (min-width: 1024px) {
+  #client-modal-list a,
+  #site-modal-list a,
+  #job-modal-list a {
+    font-size: 0.875rem;
+  }
 }
 
 .appearance-none{

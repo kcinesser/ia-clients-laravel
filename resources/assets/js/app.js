@@ -214,19 +214,19 @@ $('.sort').click(function(e) {
 	   			case "client":
 		      	  	$('#client-modal-list').empty()
 				    $.each(data, function(i) {
-				    	$('#client-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/4"><a href="' + data[i].URL + '">' + data[i].name + '</a></div><div class="lg:w-1/4"><p>' + data[i].AM + '</p></div></div>')
+				    	$('#client-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/2"><a href="' + data[i].URL + '" class="text-orange-500 no-underline lg:text-sm">' + data[i].name + '</a></div><div class="lg:w-1/2"><p>' + data[i].AM + '</p></div></div>')
 				    })
 				    break;
 				case "job":
 		      	  	$('#job-modal-list').empty()
 				    $.each(data, function(i) {
-				    	$('#job-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/5"><a href="' + data[i].URL + '">' + data[i].title + '</a></div><div class="lg:w-1/5"><p>' + data[i].clientName + '</p></div><div class="lg:w-1/5"><p>' + data[i].status + '</p></div><div class="lg:w-1/5"><p>' + data[i].developerName + '</p></div></div>')
+				    	$('#job-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/4"><a href="' + data[i].URL + '" class="text-orange-500 no-underline lg:text-sm">' + data[i].title + '</a></div><div class="lg:w-1/4"><p>' + data[i].clientName + '</p></div><div class="lg:w-1/4"><p>' + data[i].status + '</p></div><div class="lg:w-1/4"><p>' + data[i].developerName + '</p></div></div>')
 				    })
 					break;
 				case "site":
 		      	  	$('#site-modal-list').empty()
 				    $.each(data, function(i) {
-				    	$('#site-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/5"><a href="' + data[i].URL + '">' + data[i].name + '</a></div><div class="lg:w-1/5"><p>' + data[i].clientName + '</p></div><div class="lg:w-1/5"><p>' + data[i].status + '</p></div></div>')
+				    	$('#site-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/3"><a href="' + data[i].URL + '" class="text-orange-500 no-underline lg:text-sm">' + data[i].name + '</a></div><div class="lg:w-1/3"><p>' + data[i].clientName + '</p></div><div class="lg:w-1/3"><p>' + data[i].status + '</p></div></div>')
 				    })
 					break;
 			}
@@ -253,10 +253,10 @@ $('.search-bar input').keyup(function(e){
 					$('#site-modal-list').empty()
 
 					if (jQuery.type(data) === "string") {
-						$('#site-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/4">' + data + '</div></div>')
+						$('#site-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/3">' + data + '</div></div>')
 					} else {
 						$.each(data, function(i) {
-							$('#site-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/5"><a href="' + data[i].URL + '">' + data[i].name + '</a></div><div class="lg:w-1/5"><p>' + data[i].client_name + '</p></div><div class="lg:w-1/5"><p>' + data[i].status + '</p></div></div>')
+							$('#site-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/3"><a href="' + data[i].URL + '">' + data[i].name + '</a></div><div class="lg:w-1/3"><p>' + data[i].client_name + '</p></div><div class="lg:w-1/3"><p>' + data[i].status + '</p></div></div>')
 						})
 					}
 					break;
@@ -264,10 +264,10 @@ $('.search-bar input').keyup(function(e){
 		      	  	$('#client-modal-list').empty()
 
 					if (jQuery.type(data) === "string") {
-						$('#client-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/4">' + data + '</div></div>')
+						$('#client-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/2">' + data + '</div></div>')
 					} else {
 						$.each(data, function(i) {
-							$('#client-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/4"><a href="' + data[i].URL + '">' + data[i].name + '</a></div><div class="lg:w-1/4"><p>' + data[i].AM + '</p></div></div>')
+							$('#client-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/2"><a href="' + data[i].URL + '">' + data[i].name + '</a></div><div class="lg:w-1/2"><p>' + data[i].AM + '</p></div></div>')
 						})
 					}
 					break;
@@ -278,7 +278,7 @@ $('.search-bar input').keyup(function(e){
 						$('#job-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/4">' + data + '</div></div>')
 					} else {
 						$.each(data, function(i) {
-							$('#job-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/5"><a href="' + data[i].URL + '">' + data[i].title + '</a></div><div class="lg:w-1/5"><p>' + data[i].client_name + '</p></div><div class="lg:w-1/5"><p>' + data[i].status + '</p></div><div class="lg:w-1/5"><p>' + data[i].developer_name + '</p></div></div>')
+							$('#job-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/4"><a href="' + data[i].URL + '">' + data[i].title + '</a></div><div class="lg:w-1/4"><p>' + data[i].client_name + '</p></div><div class="lg:w-1/4"><p>' + data[i].status + '</p></div><div class="lg:w-1/4"><p>' + data[i].developer_name + '</p></div></div>')
 						})
 					}
 					break;
