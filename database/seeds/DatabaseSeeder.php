@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             HostingTableSeeder::class,
             SiteTableSeeder::class,
             JobTableSeeder::class,
-            DomainTableSeeder::class
+            DomainTableSeeder::class,
+            ServiceSiteSeeder::class
 		]);
     }
 }
