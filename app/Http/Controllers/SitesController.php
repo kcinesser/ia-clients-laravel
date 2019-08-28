@@ -126,6 +126,7 @@ class SitesController extends Controller
             'host_id' => 'required|numeric|sometimes',
             'services' => 'nullable|array',
             'services.*' => 'numeric',
+            'prev_dev' => 'nullable'
         ]);
     }
 

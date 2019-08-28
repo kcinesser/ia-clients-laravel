@@ -16,6 +16,13 @@
         <p class="text-gray-500 text-sm font-normal">{{$site->host->name}} ({{ \App\Enums\Owners::getKey($site->host->owner) }})</p>
     </div>
 
+    @if($site->prev_dev)
+    <div class="mb-4">
+        <p class="text-gray-800 text-xs headline-lead">Previous Developers</p>
+        <p class="text-gray-500 text-sm font-normal">{{$site->prev_dev}}</p>
+    </div>
+    @endif
+
     <div class="mb-4">
         <p class="text-gray-800 text-xs headline-lead">Services</p>
 

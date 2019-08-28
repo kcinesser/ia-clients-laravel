@@ -40,8 +40,8 @@ class SoftwareLicensesController extends Controller
 
     public function update(SoftwareLicense $softwareLicense)
     {
-        dd($softwareLicense);
-        $softwareLicense->update($this->validate_data());
+        $attributes = $this->validate_data()->valid();
+        $softwareLicense->update($attributes);
         return redirect()->back();
     }
 
