@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('clients.sites', 'SitesController');
     Route::resource('clients.sites.domains', 'DomainsController');
     Route::resource('clients.sites.updates', 'UpdatesController');
+    Route::post('clients/{client}/sites/{site}/mma-update', 'UpdatesController@mma');
     Route::resource('services', 'ServicesController');
     Route::resource('hosting', 'HostingController');
 
@@ -47,6 +48,7 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/settings', 'SettingsController@index');
+    Route::get('/mma', 'SitesController@mma');
 
     Route::resource('user', 'UserController')->only(['create', 'store', 'edit', 'update', 'destroy']);
 

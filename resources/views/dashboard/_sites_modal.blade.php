@@ -8,11 +8,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div id="site-filter" class="mb-3 flex items-center search-bar">
+                    <div id="site-filter" class="mb-3 flex items-center search-bar justify-between">
                         <div class="control flex items-center">
                             <p class="mb-0 mr-3">Filter:</p>
                             <input type="text" data-model="site" placeholder="Search sites...">
                         </div>
+                        <a href="/mma" class="button btn-primary">View MMA Clients</a>
                     </div>
                     <div class="tab-content settings-tabs" id="settingsTabContent">
                         <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Client;
 use App\Site;
 use App\Update;
+use Carbon;
 use Auth;
 
 class UpdatesController extends Controller
@@ -18,6 +19,19 @@ class UpdatesController extends Controller
 
     	return redirect($site->path());
 	}
+
+    public function mma(Client $client, Site $site) {
+        $attributes = $this->validate_data();
+        $attributes['user_id'] = Auth::id();
+
+        $site->updates()->create($attributes);
+
+        $site->update([
+            'mma_update' => Carbon\Carbon::now()
+        ]);
+
+        return redirect('/mma');
+    }
 
 	public function update(Client $client, Site $site, Update $update) {
         $update->update($this->validate_data());

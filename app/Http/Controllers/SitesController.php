@@ -149,4 +149,11 @@ class SitesController extends Controller
 
         return redirect($client->path());
     }
+
+    public function mma() {
+        $mma_sites = Service::with('sites')->where('id', 1)->get()->pluck('sites')->flatten();
+        $mma_internal_sites = Service::with('sites')->where('id', 5)->get()->pluck('sites')->flatten();
+
+        return view('mma.index', compact('mma_sites', 'mma_internal_sites'));
+    }
 }
