@@ -44,6 +44,14 @@
 </div>
 
 <div class="field mb-6">
+    <label for="prev_dev" class="label text-sm mb-2 block">Previous Developers</label>
+
+    <div class="control">
+        <input type="text" name="prev_dev" value="{{ $site->prev_dev }}">
+    </div>
+</div>
+
+<div class="field mb-6">
     <label for="services" class="label text-sm mb-2 block">Services</label>
     @include('services.form')
 </div>

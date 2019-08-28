@@ -64,7 +64,7 @@
                         <label for="description" class="label text-sm mb-2 block">Description</label>
 
                         <div class="control">
-                            <input type="text" name="description" ></textarea>
+                            <input type="text" name="description" >
                         </div>
                     </div>
 
@@ -100,6 +100,14 @@
                                 <option value="{{$host->id}}">{{$host->name}} ({{\App\Enums\Owners::getKey($host->owner)}})</option>
                             @endforeach
                         </select>
+                    </div>
+
+                    <div class="field mb-6">
+                        <label for="prev_dev" class="label text-sm mb-2 block">Previous Developers</label>
+                        
+                        <div class="control">
+                            <input type="text" name="prev_dev">
+                        </div>
                     </div>
 
                     <div class="field mb-6">

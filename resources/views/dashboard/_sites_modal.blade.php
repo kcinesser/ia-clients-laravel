@@ -8,11 +8,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div id="site-filter" class="mb-3 flex items-center search-bar">
+                    <div id="site-filter" class="mb-3 flex items-center search-bar justify-between">
                         <div class="control flex items-center">
                             <p class="mb-0 mr-3">Filter:</p>
                             <input type="text" data-model="site" placeholder="Search sites...">
                         </div>
+                        <a href="/mma" class="button btn-primary">View MMA Sites</a>
                     </div>
                     <div class="tab-content settings-tabs" id="settingsTabContent">
                         <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
@@ -31,6 +32,9 @@
                                 @endforeach
                             </div>
                         </div>
+                    </div>
+                    <div class="text-right mt-3">
+                        <a href="/sites/archives" class="headline-lead text-xs text-gray-500 hover:text-orange-500 no-underline"><i class="fa fa-archive mr-1"></i> View archived sites</a>
                     </div>
                     <div class="modal-footer">
                         <a href="" class="button btn-blue" data-dismiss="modal">Close</a>

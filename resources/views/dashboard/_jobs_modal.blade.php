@@ -34,6 +34,9 @@
                             </div>
                         </div>
                     </div>
+                    <div class="text-right mt-3">
+                        <a href="/jobs/archives" class="headline-lead text-xs text-gray-500 hover:text-orange-500 no-underline"><i class="fa fa-archive mr-1"></i> View archived jobs</a>
+                    </div>
                     <div class="modal-footer">
                         <a href="" class="button btn-blue" data-dismiss="modal">Close</a>
                     </div>

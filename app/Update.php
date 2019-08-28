@@ -17,6 +17,6 @@ class Update extends Model
     }
 
     public function path() {
-    	return "/clients/{$this->site->client->id}/jobs/{$this->site->id}/updates/{$this->id}";
+    	return "/clients/{$this->site->client->id}/sites/{$this->site->id}/updates/{$this->id}";
     }
 }

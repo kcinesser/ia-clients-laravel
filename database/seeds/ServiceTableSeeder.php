@@ -31,5 +31,10 @@ class ServiceTableSeeder extends Seeder
         	'name' => 'Hosting',
         	'description' => 'Firespring to host client site.',
         ]);
+
+        DB::table('services')->insert([
+            'name' => 'MMA - Internal',
+            'description' => 'Interactive team responsible for basic maintenance of internal Firespring sites, including plugin updates, theme updates, security, and general health of the site. Includes hosting.',
+        ]);
     }
 }

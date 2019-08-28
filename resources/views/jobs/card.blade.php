@@ -32,10 +32,23 @@
     </div>
     <div class="text-right">
         @if ($job->status != 3)
-            <form method="POST" action="{{ $job->path() . '/archive' }}">
-                {{ method_field('PATCH') }}
-                {{ csrf_field() }}
+            <form class="archive-job-form" method="POST" action="{{ $job->path() . '/archive' }}">
+                @method('PATCH')
+                @csrf
                 <button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500"><i class="fa fa-archive mr-1"></i> Archive Job</button>
+            </form>
+        @else
+            <form method="POST" action="{{ $job->path() }}">
+                @method('PATCH')
+                @csrf
+                <input type="hidden" name="status" value="1">
+                <button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500"><i class="fa fa-archive mr-1"></i> Restore Job</button>
+            </form>
+            <form class="delete-form" method="POST" action="{{ $job->path() }}">
+                @method('DELETE')
+                @csrf
+                <input type="hidden" name="status" value="1">
+                <button type="submit" class="headline-lead text-xs text-red-500 hover:text-orange-500"><i class="fa fa-trash mr-1"></i> DELETE PERMANENTLY</button>
             </form>
         @endif
     </div>

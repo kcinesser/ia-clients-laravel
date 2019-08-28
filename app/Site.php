@@ -12,6 +12,16 @@ class Site extends Model
         return "{$this->client->path()}/sites/{$this->id}";
     }
 
+    public function hasJobArchive() {
+        foreach($this->jobs as $job) {
+            if($job->status == 3) {
+                return true;
+            } 
+        }
+
+        return false;
+    }
+
     public function client() {
     	return $this->belongsTo(Client::class);
     }

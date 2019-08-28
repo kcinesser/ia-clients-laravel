@@ -348,6 +348,18 @@ select {
 	}
 }
 
+.mma-list {
+    border: 1px solid #ddd;
+}
+
+.mma-list > div {
+	background: #fff;
+}
+
+.mma-list > div:nth-child(odd) {
+    background: #f1f1f1;
+}
+
 
 
 @tailwind utilities;
