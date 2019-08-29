@@ -1,5 +1,5 @@
 <div class="field mb-6">
-    <label for="title" class="label text-sm mb-2 block">URL</label>
+    <label for="title" class="label text-sm mb-2 block">URL <span class="required-text">*</span></label>
 
     <div class="control">
         <input type="text" name="name" value="" required>
@@ -7,26 +7,28 @@
 </div>
 
 <div class="field mb-6">
-    <label for="exp_date" class="label text-sm mb-2 block">Expiration Date</label>
+    <label for="exp_date" class="label text-sm mb-2 block">Expiration Date </label>
 
     <div class="control">
-        <input type="text" name="exp_date" value="">
+
+        <input type="text" class="date-field" autocomplete="off" name="exp_date" value="">
+
     </div>
 </div>
 
 <div class="field mb-6">
-    <label for="registrar_id" class="label text-sm mb-2 block">Registrar</label>
+    <label for="registrar_id" class="label text-sm mb-2 block">Registrar <span class="required-text">*</span></label>
 
     <select name="registrar_id" id="grid-state">
         @foreach ($registrars as $registrar)
-            <option value="{{ $registrar->id }}">{{ $registrar->name }}</option>
+            <option value="{{ $registrar->id }}" >{{ $registrar->name }}</option>
         @endforeach
     </select>
 </div>
 
 <div class="modal-footer">
     <a href="" class="button btn-blue" data-dismiss="modal">Cancel</a>
-    <button type="submit" class="button is-link mr-2">{{ $buttonText }}</button>
+    <button type="submit" class="button is-link">{{ $buttonText }}</button>
 </div>
 
 @if ($errors->any())

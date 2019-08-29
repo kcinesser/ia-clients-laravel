@@ -20,7 +20,7 @@ class DomainsController extends Controller
      */
     public function store(Client $client, Site $site, DomainAccount $account)
     {
-        $attributes = request()->all();
+        $attributes = $this->validate_data();
 
         $account = DomainAccount::create([
             'url' => 'test',
@@ -49,7 +49,7 @@ class DomainsController extends Controller
      */
     public function update(Client $client, Site $site, Domain $domain)
     {
-        $domain->update(request()->all());
+        $domain->update($this->validate_data());
 
         return redirect($site->path());
     }
@@ -60,8 +60,21 @@ class DomainsController extends Controller
      * @param  \App\Domain  $domain
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Domain $domain)
+    public function destroy(Client $client, Site $site, Domain $domain)
     {
-        //
+        $domain->delete();
+
+        return redirect($site->path());
+    }
+
+    /**
+     * Validates the form data
+     */
+    private function validate_data(){
+        return request()->validate([
+            'name' => 'required',
+            'exp_date' => 'nullable|date',
+            'registrar_id' => 'required'
+        ]);
     }
 }

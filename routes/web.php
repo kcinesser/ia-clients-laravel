@@ -26,10 +26,12 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('clients.sites', 'SitesController');
     Route::resource('clients.sites.domains', 'DomainsController');
     Route::resource('clients.sites.updates', 'UpdatesController');
+    Route::post('clients/{client}/sites/{site}/mma-update', 'UpdatesController@mma');
     Route::resource('services', 'ServicesController');
     Route::resource('hosting', 'HostingController');
 
-    Route::get('/jobs', 'JobsController@index');
+    Route::get('/jobs/archives', 'JobsController@all_archives');
+    Route::get('/sites/archives', 'SitesController@all_archives');
     Route::patch('/clients/{client}/jobs/{job}/notes', 'JobsController@notes');
     Route::patch('/clients/{client}/sites/{site}/notes', 'SitesController@notes');
     Route::patch('/clients/{client}/sites/{site}/services', 'SitesController@services');
@@ -47,12 +49,16 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/settings', 'SettingsController@index');
+    Route::get('/mma', 'SitesController@mma');
 
     Route::resource('user', 'UserController')->only(['create', 'store', 'edit', 'update', 'destroy']);
 
     Route::get('/', 'DashboardController@index');
 
     Route::get('/toolkit', 'ToolkitController@index');
+
+    Route::get('/sort', 'FilterController@sort');
+    Route::get('/filter', 'FilterController@filter');
 
 });
 

@@ -14,7 +14,7 @@
 			    @method('PATCH')
 			    
 				<div class="field mb-6">
-				    <label for="name" class="label text-sm mb-2 block">Name</label>
+				    <label for="name" class="label text-sm mb-2 block">Name <span class="required-text">*</span></label>
 
 				    <div class="control">
 				        <input type="text" name="name" value="" required>
@@ -22,7 +22,7 @@
 				</div>
 
 				<div class="field mb-6">
-				    <label for="description" class="label text-sm mb-2 block">Description</label>
+				    <label for="description" class="label text-sm mb-2 block">Description <span class="required-text">*</span></label>
 
 				    <div class="control">
 				        <textarea name="description" rows="10" required></textarea>
@@ -38,11 +38,9 @@
 				</div>
 
                 <div class="modal-footer">
-			        <a href="/settings" class="button btn-blue">Cancel</a>
-			        <button type="submit" class="button is-link mr-2">Save Service</button>
+                    <a href="" class="button btn-blue" data-dismiss="modal">Cancel</a>
+			        <button type="submit" class="button is-link">Save Service</button>
 				</div>
-
-
 
 				@if ($errors->any())
 				    <div class="field mt-6">

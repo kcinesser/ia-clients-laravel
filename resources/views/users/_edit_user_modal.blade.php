@@ -13,7 +13,7 @@
                     @csrf
                     @method('PATCH')
                     <div class="field mb-6{{ $errors->has('name') ? ' has-error' : '' }}">
-                        <label for="name" class="label text-sm mb-2 block">Name</label>
+                        <label for="name" class="label text-sm mb-2 block">Name <span class="required-text">*</span></label>
 
                         <div class="control">
                             <input id="name" type="text" name="name" value="{{ old('name') }}" required>
@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="field mb-6{{ $errors->has('name') ? ' has-error' : '' }}">
-                        <label for="role" class="label text-sm mb-2 block">Role</label>
+                        <label for="role" class="label text-sm mb-2 block">Role <span class="required-text">*</span></label>
 
                         <div class="control">
                             <select id="role" id="grid-state" name="role" value="{{ old('role') }}" required>
@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="field mb-6{{ $errors->has('email') ? ' has-error' : '' }}">
-                        <label for="email" class="label text-sm mb-2 block">E-Mail Address</label>
+                        <label for="email" class="label text-sm mb-2 block">E-Mail Address <span class="required-text">*</span></label>
 
                         <div class="control">
                             <input id="email" type="email" name="email" value="{{ old('email') }}" required>
@@ -60,7 +60,7 @@
 
                     <div class="modal-footer">
                         <a href="" class="button btn-blue" data-dismiss="modal">Cancel</a>
-                        <button type="submit" class="button is-link mr-2">Save User</button>
+                        <button type="submit" class="button is-link">Save User</button>
                     </div>
                 </form>
             </div>

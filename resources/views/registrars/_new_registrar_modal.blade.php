@@ -12,7 +12,7 @@
                 <form method="POST" action="/registrars">
                     @csrf
                     <div class="field mb-6">
-                        <label for="name" class="label text-sm mb-2 block">Name</label>
+                        <label for="name" class="label text-sm mb-2 block">Name <span class="required-text">*</span></label>
 
                         <div class="control">
                             <input type="text" name="name" required>
@@ -20,7 +20,7 @@
                     </div>
 
                     <div class="field mb-6">
-                        <label for="url" class="label text-sm mb-2 block">URL</label>
+                        <label for="url" class="label text-sm mb-2 block">URL <span class="required-text">*</span></label>
 
                         <div class="control">
                             <input type="text" name="url" required>
@@ -36,11 +36,9 @@
                     </div>
 
                     <div class="modal-footer">
-                        <a href="/registrars" class="button btn-blue">Cancel</a>
-                        <button type="submit" class="button is-link mr-2">Create Registrar</button>
+                        <a href="" class="button btn-blue" data-dismiss="modal">Cancel</a>
+                        <button type="submit" class="button is-link">Create Registrar</button>
                     </div>
-
-
 
                     @if ($errors->any())
                         <div class="field mt-6">

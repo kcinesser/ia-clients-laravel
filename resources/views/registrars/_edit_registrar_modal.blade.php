@@ -13,7 +13,7 @@
                     @csrf
                     @method('PATCH')
                     <div class="field mb-6">
-                        <label for="name" class="label text-sm mb-2 block">Name</label>
+                        <label for="name" class="label text-sm mb-2 block">Name <span class="required-text">*</span></label>
 
                         <div class="control">
                             <input type="text" name="name" value="" required>
@@ -21,7 +21,7 @@
                     </div>
 
                     <div class="field mb-6">
-                        <label for="url" class="label text-sm mb-2 block">URL</label>
+                        <label for="url" class="label text-sm mb-2 block">URL <span class="required-text">*</span></label>
 
                         <div class="control">
                             <input type="text" name="url" value="" required>
@@ -37,8 +37,8 @@
                     </div>
 
                     <div class="modal-footer">
-                        <a href="/settings" class="button btn-blue">Cancel</a>
-                        <button type="submit" class="button is-link mr-2">Update Registrar</button>
+                        <a href="" class="button btn-blue" data-dismiss="modal">Cancel</a>
+                        <button type="submit" class="button is-link">Update Registrar</button>
                     </div>
 
 

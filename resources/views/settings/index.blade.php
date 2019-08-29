@@ -40,11 +40,11 @@
 						<div class="lg:w-1/8"><i class="fa fa-search mr-1"></i></div>
 					</div>
 					@foreach($users as $user)
-						<div class="lg:flex justify-between p-3">
-							<div class="lg:w-1/4"><p>{{ $user->name }}</p></div>
-							<div class="lg:w-1/4"><p>{{ $user->email }}</p></div>
-							<div class="lg:w-1/4"><p>{{ App\Enums\UserTypes::getDescription($user->role) }}</p></div>
-							<div class="lg:w-1/8">
+						<div class="lg:flex justify-between items-center px-3 py-6 relative">
+							<div class="lg:w-1/4"><p class="text-sm">{{ $user->name }}</p></div>
+							<div class="lg:w-1/4"><p class="text-sm">{{ $user->email }}</p></div>
+							<div class="lg:w-1/4"><p class="text-sm">{{ App\Enums\UserTypes::getDescription($user->role) }}</p></div>
+							<div class="lg:w-1/8 edit-buttons flex items-end">
 								<a href="" class="button btn-add-sm mr-1" data-toggle="modal" data-target="#editUserModal" data-name="{{ $user->name }}" data-id="{{ $user->id }}" data-role="{{ $user->role }}" data-email="{{ $user->email }}"><i class="fa fa-pencil"></i></a>
 								<form method="POST" action="user/{{ $user->id }}" class="delete-form">
 									@method('DELETE')
@@ -64,12 +64,12 @@
 						<div class="lg:w-1/8"><i class="fa fa-search mr-1"></i></div>
 					</div>
 					@foreach($registrars as $registrar)
-						<div class="lg:flex justify-between p-3">
-							<div class="lg:w-1/4">{{ $registrar->name }}</div>
-							<div class="lg:w-1/4">{{ App\Enums\Owners::getDescription($registrar->owner) }}</div>
-							<div class="lg:w-1/4">{{ $registrar->url }}</div>
-							<div class="lg:w-1/8">
-								<a href="" class="button btn-add-sm" data-toggle="modal" data-target="#editRegistrarModal" data-name="{{ $registrar->name }}" data-url="{{ $registrar->url }}" data-description="{{ $registrar->description }}" data-id="{{ $registrar->id }}"><i class="fa fa-pencil"></i></a>
+						<div class="lg:flex justify-between items-center px-3 py-6 relative">
+							<div class="lg:w-1/4"><p class="text-sm">{{ $registrar->name }}</p></div>
+							<div class="lg:w-1/4"><p class="text-sm">{{ App\Enums\Owners::getDescription($registrar->owner) }}</p></div>
+							<div class="lg:w-1/4"><p class="text-sm">{{ $registrar->url }}</p></div>
+							<div class="lg:w-1/8 edit-buttons flex items-end">
+								<a href="" class="button btn-add-sm mr-1" data-toggle="modal" data-target="#editRegistrarModal" data-name="{{ $registrar->name }}" data-url="{{ $registrar->url }}" data-description="{{ $registrar->description }}" data-id="{{ $registrar->id }}"><i class="fa fa-pencil"></i></a>
 								<form method="POST" action="registrars/{{ $registrar->id }}" class="delete-form">
 									@method('DELETE')
 									@csrf
@@ -88,16 +88,16 @@
 						<div class="lg:w-1/8"><i class="fa fa-search mr-1"></i></div>
 					</div>
 					@foreach($services as $service)
-						<div class="lg:flex justify-between p-3">
-							<div class="lg:w-1/6">{{ $service->name }}</div>
-							<div class="lg:w-1/2">{{ $service->description }}</div>
+						<div class="lg:flex justify-between items-center px-3 py-6 relative">
+							<div class="lg:w-1/6"><p class="text-sm">{{ $service->name }}</p></div>
+							<div class="lg:w-1/2"><p class="text-sm">{{ $service->description }}</p></div>
 							<div class="lg:w-1/6">
 								@if(isset($service->price))
-									${{ $service->priceFormat() }}
+									<p class="text-sm">${{ $service->priceFormat() }}</p>
 								@endif
 							</div>
-							<div class="lg:w-1/8">
-								<a href="" class="button btn-add-sm" data-toggle="modal" data-target="#editServiceModal" data-name="{{ $service->name }}" data-description="{{ $service->description }}" data-price="{{ $service->price }}" data-id="{{ $service->id }}"><i class="fa fa-pencil"></i></a>
+							<div class="lg:w-1/8 edit-buttons flex items-end">
+								<a href="" class="button btn-add-sm mr-1" data-toggle="modal" data-target="#editServiceModal" data-name="{{ $service->name }}" data-description="{{ $service->description }}" data-price="{{ $service->price }}" data-id="{{ $service->id }}"><i class="fa fa-pencil"></i></a>
 								<form method="POST" action="services/{{ $service->id }}" class="delete-form">
 									@method('DELETE')
 									@csrf
@@ -114,11 +114,11 @@
 						<div class="lg:w-1/8"><i class="fa fa-search mr-1"></i></div>
 					</div>
 					@foreach($hosting as $host)
-						<div class="lg:flex justify-between p-3">
-							<div class="lg:w-1/6">{{ $host->name }} ({{\App\Enums\Owners::getKey($host->owner)}})</div>
-							<div class="lg:w-1/2">{{ $host->details }}</div>
-							<div class="lg:w-1/8">
-								<a href="" class="button btn-add-sm" data-toggle="modal" data-target="#editHostModal" data-name="{{ $host->name }}" data-details="{{ $host->details }}" data-owner="{{ $host->owner }}" data-id="{{ $host->id }}"><i class="fa fa-pencil"></i></a>
+						<div class="lg:flex justify-between items-center px-3 py-6 relative">
+							<div class="lg:w-1/6"><p class="text-sm">{{ $host->name }} ({{\App\Enums\Owners::getKey($host->owner)}})</p></div>
+							<div class="lg:w-1/2"><p class="text-sm">{{ $host->details }}</p></div>
+							<div class="lg:w-1/8 edit-buttons flex items-end">
+								<a href="" class="button btn-add-sm mr-1" data-toggle="modal" data-target="#editHostModal" data-name="{{ $host->name }}" data-details="{{ $host->details }}" data-owner="{{ $host->owner }}" data-id="{{ $host->id }}"><i class="fa fa-pencil"></i></a>
 								<form method="POST" action="hosting/{{ $host->id }}" class="delete-form">
 									@method('DELETE')
 									@csrf

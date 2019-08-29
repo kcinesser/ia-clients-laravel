@@ -3,47 +3,9 @@
 @section('content')
     <header class="flex items-center mb-3 py-4"></header>
 
-    <main>
-    	<div class="lg:flex -mx-3">
-    		<div class="lg:w-1/4 px-3">
- 				@include ('jobs.card')
-
-                <div class="mb-8">            
-                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-list-ol mr-1"></i> Tasks</h2>
-                    <div class="card">
-
-                    @foreach ($job->tasks as $task)
-                        <form method="POST" action="{{ $task->path() }}">
-                            {{ method_field('PATCH') }}
-                            {{ csrf_field() }}
-
-                            <div class="flex items-center mb-3">
-                                <input class="w-full {{ $task->completed ? 'text-gray-500' : '' }}" name="body" value="{{ $task->body }}">
-                                <input name="completed" type="checkbox" onChange="this.form.submit()" {{ $task->completed ? 'checked' : '' }}>
-                            </div>
-                        </form>
-                    @endforeach
-                        <form action="{{ $job->path() . '/tasks' }}" method="POST">
-                            @csrf
-                            <input name="body" class="w-full" placeholder="Add a task">
-                        </form>
-                    </div>
-                </div>
-
-                <div class="mb-8">
-                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
-                    <div class="card constrain-height">
-                        @foreach ($job->activities as $activity)
-                            <div class="border-b-2 py-6">
-                                <span class="text-xs font-normal">{{ $activity->description }}</span>
-                                <span class="text-gray-500 text-xs font-normal">{{ \Carbon\Carbon::parse($activity->created_at)->format('n/j/Y') }}</span>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-
-    		</div>
-    		<div class="lg:w-3/4 px-3">
+    <main class="jobs-show">
+    	<div class="lg:flex -mx-3 flex-row-reverse">
+            <div class="lg:w-3/4 px-3">
                 <div class="mb-8">
                     <div class="mb-2 flex items-center w-full ">
                         <h2 class="text-blue-500"><i class="fa fa-tasks mr-1"></i> {{ $job->title }}</h2>
@@ -55,8 +17,8 @@
                     <p class="text-gray-500 text-sm font-normal">{{ $job->description }}</p>
                 </div>
 
-    			
-                <div class="mb-8">            
+
+                <div class="mb-8">
                     <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-key mr-1"></i>Licenses</h2>
 
                     <div class="card">
@@ -95,8 +57,14 @@
                                 </div>
                             </div>
                         </form>
+                        @if ($errors->license_errors->all())
+                            <div class="field mt-6">
+                                @foreach ($errors->license_errors->all() as $error)
+                                    <li class="text-sm text-red-500">{{ $error }}</li>
+                                @endforeach
+                            </div>
+                        @endif
                     </div>
-
 
                 </div>
 
@@ -140,11 +108,58 @@
                     @endforeach
                 </div>
 
-			</div>
+            </div>
+    		<div class="lg:w-1/4 px-3">
+                @include ('jobs.card')
+
+                <div class="mb-8">
+                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-list-ol mr-1"></i> Tasks</h2>
+                    <div class="card">
+
+                        @foreach ($job->tasks as $task)
+                            <form method="POST" action="{{ $task->path() }}">
+                                {{ method_field('PATCH') }}
+                                {{ csrf_field() }}
+
+                                <div class="flex items-center mb-3">
+                                    <input class="w-full {{ $task->completed ? 'text-gray-500' : '' }}" name="body" value="{{ $task->body }}">
+                                    <input name="completed" type="checkbox" onChange="this.form.submit()" {{ $task->completed ? 'checked' : '' }}>
+                                </div>
+                            </form>
+                        @endforeach
+                        <form action="{{ $job->path() . '/tasks' }}" method="POST">
+                            @csrf
+                            <input name="body" class="w-full" placeholder="Add a task">
+                        </form>
+
+
+                        @if ($errors->any())
+                            <div class="field mt-6">
+                                @foreach ($errors->all() as $error)
+                                    <li class="text-sm text-red-500">{{ $error }}</li>
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
+
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
+                    <div class="card constrain-height">
+                        @foreach ($job->activities as $activity)
+                            <div class="border-b-2 py-6">
+                                <span class="text-xs font-normal">{{ $activity->description }}</span>
+                                <span class="text-gray-500 text-xs font-normal">{{ \Carbon\Carbon::parse($activity->created_at)->format('n/j/Y') }}</span>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+    		</div>
     	</div>
 
         @include('jobs._edit_job_modal')
-     
 
     </main>
 

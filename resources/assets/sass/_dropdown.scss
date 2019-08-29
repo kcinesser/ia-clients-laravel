@@ -9,7 +9,7 @@
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  right: 0;
+  left: 0;
   z-index: $zindex-dropdown;
   display: none; // none by default, but block on "open" of the menu
   float: left;
@@ -24,6 +24,11 @@
   background-clip: padding-box;
   border: $dropdown-border-width solid $dropdown-border-color;
   @include border-radius($dropdown-border-radius);
+
+  &.right-drop {
+    left: auto;
+    right: 0;
+  }
 }
 
 

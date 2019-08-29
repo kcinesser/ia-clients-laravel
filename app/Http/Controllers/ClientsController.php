@@ -30,11 +30,7 @@ class ClientsController extends Controller
 
     public function store() {
 
-	  	$attributes = request()->validate([
-            'name' => 'required', 
-        ]);
-
-        $attributes = request()->all();
+	  	$attributes = $this->validate_data();
 
         $client = Client::create($attributes);
 
@@ -49,22 +45,38 @@ class ClientsController extends Controller
     }
 
     public function update(Client $client) {
-        $attributes = request()->validate([
-            'name' => 'sometimes', 
-        ]);
-        $attributes = request()->all();
-
+        $attributes = $this->validate_data();
         $client->update($attributes);
 
         return redirect($client->path());
     }
 
-    public function notes(Client $client) {
-        $attributes = request()->all();
+    public function destroy (Client $client) {
+        $client->delete();
 
-        $client->update($attributes);
+        return redirect('/');
+    }
+
+    public function notes(Client $client) {
+        $client->update(
+            request()->validate([
+                'notes' => 'nullable'
+            ])
+        );
 
         return redirect($client->path());
+    }
+
+
+    private function validate_data() {
+        return request()->validate([
+            'name' => 'required|sometimes',
+            'contact_name' => 'nullable',
+            'contact_email' => 'nullable',
+            'contact_phone' => 'nullable',
+            'account_manager_id' => 'required|numeric|sometimes',
+            'status' => 'numeric|sometimes'
+        ]);
     }
 
     public function archives() {
@@ -77,6 +89,18 @@ class ClientsController extends Controller
         $client->update([
             'status' => 3
         ]);
+
+        foreach($client->sites as $site) {
+            $site->update([
+                'status' => 4
+            ]);
+        }
+
+        foreach($client->jobs as $job) {
+            $job->update([
+                'status' => 3
+            ]);
+        }
 
         return redirect('/');
     }

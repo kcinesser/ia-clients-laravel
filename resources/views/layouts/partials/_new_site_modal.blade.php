@@ -64,7 +64,7 @@
                         <label for="description" class="label text-sm mb-2 block">Description</label>
 
                         <div class="control">
-                            <input type="text" name="description" ></textarea>
+                            <input type="text" name="description" >
                         </div>
                     </div>
 
@@ -103,6 +103,14 @@
                     </div>
 
                     <div class="field mb-6">
+                        <label for="prev_dev" class="label text-sm mb-2 block">Previous Developers</label>
+                        
+                        <div class="control">
+                            <input type="text" name="prev_dev">
+                        </div>
+                    </div>
+
+                    <div class="field mb-6">
                         <label for="services" class="label text-sm mb-2 block">Services</label>
                             @foreach(App\Service::all() as $service)
                                     <div>
@@ -114,7 +122,7 @@
 
                     <div class="modal-footer">
                         <a href="" class="button btn-blue" data-dismiss="modal">Cancel</a>
-                        <button type="submit" class="button is-link mr-2">Create Site</button>
+                        <button type="submit" class="button is-link">Create Site</button>
                     </div>
 
 

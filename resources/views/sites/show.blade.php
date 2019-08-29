@@ -4,36 +4,8 @@
 
     <header class="flex items-center mb-3 py-4"></header>
 
-    <main>
-    	<div class="lg:flex -mx-3">
-    		<div class="lg:w-1/4 px-3">
- 				@include ('sites.card')
-
-                <div class="mb-8">
-                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-cogs mr-1"></i> Update History</h2>
-                    <div class="card">
-                    @foreach ($site->updates->sortByDesc('updated_at') as $update)
-                        <form method="POST" action="{{ $update->path() }}">
-                            @method('PATCH')
-                            @csrf
-
-                            <div class="flex justify-between items-center mb-3">
-                                <p class="mb-0 text-xs mb-0">{{ $update->description }}</p>
-                                <div>
-                                    <span class="text-gray-500 text-xs mr-1">{{ $update->user->initials() }} - </span>
-                                    <span class="text-gray-500 text-xs"> {{ \Carbon\Carbon::parse($update->updated_at)->format('n/j/Y')}}</span>
-                                </div>
-                            </div>
-                        </form>
-                    @endforeach
-
-                    <form action="{{ $site->path() . '/updates' }}" method="POST" class="flex justify-between">
-                        @csrf
-                        <input name="description" class="w-full text-xs" placeholder="Create new update.">
-                    </form>
-                    </div>
-                </div>
-    		</div>
+    <main class="sites-show">
+    	<div class="lg:flex -mx-3 flex-row-reverse">
     		<div class="lg:w-3/4 px-3">
                 <div class="mb-8">
                     <div class="flex items-center w-full mb-2">
@@ -45,21 +17,31 @@
 
 
                 <div class="mb-8">
-                    <div class="lg:flex lg:flex-wrap items-center mb-2">
+                    <div class="flex flex-wrap items-center mb-2">
                         <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-globe mr-1"></i> Domains</h2>
                         <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newDomainModal"><i class="fa fa-plus"></i></a>
                     </div>
                     <div class="card mb-6">
                     @forelse ($site->domains as $domain)
                         <div class="flex justify-between">
-                            <div>
+                            <div class="w-1/3">
                                 <a class="text-sm" href="{{ $domain->name }}" target="_blank">{{ $domain->name }}</a>
                             </div>
-                            <div class="text-sm">
-                                Exp: {{ \Carbon\Carbon::parse($domain->exp_date)->format('n-j-Y') }}
+                            <div class="w-1/4 text-sm">
+                                @if($domain->exp_date)
+                                    Exp: {{ \Carbon\Carbon::parse($domain->exp_date)->format('n-j-Y') }}
+                                @endif
                             </div>
-                            <div>
-                                <a href="" data-toggle="modal" data-target="#editDomainModal"  data-name="{{ $domain->name }}" data-registrar="{{ $domain->registrar->id }}" data-exp="{{ $domain->exp_date }}" data-path="{{ $domain->path() }}"><i class="fa fa-pencil"></i></a>
+                            <div class="w-1/4 text-sm">
+                                {{ $domain->registrar->name }}
+                            </div>
+                            <div class="w-1/8 flex">
+                                <a  class="mr-3" href="" data-toggle="modal" data-target="#editDomainModal"  data-name="{{ $domain->name }}" data-registrar="{{ $domain->registrar->id }}" data-exp="{{ $domain->exp_date }}" data-path="{{ $domain->path() }}"><i class="fa fa-pencil"></i></a>
+                                <form method="POST" action="{{ $site->path() }}/domains/{{ $domain->id }}" class="delete-form">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="text-red-500 text-sm font-normal"><i class="fa fa-trash"></i></button>
+                                </form>
                             </div>
                         </div>
                     @empty
@@ -76,7 +58,7 @@
                     </div>
 
                     <div class="lg:flex lg:flex-wrap card">
-                        @forelse ($site->jobs as $job)
+                        @forelse ($jobs as $job)
                             <div class="lg:w-full p-2">
                                 <h3><a href="{{ $job->path() }}">{{ $job->title }}</a></h3>
                                 <p class="text-gray-500 text-sm font-normal">{{ \Illuminate\Support\Str::limit($job->description, 30) }}</p>
@@ -86,7 +68,9 @@
                                 <p>No jobs yet.</p>
                             </div>
                         @endforelse
+                        @if($site->hasJobArchive())
                             <a href="{{ $client->jobArchivePath() }}" class="headline-lead text-xs no-underline text-right ml-auto">View Archived Jobs</a>
+                        @endif
                     </div>
                 </div>
                 @endif
@@ -102,9 +86,10 @@
                                     @csrf
                                     <div class="table w-full">
                                         <div class="table-row">
-                                            <div class="table-cell text-sm text-left"><input name="description" placeholder="{{ $license->description }}"></div>
-                                            <div class="table-cell text-sm"><input name="key" placeholder="{{ $license->key }}"></div>
-                                            <div class="table-cell text-sm"><input name="url" placeholder="{{ $license->url }}"></div>
+                                            <div class="table-cell text-sm text-left"><input name="description" value="{{ $license->description }}" required></div>
+                                            <div class="table-cell text-sm"><input name="key" value="{{ $license->key }}"></div>
+                                            <div class="table-cell text-sm"><input class="date-field" autocomplete="off" name="exp_date" value="{{ $license->exp_date }}"></div>
+                                            <div class="table-cell text-sm"><input name="url" value="{{ $license->url }}"></div>
                                             <div class="table-cell"><button type="submit" class="text-orange-500 text-sm font-normal">Update</button></div>
                                         </div>
                                     </div>
@@ -125,11 +110,20 @@
                                 <div class="table-row">
                                     <div class="table-cell text-sm"><input name="description" placeholder="Description"></div>
                                     <div class="table-cell text-sm"><input name="key" placeholder="Key"></div>
+                                    <div class="table-cell text-sm"><input class="date-field" autocomplete="off" name="exp_date" placeholder="Expiration Date"></div>
                                     <div class="table-cell text-sm"><input name="url" placeholder="URL"></div>
                                     <div class="table-cell"><button type="submit" class="text-orange-500 text-sm font-normal">Save</button></div>
                                 </div>
                             </div>
                         </form>
+
+                            @if ($errors->license_errors->all())
+                                <div class="field mt-6">
+                                    @foreach ($errors->license_errors->all() as $error)
+                                        <li class="text-sm text-red-500">{{ $error }}</li>
+                                    @endforeach
+                                </div>
+                            @endif
                     </div>
                 </div>
 
@@ -186,15 +180,39 @@
 
                 </div>
             </div>
+            <div class="lg:w-1/4 px-3">
+                @include ('sites.card')
+
+                <div class="mb-8">
+                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-cogs mr-1"></i> Update History</h2>
+                    <div class="card">
+                        @foreach ($site->updates->sortByDesc('updated_at') as $update)
+                            <form method="POST" action="{{ $update->path() }}">
+                                @method('PATCH')
+                                @csrf
+
+                                <div class="flex justify-between items-center mb-3">
+                                    <p class="mb-0 text-xs mb-0">{{ $update->description }}</p>
+                                    <div>
+                                        <span class="text-gray-500 text-xs mr-1">{{ $update->user->initials() }} - </span>
+                                        <span class="text-gray-500 text-xs"> {{ \Carbon\Carbon::parse($update->updated_at)->format('n/j/Y')}}</span>
+                                    </div>
+                                </div>
+                            </form>
+                        @endforeach
+
+                        <form action="{{ $site->path() . '/updates' }}" method="POST" class="flex justify-between">
+                            @csrf
+                            <input name="description" class="w-full text-xs" placeholder="Create new update." required autocomplete="off">
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
         @include('sites._edit_site_modal')
         @include('domains._new_domain_modal')
         @include('domains._edit_domain_modal')
         @include('jobs._new_job_modal')
-
     </main>
-
-
-
 @endsection

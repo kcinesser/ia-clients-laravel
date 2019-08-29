@@ -47,7 +47,7 @@ class JobTableSeeder extends Seeder
         	'go_live_date' => null,
         	'start_date' => '2019-01-01',
         	'end_date' => null,
-        	'status' => 1
+        	'status' => 3
         ]);
 
         DB::table('jobs')->insert([
@@ -60,7 +60,7 @@ class JobTableSeeder extends Seeder
         	'go_live_date' => null,
         	'start_date' => '2019-01-01',
         	'end_date' => null,
-        	'status' => 1
+        	'status' => 3
         ]);
 
 

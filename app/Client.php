@@ -20,6 +20,26 @@ class Client extends Model
         return "/clients/{$this->id}/sites/archives";
     }
 
+    public function hasSiteArchive() {
+        foreach($this->sites as $site) {
+            if($site->status == 4) {
+                return true;
+            } 
+        }
+
+        return false;
+    }
+
+    public function hasJobArchive() {
+        foreach($this->jobs as $job) {
+            if($job->status == 3) {
+                return true;
+            } 
+        }
+
+        return false;
+    }
+
     public function addJob($attributes) {
     	$job = $this->jobs()->create($attributes);
 
