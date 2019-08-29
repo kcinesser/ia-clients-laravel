@@ -14,7 +14,7 @@
 </div>
 
 <div class="field mb-6">
-    <label for="registrar" class="label text-sm mb-2 block">Where is the site registered? <span class="required-text">*</span></label>
+    <label for="registrar" class="label text-sm mb-2 block">Where is the domain registered? <span class="required-text">*</span></label>
 
     <div class="control">
         <select name="registrar" required>

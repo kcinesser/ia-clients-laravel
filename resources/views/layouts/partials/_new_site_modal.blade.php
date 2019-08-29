@@ -11,7 +11,7 @@
                 <form method="POST" action="">
                     @csrf
                     <div class="field mb-6">
-                        <label for="name" class="label text-sm mb-2 block">Site Name</label>
+                        <label for="name" class="label text-sm mb-2 block">Site Name <span class="required-text">*</span></label>
 
                         <div class="control">
                             <input type="text" name="name" required>
@@ -19,19 +19,19 @@
                     </div>
 
                     <div class="field mb-6">
-                        <label for="url" class="label text-sm mb-2 block">URL (optional)</label>
+                        <label for="url" class="label text-sm mb-2 block">URL <span class="required-text">*</span></label>
 
                         <div class="control">
-                            <input type="text" name="URL">
+                            <input type="text" name="URL" required>
                         </div>
                     </div>
 
                     <div class="field mb-6">
-                        <label for="client" class="label text-sm mb-2 block">Client</label>
+                        <label for="client" class="label text-sm mb-2 block">Client <span class="required-text">*</span></label>
 
                         <div class="control">
-                            <select id="site-client-select" name="client">
-                                    <option>Select Client</option>
+                            <select id="site-client-select" name="client" required>
+                                    <option value="">Select Client</option>
                                     @foreach(App\Client::all()->sortBy('name') as $client)
                                         <option value="{{ $client->id }}">{{ $client->name }}</option>
                                     @endforeach
@@ -40,11 +40,11 @@
                     </div>
 
                     <div class="field mb-6">
-                        <label for="registrar" class="label text-sm mb-2 block">Where is the site registered? (optional)</label>
+                        <label for="registrar" class="label text-sm mb-2 block">Where is the domain registered? <span class="required-text">*</span></label>
 
                         <div class="control">
                             <select name="registrar" required>
-                                    <option>Select Registrar</option>
+                                    <option value="">Select Registrar</option>
                                 @foreach(App\Registrar::all() as $registrar)
                                     <option value="{{ $registrar->id }}">{{ $registrar->name }}</option>
                                 @endforeach
@@ -53,7 +53,7 @@
                     </div>
 
                     <div class="field mb-6">
-                        <label for="exp_date" class="label text-sm mb-2 block">When does the domain expire? (optional)</label>
+                        <label for="exp_date" class="label text-sm mb-2 block">When does the domain expire?</label>
 
                         <div class="control">
                             <input type="text" name="exp_date">
@@ -69,7 +69,7 @@
                     </div>
 
                     <div class="field mb-6">
-                        <label for="status" class="label text-sm mb-2 block">Status</label>
+                        <label for="status" class="label text-sm mb-2 block">Status <span class="required-text">*</span></label>
 
                         <div class="control">
                             <select name="status" required>
@@ -81,7 +81,7 @@
                     </div>
 
                     <div class="field mb-6">
-                        <label for="technology" class="label text-sm mb-2 block">Technology</label>
+                        <label for="technology" class="label text-sm mb-2 block">Technology <span class="required-text">*</span></label>
 
                         <div class="control">
                             <select name="technology" required>
@@ -93,7 +93,7 @@
                     </div>
 
                     <div class="field mb-6">
-                        <label for="services" class="label text-sm mb-2 block">Hosting</label>
+                        <label for="services" class="label text-sm mb-2 block">Hosting <span class="required-text">*</span></label>
 
                         <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="host_id" required>
                             @foreach(App\Hosting::all() as $host)

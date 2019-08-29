@@ -46,11 +46,15 @@
 							<div class="lg:w-1/4"><p class="text-sm">{{ App\Enums\UserTypes::getDescription($user->role) }}</p></div>
 							<div class="lg:w-1/8 edit-buttons flex items-end">
 								<a href="" class="button btn-add-sm mr-1" data-toggle="modal" data-target="#editUserModal" data-name="{{ $user->name }}" data-id="{{ $user->id }}" data-role="{{ $user->role }}" data-email="{{ $user->email }}"><i class="fa fa-pencil"></i></a>
-								<form method="POST" action="user/{{ $user->id }}" class="delete-form">
+								<button type="button" class="button btn-primary" data-toggle="modal" data-target="#userDeleteModel">
+									<i class="fa fa-trash-o"></i>
+								</button>
+								<!--<form method="POST" action="user/{{ $user->id }}" class="delete-form">
 									@method('DELETE')
 									@csrf
+									<input type="hidden" name="new_am" value="12">
 									<button type="submit" class="button btn-delete-sm"><i class="fa fa-trash-o"></i></button>
-								</form>
+								</form>-->
 							</div>
 						</div>
 					@endforeach
@@ -139,7 +143,6 @@
 			</div>
 		</div>
 
-
         @include('users._new_user_modal')
         @include('users._edit_user_modal')
     	@include('registrars._new_registrar_modal')
@@ -148,6 +151,7 @@
     	@include('services._edit_service_modal')
     	@include('hosting._new_host_modal')
     	@include('hosting._edit_host_modal')
+		@include('settings.partials._reassign_am_modal')
 
 	</main>
 

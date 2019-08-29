@@ -52,6 +52,7 @@ class Client extends Model
             'technology' => $attributes['technology'],
             'status' => $attributes['status'],
             'host_id' => $attributes['host_id'],
+            'prev_dev' => $attributes['prev_dev']
         ]);
 
         if ($attributes['URL']) {

@@ -51,6 +51,11 @@ class UserController extends Controller
     }
 
     public function destroy(User $user) {
+	    dd(request()->all());
+        foreach($user->clients as $client) {
+            //$client->update(['account_manager_id' => pass new am id here from form]);
+        }
+
         $user->delete();
 
         return redirect('/settings');
