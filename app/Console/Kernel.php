@@ -4,7 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Models\Cron as Cron;
+use App\Cron as Cron;
 
 class Kernel extends ConsoleKernel
 {
