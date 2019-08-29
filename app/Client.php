@@ -78,6 +78,10 @@ class Client extends Model
         return $this->hasMany(Site::class);
     }
 
+    public function domains() {
+        return $this->hasMany(Domain::class);
+    }
+
     public function jobs() {
     	return $this->hasMany(Job::class);
     }

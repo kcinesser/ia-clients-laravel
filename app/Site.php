@@ -30,6 +30,10 @@ class Site extends Model
         return $this->hasMany(Job::class);
     }
 
+    public function urls() {
+        return $this->hasMany(SiteURL::class);
+    }
+
     public function domains() {
     	return $this->hasMany(Domain::class);
     }
