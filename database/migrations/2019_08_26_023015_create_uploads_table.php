@@ -21,6 +21,7 @@ class CreateUploadsTable extends Migration
             $table->string('name_extension');
             $table->string('extension');
             $table->string('path');
+            $table->string('url');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

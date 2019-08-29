@@ -15,6 +15,33 @@
  				@include ('clients.card')
 
                 <div class="mb-8">
+                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-file-o mr-1"></i> Files</h2>
+
+                    <div class="card constrain-height">
+                            @foreach($client->uploads as $upload)
+                                <div class="mb-3 flex justify-between items-center">
+                                    <a href="{{ $upload->url }}" target="_blank">{{ $upload->name }}</a>
+
+                                    <form method="post" action="/upload/{{ $upload->id}}" >
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"><i class="text-red-500 fa fa-trash"></i></button>
+                                    </form>
+                                </div>
+                            @endforeach
+
+                        <form method="post" action="/upload/client/{{ $client->id }}" enctype="multipart/form-data">
+                            @csrf
+                            <label for="file" class="label text-sm mb-2 block">Upload File</label>
+                            <input type="file" name="file" class="mb-3">
+
+                            <button type="submit" class="button btn-primary">Submit</button>
+                        </form>
+                    </div>
+
+                </div>
+
+                <div class="mb-8">
                     <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
                     <div class="card constrain-height">
                         @foreach ($client->activities as $activity)
@@ -73,19 +100,6 @@
                         @endif
 
                     </div>
-                </div>
-
-                <div class="mb-8">
-                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-file-o mr-1"></i> Files</h2>
-
-                    <form method="post" action="/upload/client/{{ $client->id }}" enctype="multipart/form-data">
-                        @csrf
-                        <div class="control" >
-                            <input type="file" name="file" class="mb-3">
-                        </div>
-
-                        <button type="submit" class="button btn-primary">Submit</button>
-                    </form>
                 </div>
 
                 <div class="mb-8">

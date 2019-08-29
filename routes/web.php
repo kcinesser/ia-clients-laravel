@@ -46,6 +46,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::patch('/software_license/{software_license}', 'SoftwareLicensesController@update');
     Route::delete('/software_license/{software_license}', 'SoftwareLicensesController@destroy');
     Route::post('/upload/{model}/{id}', 'UploadsController@store');
+    Route::delete('/upload/{upload}', 'UploadsController@destroy');
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/settings', 'SettingsController@index');
