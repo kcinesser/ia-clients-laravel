@@ -7,6 +7,16 @@
         <p class="text-gray-500 text-sm font-normal">{{ \App\Enums\SiteStatus::getDescription($site->status) }}</p>
     </div>
     <div class="mb-4">
+        <p class="text-gray-800 text-xs headline-lead">Account Manager</p>
+        <p class="text-gray-500 text-sm font-normal">{{ $client->accountManager->name }}</p>
+    </div>
+    <div class="mb-4">
+        <p class="text-gray-800 text-xs headline-lead">Primary Contact Information</p>
+        <p class="text-gray-500 text-sm font-normal"><i class="fa fa-user mr-3"></i>{{ $client->contact_name }}</p>
+        <p class="text-gray-500 text-sm font-normal"><i class="fa fa-envelope mr-3"></i>{{ $client->contact_email }}</p>
+        <p class="text-gray-500 text-sm font-normal"><i class="fa fa-phone mr-3"></i>{{ $client->contact_phone }}</p>
+    </div>
+    <div class="mb-4">
         <p class="text-gray-800 text-xs headline-lead">Technology/Framework</p>
         <p class="text-gray-500 text-sm font-normal">{{ \App\Enums\Technologies::getDescription($site->technology) }}</p>
     </div>

@@ -11,9 +11,25 @@
         <p class="text-gray-500 text-sm font-normal">{{ $client->accountManager->name }}</p>
     </div>
     <div class="mb-4">
+        <p class="text-gray-800 text-xs headline-lead">Primary Contact Information</p>
+        <p class="text-gray-500 text-sm font-normal"><i class="fa fa-user mr-3"></i>{{ $client->contact_name }}</p>
+        <p class="text-gray-500 text-sm font-normal"><i class="fa fa-envelope mr-3"></i>{{ $client->contact_email }}</p>
+        <p class="text-gray-500 text-sm font-normal"><i class="fa fa-phone mr-3"></i>{{ $client->contact_phone }}</p>
+    </div>
+    <div class="mb-4">
+        <p class="text-gray-800 text-xs headline-lead">Client Since</p>
+        <p class="text-gray-500 text-sm font-normal"> {{ \Carbon\Carbon::parse($client->created_at)->format('n-j-Y')}}</p>
+    </div>
+    <div class="mb-4">
         <p class="text-gray-800 text-xs headline-lead">Primary Developer</p>
         <p class="text-gray-500 text-sm font-normal">{{ !empty($job->developer->name) ? $job->developer->name : 'None' }}</p>
     </div>
+    @if($job->site()->exists())
+        <div class="mb-4">
+            <p class="text-gray-800 text-xs headline-lead">Site</p>
+            <p class="text-gray-500 text-sm font-normal"><a class="text-blue-500 no-underline" href="{{ $job->site->path() }}">{{ $job->site->name }}</a></p>
+        </div>
+    @endif
     <div class="mb-4">
         <p class="text-gray-800 text-xs headline-lead">Technology/Framework</p>
         <p class="text-gray-500 text-sm font-normal">{{ \App\Enums\Technologies::getDescription($job->technology) }}</p>
@@ -30,6 +46,8 @@
         <p class="text-gray-800 text-xs headline-lead">Go Live Date</p>
         <p class="text-gray-500 text-sm font-normal"> {{ isset($job->go_live_date) ? \Carbon\Carbon::parse($job->go_live_date)->format('n/j/Y') : "None" }}</p>
     </div>
+
+
     <div class="text-right">
         @if ($job->status != 3)
             <form class="archive-job-form" method="POST" action="{{ $job->path() . '/archive' }}">

@@ -6,9 +6,7 @@
             <h1 class="text-blue-500"><i class="fa fa-tasks mr-3"></i>Jobs / {{ $job->title }}</h1>
             <a href="" class="button btn-add ml-4" data-toggle="modal" data-target="#editJobModal"><i class="fa fa-pencil"></i></a>
         </div>
-        @if($job->site()->exists())
-            <p class="text-gray-500 text-xs headline-lead">Site: <a class="text-blue-500 no-underline" href="{{ $job->site->path() }}">{{ $job->site->name }}</a></p>
-        @endif
+
         <p class="text-gray-500 text-sm font-normal">{{ $job->description }}</p>
     </header>
 
