@@ -12,7 +12,6 @@
                     @csrf
                     @method('PATCH')
                     @include('domains._form', [
-                        'account' => new App\DomainAccount,
                         'buttonText' => 'Save Domain',
                         'cancelURL' => $site->path(),
                     ])

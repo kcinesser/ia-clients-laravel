@@ -11,8 +11,7 @@
                 <form method="POST" action="{{ $client->path() }}/domains">
                     @csrf
                     @include('domains._form', [
-                        'domain' => new App\Domain,
-                        'account' => new App\DomainAccount,
+                        'domain' => new App\HostedDomain,
                         'buttonText' => 'Create Domain',
                         'cancelURL' => $site->path(),
                     ])

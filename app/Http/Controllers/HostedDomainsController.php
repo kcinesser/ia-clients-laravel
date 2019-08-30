@@ -23,7 +23,7 @@ class HostedDomainsController extends Controller
         
         $domain = $client->addDomain($attributes);
 
-        if(isset($attributes['site_id'])) {
+        if($domain->site) {
             return redirect($domain->site->path());
         } else {
             return redirect($client->path());
@@ -54,7 +54,7 @@ class HostedDomainsController extends Controller
     {
         $domain->delete();
 
-        return redirect($client->path());
+        return back();
     }
 
     /**

@@ -24,7 +24,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('clients.jobs', 'JobsController');
     Route::get('/clients/{client}/client-sites', 'ClientsController@clientSites');
     Route::resource('clients.sites', 'SitesController');
-    Route::resource('clients.domains', 'DomainsController');
+    Route::resource('clients.domains', 'HostedDomainsController');
     Route::resource('clients.sites.urls', 'SiteURLsController');
     Route::resource('clients.sites.updates', 'UpdatesController');
     Route::post('clients/{client}/sites/{site}/mma-update', 'UpdatesController@mma');

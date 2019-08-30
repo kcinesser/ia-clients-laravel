@@ -13,6 +13,10 @@ class HostedDomain extends Model
     	return $this->belongsTo(Site::class);
     }
 
+    public function client() {
+        return $this->belongsTo(Client::class);
+    }
+
     public function registrar() {
         return $this->belongsTo(Registrar::class);
     }
@@ -22,6 +26,6 @@ class HostedDomain extends Model
     }
 
     public function path() {
-    	return "/clients/{$this->site->client->id}/sites/{$this->site->id}/domains/{$this->id}";
+    	return "/clients/{$this->client->id}/domains/{$this->id}";
     }
 }
