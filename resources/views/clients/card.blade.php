@@ -12,9 +12,9 @@
     </div>
     <div class="mb-4">
     	<p class="text-gray-800 text-xs headline-lead">Primary Contact Information</p>
-        <p class="text-gray-500 text-sm font-normal"><i class="fa fa-user mr-3"></i>{{ $client->contact_name }}</p>
-    	<p class="text-gray-500 text-sm font-normal"><i class="fa fa-envelope mr-3"></i>{{ $client->contact_email }}</p>
-    	<p class="text-gray-500 text-sm font-normal"><i class="fa fa-phone mr-3"></i>{{ $client->contact_phone }}</p>
+        @if($client->contact_name)<p class="text-gray-500 text-sm font-normal"><i class="fa fa-user mr-3"></i>{{ $client->contact_name }}</p>@endif
+        @if($client->contact_email)<p class="text-gray-500 text-sm font-normal"><i class="fa fa-envelope mr-3"></i>{{ $client->contact_email }}</p>@endif
+        @if($client->contact_phone)<p class="text-gray-500 text-sm font-normal"><i class="fa fa-phone mr-3"></i>{{ $client->contact_phone }}</p>@endif
 	</div>
 	<div class="mb-4">
     	<p class="text-gray-800 text-xs headline-lead">Client Since</p>
