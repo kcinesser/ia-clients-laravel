@@ -65,15 +65,15 @@ class Client extends Model
     }
 
     public function addDomain($attributes) {
-        return $this->domains()->create($attributes);
+        return $this->hosted_domains()->create($attributes);
     }
 
     public function sites() {
         return $this->hasMany(Site::class);
     }
 
-    public function domains() {
-        return $this->hasMany(Domain::class);
+    public function hosted_domains() {
+        return $this->hasMany(HostedDomain::class);
     }
 
     public function jobs() {

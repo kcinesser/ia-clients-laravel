@@ -26,7 +26,9 @@ class CreateUrlsTableUpdateDomains extends Migration
             $table->foreign('site_id')->references('id')->on('sites')->onDelete('cascade');
         });
 
-        $domains = App\Domain::all();
+        Schema::rename('domains', 'hosted_domains');
+
+        $domains = App\HostedDomain::all();
 
         foreach($domains as $domain) {
             $site = $domain->site;
@@ -38,7 +40,7 @@ class CreateUrlsTableUpdateDomains extends Migration
             $url->save();
         }
 
-        Schema::table('domains', function (Blueprint $table) {
+        Schema::table('hosted_domains', function (Blueprint $table) {
             $table->dropForeign(['domain_account_id']);
             $table->dropForeign(['registrar_id']);
             $table->dropColumn('domain_account_id');

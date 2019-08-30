@@ -20,8 +20,8 @@ class Site extends Model
         return $this->hasMany(SiteURL::class);
     }
 
-    public function domains() {
-    	return $this->hasMany(Domain::class);
+    public function hosted_domains() {
+    	return $this->hasMany(HostedDomain::class);
     }
 
     public function updates() {

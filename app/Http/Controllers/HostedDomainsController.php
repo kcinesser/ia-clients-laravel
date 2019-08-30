@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Domain;
+use App\HostedDomain;
 use App\Client;
 use App\Site;
 use App\DomainAccount;
 use Illuminate\Http\Request;
 
-class DomainsController extends Controller
+class HostedDomainsController extends Controller
 {
 
     /**
@@ -37,7 +37,7 @@ class DomainsController extends Controller
      * @param  \App\Domain  $domain
      * @return \Illuminate\Http\Response
      */
-    public function update(Client $client, Domain $domain)
+    public function update(Client $client, HostedDomain $domain)
     {
         $domain->update($this->validate_data());
 
@@ -50,7 +50,7 @@ class DomainsController extends Controller
      * @param  \App\Domain  $domain
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Client $client, Domain $domain)
+    public function destroy(Client $client, HostedDomain $domain)
     {
         $domain->delete();
 

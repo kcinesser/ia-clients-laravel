@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Site;
 use App\Client;
 use App\Service;
-use App\Domain;
+use App\HostedDomain;
 use App\Hosting;
 use Illuminate\Http\Request;
 
