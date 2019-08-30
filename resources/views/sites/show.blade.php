@@ -53,7 +53,7 @@
                     @forelse ($site->hosted_domains as $domain)
                         <div class="flex justify-between">
                             <div class="w-1/3">
-                                <a class="text-sm" href="{{ $domain->name }}" target="_blank">{{ $domain->name }}</a>
+                                <p class="text-sm">{{ $domain->name }}</p>
                             </div>
                             <div class="w-1/4 text-sm">
                                 @if($domain->exp_date)
