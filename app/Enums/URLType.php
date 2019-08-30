@@ -8,5 +8,4 @@ final class URLType extends Enum
 {
     const Primary = 0;
     const Redirect = 1;
-    const Staging = 2;
 }

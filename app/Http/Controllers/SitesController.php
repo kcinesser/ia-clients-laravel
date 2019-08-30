@@ -13,19 +13,6 @@ class SitesController extends Controller
 {
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Client $client)
-    {
-        $services = Service::all();
-        $hosting = Hosting::all()->sortBy('name');
-
-        return view('sites.create', compact('client', 'services', 'hosting'));
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -118,8 +105,6 @@ class SitesController extends Controller
         return request()->validate([
             'name' => 'required|sometimes',
             'URL' => 'required|sometimes',
-            'registrar' => 'required|numeric|sometimes',
-            'exp_date' => 'nullable|date',
             'description' => 'nullable',
             'status' => 'required|numeric|sometimes',
             'technology' => 'required|numeric|sometimes',

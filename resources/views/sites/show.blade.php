@@ -15,6 +15,34 @@
                     <p class="text-gray-500 text-sm font-normal">{{ $site->description }}</p>
                 </div>
 
+                <div class="mb-8">
+                    <div class="flex flex-wrap items-center mb-2">
+                        <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-home"></i> URLs</h2>
+                        <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newURLModal"><i class="fa fa-plus"></i></a>
+                    </div>
+                    <div class="card mb-6">
+                    @forelse ($site->urls as $url)
+                        <div class="flex justify-between">
+                            <div class="w-1/3">
+                                <p class="text-gray-500 text-sm font-normal mb-0">{{ \App\Enums\URLEnvironment::getDescription($url->environment) }} {{ \App\Enums\URLType::getDescription($url->type) }}</p>
+                            </div>
+                            <div class="w-1/3">
+                                <a class="text-sm" href="{{ $url->url }}" target="_blank">{{ $url->url }}</a>
+                            </div>
+                            <div class="w-1/8 flex">
+                                <a class="mr-3" href="" data-toggle="modal" data-target="#editURLModal"  data-url="{{ $url->url }}" data-type="{{ $url->type }}" data-environment="{{ $url->environment }}" data-path="{{ $url->path() }}"><i class="fa fa-pencil"></i></a>
+                                <form method="POST" action="{{ $url->path() }}" class="delete-form">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="text-red-500 text-sm font-normal"><i class="fa fa-trash"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    @empty
+                        <p>No URLs yet.</p>
+                    @endforelse
+                    </div>
+                </div>
 
                 <div class="mb-8">
                     <div class="flex flex-wrap items-center mb-2">
@@ -32,12 +60,9 @@
                                     Exp: {{ \Carbon\Carbon::parse($domain->exp_date)->format('n-j-Y') }}
                                 @endif
                             </div>
-                            <div class="w-1/4 text-sm">
-                                {{ $domain->registrar->name }}
-                            </div>
                             <div class="w-1/8 flex">
-                                <a  class="mr-3" href="" data-toggle="modal" data-target="#editDomainModal"  data-name="{{ $domain->name }}" data-registrar="{{ $domain->registrar->id }}" data-exp="{{ $domain->exp_date }}" data-path="{{ $domain->path() }}"><i class="fa fa-pencil"></i></a>
-                                <form method="POST" action="{{ $site->path() }}/domains/{{ $domain->id }}" class="delete-form">
+                                <a  class="mr-3" href="" data-toggle="modal" data-target="#editDomainModal"  data-name="{{ $domain->name }}" data-exp="{{ $domain->exp_date }}" data-path="{{ $domain->path() }}"><i class="fa fa-pencil"></i></a>
+                                <form method="POST" action="{{ $domain->path() }}" class="delete-form">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="text-red-500 text-sm font-normal"><i class="fa fa-trash"></i></button>
@@ -214,5 +239,7 @@
         @include('domains._new_domain_modal')
         @include('domains._edit_domain_modal')
         @include('jobs._new_job_modal')
+        @include('urls._new_url_modal')
+        @include('urls._edit_url_modal')
     </main>
 @endsection

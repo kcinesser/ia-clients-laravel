@@ -8,14 +8,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ $site->path() }}/domains">
+                <form method="POST" action="{{ $client->path() }}/domains">
                     @csrf
                     @include('domains._form', [
                         'domain' => new App\Domain,
                         'account' => new App\DomainAccount,
                         'buttonText' => 'Create Domain',
                         'cancelURL' => $site->path(),
-                        'registrars' => App\Registrar::all()
                     ])
                 </form>
             </div>

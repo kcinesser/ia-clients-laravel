@@ -55,23 +55,17 @@ class Client extends Model
         ]);
 
         if ($attributes['URL']) {
-            $account = DomainAccount::create([
-                'url' => 'test',
-                'description' => 'test'
-            ]);
-
-            $site->domains()->create([
-                'name' => $attributes['URL'],
-                'exp_date' => $attributes['exp_date'],
-                'registrar_id' => $attributes['registrar'],
-                'domain_account_id' => $account->id
-            ]);
+            $site->urls()->create(['url' => $attributes['URL']]);
         }
 
         //add any services
         $site->services()->attach(request()->services);
 
         return $site;
+    }
+
+    public function addDomain($attributes) {
+        return $this->domains()->create($attributes);
     }
 
     public function sites() {

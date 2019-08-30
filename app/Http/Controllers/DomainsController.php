@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Domain;
 use App\Client;
 use App\Site;
-use App\Registrar;
 use App\DomainAccount;
 use Illuminate\Http\Request;
 
@@ -18,26 +17,17 @@ class DomainsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Client $client, Site $site, DomainAccount $account)
+    public function store(Client $client)
     {
         $attributes = $this->validate_data();
+        
+        $domain = $client->addDomain($attributes);
 
-        $account = DomainAccount::create([
-            'url' => 'test',
-            'description' => 'test'
-        ]);
-
-        $domain = array(
-            'name' => $attributes['name'],
-            'exp_date' => $attributes['exp_date'],
-            'site_id' => $site->id,
-            'registrar_id' => $attributes['registrar_id'],
-            'domain_account_id' => $account->id
-        );
-
-        $site->addDomain($domain);
-
-        return redirect($site->path());
+        if(isset($attributes['site_id'])) {
+            return redirect($domain->site->path());
+        } else {
+            return redirect($client->path());
+        }
     }
 
     /**
@@ -47,11 +37,11 @@ class DomainsController extends Controller
      * @param  \App\Domain  $domain
      * @return \Illuminate\Http\Response
      */
-    public function update(Client $client, Site $site, Domain $domain)
+    public function update(Client $client, Domain $domain)
     {
         $domain->update($this->validate_data());
 
-        return redirect($site->path());
+        return redirect($client->path());
     }
 
     /**
@@ -60,11 +50,11 @@ class DomainsController extends Controller
      * @param  \App\Domain  $domain
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Client $client, Site $site, Domain $domain)
+    public function destroy(Client $client, Domain $domain)
     {
         $domain->delete();
 
-        return redirect($site->path());
+        return redirect($client->path());
     }
 
     /**
@@ -74,7 +64,7 @@ class DomainsController extends Controller
         return request()->validate([
             'name' => 'required',
             'exp_date' => 'nullable|date',
-            'registrar_id' => 'required'
+            'site_id' => 'nullable|numeric|sometimes'
         ]);
     }
 }
