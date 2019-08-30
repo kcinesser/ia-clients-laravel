@@ -38,22 +38,21 @@ class CreateUrlsTableUpdateDomains extends Migration
 
         Schema::rename('domains', 'hosted_domains');
 
-        $domains = App\HostedDomain::all();
+        $domains = DB::table('hosted_domains')->get();
 
         foreach($domains as $domain) {
-            $site = $domain->site;
+            $site = DB::table('sites')->find($domain->site_id);
 
-            $url = new App\SiteURL();
-            $url->site_id = $site->id;
-            $url->url = $domain->name;
+            $url = [
+                'site_id' => $site->id,
+                'url' => $domain->name
+            ];
 
-            $url->save();
-        }
+            DB::table('site_urls')->insert($url);
 
-        foreach($domains as $domain) {
-            $client = $domain->site->client;
+            $client = DB::table('clients')->find($site->id);
 
-            $domain->update(['client_id' => $client->id]);
+            DB::table('hosted_domains')->where('id', $domain->id)->update(['client_id' => $client->id]);
         }
 
         Schema::table('hosted_domains', function (Blueprint $table) {
