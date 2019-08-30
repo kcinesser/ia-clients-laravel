@@ -3298,6 +3298,16 @@ hr.with-text:after {
   background-color: #80d7d9;
 }
 
+.button.btn-add.btn-blue {
+  background-color: #4B5783;
+}
+
+.button.btn-add.btn-blue:hover {
+  background-color: #59679c;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
 .button.btn-add-sm {
   font-size: 0.5em;
   width: 20px;

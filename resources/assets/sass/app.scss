@@ -53,9 +53,6 @@ h6, .h6 {
 
 nav a {
 	@apply text-base font-sans;
-	&:hover {
-		// @apply text-light-grey;
-	}
 }
 
 .container a:not(.button) {
@@ -195,6 +192,14 @@ hr {
 		text-align: center;
 		@apply bg-teal-500;
 		&:hover { @apply bg-teal-300; }
+
+		&.btn-blue {
+			@apply bg-blue-500;
+			&:hover {
+				@apply bg-blue-300;
+				transform: rotate(45deg);
+			}
+		}
 	}
 	&.btn-add-sm {
 		font-size: 0.5em;
