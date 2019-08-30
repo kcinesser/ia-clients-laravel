@@ -21,7 +21,12 @@ class UploadsController extends Controller
 		$fullname = $name . "_" . time() . "." . $extension;
 
         $path = Storage::putFileAs('uploads/' . date('Y') . '/' . date('m'), $request->file('file'), $fullname, 'public');
-        $url = 'https://ia-clients.s3.amazonaws.com/' . $path;
+
+        if (env('FILESYSTEM_DRIVER') == 's3') {
+            $url = 'https://ia-clients.s3.amazonaws.com/' . $path;
+        } else {
+            $url = $path;
+        }
 
         $upload = new Upload();
         $upload->uploadable_type = 'App\\' . ucfirst($model);
