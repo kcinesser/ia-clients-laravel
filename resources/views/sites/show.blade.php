@@ -52,7 +52,7 @@
 
                 @if($site->jobs()->exists())
                 <div class="mb-8">  
-                    <div class="lg:flex lg:flex-wrap items-center">
+                    <div class="flex flex-wrap items-center mb-2">
                         <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-check-square-o mr-1"></i> Jobs</h2>
                         <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newJobModal"><i class="fa fa-plus"></i></a>
                     </div>
@@ -76,7 +76,7 @@
                 @endif
 
                 <div class="mb-8">
-                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-key mr-1"></i>Licenses</h2>
+                    <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-key mr-1"></i>Licenses</h2>
 
                     <div class="card">
                         @foreach ($site->licenses as $license)
@@ -128,7 +128,7 @@
                 </div>
 
                 <div class="mb-8">
-                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-refresh mr-1"></i> Update Instructions</h2>
+                    <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-refresh mr-1"></i> Update Instructions</h2>
 
                     <form method="POST" action="{{ $site->path() . '/notes' }}">
                         @csrf

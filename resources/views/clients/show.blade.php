@@ -15,7 +15,7 @@
  				@include ('clients.card')
 
                 <div class="mb-8">
-                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
+                    <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
                     <div class="card constrain-height">
                         @foreach ($client->activities as $activity)
                             <div class="border-b-2 py-6">
@@ -29,7 +29,7 @@
             <div class="lg:w-3/4 px-3">
                 <div class="mb-8">  
                     <div class="flex flex-wrap items-center mb-2">
-                        <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-laptop mr-1"></i> Sites</h2>
+                        <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-laptop mr-1"></i> Sites</h2>
                         <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#siteModal"><i class="fa fa-plus"></i></a>
                     </div>
                     <div class="lg:flex lg:flex-wrap card">
@@ -53,7 +53,7 @@
 
                 <div class="mb-8">
                     <div class="flex flex-wrap items-center mb-2">
-                        <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-tasks mr-1"></i> Jobs</h2>
+                        <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-tasks mr-1"></i> Jobs</h2>
                         <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newJobModal"><i class="fa fa-plus"></i></a>
                     </div>
                     <div class="lg:flex lg:flex-wrap card">
@@ -76,7 +76,7 @@
                 </div>
 
                 <div class="mb-8">
-                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-pencil-square-o mr-1"></i> Notes</h2>
+                    <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-pencil-square-o mr-1"></i> Notes</h2>
 
                     <form method="POST" action="{{ $client->path() . '/notes' }}">
                         @csrf
@@ -87,7 +87,7 @@
                 </div>
 
                 <div class="mb-8">
-                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-comment-o mr-1"></i> Comments / Updates</h2>
+                    <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-comment-o mr-1"></i> Comments / Updates</h2>
 
                     <div class="card mb-3">
                         <form action="/comment/client/{{ $client->id }}" method="POST">
