@@ -4,7 +4,7 @@
     <header class="flex items-center mb-3 py-4">
 
         <div class="flex justify-start w-full items-center">
-            <h1><a href="/clients" class="no-underline">Client</a> / {{ $client->name }}</h1>
+            <h1 class="text-blue-500"><i class="fa fa-users mr-3"></i>Client / {{ $client->name }}</h1>
             <a href="" class="button btn-add ml-4" data-toggle="modal" data-target="#editClientModal"><i class="fa fa-pencil"></i></a>
         </div>
     </header>
