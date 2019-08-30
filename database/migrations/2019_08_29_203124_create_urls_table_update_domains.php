@@ -50,7 +50,7 @@ class CreateUrlsTableUpdateDomains extends Migration
 
             DB::table('site_urls')->insert($url);
 
-            $client = DB::table('clients')->find($site->id);
+            $client = DB::table('clients')->find($site->client_id);
 
             DB::table('hosted_domains')->where('id', $domain->id)->update(['client_id' => $client->id]);
         }

@@ -23,10 +23,10 @@
                     <div class="card mb-6">
                     @forelse ($site->urls as $url)
                         <div class="flex justify-between">
-                            <div class="w-1/3">
+                            <div class="w-1/4">
                                 <p class="text-gray-500 text-sm font-normal mb-0">{{ \App\Enums\URLEnvironment::getDescription($url->environment) }} {{ \App\Enums\URLType::getDescription($url->type) }}</p>
                             </div>
-                            <div class="w-1/3">
+                            <div class="w-1/2">
                                 <a class="text-sm" href="{{ $url->url }}" target="_blank">{{ $url->url }}</a>
                             </div>
                             <div class="w-1/8 flex">
