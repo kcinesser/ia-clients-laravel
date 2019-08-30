@@ -39,7 +39,7 @@
                         <div class="mr-3 items-center">
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="addMenuButton" data-toggle="dropdown"><i class="fa fa-2x fa-plus mr-1"></i></button>
-                                <div class="dropdown-menu" aria-labelledby="addMenuButton">
+                                <div class="dropdown-menu center-drop" aria-labelledby="addMenuButton">
                                     <h6 class="dropdown-header">Create New</h6>
                                     <button class="dropdown-item" data-toggle="modal" data-target="#newClientMenuModal">Client</button>
                                     <button class="dropdown-item" data-toggle="modal" data-target="#newSiteMenuModal">Site</button>
