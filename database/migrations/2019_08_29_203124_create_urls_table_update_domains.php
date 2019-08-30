@@ -71,6 +71,37 @@ class CreateUrlsTableUpdateDomains extends Migration
      */
     public function down()
     {
+        Schema::create('registrars', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->string('url');
+            $table->timestamps();
+        });
+
+        Schema::create('domain_accounts', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name')->nullable();
+            $table->string('description')->nullable();
+            $table->string('url');
+            $table->timestamps();
+        });
+
+        Schema::table('hosted_domains', function (Blueprint $table) {
+            $table->unsignedInteger('client_id')->nullable()->change();
+            $table->dropForeign(['client_id']);
+        });
+
+        Schema::rename('hosted_domains', 'domains');
+
+        Schema::table('domains', function (Blueprint $table) {
+            $table->unsignedInteger('registrar_id')->nullable();
+            $table->unsignedInteger('domain_account_id')->nullable();
+
+            $table->foreign('registrar_id')->references('id')->on('registrars')->onDelete('set null');
+            $table->foreign('domain_account_id')->references('id')->on('domain_accounts')->onDelete('set null');
+        });
+
         Schema::dropIfExists('site_urls');
     }
 }
