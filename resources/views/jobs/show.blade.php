@@ -1,7 +1,14 @@
 @extends ('layouts.app')
 
 @section('content')
-    <header class="flex items-center mb-3 py-4"></header>
+    <header class="mb-3 py-4">
+        <div class="mb-2 flex items-center w-full ">
+            <h1 class="text-blue-500"><i class="fa fa-tasks mr-3"></i>Jobs / {{ $job->title }}</h1>
+            <a href="" class="button btn-add ml-4" data-toggle="modal" data-target="#editJobModal"><i class="fa fa-pencil"></i></a>
+        </div>
+
+        <p class="text-gray-500 text-sm font-normal">{{ $job->description }}</p>
+    </header>
 
     <main class="jobs-show">
     	<div class="lg:flex -mx-3 flex-row-reverse">
