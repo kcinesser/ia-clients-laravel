@@ -20,7 +20,7 @@ class HostedDomainsController extends Controller
     public function store(Client $client)
     {
         $attributes = $this->validate_data();
-        
+           
         $domain = $client->addDomain($attributes);
 
         if($domain->site) {

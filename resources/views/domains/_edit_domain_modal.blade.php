@@ -13,7 +13,6 @@
                     @method('PATCH')
                     @include('domains._form', [
                         'buttonText' => 'Save Domain',
-                        'cancelURL' => $site->path(),
                     ])
                 </form>
             </div>

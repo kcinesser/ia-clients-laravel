@@ -13,7 +13,6 @@
                     @include('domains._form', [
                         'domain' => new App\HostedDomain,
                         'buttonText' => 'Create Domain',
-                        'cancelURL' => $site->path(),
                     ])
                 </form>
             </div>

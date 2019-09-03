@@ -73,7 +73,7 @@
                                 @endif
                             </div>
                             <div class="w-1/8 flex">
-                                <a  class="mr-3" href="" data-toggle="modal" data-target="#editDomainModal"  data-name="{{ $domain->name }}" data-exp="{{ $domain->exp_date }}" data-path="{{ $domain->path() }}"><i class="fa fa-pencil"></i></a>
+                                <a  class="mr-3" href="" data-toggle="modal" data-target="#editDomainModal"  data-name="{{ $domain->name }}" data-exp="{{ $domain->exp_date }}" data-path="{{ $domain->path() }}" data-siteid="{{ isset($domain->site) ? $domain->site->id : "" }}"><i class="fa fa-pencil"></i></a>
                                 <form method="POST" action="{{ $domain->path() }}" class="delete-form">
                                     @method('DELETE')
                                     @csrf

@@ -58,6 +58,7 @@ class CreateUrlsTableUpdateDomains extends Migration
         Schema::table('hosted_domains', function (Blueprint $table) {
             $table->unsignedInteger('client_id')->change();
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+            $table->foreign('site_id')->references('id')->on('sites')->onDelete('set null');
         });
 
         Schema::dropIfExists('registrars');

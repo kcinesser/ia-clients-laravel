@@ -16,13 +16,18 @@ class DomainTableSeeder extends Seeder
         	'exp_date' => '2019-12-31',
         	'client_id' => 1,
             'site_id' => 1
+        ]);
+
+        DB::table('hosted_domains')->insert([
+            'name' => 'test.spikesbbg.com',
+            'exp_date' => '2019-12-31',
+            'client_id' => 1,
         ]);   
 
         DB::table('hosted_domains')->insert([
         	'name' => 'travcontakeover.com/',
         	'exp_date' => '2019-12-31',
         	'client_id' => 4,
-            'site_id' => 8
         ]);        
     }
 }

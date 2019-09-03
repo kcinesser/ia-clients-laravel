@@ -11,7 +11,7 @@ class SiteURLsController extends Controller
 {
     public function store (Client $client, Site $site) {
     	$attributes = request()->validate([
-    		'url' => 'required',
+    		'url' => 'required|url',
     		'type' => 'required|numeric',
     		'environment' => 'required|numeric'
     	]);
@@ -29,7 +29,7 @@ class SiteURLsController extends Controller
 
     public function update (Client $client, Site $site, SiteURL $url) {
     	$attributes = request()->validate([
-    		'url' => 'required',
+    		'url' => 'required|url',
     		'type' => 'required|numeric',
     		'environment' => 'required|numeric'
     	]);

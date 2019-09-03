@@ -1,5 +1,5 @@
 <div class="field mb-6">
-    <label for="title" class="label text-sm mb-2 block">URL <span class="required-text">*</span></label>
+    <label for="title" class="label text-sm mb-2 block">Name <span class="required-text">*</span></label>
 
     <div class="control">
         <input type="text" name="name" value="" required>
@@ -19,8 +19,8 @@
 
     <select name="site_id">
         <option value="">Select Site</option>
-        @foreach($client->sites as $site)
-            <option value="{{ $site->id }}">{{ $site->name }}</option>
+        @foreach($client->sites as $client_site)
+            <option value="{{ $client_site->id }}" {{ $site->id == $client_site->id ? "selected" : "" }}>{{ $client_site->name }}</option>
         @endforeach
     </select>
 
