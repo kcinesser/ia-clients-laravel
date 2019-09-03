@@ -46,15 +46,17 @@
 							<div class="lg:w-1/4"><p class="text-sm">{{ App\Enums\UserTypes::getDescription($user->role) }}</p></div>
 							<div class="lg:w-1/8 edit-buttons flex items-end">
 								<a href="" class="button btn-add-sm mr-1" data-toggle="modal" data-target="#editUserModal" data-name="{{ $user->name }}" data-id="{{ $user->id }}" data-role="{{ $user->role }}" data-email="{{ $user->email }}"><i class="fa fa-pencil"></i></a>
-								<button type="button" class="button btn-primary" data-toggle="modal" data-target="#userDeleteModel">
+								@if($user->clients->count())
+								<button type="button" class="button btn-delete-sm" data-toggle="modal" data-target="#userDeleteModel" data-id="{{ $user->id }}">
 									<i class="fa fa-trash-o"></i>
 								</button>
-								<!--<form method="POST" action="user/{{ $user->id }}" class="delete-form">
+								@else
+								<form method="POST" action="user/{{ $user->id }}" class="delete-form">
 									@method('DELETE')
 									@csrf
-									<input type="hidden" name="new_am" value="12">
 									<button type="submit" class="button btn-delete-sm"><i class="fa fa-trash-o"></i></button>
-								</form>-->
+								</form>
+								@endif
 							</div>
 						</div>
 					@endforeach

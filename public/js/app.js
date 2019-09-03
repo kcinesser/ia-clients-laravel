@@ -11634,7 +11634,7 @@ $('.delete-form').submit(function (e) {
 
 $('.archive-client-form').submit(function (e) {
 	e.preventDefault();
-	if (confirm('Are you sure you want to archive this client? This will also archive any sites and job associated with this client.')) {
+	if (confirm('Are you sure you want to archive this client? This will also archive any sites and jobs associated with this client.')) {
 		this.submit();
 	}
 });
@@ -11736,6 +11736,17 @@ $('#editHostModal').on('show.bs.modal', function (event) {
 	modal.find('.modal-body input[name="name"]').val(name);
 	modal.find('.modal-body select[name="owner"]').val(owner);
 	modal.find('.modal-body textarea[name="details"]').val(details);
+});
+
+$('#userDeleteModel').on('show.bs.modal', function (event) {
+	var button = $(event.relatedTarget); // Button that triggered the modal
+	var id = button.data('id'); // Extract info from data-* attributes
+
+	// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+	// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+	var modal = $(this);
+
+	modal.find('.modal-body form').attr('action', 'user/' + id);
 });
 
 $('select#site-client-select').change(function () {

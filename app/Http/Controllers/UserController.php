@@ -51,9 +51,9 @@ class UserController extends Controller
     }
 
     public function destroy(User $user) {
-	    dd(request()->all());
+	    //dd(request("reassign_am"));
         foreach($user->clients as $client) {
-            //$client->update(['account_manager_id' => pass new am id here from form]);
+            $client->update(['account_manager_id' => request("reassign_am")]);
         }
 
         $user->delete();
