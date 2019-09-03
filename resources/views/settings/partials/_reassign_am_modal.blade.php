@@ -16,13 +16,15 @@
                             <option value="{{ $user->id }}">{{ $user->name }}</option>
                         @endforeach
                     </select>
-                    <button type="submit" class="button btn-delete-sm">Reassign and Delete</button>
+
+
+                    <div class="modal-footer">
+                        <a href="" class="button btn-blue" data-dismiss="modal">Close</a>
+                        <button type="submit" class="button">Reassign and Delete</button>
+                    </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <a href="" class="button btn-blue" data-dismiss="modal">Close</a>
-                <a href="" class="button">Save</a>
-            </div>
+
         </div>
     </div>
 </div>
