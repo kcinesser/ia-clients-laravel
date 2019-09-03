@@ -23,6 +23,10 @@ body {
 	color: #333;
 }
 
+button:focus {
+	outline: none;
+}
+
 h1, .h1 {
 	@apply text-4xl font-display font-extrabold tracking-tight;
 }
@@ -49,9 +53,6 @@ h6, .h6 {
 
 nav a {
 	@apply text-base font-sans;
-	&:hover {
-		// @apply text-light-grey;
-	}
 }
 
 .container a:not(.button) {
@@ -191,6 +192,14 @@ hr {
 		text-align: center;
 		@apply bg-teal-500;
 		&:hover { @apply bg-teal-300; }
+
+		&.btn-blue {
+			@apply bg-blue-500;
+			&:hover {
+				@apply bg-blue-300;
+				transform: rotate(45deg);
+			}
+		}
 	}
 	&.btn-add-sm {
 		font-size: 0.5em;
@@ -282,6 +291,23 @@ p>.fa {
 @media (max-width: 830px) {
 	.table-row .table-cell {
 		display: block;
+
+		> input {
+			width: 100%;
+		}
+	}
+}
+
+@media (max-width: 1024px) {
+	.edit-domain {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+	.edit-license {
+		position: absolute;
+		top: 0;
+		right: 10px;
 	}
 }
 
@@ -324,7 +350,7 @@ select {
 }
 .delete-license {
 	position: absolute;
-	top: 0;
+	top: 2px;
 	right: 0;
 }
 

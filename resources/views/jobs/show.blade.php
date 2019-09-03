@@ -1,7 +1,14 @@
 @extends ('layouts.app')
 
 @section('content')
-    <header class="flex items-center mb-3 py-4"></header>
+    <header class="mb-3 py-4">
+        <div class="mb-2 flex items-center w-full ">
+            <h1 class="text-blue-500"><i class="fa fa-tasks mr-3"></i>Jobs / {{ $job->title }}</h1>
+            <a href="" class="button btn-add ml-4" data-toggle="modal" data-target="#editJobModal"><i class="fa fa-pencil"></i></a>
+        </div>
+
+        <p class="text-gray-500 text-sm font-normal">{{ $job->description }}</p>
+    </header>
 
     <main class="jobs-show">
     	<div class="lg:flex -mx-3 flex-row-reverse">
@@ -31,8 +38,9 @@
                                         <div class="table-row">
                                             <div class="table-cell text-sm text-left"><input name="description" placeholder="{{ $license->description }}"></div>
                                             <div class="table-cell text-sm"><input name="key" placeholder="{{ $license->key }}"></div>
+                                            <div class="table-cell text-sm"><input class="date-field" autocomplete="off" name="exp_date" value="{{ $license->exp_date }}"></div>
                                             <div class="table-cell text-sm"><input name="url" placeholder="{{ $license->url }}"></div>
-                                            <div class="table-cell"><button type="submit" class="text-orange-500 text-sm font-normal">Update</button></div>
+                                            <div class="table-cell edit-license"><button type="submit" class="button btn-add-sm mr-2"><i class="fa fa-pencil"></i></button></div>
                                         </div>
                                     </div>
                                 </form>
@@ -52,8 +60,9 @@
                                 <div class="table-row">
                                     <div class="table-cell text-sm"><input name="description" placeholder="Description"></div>
                                     <div class="table-cell text-sm"><input name="key" placeholder="Key"></div>
+                                    <div class="table-cell text-sm"><input class="date-field" autocomplete="off" name="exp_date" placeholder="Expiration Date"></div>
                                     <div class="table-cell text-sm"><input name="url" placeholder="URL"></div>
-                                    <div class="table-cell"><button type="submit" class="text-orange-500 text-sm font-normal">Save</button></div>
+                                    <div class="table-cell"><button type="submit" class="text-orange-500 text-sm font-bold">Save</button></div>
                                 </div>
                             </div>
                         </form>
