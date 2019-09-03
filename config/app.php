@@ -135,6 +135,26 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
+    
+    'debug_blacklist' => [
+        '_ENV' => [
+            'APP_KEY',
+            'DB_PASSWORD',
+            'GODADDY_KEY',
+            'GODADDY_SECRET',
+        ],
+        
+        '_SERVER' => [
+            'APP_KEY',
+            'DB_PASSWORD',
+            'GODADDY_KEY',
+            'GODADDY_SECRET',
+        ],
+        
+        '_POST' => [
+            'password',
+        ],
+    ],
 
     'providers' => [
 
@@ -176,6 +196,11 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        
+        /*
+         * Custom Service Providers...
+         */
+        App\Providers\LibraryServiceProvider::class,
 
     ],
 
