@@ -11634,7 +11634,7 @@ $('.delete-form').submit(function (e) {
 
 $('.archive-client-form').submit(function (e) {
 	e.preventDefault();
-	if (confirm('Are you sure you want to archive this client? This will also archive any sites and job associated with this client.')) {
+	if (confirm('Are you sure you want to archive this client? This will also archive any sites and jobs associated with this client.')) {
 		this.submit();
 	}
 });

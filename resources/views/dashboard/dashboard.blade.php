@@ -46,7 +46,15 @@
 		   		<div  class="lg:flex lg:flex-wrap card">
 			  		@forelse ($sites as $site)
 			            <div class="lg:w-full p-2">
-			            	<h3><a href="{{ $site->path() }}">{{ $site->name }}</a></h3>
+			            	<h3><a href="{{ $site->path() }}">{{ $site->name }}</a>
+								@if ($site->services->contains(1))
+									<span class="badge badge-mma">MMA</span>
+								@elseif ($site->services->contains(5))
+									<span class="badge badge-mma">MMA - Internal</span>
+								@endif
+
+								<span class="badge {{$site->status == App\Enums\SiteStatus::InDevelopment ? 'badge-dev' : 'badge-live'}}">{{ App\Enums\SiteStatus::getDescription($site->status) }}</span>
+							</h3>
 							<p><a href="{{ $site->client->path() }}" class="text-gray-500 text-sm font-normal">{{ $site->client->name }}</a></p>
 						</div>
 					@empty
