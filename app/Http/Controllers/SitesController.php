@@ -163,8 +163,5 @@ class SitesController extends Controller
         if ($site->services(name) === "MMA") {
             return stringValue("MMA");
         }
-        else {
-
-        }
     }
 }

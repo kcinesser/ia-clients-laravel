@@ -36,14 +36,13 @@
                         @forelse ($sites as $site)
                             <div class="lg:w-full p-2">
                                 <h3><a href="{{ $site->path() }}">{{ $site->name }}</a>
+                                    <span class="badge {{$site->status == App\Enums\SiteStatus::InDevelopment ? 'badge-dev' : 'badge-live'}}">{{$site->status == App\Enums\SiteStatus::InDevelopment ? 'In Dev' : 'Live'}}</span>
+
                                     @if ($site->services->contains(1))
                                         <span class="badge badge-mma">MMA</span>
                                     @elseif ($site->services->contains(5))
                                         <span class="badge badge-mma">MMA - Internal</span>
                                     @endif
-
-                                    <span class="badge {{$site->status == App\Enums\SiteStatus::InDevelopment ? 'badge-dev' : 'badge-live'}}">{{ App\Enums\SiteStatus::getDescription($site->status) }}</span>
-
                                 </h3>
                                 <p class="text-gray-500 text-sm font-normal">{{ \Illuminate\Support\Str::limit($site->description, 30) }}</p>
                             </div>
