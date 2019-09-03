@@ -10,12 +10,14 @@
         <p class="text-gray-800 text-xs headline-lead">Account Manager</p>
         <p class="text-gray-500 text-sm font-normal">{{ $client->accountManager->name }}</p>
     </div>
-    <div class="mb-4">
-        <p class="text-gray-800 text-xs headline-lead">Primary Contact Information</p>
-        @if($client->contact_name)<p class="text-gray-500 text-sm font-normal"><i class="fa fa-user mr-3"></i>{{ $client->contact_name }}</p>@endif
-        @if($client->contact_email)<p class="text-gray-500 text-sm font-normal"><i class="fa fa-envelope mr-3"></i>{{ $client->contact_email }}</p>@endif
-        @if($client->contact_phone)<p class="text-gray-500 text-sm font-normal"><i class="fa fa-phone mr-3"></i>{{ $client->contact_phone }}</p>@endif
-    </div>
+    @if ($client->contact_name || $client->contact_email || $client->contact_phone)
+        <div class="mb-4">
+            <p class="text-gray-800 text-xs headline-lead">Primary Contact Information</p>
+            @if($client->contact_name)<p class="text-gray-500 text-sm font-normal"><i class="fa fa-user mr-3"></i>{{ $client->contact_name }}</p>@endif
+            @if($client->contact_email)<p class="text-gray-500 text-sm font-normal"><i class="fa fa-envelope mr-3"></i>{{ $client->contact_email }}</p>@endif
+            @if($client->contact_phone)<p class="text-gray-500 text-sm font-normal"><i class="fa fa-phone mr-3"></i>{{ $client->contact_phone }}</p>@endif
+        </div>
+    @endif
     <div class="mb-4">
         <p class="text-gray-800 text-xs headline-lead">Client Since</p>
         <p class="text-gray-500 text-sm font-normal"> {{ \Carbon\Carbon::parse($client->created_at)->format('n-j-Y')}}</p>
