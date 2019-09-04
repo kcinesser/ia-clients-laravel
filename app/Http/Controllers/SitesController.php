@@ -120,7 +120,7 @@ class SitesController extends Controller
         return view('sites.all_archive', compact('archive_sites'));
     }
 
-    public function archives(Client $client) {
+    public function client_site_archives(Client $client) {
         $archived_sites = $client->sites->where('status', 4);
 
         return view('sites.archive', compact('archived_sites', 'client'));

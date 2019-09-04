@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class DomainTableSeeder extends Seeder
 {
@@ -13,20 +14,20 @@ class DomainTableSeeder extends Seeder
     {
         DB::table('hosted_domains')->insert([
         	'name' => 'spikesbbg.com',
-        	'exp_date' => '2019-12-31',
+        	'exp_date' => Carbon::now()->addYear(1),
         	'client_id' => 1,
             'site_id' => 1
         ]);
 
         DB::table('hosted_domains')->insert([
             'name' => 'test.spikesbbg.com',
-            'exp_date' => '2019-12-31',
+            'exp_date' => Carbon::now()->addYear(1),
             'client_id' => 1,
         ]);   
 
         DB::table('hosted_domains')->insert([
         	'name' => 'travcontakeover.com/',
-        	'exp_date' => '2019-12-31',
+        	'exp_date' => Carbon::now()->addYear(1),
         	'client_id' => 4,
         ]);        
     }
