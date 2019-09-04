@@ -14,60 +14,7 @@
     	<div class="lg:flex -mx-3 flex-row-reverse">
             <div class="lg:w-3/4 px-3">
                 <div class="mb-8">
-                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-key mr-1"></i>Licenses</h2>
-
-                    <div class="card">
-                        @foreach ($job->licenses as $license)
-                            <div class="license mb-4">
-                                <form method="POST" action="/software_license/{{ $license->id }}">
-                                    @method('PATCH')
-                                    @csrf
-                                    <div class="table w-full">
-                                        <div class="table-row">
-                                            <div class="table-cell text-sm text-left"><input name="description" placeholder="{{ $license->description }}"></div>
-                                            <div class="table-cell text-sm"><input name="key" placeholder="{{ $license->key }}"></div>
-                                            <div class="table-cell text-sm"><input class="date-field" autocomplete="off" name="exp_date" value="{{ $license->exp_date }}"></div>
-                                            <div class="table-cell text-sm"><input name="url" placeholder="{{ $license->url }}"></div>
-                                            <div class="table-cell edit-license"><button type="submit" class="button btn-add-sm mr-2"><i class="fa fa-pencil"></i></button></div>
-                                        </div>
-                                    </div>
-                                </form>
-
-                                <form method="POST" action="/software_license/{{ $license->id }}" class="delete-license">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-red-500 text-sm font-normal"><i class="fa fa-trash"></i></button>
-                                </form>
-                            </div>
-                        @endforeach
-
-                        <h3 class="headline-lead text-xs my-2 ">Add New License</h3>
-                        <form action="/software_license/job/{{ $job->id }}" method="POST">
-                            @csrf
-                            <div class="table w-full">
-                                <div class="table-row">
-                                    <div class="table-cell text-sm"><input name="description" placeholder="Description"></div>
-                                    <div class="table-cell text-sm"><input name="key" placeholder="Key"></div>
-                                    <div class="table-cell text-sm"><input class="date-field" autocomplete="off" name="exp_date" placeholder="Expiration Date"></div>
-                                    <div class="table-cell text-sm"><input name="url" placeholder="URL"></div>
-                                    <div class="table-cell"><button type="submit" class="text-orange-500 text-sm font-bold">Save</button></div>
-                                </div>
-                            </div>
-                        </form>
-                        @if ($errors->license_errors->all())
-                            <div class="field mt-6">
-                                @foreach ($errors->license_errors->all() as $error)
-                                    <li class="text-sm text-red-500">{{ $error }}</li>
-                                @endforeach
-                            </div>
-                        @endif
-                    </div>
-
-                </div>
-
-                <div class="mb-8">
                     <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-pencil-square-o mr-1"></i> Notes</h2>
-
                     <form method="POST" action="{{ $job->path() . '/notes' }}">
                         @csrf
                         @method('PATCH')

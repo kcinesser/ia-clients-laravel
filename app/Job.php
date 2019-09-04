@@ -24,10 +24,6 @@ class Job extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function licenses() {
-        return $this->morphMany(SoftwareLicense::class, 'licenseable');
-    }
-
     public function tasks() {
     	return $this->hasMany(Task::class);
     }

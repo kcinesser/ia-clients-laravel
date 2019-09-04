@@ -42,11 +42,17 @@
 							<div class="lg:w-1/4"><p class="text-sm">{{ App\Enums\UserTypes::getDescription($user->role) }}</p></div>
 							<div class="lg:w-1/8 edit-buttons flex items-end">
 								<a href="" class="button btn-add-sm mr-1" data-toggle="modal" data-target="#editUserModal" data-name="{{ $user->name }}" data-id="{{ $user->id }}" data-role="{{ $user->role }}" data-email="{{ $user->email }}"><i class="fa fa-pencil"></i></a>
+								@if($user->clients->count())
+								<button type="button" class="button btn-delete-sm" data-toggle="modal" data-target="#userDeleteModel" data-id="{{ $user->id }}">
+									<i class="fa fa-trash-o"></i>
+								</button>
+								@else
 								<form method="POST" action="user/{{ $user->id }}" class="delete-form">
 									@method('DELETE')
 									@csrf
 									<button type="submit" class="button btn-delete-sm"><i class="fa fa-trash-o"></i></button>
 								</form>
+								@endif
 							</div>
 						</div>
 					@endforeach
@@ -111,13 +117,13 @@
 			</div>
 		</div>
 
-
         @include('users._new_user_modal')
         @include('users._edit_user_modal')
     	@include('services._new_service_modal')
     	@include('services._edit_service_modal')
     	@include('hosting._new_host_modal')
     	@include('hosting._edit_host_modal')
+		@include('settings.partials._reassign_am_modal')
 
 	</main>
 
