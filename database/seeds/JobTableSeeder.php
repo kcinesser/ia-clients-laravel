@@ -26,7 +26,7 @@ class JobTableSeeder extends Seeder
 
         DB::table('jobs')->insert([
         	'client_id' => 3,
-        	'site_id' => 8,
+        	'site_id' => 6,
         	'developer_id' => 5,
         	'title' => 'Sustainability Site Build',
         	'description' => 'Interactive to build Sustainability site for SL Green.',
@@ -39,7 +39,7 @@ class JobTableSeeder extends Seeder
 
         DB::table('jobs')->insert([
         	'client_id' => 4,
-        	'site_id' => 9,
+        	'site_id' => 7,
         	'developer_id' => 3,
         	'title' => 'LRS Job Search Plugin',
         	'description' => 'LRS wants their job search functionality to tie in with their job management system. Interactive to build custom plugin for users to search for and apply for jobs on the LRS site.',
@@ -52,7 +52,7 @@ class JobTableSeeder extends Seeder
 
         DB::table('jobs')->insert([
         	'client_id' => 5,
-        	'site_id' => 12,
+        	'site_id' => 9,
         	'developer_id' => 4,
         	'title' => 'NU Foundation Site Build',
         	'description' => 'Interactive will build a new WordPress site for the NU Foundation.',
@@ -66,7 +66,7 @@ class JobTableSeeder extends Seeder
 
         DB::table('jobs')->insert([
         	'client_id' => 7,
-        	'site_id' => 15,
+        	'site_id' => 11,
         	'developer_id' => 1,
         	'title' => 'Customer DB Build',
         	'description' => 'Interactive Quarterly Rock: Interactive will build a Laravel site to replace their WordPress client database for internal use.',

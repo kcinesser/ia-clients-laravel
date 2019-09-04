@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Cron as Cron;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,8 +25,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('command:domainRenewalMonthRemainingNotice')->everyMinute()->when(function() {
+            return Cron::shouldRun('command:domainRenewalMonthRemainingNotice', 1440);
+            //returns true every 24 hours (1140 minutes)
+        })->environments(['local', 'production']);;
     }
 
     /**

@@ -13,14 +13,14 @@ class DatabaseSeeder extends Seeder
     {
     	$this->call([
 			UserTableSeeder::class,	
-            RegistrarTableSeeder::class,
             ServiceTableSeeder::class,
             ClientTableSeeder::class,
             HostingTableSeeder::class,
             SiteTableSeeder::class,
             JobTableSeeder::class,
             DomainTableSeeder::class,
-            ServiceSiteSeeder::class
+            ServiceSiteSeeder::class,
+            SiteURLSeeder::class
 		]);
     }
 }

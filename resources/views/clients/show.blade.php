@@ -4,7 +4,7 @@
     <header class="flex items-center mb-3 py-4">
 
         <div class="flex justify-start w-full items-center">
-            <h1><a href="/clients" class="no-underline">Client</a> / {{ $client->name }}</h1>
+            <h1 class="text-blue-500"><i class="fa fa-users mr-3"></i>Client / {{ $client->name }}</h1>
             <a href="" class="button btn-add ml-4" data-toggle="modal" data-target="#editClientModal"><i class="fa fa-pencil"></i></a>
         </div>
     </header>
@@ -80,6 +80,42 @@
 
                 <div class="mb-8">
                     <div class="flex flex-wrap items-center mb-2">
+                        <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-globe mr-1"></i> Hosted Domains</h2>
+                        <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newDomainModal"><i class="fa fa-plus"></i></a>
+                    </div>
+                    <div class="card mb-6">
+                    @forelse ($client->hosted_domains as $domain)
+                        <div class="flex justify-between">
+                            <div class="w-1/3">
+                                <p class="text-sm">{{ $domain->name }}</p>
+                            </div>
+                            <div class="w-1/5 text-sm">
+                                @if($domain->exp_date)
+                                    Exp: {{ \Carbon\Carbon::parse($domain->exp_date)->format('n-j-Y') }}
+                                @endif
+                            </div>
+                            <div class="w-1/5 text-sm">
+                                @if($domain->site)
+                                    {{ $domain->site->name }}
+                                @endif
+                            </div>
+                            <div class="w-1/8 flex">
+                                <a  class="mr-3" href="" data-toggle="modal" data-target="#editDomainModal"  data-name="{{ $domain->name }}" data-exp="{{ $domain->exp_date }}" data-path="{{ $domain->path() }}" data-siteid="{{ isset($domain->site) ? $domain->site->id : "" }}"><i class="fa fa-pencil"></i></a>
+                                <form method="POST" action="{{ $domain->path() }}" class="delete-form">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="text-red-500 text-sm font-normal"><i class="fa fa-trash"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    @empty
+                        <p>No domains yet.</p>
+                    @endforelse
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <div class="flex flex-wrap items-center mb-2">
                         <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-tasks mr-1"></i> Jobs</h2>
                         <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newJobModal"><i class="fa fa-plus"></i></a>
                     </div>
@@ -147,6 +183,8 @@
         @include('sites._new_site_modal')
         @include('clients._edit_client_modal')
         @include('jobs._new_job_modal')
+        @include('domains._new_domain_modal')
+        @include('domains._edit_domain_modal')
         
     </main>
 @endsection

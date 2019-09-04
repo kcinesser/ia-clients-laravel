@@ -11634,7 +11634,7 @@ $('.delete-form').submit(function (e) {
 
 $('.archive-client-form').submit(function (e) {
 	e.preventDefault();
-	if (confirm('Are you sure you want to archive this client? This will also archive any sites and job associated with this client.')) {
+	if (confirm('Are you sure you want to archive this client? This will also archive any sites and jobs associated with this client.')) {
 		this.submit();
 	}
 });
@@ -11653,10 +11653,27 @@ $('.archive-job-form').submit(function (e) {
 	}
 });
 
+$('#editURLModal').on('show.bs.modal', function (event) {
+	var button = $(event.relatedTarget); // Button that triggered the modal
+	var url = button.data('url'); // Extract info from data-* attributes
+	var type = button.data('type'); // Extract info from data-* attributes
+	var environment = button.data('environment'); // Extract info from data-* attributes
+	var path = button.data('path'); // Extract info from data-* attributes
+
+	// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+	// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+	var modal = $(this);
+
+	modal.find('.modal-body form').attr('action', path);
+	modal.find('.modal-body input[name="url"]').val(url);
+	modal.find('.modal-body select[name="type"]').val(type);
+	modal.find('.modal-body select[name="environment"]').val(environment);
+});
+
 $('#editDomainModal').on('show.bs.modal', function (event) {
 	var button = $(event.relatedTarget); // Button that triggered the modal
 	var name = button.data('name'); // Extract info from data-* attributes
-	var registrar = button.data('registrar'); // Extract info from data-* attributes
+	var site_id = button.data('siteid');
 	var exp_date = button.data('exp'); // Extract info from data-* attributes
 	var path = button.data('path'); // Extract info from data-* attributes
 
@@ -11667,7 +11684,7 @@ $('#editDomainModal').on('show.bs.modal', function (event) {
 	modal.find('.modal-body form').attr('action', path);
 	modal.find('.modal-body input[name="name"]').val(name);
 	modal.find('.modal-body input[name="exp_date"]').val(exp_date);
-	modal.find('.modal-body select[name="registrar_id"]').val(registrar);
+	modal.find('.modal-body select[name="site_id"]').val(site_id);
 });
 
 $('#editUserModal').on('show.bs.modal', function (event) {
@@ -11685,23 +11702,6 @@ $('#editUserModal').on('show.bs.modal', function (event) {
 	modal.find('.modal-body input[name="name"]').val(name);
 	modal.find('.modal-body input[name="email"]').val(email);
 	modal.find('.modal-body select[name="role"]').val(role);
-});
-
-$('#editRegistrarModal').on('show.bs.modal', function (event) {
-	var button = $(event.relatedTarget); // Button that triggered the modal
-	var name = button.data('name'); // Extract info from data-* attributes
-	var id = button.data('id'); // Extract info from data-* attributes
-	var url = button.data('url'); // Extract info from data-* attributes
-	var description = button.data('description'); // Extract info from data-* attributes
-
-	// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-	// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-	var modal = $(this);
-
-	modal.find('.modal-body form').attr('action', 'registrars/' + id);
-	modal.find('.modal-body input[name="name"]').val(name);
-	modal.find('.modal-body input[name="url"]').val(url);
-	modal.find('.modal-body textarea[name="description"]').val(description);
 });
 
 $('#editServiceModal').on('show.bs.modal', function (event) {

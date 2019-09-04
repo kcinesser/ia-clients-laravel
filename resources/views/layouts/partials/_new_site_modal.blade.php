@@ -39,26 +39,6 @@
                         </div>
                     </div>
 
-                    <div class="field mb-6">
-                        <label for="registrar" class="label text-sm mb-2 block">Where is the site registered? (optional)</label>
-
-                        <div class="control">
-                            <select name="registrar" required>
-                                    <option>Select Registrar</option>
-                                @foreach(App\Registrar::all() as $registrar)
-                                    <option value="{{ $registrar->id }}">{{ $registrar->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="field mb-6">
-                        <label for="exp_date" class="label text-sm mb-2 block">When does the domain expire? (optional)</label>
-
-                        <div class="control">
-                            <input type="text" name="exp_date">
-                        </div>
-                    </div>
 
                     <div class="field mb-6">
                         <label for="description" class="label text-sm mb-2 block">Description</label>
