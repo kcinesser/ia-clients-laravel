@@ -15,7 +15,6 @@
             <div class="lg:w-3/4 px-3">
 
                 <div class="mb-8">
-
                     <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-pencil-square-o mr-1"></i> Notes</h2>
                     <form method="POST" action="{{ $job->path() . '/notes' }}">
                         @csrf
