@@ -14,6 +14,34 @@
     	<div class="lg:flex -mx-3 flex-row-reverse">
             <div class="lg:w-3/4 px-3">
 
+
+                <div class="mb-8">
+                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-file-o mr-1"></i> Files</h2>
+
+                    <div class="card constrain-height">
+                            @foreach($job->uploads as $upload)
+                                <div class="mb-3 flex justify-between items-center">
+                                    <a href="{{ $upload->url }}" target="_blank">{{ $upload->name }}</a>
+
+                                    <form method="post" action="/upload/{{ $upload->id}}" >
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"><i class="text-red-500 fa fa-trash"></i></button>
+                                    </form>
+                                </div>
+                            @endforeach
+
+                        <form method="post" action="/upload/job/{{ $job->id }}" enctype="multipart/form-data">
+                            @csrf
+                            <label for="file" class="label text-sm mb-2 block">Upload File</label>
+                            <input type="file" name="file" class="mb-3">
+
+                            <button type="submit" class="button btn-primary">Submit</button>
+                        </form>
+                    </div>
+
+                </div>
+
                 <div class="mb-8">
                     <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-pencil-square-o mr-1"></i> Notes</h2>
                     <form method="POST" action="{{ $job->path() . '/notes' }}">

@@ -44,7 +44,7 @@ class UploadsController extends Controller
     }
 
     public function destroy (Upload $upload) {
-    	Storage::disk('s3')->delete($upload->path);
+    	Storage::disk(env('FILESYSTEM_DRIVER'))->delete($upload->path);
 
     	$upload->delete();
 
