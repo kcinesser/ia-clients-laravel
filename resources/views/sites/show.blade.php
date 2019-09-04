@@ -83,11 +83,11 @@
                                     @csrf
                                     <div class="table w-full">
                                         <div class="table-row">
-                                            <div class="table-cell text-sm text-left"><input name="description" value="{{ $license->description }}" required></div>
-                                            <div class="table-cell text-sm"><input name="key" value="{{ $license->key }}"></div>
-                                            <div class="table-cell text-sm"><input class="date-field" autocomplete="off" name="exp_date" value="{{ $license->exp_date }}"></div>
-                                            <div class="table-cell text-sm"><input name="url" value="{{ $license->url }}"></div>
-                                            <div class="table-cell edit-license"><button type="submit" class="button btn-add-sm mr-2"><i class="fa fa-pencil"></i></button></div>
+                                            <div class="table-cell text-sm text-left w-3/12"><input name="description" value="{{ $license->description }}" class="w-10/12" required></div>
+                                            <div class="table-cell text-sm w-4/12"><input name="key" value="{{ $license->key }}" class="w-10/12"></div>
+                                            <div class="table-cell text-sm w-2/12"><input class="date-field" autocomplete="off" name="exp_date" value="{{ $license->exp_date }}" class="w-10/12"></div>
+                                            <div class="table-cell text-sm w-2/12"><input name="url" value="{{ $license->url }}" class="w-10/12"></div>
+                                            <div class="table-cell edit-license w-1/12"><button type="submit" class="button btn-add-sm mr-2 w-10/12"><i class="fa fa-pencil"></i></button></div>
                                         </div>
                                     </div>
                                 </form>
