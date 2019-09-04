@@ -4,12 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Domain extends Model
+class HostedDomain extends Model
 {
     protected $guarded = [];
+    protected $table = 'hosted_domains';
 
     public function site() {
     	return $this->belongsTo(Site::class);
+    }
+
+    public function client() {
+        return $this->belongsTo(Client::class);
     }
 
     public function registrar() {
@@ -21,6 +26,6 @@ class Domain extends Model
     }
 
     public function path() {
-    	return "/clients/{$this->site->client->id}/sites/{$this->site->id}/domains/{$this->id}";
+    	return "/clients/{$this->client->id}/domains/{$this->id}";
     }
 }

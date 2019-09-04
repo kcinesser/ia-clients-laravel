@@ -14,27 +14,61 @@
     	<div class="lg:flex -mx-3 flex-row-reverse">
     		<div class="lg:w-3/4 px-3">
                 <div class="mb-8">
+                    <div class="flex items-center w-full mb-2">
+                        <h2 class="text-blue-500"><i class="fa fa-laptop mr-1"></i> {{ $site->name }}</h2>
+                        <a href="" class="button btn-add ml-4" data-toggle="modal" data-target="#editSiteModal"><i class="fa fa-pencil"></i></a>
+                    </div>
+                    <p class="text-gray-500 text-sm font-normal">{{ $site->description }}</p>
+                </div>
+
+                <div class="mb-8">
                     <div class="flex flex-wrap items-center mb-2">
-                        <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-globe mr-1"></i> Domains</h2>
+                        <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-home"></i> URLs</h2>
+                        <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newURLModal"><i class="fa fa-plus"></i></a>
+                    </div>
+                    <div class="card mb-6">
+                    @forelse ($site->urls as $url)
+                        <div class="flex justify-between">
+                            <div class="w-1/4">
+                                <p class="text-gray-500 text-sm font-normal mb-0">{{ \App\Enums\URLEnvironment::getDescription($url->environment) }} {{ \App\Enums\URLType::getDescription($url->type) }}</p>
+                            </div>
+                            <div class="w-1/2">
+                                <a class="text-sm" href="{{ $url->url }}" target="_blank">{{ $url->url }}</a>
+                            </div>
+                            <div class="w-1/8 flex">
+                                <a class="mr-3" href="" data-toggle="modal" data-target="#editURLModal"  data-url="{{ $url->url }}" data-type="{{ $url->type }}" data-environment="{{ $url->environment }}" data-path="{{ $url->path() }}"><i class="fa fa-pencil"></i></a>
+                                <form method="POST" action="{{ $url->path() }}" class="delete-form">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="text-red-500 text-sm font-normal"><i class="fa fa-trash"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    @empty
+                        <p>No URLs yet.</p>
+                    @endforelse
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <div class="flex flex-wrap items-center mb-2">
+                        <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-globe mr-1"></i> Hosted Domains</h2>
                         <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newDomainModal"><i class="fa fa-plus"></i></a>
                     </div>
                     <div class="card mb-6">
-                    @forelse ($site->domains as $domain)
-                        <div class="lg:flex justify-between relative mb-2">
-                            <div class="lg:w-1/3">
-                                <a class="text-sm" href="{{ $domain->name }}" target="_blank">{{ $domain->name }}</a>
+                    @forelse ($site->hosted_domains as $domain)
+                        <div class="flex justify-between">
+                            <div class="w-1/3">
+                                <p class="text-sm">{{ $domain->name }}</p>
                             </div>
-                            <div class="lg:w-1/4 text-sm">
+                            <div class="lg:w-1/3 text-sm">
                                 @if($domain->exp_date)
                                     Exp: {{ \Carbon\Carbon::parse($domain->exp_date)->format('n-j-Y') }}
                                 @endif
                             </div>
-                            <div class="lg:w-1/4 text-sm">
-                                {{ $domain->registrar->name }}
-                            </div>
-                            <div class="w-1/8 flex items-center edit-domain">
-                                <a class="button btn-add-sm mr-2" href="" data-toggle="modal" data-target="#editDomainModal"  data-name="{{ $domain->name }}" data-registrar="{{ $domain->registrar->id }}" data-exp="{{ $domain->exp_date }}" data-path="{{ $domain->path() }}"><i class="fa fa-pencil text-white"></i></a>
-                                <form method="POST" action="{{ $site->path() }}/domains/{{ $domain->id }}" class="delete-form">
+                            <div class="w-1/8 flex">
+                                <a  class="mr-3" href="" data-toggle="modal" data-target="#editDomainModal"  data-name="{{ $domain->name }}" data-exp="{{ $domain->exp_date }}" data-path="{{ $domain->path() }}"><i class="fa fa-pencil"></i></a>
+                                <form method="POST" action="{{ $domain->path() }}" class="delete-form">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="text-red-500 text-sm font-normal"><i class="fa fa-trash"></i></button>
@@ -83,11 +117,11 @@
                                     @csrf
                                     <div class="table w-full">
                                         <div class="table-row">
-                                            <div class="table-cell text-sm text-left"><input name="description" value="{{ $license->description }}" required></div>
-                                            <div class="table-cell text-sm"><input name="key" value="{{ $license->key }}"></div>
-                                            <div class="table-cell text-sm"><input class="date-field" autocomplete="off" name="exp_date" value="{{ $license->exp_date }}"></div>
-                                            <div class="table-cell text-sm"><input name="url" value="{{ $license->url }}"></div>
-                                            <div class="table-cell edit-license"><button type="submit" class="button btn-add-sm mr-2"><i class="fa fa-pencil"></i></button></div>
+                                            <div class="table-cell text-sm text-left w-3/12"><input name="description" value="{{ $license->description }}" class="w-10/12" required></div>
+                                            <div class="table-cell text-sm w-4/12"><input name="key" value="{{ $license->key }}" class="w-10/12"></div>
+                                            <div class="table-cell text-sm w-2/12"><input class="date-field w-10/12" autocomplete="off" name="exp_date" value="{{ $license->exp_date }}"></div>
+                                            <div class="table-cell text-sm w-2/12"><input name="url" value="{{ $license->url }}" class="w-10/12"></div>
+                                            <div class="table-cell edit-license w-1/12"><button type="submit" class="button btn-add-sm mr-2 w-10/12"><i class="fa fa-pencil"></i></button></div>
                                         </div>
                                     </div>
                                 </form>
@@ -105,11 +139,11 @@
                             @csrf
                             <div class="table w-full">
                                 <div class="table-row">
-                                    <div class="table-cell text-sm"><input name="description" placeholder="Description"></div>
-                                    <div class="table-cell text-sm"><input name="key" placeholder="Key"></div>
-                                    <div class="table-cell text-sm"><input class="date-field" autocomplete="off" name="exp_date" placeholder="Expiration Date"></div>
-                                    <div class="table-cell text-sm"><input name="url" placeholder="URL"></div>
-                                    <div class="table-cell"><button type="submit" class="text-orange-500 text-sm font-bold">Save</button></div>
+                                    <div class="table-cell text-sm w-3/12"><input name="description" placeholder="Description" class="w-10/12"></div>
+                                    <div class="table-cell text-sm w-4/12"><input name="key" placeholder="Key" class="w-10/12"></div>
+                                    <div class="table-cell text-sm w-2/12"><input class="date-field w-10/12" autocomplete="off" name="exp_date" placeholder="Expiration Date"></div>
+                                    <div class="table-cell text-sm w-2/12"><input name="url" placeholder="URL" class="w-10/12"></div>
+                                    <div class="table-cell w-1/12"><button type="submit" class="text-orange-500 text-sm font-bold w-10/12">Save</button></div>
                                 </div>
                             </div>
                         </form>
@@ -211,5 +245,7 @@
         @include('domains._new_domain_modal')
         @include('domains._edit_domain_modal')
         @include('jobs._new_job_modal')
+        @include('urls._new_url_modal')
+        @include('urls._edit_url_modal')
     </main>
 @endsection

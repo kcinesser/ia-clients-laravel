@@ -2213,7 +2213,7 @@ a.ui-button:active,
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  padding: 1rem 0;
+  padding: 1rem;
   border-top: 1px solid #F3F2EF;
 }
 
@@ -3382,8 +3382,6 @@ hr.with-text:after {
   padding-bottom: 0.25rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  margin-left: 0.25rem;
-  margin-right: 0.25rem;
   font-size: 0.75rem;
   font-weight: 800;
 }

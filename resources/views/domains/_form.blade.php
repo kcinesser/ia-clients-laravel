@@ -1,6 +1,5 @@
 <div class="field mb-6">
-    <label for="title" class="label text-sm mb-2 block">URL <span class="required-text">*</span></label>
-
+    <label for="name" class="label text-sm mb-2 block">Name <span class="required-text">*</span></label>
     <div class="control">
         <input type="text" name="name" value="" required>
     </div>
@@ -10,20 +9,20 @@
     <label for="exp_date" class="label text-sm mb-2 block">Expiration Date </label>
 
     <div class="control">
-
         <input type="text" class="date-field" autocomplete="off" name="exp_date" value="">
-
     </div>
 </div>
 
 <div class="field mb-6">
-    <label for="registrar_id" class="label text-sm mb-2 block">Registrar <span class="required-text">*</span></label>
+    <label for="site_id" class="label text-sm mb-2 block">Site</label>
 
-    <select name="registrar_id" id="grid-state">
-        @foreach ($registrars as $registrar)
-            <option value="{{ $registrar->id }}" >{{ $registrar->name }}</option>
+    <select name="site_id">
+        <option value="">Select Site</option>
+        @foreach($client->sites as $client_site)
+            <option value="{{ $client_site->id }}" {{ $site->id == $client_site->id ? "selected" : "" }}>{{ $client_site->name }}</option>
         @endforeach
     </select>
+
 </div>
 
 <div class="modal-footer">
