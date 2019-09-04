@@ -21,28 +21,12 @@ class SiteTableSeeder extends Seeder
         ]);
 
         DB::table('sites')->insert([
-        	'client_id' => 1,
-        	'name' => 'Spikes BBG Staging',
-        	'technology' => 0,
-        	'status' => 2,
-            'host_id' => 1,
-        ]);
-
-        DB::table('sites')->insert([
         	'client_id' => 2,
         	'name' => 'Lincoln Berean',
         	'technology' => 0,
         	'status' => 1,
             'host_id' => 1,
             'update_instructions' => 'Test instructions.'
-        ]);
-
-        DB::table('sites')->insert([
-        	'client_id' => 2,
-        	'name' => 'Lincoln Berean Staging',
-        	'technology' => 0,
-        	'status' => 2,
-            'host_id' => 1,
         ]);
 
         DB::table('sites')->insert([
@@ -88,14 +72,6 @@ class SiteTableSeeder extends Seeder
 
         DB::table('sites')->insert([
         	'client_id' => 4,
-        	'name' => 'LRS Healthcare Staging',
-        	'technology' => 0,
-        	'status' => 4,
-            'host_id' => 1,
-        ]);
-
-        DB::table('sites')->insert([
-        	'client_id' => 4,
         	'name' => 'Travcon Takeover',
         	'technology' => 0,
         	'status' => 4,
@@ -118,15 +94,6 @@ class SiteTableSeeder extends Seeder
             'host_id' => 1,
             'update_instructions' => 'Test instructions.'
         ]);
-
-        DB::table('sites')->insert([
-        	'client_id' => 6,
-        	'name' => 'Firespring Blog Staging',
-        	'technology' => 0,
-        	'status' => 2,
-            'host_id' => 1,
-        ]);
-
 
         DB::table('sites')->insert([
         	'client_id' => 7,

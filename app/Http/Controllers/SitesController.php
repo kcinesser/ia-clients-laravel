@@ -5,25 +5,12 @@ namespace App\Http\Controllers;
 use App\Site;
 use App\Client;
 use App\Service;
-use App\Domain;
+use App\HostedDomain;
 use App\Hosting;
 use Illuminate\Http\Request;
 
 class SitesController extends Controller
 {
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Client $client)
-    {
-        $services = Service::all();
-        $hosting = Hosting::all()->sortBy('name');
-
-        return view('sites.create', compact('client', 'services', 'hosting'));
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -33,7 +20,6 @@ class SitesController extends Controller
      */
     public function store(Client $client)
     {
-
         $site = $client->addSite($this->validate_data());
         return redirect($site->path());
     }
@@ -117,9 +103,7 @@ class SitesController extends Controller
     private function validate_data(){
         return request()->validate([
             'name' => 'required|sometimes',
-            'URL' => 'required|sometimes',
-            'registrar' => 'required|numeric|sometimes',
-            'exp_date' => 'nullable|date',
+            'URL' => 'required|sometimes|url',
             'description' => 'nullable',
             'status' => 'required|numeric|sometimes',
             'technology' => 'required|numeric|sometimes',
@@ -136,7 +120,7 @@ class SitesController extends Controller
         return view('sites.all_archive', compact('archive_sites'));
     }
 
-    public function archives(Client $client) {
+    public function client_site_archives(Client $client) {
         $archived_sites = $client->sites->where('status', 4);
 
         return view('sites.archive', compact('archived_sites', 'client'));

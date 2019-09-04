@@ -12,17 +12,17 @@ class ServiceSiteSeeder extends Seeder
     public function run()
     {
         DB::table('service_site')->insert([
-        	'site_id' => 15,
+        	'site_id' => 10,
         	'service_id' => 5
         ]);
 
         DB::table('service_site')->insert([
-        	'site_id' => 13,
+        	'site_id' => 11,
         	'service_id' => 5
         ]);
 
         DB::table('service_site')->insert([
-        	'site_id' => 3,
+        	'site_id' => 2,
         	'service_id' => 1
         ]);
 
@@ -32,7 +32,7 @@ class ServiceSiteSeeder extends Seeder
         ]);
 
         DB::table('service_site')->insert([
-        	'site_id' => 1,
+        	'site_id' => 6,
         	'service_id' => 1
         ]);
     }

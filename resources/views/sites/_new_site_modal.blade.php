@@ -16,7 +16,6 @@
                         'technologies' => App\Enums\Technologies::toSelectArray(),
                         'services' => App\Service::all(),
                         'statuses' => App\Enums\SiteStatus::toSelectArray(),
-                        'registrars' => App\Registrar::all()
                     ])
 
                 </form>
