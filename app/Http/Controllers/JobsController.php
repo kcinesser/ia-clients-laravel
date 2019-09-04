@@ -9,12 +9,6 @@ use App\Client;
 
 class JobsController extends Controller
 {
-    public function index() {
-        $jobs = Job::all();
-
-        return view('jobs.index', compact('jobs'));
-    }
-
     public function show(Client $client, Job $job) {
         return view('jobs.show', compact('job', 'client'));
     }
@@ -47,7 +41,7 @@ class JobsController extends Controller
         return redirect($job->path());
     }
 
-    public function archives(Client $client) {
+    public function client_job_archives(Client $client) {
         $archived_jobs = $client->jobs->where('status', 3);
 
         return view('jobs.archive', compact('archived_jobs', 'client'));
