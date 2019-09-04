@@ -14,14 +14,6 @@
     	<div class="lg:flex -mx-3 flex-row-reverse">
     		<div class="lg:w-3/4 px-3">
                 <div class="mb-8">
-                    <div class="flex items-center w-full mb-2">
-                        <h2 class="text-blue-500"><i class="fa fa-laptop mr-1"></i> {{ $site->name }}</h2>
-                        <a href="" class="button btn-add ml-4" data-toggle="modal" data-target="#editSiteModal"><i class="fa fa-pencil"></i></a>
-                    </div>
-                    <p class="text-gray-500 text-sm font-normal">{{ $site->description }}</p>
-                </div>
-
-                <div class="mb-8">
                     <div class="flex flex-wrap items-center mb-2">
                         <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-home"></i> URLs</h2>
                         <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newURLModal"><i class="fa fa-plus"></i></a>
