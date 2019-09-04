@@ -2,7 +2,7 @@
     <label for="name" class="label text-sm mb-2 block">Site Name <span class="required-text">*</span></label>
 
     <div class="control">
-        <input type="text" name="name" value="{{ $site->name }}" required>
+        <input type="text" name="name" value="" required>
     </div>
 </div>
 
@@ -14,31 +14,10 @@
 </div>
 
 <div class="field mb-6">
-    <label for="registrar" class="label text-sm mb-2 block">Where is the domain registered? <span class="required-text">*</span></label>
-
-    <div class="control">
-        <select name="registrar" required>
-            <option value="">Select Registrar</option>
-            @foreach($registrars as $registrar)
-                <option value="{{ $registrar->id }}">{{ $registrar->name }}</option>
-            @endforeach
-        </select>
-    </div>
-</div>
-
-<div class="field mb-6">
-    <label for="exp_date" class="label text-sm mb-2 block">When does the domain expire?</label>
-
-    <div class="control">
-        <input type="text" class="date-field" autocomplete="off" name="exp_date">
-    </div>
-</div>
-
-<div class="field mb-6">
     <label for="description" class="label text-sm mb-2 block">Description</label>
 
     <div class="control">
-        <input type="text" name="description" >{{ $site->description }}</textarea>
+        <input type="text" name="description" ></input>
     </div>
 </div>
 
@@ -48,7 +27,7 @@
     <div class="control">
         <select name="status" required>
             @foreach ($statuses as $value => $status)
-                <option value="{{$value}}" {{ $value == $site->status ? "selected" : "" }} >{{ $status}}</option>
+                <option value="{{$value}}">{{ $status}}</option>
             @endforeach
         </select>
     </div>
@@ -60,7 +39,7 @@
     <div class="control">
         <select name="technology" required>
             @foreach ($technologies as $value => $technology)
-                <option value="{{$value}}" {{ $value == $site->technology ? "selected" : "" }} >{{ $technology }}</option>
+                <option value="{{$value}}">{{ $technology }}</option>
             @endforeach
         </select>
     </div>
