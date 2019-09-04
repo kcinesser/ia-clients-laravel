@@ -28,7 +28,7 @@
                                     <div class="lg:w-1/4"><a href="{{ $job->path() }}">{{ $job->title }}</a></div>
                                     <div class="lg:w-1/4"><p>{{ $job->client->name }}</p></div>
                                     <div class="lg:w-1/4"><p>{{ \App\Enums\JobStatus::getDescription($job->status) }}</p></div>
-                                    <div class="lg:w-1/4"><p>{{ $job->developer->name }}</p></div>
+                                    <div class="lg:w-1/4"><p>{{ !is_null($job->developer) ? $job->developer->name : "" }}</p></div>
                                 </div>
                             @endforeach
                             </div>

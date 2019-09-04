@@ -1,6 +1,5 @@
 <div class="field mb-6">
-    <label for="title" class="label text-sm mb-2 block">Name <span class="required-text">*</span></label>
-
+    <label for="name" class="label text-sm mb-2 block">Name <span class="required-text">*</span></label>
     <div class="control">
         <input type="text" name="name" value="" required>
     </div>
