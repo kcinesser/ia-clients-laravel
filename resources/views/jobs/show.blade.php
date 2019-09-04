@@ -14,19 +14,7 @@
     	<div class="lg:flex -mx-3 flex-row-reverse">
             <div class="lg:w-3/4 px-3">
                 <div class="mb-8">
-                    <div class="mb-2 flex items-center w-full ">
-                        <h2 class="text-blue-500"><i class="fa fa-tasks mr-1"></i> {{ $job->title }}</h2>
-                        <a href="" class="button btn-add ml-4" data-toggle="modal" data-target="#editJobModal"><i class="fa fa-pencil"></i></a>
-                    </div>
-                    @if($job->site()->exists())
-                        <p class="text-gray-500 text-xs headline-lead">Site: <a class="text-blue-500 no-underline" href="{{ $job->site->path() }}">{{ $job->site->name }}</a></p>
-                    @endif
-                    <p class="text-gray-500 text-sm font-normal">{{ $job->description }}</p>
-                </div>
-
-                <div class="mb-8">
                     <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-pencil-square-o mr-1"></i> Notes</h2>
-
                     <form method="POST" action="{{ $job->path() . '/notes' }}">
                         @csrf
                         @method('PATCH')
