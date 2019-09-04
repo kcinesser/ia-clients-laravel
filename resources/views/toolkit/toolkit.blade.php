@@ -12,6 +12,7 @@
                     <li class="headline-lead">Table of Contents</li>
                     <li><a href="#typography">Typography</a></li>
                     <li><a href="#buttons">Buttons</a></li>
+                    <li><a href="#badges">Badges</a></li>
                     <li><a href="#modals">Modals</a></li>
                     <li><a href="#cards">Cards</a></li>
                 </ul>
@@ -103,8 +104,36 @@
                         </tr>
                         </tbody>
                     </table>
+                </div>
 
-            </div>
+                <div class="lg:w-full px-3 mb-16" id="badges">
+                    <h2 class="mb-3">Badges</h2>
+                    <p>Badges are used to quickly identify a site's status and if they are on the MMA or not.</p>
+                    <p>To see badges being used, go to an individual client page.</p>
+
+                    <h3 class="my-6">Example of a site with badges</h3>
+
+                    <h3><a href="#">Site Name </a><span class="badge badge-live">Live</span> <span class="badge badge-dev">In Dev</span> <span class="badge badge-mma">MMA</span></h3>
+
+                    <br>
+
+                    <table class="lg:w-full">
+                        <tbody>
+                        <tr>
+                            <td><code>.badge .badge-mma</code></td>
+                            <td><span class="badge badge-mma">MMA</span></td>
+                        </tr>
+                        <tr>
+                            <td><code>.badge .badge-live</code></td>
+                            <td><span class="badge badge-live">Live</span></td>
+                        </tr>
+                        <tr>
+                            <td><code>.badge .badge-dev</code></td>
+                            <td><span class="badge badge-dev">In Dev</span></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
 
                 <div class="lg:w-full px-3 mb-16" id="modals">
                     <h2 class="mb-3">Modals</h2>
@@ -206,6 +235,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </main>

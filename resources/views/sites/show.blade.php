@@ -107,7 +107,7 @@
                 @endif
 
                 <div class="mb-8">
-                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-key mr-1"></i>Licenses</h2>
+                    <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-key mr-1"></i>Licenses</h2>
 
                     <div class="card">
                         @foreach ($site->licenses as $license)
@@ -159,7 +159,7 @@
                 </div>
 
                 <div class="mb-8">
-                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-refresh mr-1"></i> Update Instructions</h2>
+                    <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-refresh mr-1"></i> Update Instructions</h2>
 
                     <form method="POST" action="{{ $site->path() . '/notes' }}">
                         @csrf

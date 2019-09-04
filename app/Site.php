@@ -48,6 +48,7 @@ class Site extends Model
         return $this->belongsTo(Hosting::class);
     }
 
+
     public function path() {
         return "{$this->client->path()}/sites/{$this->id}";
     }
