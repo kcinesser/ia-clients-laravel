@@ -2375,6 +2375,10 @@ a.ui-button:active,
   right: 0;
 }
 
+.dropdown-menu.center-drop {
+  margin-left: -60px;
+}
+
 .dropdown-divider {
   height: 0;
   margin: .5rem 0;
@@ -3023,6 +3027,10 @@ body {
   color: #333;
 }
 
+button:focus {
+  outline: none;
+}
+
 h1, .h1 {
   font-size: 2.25rem;
   font-family: Montserrat, sans-serif;
@@ -3290,6 +3298,16 @@ hr.with-text:after {
   background-color: #80d7d9;
 }
 
+.button.btn-add.btn-blue {
+  background-color: #4B5783;
+}
+
+.button.btn-add.btn-blue:hover {
+  background-color: #59679c;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
 .button.btn-add-sm {
   font-size: 0.5em;
   width: 20px;
@@ -3381,6 +3399,24 @@ p > .fa {
   .table-row .table-cell {
     display: block;
   }
+
+  .table-row .table-cell > input {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .edit-domain {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .edit-license {
+    position: absolute;
+    top: 0;
+    right: 10px;
+  }
 }
 
 .field label {
@@ -3458,7 +3494,7 @@ select:focus {
 
 .delete-license {
   position: absolute;
-  top: 0;
+  top: 2px;
   right: 0;
 }
 

@@ -2,7 +2,13 @@
 
 @section('content')
 
-    <header class="flex items-center mb-3 py-4"></header>
+    <header class="mb-3 py-4">
+        <div class="flex items-center w-full mb-2">
+            <h1 class="text-blue-500"><i class="fa fa-laptop mr-3"></i>Sites / {{ $site->name }}</h1>
+            <a href="" class="button btn-add ml-4" data-toggle="modal" data-target="#editSiteModal"><i class="fa fa-pencil"></i></a>
+        </div>
+        <p class="text-gray-500 text-sm font-normal">{{ $site->description }}</p>
+    </header>
 
     <main class="sites-show">
     	<div class="lg:flex -mx-3 flex-row-reverse">
@@ -55,7 +61,7 @@
                             <div class="w-1/3">
                                 <p class="text-sm">{{ $domain->name }}</p>
                             </div>
-                            <div class="w-1/4 text-sm">
+                            <div class="lg:w-1/3 text-sm">
                                 @if($domain->exp_date)
                                     Exp: {{ \Carbon\Carbon::parse($domain->exp_date)->format('n-j-Y') }}
                                 @endif
@@ -77,7 +83,7 @@
 
                 @if($site->jobs()->exists())
                 <div class="mb-8">  
-                    <div class="lg:flex lg:flex-wrap items-center">
+                    <div class="flex flex-wrap items-center mb-2">
                         <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-check-square-o mr-1"></i> Jobs</h2>
                         <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newJobModal"><i class="fa fa-plus"></i></a>
                     </div>
@@ -86,7 +92,7 @@
                         @forelse ($jobs as $job)
                             <div class="lg:w-full p-2">
                                 <h3><a href="{{ $job->path() }}">{{ $job->title }}</a></h3>
-                                <p class="text-gray-500 text-sm font-normal">{{ \Illuminate\Support\Str::limit($job->description, 30) }}</p>
+                                <p class="text-gray-500 text-sm font-normal">{{ \Illuminate\Support\Str::limit($job->description, 80) }}</p>
                             </div>
                         @empty
                             <div class="lg:w-full p-2">
@@ -115,7 +121,7 @@
                                             <div class="table-cell text-sm"><input name="key" value="{{ $license->key }}"></div>
                                             <div class="table-cell text-sm"><input class="date-field" autocomplete="off" name="exp_date" value="{{ $license->exp_date }}"></div>
                                             <div class="table-cell text-sm"><input name="url" value="{{ $license->url }}"></div>
-                                            <div class="table-cell"><button type="submit" class="text-orange-500 text-sm font-normal">Update</button></div>
+                                            <div class="table-cell edit-license"><button type="submit" class="button btn-add-sm mr-2"><i class="fa fa-pencil"></i></button></div>
                                         </div>
                                     </div>
                                 </form>
@@ -137,7 +143,7 @@
                                     <div class="table-cell text-sm"><input name="key" placeholder="Key"></div>
                                     <div class="table-cell text-sm"><input class="date-field" autocomplete="off" name="exp_date" placeholder="Expiration Date"></div>
                                     <div class="table-cell text-sm"><input name="url" placeholder="URL"></div>
-                                    <div class="table-cell"><button type="submit" class="text-orange-500 text-sm font-normal">Save</button></div>
+                                    <div class="table-cell"><button type="submit" class="text-orange-500 text-sm font-bold">Save</button></div>
                                 </div>
                             </div>
                         </form>
