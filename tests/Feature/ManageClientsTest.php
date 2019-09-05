@@ -79,8 +79,38 @@ class ManageClientsTest extends TestCase
     /** @test */
     public function a_client_belongs_to_an_account_manager() {
         $this->signIn();
+
         $attributes = factory('App\Client')->raw(['account_manager_id' => null]);
 
         $this->post('/clients', $attributes)->assertSessionHasErrors('account_manager_id');
+    }
+
+    /** @test */
+    public function a_client_can_be_archived() {
+        $this->signIn();
+
+        $client = factory('App\Client')->create(['account_manager_id' => auth()->id()]);
+        $host = $this->factoryWithoutObservers('App\Hosting')->create();
+        $site = factory('App\Site')->create(['client_id' => $client->id, 'host_id' => $host->id]);
+        $job = factory('App\Job')->create(['client_id' => $client->id]);
+
+        $response = $this->patch($client->path() . '/archive');
+
+        $response->assertRedirect('/');
+        
+        $this->assertDatabaseHas('clients', [
+            'name' => $client->name,
+            'status' => 3
+        ]);
+
+        $this->assertDatabaseHas('jobs', [
+            'title' => $job->title,
+            'status' => 3
+        ]);
+
+        $this->assertDatabaseHas('sites', [
+            'name' => $site->name,
+            'status' => 4
+        ]);
     }
 }

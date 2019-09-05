@@ -13,7 +13,7 @@ class ClientTest extends TestCase
     /** @test */
     public function it_has_a_path() {
         $this->signIn();
-        
+
         $client = factory('App\Client')->create(['account_manager_id' => auth()->id()]);
         
         $this->assertEquals('/clients/' . $client->id, $client->path());
@@ -36,10 +36,21 @@ class ClientTest extends TestCase
         $this->signIn();
 
         $client = factory('App\Client')->create(['account_manager_id' => auth()->id()]);
-
         $job = $client->addJob(factory('App\Job')->raw());
 
         $this->assertCount(1, $client->jobs);
         $this->assertTrue($client->jobs->contains($job));
+    }
+
+    /** @test */
+    public function it_can_add_a_domain() {
+        $this->signIn();
+
+        $client = factory('App\Client')->create(['account_manager_id' => auth()->id()]);
+
+        $domain = $client->addDomain(factory('App\HostedDomain')->raw());
+
+        $this->assertCount(1, $client->hosted_domains);
+        $this->assertTrue($client->hosted_domains->contains($domain));
     }
 }

@@ -20,4 +20,18 @@ class SiteTest extends TestCase
 
         $this->assertEquals($client->path() . '/sites/' . $site->id, $site->path());
     }
+
+    /** @test */
+    public function it_can_add_urls() {
+        $this->signIn();
+
+        $client = factory('App\Client')->create(['account_manager_id' => auth()->id()]);
+        $host = $this->factoryWithoutObservers('App\Hosting')->create();
+        $site = factory('App\Site')->create(['client_id' => $client->id, 'host_id' => $host->id]);
+
+        $url = $site->addURL(factory('App\SiteURL')->raw());
+
+        $this->assertCount(1, $site->urls);
+        $this->assertTrue($site->urls->contains($url));
+    }
 }
