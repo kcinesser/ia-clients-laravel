@@ -4,7 +4,14 @@
     </h3>
     <div class="mb-4">
         <p class="text-gray-800 text-xs headline-lead">Status</p>
-        <p class="text-gray-500 text-sm font-normal">{{ \App\Enums\SiteStatus::getDescription($site->status) }}</p>
+{{--        <p class="text-gray-500 text-sm font-normal">{{ \App\Enums\SiteStatus::getDescription($site->status) }}</p>--}}
+        <span class="badge {{$site->status == App\Enums\SiteStatus::InDevelopment ? 'badge-dev' : 'badge-live'}}">{{$site->status == App\Enums\SiteStatus::InDevelopment ? 'In Dev' : 'Live'}}</span>
+
+        @if ($site->services->contains(1))
+            <span class="badge badge-mma">MMA</span>
+        @elseif ($site->services->contains(5))
+            <span class="badge badge-mma">MMA - Internal</span>
+        @endif
     </div>
     <div class="mb-4">
         <p class="text-gray-800 text-xs headline-lead">Account Manager</p>

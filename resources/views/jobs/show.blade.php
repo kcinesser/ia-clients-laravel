@@ -13,6 +13,7 @@
     <main class="jobs-show">
     	<div class="lg:flex -mx-3 flex-row-reverse">
             <div class="lg:w-3/4 px-3">
+
                 <div class="mb-8">
                     <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-pencil-square-o mr-1"></i> Notes</h2>
                     <form method="POST" action="{{ $job->path() . '/notes' }}">
@@ -24,7 +25,7 @@
                 </div>
 
                 <div class="mb-8">
-                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-comment-o mr-1"></i> Comments / Updates</h2>
+                    <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-comment-o mr-1"></i> Comments / Updates</h2>
 
                     <div class="card mb-3">
                         <form action="/comment/job/{{ $job->id }}" method="POST">
@@ -57,7 +58,7 @@
                 @include ('jobs.card')
 
                 <div class="mb-8">
-                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-list-ol mr-1"></i> Tasks</h2>
+                    <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-list-ol mr-1"></i> Tasks</h2>
                     <div class="card">
 
                         @foreach ($job->tasks as $task)

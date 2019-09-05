@@ -10,7 +10,7 @@
     <main>
     	<div class="lg:flex">
     		<div class="lg:w-3/4 lg:pr-6">
-		   		<h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-users mr-1"></i> Your Clients</h2>
+		   		<h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-users mr-1"></i> Your Clients</h2>
 		   		<div  class="lg:flex lg:flex-wrap card">
 			   		@forelse ($clients as $client)
 						<div class="lg:w-full p-2">
@@ -25,7 +25,7 @@
 		    	<div class="text-right mb-4">
 		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#clientsModal"><i class="fa fa-th-list mr-1"></i> View All Clients</button>
 		    	</div>
-		  		<h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-tasks mr-1"></i> Your Jobs</h2>
+		  		<h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-tasks mr-1"></i> Your Jobs</h2>
 		   		<div  class="lg:flex lg:flex-wrap card">
 			  		@forelse ($jobs as $job)
 			            <div class="lg:w-full p-2">
@@ -42,11 +42,19 @@
 		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#jobsModal"><i class="fa fa-th-list mr-1"></i> View All Jobs</button>
 		    	</div>
 
-		    	<h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-window-maximize mr-1"></i> Your Sites</h2>
+		    	<h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-window-maximize mr-1"></i> Your Sites</h2>
 		   		<div  class="lg:flex lg:flex-wrap card">
 			  		@forelse ($sites as $site)
 			            <div class="lg:w-full p-2">
-			            	<h3><a href="{{ $site->path() }}">{{ $site->name }}</a></h3>
+			            	<h3><a href="{{ $site->path() }}">{{ $site->name }}</a>
+								<span class="badge {{$site->status == App\Enums\SiteStatus::InDevelopment ? 'badge-dev' : 'badge-live'}}">{{$site->status == App\Enums\SiteStatus::InDevelopment ? 'In Dev' : 'Live'}}</span>
+
+								@if ($site->services->contains(1))
+									<span class="badge badge-mma">MMA</span>
+								@elseif ($site->services->contains(5))
+									<span class="badge badge-mma">MMA - Internal</span>
+								@endif
+							</h3>
 							<p><a href="{{ $site->client->path() }}" class="text-gray-500 text-sm font-normal">{{ $site->client->name }}</a></p>
 						</div>
 					@empty
@@ -60,7 +68,7 @@
 		    	</div>
 			</div>
 			<div class="lg:w-1/4 lg:pl-6">
-		   		<h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
+		   		<h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
 				<div class="card constrain-height">
 					@foreach ($activities as $activity)
 						<div class="border-b-2 py-6">
@@ -70,7 +78,7 @@
 					@endforeach
 				</div>
 
-		   		<h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-cogs mr-1"></i> Update Feed</h2>
+		   		<h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-cogs mr-1"></i> Update Feed</h2>
 				<div class="card constrain-height">
 					@foreach ($updates as $update)
 						<div class="border-b-2 py-6">
