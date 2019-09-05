@@ -40,7 +40,8 @@ class ClientTableSeeder extends Seeder
             'account_manager_id' => 9,
             'contact_name' => 'LRS Contact',
             'contact_email' => 'test@test.com',
-            'contact_phone' => '1231231234'
+            'contact_phone' => '1231231234',
+            'status' => 3
         ]);
 
         DB::table('clients')->insert([
@@ -48,7 +49,8 @@ class ClientTableSeeder extends Seeder
             'account_manager_id' => 8,
             'contact_name' => 'NU Contact',
             'contact_email' => 'test@test.com',
-            'contact_phone' => '1231231234'
+            'contact_phone' => '1231231234',
+            'status' => 3
         ]);
 
         DB::table('clients')->insert([

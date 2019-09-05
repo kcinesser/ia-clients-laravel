@@ -1,39 +1,76 @@
 
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+//@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,800&display=swap');
 
-// Variables
+
+//import jquery ui styles
+@import '~jquery-ui/themes/base/all.css';
+
+// Required Imports
 @import "variables";
-
-// Bootstrap
-//@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+@import "mixins";
+@import "modal";
+@import "tabs";
+@import "dropdown";
 
 @tailwind base;
 
 // START - base styles
 
-h1 {
-	@apply text-4xl font-display font-extrabold;
+body {
+	@apply font-body;
+	color: #333;
 }
 
-h2 {
-	@apply text-2xl font-display font-extrabold;
+button:focus {
+	outline: none;
 }
 
-h3 {
-	@apply text-xl font-display font-extrabold;
+h1, .h1 {
+	@apply text-4xl font-display font-extrabold tracking-tight;
 }
 
-h4 {
-	@apply text-lg font-display font-extrabold;
+h2, .h2 {
+	@apply text-2xl font-display font-extrabold tracking-tight;
 }
 
-a {
+h3, .h3 {
+	@apply text-xl font-display font-extrabold tracking-tight;
+}
+
+h4, .h4 {
+	@apply text-lg font-display font-extrabold tracking-tight;
+}
+
+h5, .h5 {
+	@apply text-base font-display font-extrabold tracking-tight;
+}
+
+h6, .h6 {
+	@apply text-sm font-display font-extrabold tracking-tight;
+}
+
+nav a {
 	@apply text-base font-sans;
+}
+
+.container a:not(.button) {
+	@apply font-body underline;
+	text-decoration-color: #F15B51;
+	&:hover {
+		// @apply text-primary;
+	}
+	&.no-underline {
+		text-decoration: none;
+	}
 }
 
 p {
 	@apply text-base font-body leading-normal;
+	margin-bottom: 0.75em;
+
+	&:last-child { margin-bottom: 0; }
 }
 
 ul {
@@ -44,34 +81,363 @@ ol {
 	@apply text-base font-body list-decimal list-inside;
 }
 
+pre {
+	@apply border border-gray-500;
+	overflow: scroll;
+	margin-bottom: 0.75em;
+}
+
+code {
+	font-size: 87.5%;
+	color: #e83e8c;
+	word-break: break-word;
+}
+
+.required-text {
+	color: $brand-danger;
+	font-weight: bold;
+}
+
+.headline-lead {
+	@apply text-sm font-display font-medium uppercase tracking-wider;
+}
+
+td {
+	@apply border border-gray-200 border-l-0 border-r-0 border-b-0 p-3;
+}
+
+hr {
+	border-width: 1px;
+
+	&.with-text {
+		line-height: 1em;
+		position: relative;
+		outline: 0;
+		border: 0;
+		color: black;
+		text-align: center;
+		height: 1.5em;
+		opacity: .5;
+
+		&:before {
+			content: '';
+			// use the linear-gradient for the fading effect
+			// use a solid background color for a solid bar
+			background: linear-gradient(to right, transparent, #818078, transparent);
+			position: absolute;
+			left: 0;
+			top: 50%;
+			width: 100%;
+			height: 1px;
+		}
+
+		&:after {
+			content: attr(data-content);
+			position: relative;
+			display: inline-block;
+			color: black;
+
+			padding: 0 .5em;
+			line-height: 1.5em;
+			// this is really the only tricky part, you need to specify the background color of the container element...
+			color: #818078;
+			background-color: #fcfcfa;
+		}
+	}
+}
+
 // END - base styles
 
 @tailwind components;
 
 // START - components
 
-@mixin transition($transition...) {
-	-moz-transition: $transition;
-	-o-transition: $transition;
-	-webkit-transition: $transition;
-	transition: $transition;
-}
-
 .button {
 	@apply bg-orange-500 text-white font-sans font-extrabold no-underline rounded-full text-base py-2 px-4 shadow;
 	@include transition(all .25s ease-in-out);
+	display: inline-block;
 	&:hover {
 		@apply bg-orange-300 shadow-3;
 	}
-	&.large {
+	&.btn-large {
 		@apply py-4 px-8;
 	}
+
+	&.btn-sm {
+		@apply py-1 px-3 text-xs;
+	}
+
+	&.btn-secondary {
+		@apply bg-plum-500;
+		&:hover { @apply bg-plum-300; }
+	}
+	&.btn-yellow {
+		@apply bg-yellow-500;
+		&:hover { @apply bg-yellow-300; }
+	}
+	&.btn-blue {
+		@apply bg-blue-500;
+		&:hover { @apply bg-blue-300; }
+	}
+	&.btn-teal {
+		@apply bg-teal-500;
+		&:hover { @apply bg-teal-300; }
+	}
+
+	&.btn-add {
+		padding-left: 0.75rem;
+		padding-right: 0.75rem;
+		height: 40px;
+		width: 40px;
+		text-align: center;
+		@apply bg-teal-500;
+		&:hover { @apply bg-teal-300; }
+
+		&.btn-blue {
+			@apply bg-blue-500;
+			&:hover {
+				@apply bg-blue-300;
+				transform: rotate(45deg);
+			}
+		}
+	}
+	&.btn-add-sm {
+		font-size: 0.5em;
+		width: 20px;
+		height: 20px;
+		text-align: center;
+		padding: 3px;
+		@apply bg-teal-500;
+		&:hover { @apply bg-teal-300; }
+	}
+
+	&.btn-delete {
+		padding-left: 0.75rem;
+		padding-right: 0.75rem;
+		@apply bg-red-700;
+		&:hover { @apply bg-red-300; }
+	}
+
+	&.btn-delete-sm {
+		font-size: 0.5em;
+		width: 20px;
+		height: 20px;
+		text-align: center;
+		padding: 3px;
+		@apply bg-red-700;
+		&:hover { @apply bg-red-300; }
+	}
+
 }
 
 .card {
-	@apply bg-white p-5 rounded-lg shadow mb-8;
+	@apply bg-white p-5 rounded-lg shadow mb-4 font-display;
+	color: #4B5783;
+
+	a:link, a:visited {
+		font-family: Montserrat, sans-serif;
+		text-decoration: none;
+		color: #4B5783;
+
+		&:hover, &:active {
+			opacity: 0.7;
+		}
+	}
+
+	.border-b-2:first-child {
+		padding-top: 0;
+	}
+
+	.border-b-2:last-child {
+		border-width: 0;
+		padding-bottom: 0;
+	}
+}
+
+.badge {
+	position: relative;
+	top: -3px;
+	@apply rounded-full py-1 px-2 text-xs font-extrabold ;
+	&.badge-mma {
+		@apply bg-blue-300 text-white;
+	}
+	&.badge-live {
+		@apply bg-green-300 text-gray-700;
+	}
+	&.badge-dev {
+		@apply bg-yellow-300 text-plum-500;
+	}
+}
+
+.side-nav {
+	a:link, a:visited {
+		@apply headline-lead;
+		text-decoration: none;
+		color: #929292;
+		font-size: 0.725rem;
+	}
+}
+
+.constrain-height {
+	max-height: 35vh;
+	overflow-y: scroll;
+}
+
+p>.fa {
+	min-width: 14px;
+	text-align: center;
+}
+
+@media (max-width: 830px) {
+	.table-row .table-cell {
+		display: block;
+
+		> input {
+			width: 100%;
+		}
+	}
+}
+
+@media (max-width: 1024px) {
+	.edit-domain {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+	.edit-license {
+		position: absolute;
+		top: 0;
+		right: 10px;
+	}
 }
 
 // END - components
 
+// START - Forms
+.field label {
+	@apply text-sm mb-2 block;
+}
+
+.field input[type='checkbox'] ~ label {
+	@apply inline;
+}
+
+.control input:not([type='checkbox']),
+.control select,
+.control textarea {
+	@apply block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight;
+	&:focus {
+		@apply outline-none bg-white border-gray-500;
+	}
+}
+
+select {
+	@apply block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight;
+	&:focus {
+		@apply outline-none bg-white border-gray-500
+	}
+}
+
+// END - Forms
+
+#logo {
+	height: 50px;
+	width: 50px;
+}
+
+.license {
+	position: relative;
+}
+.delete-license {
+	position: absolute;
+	top: 2px;
+	right: 0;
+}
+
+.settings-tabs {
+	.tab-pane {
+		border-top-color: #ddd;
+	}
+
+	.tab-pane > div { background: #fff; }
+	.tab-pane > div:nth-child(odd) {
+		background: #f1f1f1;
+	}
+
+	@media (max-width: 830px) {
+		.edit-buttons {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+		}
+	}
+}
+
+#client-modal-list,
+#site-modal-list,
+#job-modal-list {
+	p {
+		@apply text-sm text-gray-500;
+	}
+
+	a {
+		@apply text-orange-500 no-underline;
+
+		@media (min-width: 1024px) {
+			@apply text-sm;
+		}
+	}
+}
+
+.mma-list {
+    border: 1px solid #ddd;
+}
+
+.mma-list > div {
+	background: #fff;
+}
+
+.mma-list > div:nth-child(odd) {
+    background: #f1f1f1;
+}
+
+
+
 @tailwind utilities;
+
+
+/**
+Datepicker UI - START
+ */
+
+
+.ui-datepicker-prev span,
+.ui-datepicker-next span {
+	background-image: none !important;
+}
+
+.ui-datepicker-prev:before,
+.ui-datepicker-next:before {
+	font-family: FontAwesome;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: flex;
+	font-weight: normal;
+	align-items: center;
+	justify-content: center;
+}
+
+.ui-datepicker-prev:before {
+	content: "<<";
+}
+
+.ui-datepicker-next:before {
+	content: ">>";
+}
+
+/***
+Datepicker UI - END
+ */

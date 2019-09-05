@@ -13,30 +13,20 @@ class SiteTableSeeder extends Seeder
     {
         DB::table('sites')->insert([
         	'client_id' => 1,
-        	'name' => 'Spikes Live',
+        	'name' => 'Spikes BBG',
         	'technology' => 0,
         	'status' => 1,
-        ]);
-
-        DB::table('sites')->insert([
-        	'client_id' => 1,
-        	'name' => 'Spikes Staging',
-        	'technology' => 0,
-        	'status' => 2,
+            'host_id' => 1,
+            'update_instructions' => 'Test instructions.'
         ]);
 
         DB::table('sites')->insert([
         	'client_id' => 2,
-        	'name' => 'Lincoln Berean Live',
+        	'name' => 'Lincoln Berean',
         	'technology' => 0,
         	'status' => 1,
-        ]);
-
-        DB::table('sites')->insert([
-        	'client_id' => 2,
-        	'name' => 'Lincoln Berean Staging',
-        	'technology' => 0,
-        	'status' => 2,
+            'host_id' => 1,
+            'update_instructions' => 'Test instructions.'
         ]);
 
         DB::table('sites')->insert([
@@ -44,6 +34,8 @@ class SiteTableSeeder extends Seeder
         	'name' => 'SL Green',
         	'technology' => 1,
         	'status' => 1,
+            'host_id' => 3,
+
         ]);
 
         DB::table('sites')->insert([
@@ -51,6 +43,7 @@ class SiteTableSeeder extends Seeder
         	'name' => 'One Vanderbilt',
         	'technology' => 1,
         	'status' => 1,
+            'host_id' => 3,
         ]);
 
         DB::table('sites')->insert([
@@ -58,6 +51,7 @@ class SiteTableSeeder extends Seeder
         	'name' => '461 Fifth Ave',
         	'technology' => 1,
         	'status' => 1,
+            'host_id' => 3,
         ]);
 
         DB::table('sites')->insert([
@@ -65,56 +59,48 @@ class SiteTableSeeder extends Seeder
         	'name' => 'SLG Sustainability',
         	'technology' => 0,
         	'status' => 0,
+            'host_id' => 1,
         ]);
 
         DB::table('sites')->insert([
         	'client_id' => 4,
-        	'name' => 'LRS Healthcare Live',
+        	'name' => 'LRS Healthcare',
         	'technology' => 0,
-        	'status' => 1,
-        ]);
-
-        DB::table('sites')->insert([
-        	'client_id' => 4,
-        	'name' => 'LRS Healthcare Staging',
-        	'technology' => 0,
-        	'status' => 2,
+        	'status' => 4,
+            'host_id' => 4,
         ]);
 
         DB::table('sites')->insert([
         	'client_id' => 4,
         	'name' => 'Travcon Takeover',
         	'technology' => 0,
-        	'status' => 1,
+        	'status' => 4,
+            'host_id' => 1,
         ]);
 
         DB::table('sites')->insert([
         	'client_id' => 5,
         	'name' => 'NU Foundation Development',
         	'technology' => 0,
-        	'status' => 1,
+        	'status' => 4,
+            'host_id' => 5,
         ]);
 
         DB::table('sites')->insert([
         	'client_id' => 6,
-        	'name' => 'Firespring Blog Live',
+        	'name' => 'Firespring Blog',
         	'technology' => 0,
         	'status' => 1,
+            'host_id' => 1,
+            'update_instructions' => 'Test instructions.'
         ]);
-
-        DB::table('sites')->insert([
-        	'client_id' => 6,
-        	'name' => 'Firespring Blog Staging',
-        	'technology' => 0,
-        	'status' => 2,
-        ]);
-
 
         DB::table('sites')->insert([
         	'client_id' => 7,
         	'name' => 'Interactive Client DB',
         	'technology' => 2,
         	'status' => 0,
+            'host_id' => 6,
         ]);
 
     }

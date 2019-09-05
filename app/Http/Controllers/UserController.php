@@ -15,14 +15,19 @@ class UserController extends Controller
     }
 
     public function store() {
-    	$attributes = request()->all();
 
-        $user = User::create([
-            'name' => $attributes['name'],
-            'email' => $attributes['email'],
-            'password' => bcrypt($attributes['password']),
-            'role' => $attributes['role']
+    	$attributes = request()->validate([
+    	    'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'role' => 'required|numeric',
+            'password' => 'required|confirmed'
         ]);
+
+    	//encrypt password
+    	$attributes['password'] =  bcrypt($attributes['password']);
+
+        User::create($attributes);
+
         return redirect('/settings');
     }
 
@@ -33,9 +38,25 @@ class UserController extends Controller
     }
 
     public function update(User $user) {
-        $attributes = request()->all();
 
-        $user->update($attributes);
+        $user->update(
+            request()->validate([
+                'name' => 'required',
+                'role' => 'required|numeric',
+                'email' => 'required|email'
+            ])
+        );
+
+        return redirect('/settings');
+    }
+
+    public function destroy(User $user) {
+	    //dd(request("reassign_am"));
+        foreach($user->clients as $client) {
+            $client->update(['account_manager_id' => request("reassign_am")]);
+        }
+
+        $user->delete();
 
         return redirect('/settings');
     }

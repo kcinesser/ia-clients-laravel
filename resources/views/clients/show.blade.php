@@ -2,11 +2,10 @@
 
 @section('content')
     <header class="flex items-center mb-3 py-4">
-        <div class="flex justify-between w-full items-center">
-            <p class="text-gray-500 font-normal font-sans">
-            	<a href="/clients" class="no-underline">Clients</a> / {{ $client->name }}
-            </p>
-            <a href="{{ $client->path() . '/edit' }}" class="button bg-blue-500 hover:bg-blue-300">Edit Client</a>
+
+        <div class="flex justify-start w-full items-center">
+            <h1 class="text-blue-500"><i class="fa fa-users mr-3"></i>Client / {{ $client->name }}</h1>
+            <a href="" class="button btn-add ml-4" data-toggle="modal" data-target="#editClientModal"><i class="fa fa-pencil"></i></a>
         </div>
     </header>
 
@@ -14,56 +13,114 @@
     	<div class="lg:flex -mx-3">
     		<div class="lg:w-1/4 px-3">
  				@include ('clients.card')
-    		</div>
-            <div class="lg:w-1/2 px-3">
-                <div class="mb-8">  
-                    <div class="lg:flex lg:flex-wrap items-center">          
-                        <h2 class="text-gray-500 mb-3 mr-3">Sites</h2>
-                        <a href="{{ $client->path() . '/sites/create' }}" class="button mb-3">New Site</a>
-                    </div>
 
-                    <div class="lg:flex lg:flex-wrap">          
+                <div class="mb-8">
+                    <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
+                    <div class="card constrain-height">
+                        @foreach ($client->activities as $activity)
+                            <div class="border-b-2 py-6">
+                                <span class="text-xs font-normal">{{ $activity->description }}</span>
+                                <span class="text-gray-500 text-xs font-normal">{{ \Carbon\Carbon::parse($activity->created_at)->format('n/j/Y') }}</span>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+    		</div>
+            <div class="lg:w-3/4 px-3">
+                <div class="mb-8">  
+                    <div class="flex flex-wrap items-center mb-2">
+                        <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-laptop mr-1"></i> Sites</h2>
+                        <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#siteModal"><i class="fa fa-plus"></i></a>
+                    </div>
+                    <div class="lg:flex lg:flex-wrap card">
                         @forelse ($sites as $site)
-                            <div class="w-1/3 px-3 pb-6">
-                                <div class="card h-40">
-                                    <a href="{{ $site->path() }}">{{ $site->name }}</a>
-                                    <p class="text-gray-500">{{ \Illuminate\Support\Str::limit($site->description, 30) }}</p>
-                                </div>
+                            <div class="lg:w-full p-2">
+                                <h3><a href="{{ $site->path() }}">{{ $site->name }}</a>
+                                    <span class="badge {{$site->status == App\Enums\SiteStatus::InDevelopment ? 'badge-dev' : 'badge-live'}}">{{$site->status == App\Enums\SiteStatus::InDevelopment ? 'In Dev' : 'Live'}}</span>
+
+                                    @if ($site->services->contains(1))
+                                        <span class="badge badge-mma">MMA</span>
+                                    @elseif ($site->services->contains(5))
+                                        <span class="badge badge-mma">MMA - Internal</span>
+                                    @endif
+                                </h3>
+                                <p class="text-gray-500 text-sm font-normal">{{ \Illuminate\Support\Str::limit($site->description, 30) }}</p>
                             </div>
                         @empty
-                            <div class="card mb-3">
+                            <div class="lg:w-full p-2">
                                 <p>No sites yet.</p>
                             </div>
                         @endforelse
+
+                        @if($client->hasSiteArchive())
+                            <a href="{{ $client->siteArchivePath() }}" class="headline-lead text-xs no-underline text-right ml-auto mt-3 block">View Archived Sites</a>
+                        @endif
+
                     </div>
-                    <a href="{{ $client->archivePath() }}" class="">View Archived Sites</a>
                 </div>
 
-                <div class="mb-8">  
-                    <div class="lg:flex lg:flex-wrap items-center">          
-                        <h2 class="text-gray-500 mb-3 mr-3">Jobs</h2>
-                        <a href="{{ $client->path() . '/jobs/create' }}" class="button mb-3">New Job</a>
+                <div class="mb-8">
+                    <div class="flex flex-wrap items-center mb-2">
+                        <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-globe mr-1"></i> Hosted Domains</h2>
+                        <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newDomainModal"><i class="fa fa-plus"></i></a>
                     </div>
+                    <div class="card mb-6">
+                    @forelse ($client->hosted_domains as $domain)
+                        <div class="flex justify-between">
+                            <div class="w-1/3">
+                                <p class="text-sm">{{ $domain->name }}</p>
+                            </div>
+                            <div class="w-1/5 text-sm">
+                                @if($domain->exp_date)
+                                    Exp: {{ \Carbon\Carbon::parse($domain->exp_date)->format('n-j-Y') }}
+                                @endif
+                            </div>
+                            <div class="w-1/5 text-sm">
+                                @if($domain->site)
+                                    {{ $domain->site->name }}
+                                @endif
+                            </div>
+                            <div class="w-1/8 flex">
+                                <a  class="mr-3" href="" data-toggle="modal" data-target="#editDomainModal"  data-name="{{ $domain->name }}" data-exp="{{ $domain->exp_date }}" data-path="{{ $domain->path() }}" data-siteid="{{ isset($domain->site) ? $domain->site->id : "" }}"><i class="fa fa-pencil"></i></a>
+                                <form method="POST" action="{{ $domain->path() }}" class="delete-form">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="text-red-500 text-sm font-normal"><i class="fa fa-trash"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    @empty
+                        <p>No domains yet.</p>
+                    @endforelse
+                    </div>
+                </div>
 
-                    <div class="lg:flex lg:flex-wrap">          
+                <div class="mb-8">
+                    <div class="flex flex-wrap items-center mb-2">
+                        <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-tasks mr-1"></i> Jobs</h2>
+                        <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newJobModal"><i class="fa fa-plus"></i></a>
+                    </div>
+                    <div class="lg:flex lg:flex-wrap card">
                         @forelse ($jobs as $job)
-                            <div class="w-1/3 px-3 pb-6">
-                                <div class="card h-40">
-                                    <a href="{{ $job->path() }}">{{ $job->title }}</a>
-                                    <p class="text-gray-500 text-sm font-normal">{{ \Illuminate\Support\Str::limit($job->description, 35) }}</p>
-                                </div>
+                            <div class="lg:w-full p-2">
+                                <h3><a href="{{ $job->path() }}">{{ $job->title }}</a></h3>
+                                <p class="text-gray-500 text-sm font-normal">{{ \Illuminate\Support\Str::limit($job->description, 65) }}</p>
                             </div>
                         @empty
-                            <div class="card mb-3">
+                            <div class="lg:w-full p-2">
                                 <p>No jobs yet.</p>
                             </div>
                         @endforelse
+
+                        @if($client->hasJobArchive())
+                            <a href="{{ $client->jobArchivePath() }}" class="headline-lead text-xs no-underline text-right ml-auto mt-3 block">View Archived Jobs</a>
+                        @endif
+
                     </div>
-                    <a href="{{ $client->archivePath() }}" class="">View Archived Jobs</a>
                 </div>
 
-                <div class="mb-8">            
-                    <h2 class="text-gray-500 mb-3 mr-3">Notes</h2>
+                <div class="mb-8">
+                    <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-pencil-square-o mr-1"></i> Notes</h2>
 
                     <form method="POST" action="{{ $client->path() . '/notes' }}">
                         @csrf
@@ -73,8 +130,8 @@
                     </form>
                 </div>
 
-                <div>
-                    <h2 class="text-gray-500 mb-3 mr-3">Comments</h2>
+                <div class="mb-8">
+                    <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-comment-o mr-1"></i> Comments / Updates</h2>
 
                     <div class="card mb-3">
                         <form action="/comment/client/{{ $client->id }}" method="POST">
@@ -100,28 +157,15 @@
                             </form>
                         </div>
                     @endforeach
-
-                </div>
-            </div>
-            <div class="lg:w-1/4 px-3">
-                <div class="mb-8">
-                    <h2 class="text-gray-500 mb-3 mr-3">Activity</h2>
-
-                    @foreach ($client->activities as $activity)
-                        <div class="card mb-3">
-                            <div class="flex justify-between items-center">
-                                <p class="w-3/4 text-sm font-normal pr-3">{{ $activity->description }}</p>
-                                <div>
-                                    <p class="text-gray-500 text-sm font-normal">{{ \Carbon\Carbon::parse($activity->updated_at)->format('n/j/Y')}}</p>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
                 </div>
             </div>
     	</div>
+
+        @include('sites._new_site_modal')
+        @include('clients._edit_client_modal')
+        @include('jobs._new_job_modal')
+        @include('domains._new_domain_modal')
+        @include('domains._edit_domain_modal')
+        
     </main>
-
-
-
 @endsection

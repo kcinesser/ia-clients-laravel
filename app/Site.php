@@ -8,10 +8,6 @@ class Site extends Model
 {
     protected $guarded = [];
 
-    public function path() {
-        return "{$this->client->path()}/sites/{$this->id}";
-    }
-
     public function client() {
     	return $this->belongsTo(Client::class);
     }
@@ -20,8 +16,12 @@ class Site extends Model
         return $this->hasMany(Job::class);
     }
 
-    public function domains() {
-    	return $this->hasMany(Domain::class);
+    public function urls() {
+        return $this->hasMany(SiteURL::class);
+    }
+
+    public function hosted_domains() {
+    	return $this->hasMany(HostedDomain::class);
     }
 
     public function updates() {
@@ -44,7 +44,26 @@ class Site extends Model
         return $this->morphMany(Activity::class, 'activatable');
     }
 
-    public function addDomain($attributes) {
-        return $this->domains()->create($attributes);
+    public function host(){
+        return $this->belongsTo(Hosting::class);
+    }
+
+
+    public function path() {
+        return "{$this->client->path()}/sites/{$this->id}";
+    }
+
+    public function hasJobArchive() {
+        foreach($this->jobs as $job) {
+            if($job->status == 3) {
+                return true;
+            } 
+        }
+
+        return false;
+    }
+
+    public function addURL($attributes) {
+        return $this->urls()->create($attributes);
     }
 }

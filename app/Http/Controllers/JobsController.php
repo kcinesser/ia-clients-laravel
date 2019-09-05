@@ -9,63 +9,40 @@ use App\Client;
 
 class JobsController extends Controller
 {
-    public function index() {
-        $jobs = Job::all();
-
-        return view('jobs.index', compact('jobs'));
-    }
-
     public function show(Client $client, Job $job) {
         return view('jobs.show', compact('job', 'client'));
     }
 
-    public function create(Client $client) {
-        $statuses = JobStatus::toSelectArray();
-
-        return view('jobs.create', compact('client', 'statuses'));
-    }
-
     public function store(Client $client) {
-        request()->validate([
-            'title' => 'required', 
-            'description' => 'required'
-        ]);
-        
-        $attributes = request()->all();
-
-        $job = $client->addJob($attributes);
+        $job = $client->addJob($this->validate_data());
 
         return redirect($job->path());
-    }
-
-    public function edit(Client $client, Job $job) {
-        $statuses = JobStatus::toSelectArray();
-
-        return view('jobs.edit', compact('client', 'job', 'statuses'));
     }
 
     public function update(Client $client, Job $job) {
-        $attributes = request()->validate([
-            'title' => 'sometimes|required', 
-            'description' => 'sometimes|required'
-        ]);
-        $attributes = request()->all();
 
-        $job->update($attributes);
+        $job->update($this->validate_data());
 
         return redirect($job->path());
+    }
+
+    public function destroy(Client $client, Job $job) {
+        $job->delete();
+
+        return redirect($client->path());
     }
 
     public function notes(Client $client, Job $job) {
-        $attributes = request()->all();
 
-        $job->update($attributes);
+        $job->update(request()->validate([
+            'notes' => 'nullable',
+        ]));
 
         return redirect($job->path());
     }
 
-    public function archives(Client $client) {
-        $archived_jobs = Job::all()->where('status', 3);
+    public function client_job_archives(Client $client) {
+        $archived_jobs = $client->jobs->where('status', 3);
 
         return view('jobs.archive', compact('archived_jobs', 'client'));
     }
@@ -77,4 +54,25 @@ class JobsController extends Controller
 
         return redirect($client->path());
     }
+
+    public function all_archives() {
+        $archive_jobs = Job::all()->where('status', 3);
+
+        return view('jobs.all_archive', compact('archive_jobs'));
+    }
+
+    private function validate_data(){
+        return request()->validate([
+            'title' => 'required|sometimes',
+            'site_id' => 'nullable|numeric|sometimes',
+            'description' => 'nullable|sometimes',
+            'status' => 'required|numeric|sometimes',
+            'start_date' => 'nullable|date|sometimes',
+            'end_date' => 'nullable|date|sometimes',
+            'go_live_date' => 'nullable|date|sometimes',
+            'developer_id' => 'nullable|numeric|sometimes',
+            'technology' => 'nullable|numeric|sometimes'
+        ]);
+    }
+
 }

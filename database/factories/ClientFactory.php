@@ -1,13 +1,16 @@
 <?php
 
+/* @var $factory \Illuminate\Database\Eloquent\Factory */
+
+use App\Client;
 use Faker\Generator as Faker;
 
-$factory->define(App\Client::class, function (Faker $faker) {
+$factory->define(Client::class, function (Faker $faker) {
     return [
-    	'name' => $faker->company,
-        'contact_name' => $faker->name,
-        'contact_email' => $faker->email,
+        'name' => $faker->sentence,
+        'contact_name' => $faker->sentence,
+        'contact_email' => $faker->safeEmail,
         'contact_phone' => $faker->phoneNumber,
-        'account_manager_id' => 1
+        'account_manager_id' => $faker->randomDigitNotNull
     ];
 });

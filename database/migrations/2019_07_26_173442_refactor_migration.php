@@ -74,9 +74,9 @@ class RefactorMigration extends Migration
             $table->timestamps();
             $table->tinyInteger('status')->unsigned()->default(JobStatus::Incoming)->nullable();
 
-            $table->foreign('developer_id')->references('id')->on('users');
+            $table->foreign('developer_id')->references('id')->on('users')->onDelete('set null');
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
-            $table->foreign('site_id')->references('id')->on('sites');
+            $table->foreign('site_id')->references('id')->on('sites')->onDelete('set null');
         });
 
         Schema::create('tasks', function (Blueprint $table) {
@@ -111,11 +111,11 @@ class RefactorMigration extends Migration
             $table->date('exp_date')->nullable();
             $table->timestamps();
             $table->unsignedInteger('site_id');
-            $table->unsignedInteger('registrar_id');
+            $table->unsignedInteger('registrar_id')->nullable();
             $table->unsignedInteger('domain_account_id')->nullable();
 
-            $table->foreign('site_id')->references('id')->on('sites');
-            $table->foreign('registrar_id')->references('id')->on('registrars');
+            $table->foreign('site_id')->references('id')->on('sites')->onDelete('cascade');
+            $table->foreign('registrar_id')->references('id')->on('registrars')->onDelete('set null');
             $table->foreign('domain_account_id')->references('id')->on('domain_accounts');
         });
 
@@ -155,8 +155,8 @@ class RefactorMigration extends Migration
             $table->unsignedInteger('service_id');
             $table->timestamps();
 
-            $table->foreign('site_id')->references('id')->on('sites');
-            $table->foreign('service_id')->references('id')->on('services');
+            $table->foreign('site_id')->references('id')->on('sites')->onDelete('cascade');
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
         });
 
         Schema::create('activities', function (Blueprint $table) {
@@ -171,7 +171,7 @@ class RefactorMigration extends Migration
             $table->bigIncrements('id');
             $table->morphs('licenseable');
             $table->string('description');
-            $table->string('key');
+            $table->string('key')->nullable();
             $table->string('url')->nullable();
             $table->timestamps();
         });
@@ -185,20 +185,20 @@ class RefactorMigration extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
-        Schema::dropIfExists('sites');
-        Schema::dropIfExists('password_resets');
-        Schema::dropIfExists('clients');
-        Schema::dropIfExists('jobs');
-        Schema::dropIfExists('tasks');
-        Schema::dropIfExists('registrars');
-        Schema::dropIfExists('domain_accounts');
-        Schema::dropIfExists('domains');
-        Schema::dropIfExists('comments');
-        Schema::dropIfExists('updates');
-        Schema::dropIfExists('services');
-        Schema::dropIfExists('site_services');
-        Schema::dropIfExists('activities');
         Schema::dropIfExists('software_licenses');
+        Schema::dropIfExists('activities');
+        Schema::dropIfExists('service_site');
+        Schema::dropIfExists('services');
+        Schema::dropIfExists('updates');
+        Schema::dropIfExists('comments');
+        Schema::dropIfExists('domains');
+        Schema::dropIfExists('domain_accounts');
+        Schema::dropIfExists('registrars');
+        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('jobs');
+        Schema::dropIfExists('sites');
+        Schema::dropIfExists('clients');
+        Schema::dropIfExists('password_resets');
+        Schema::dropIfExists('users');
     }
 }
