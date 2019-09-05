@@ -13,24 +13,11 @@ class SiteTest extends TestCase
     /** @test */
     public function it_has_a_path() {
         $this->signIn();
-        $client = factory('App\Client')->create();
-        $site = factory('App\Site')->create(['client_id' => $client->id]);        
 
-        $this->assertEquals($client->path() . '/sites/1', $site->path());
-    }
+        $client = factory('App\Client')->create(['account_manager_id' => auth()->id()]);
+        $host = $this->factoryWithoutObservers('App\Hosting')->create();
+        $site = factory('App\Site')->create(['client_id' => $client->id, 'host_id' => $host->id]);
 
-    /** @test */
-    public function it_can_add_a_domain() {
-        $this->signIn();
-        $client = factory('App\Client')->create();
-        $site = factory('App\Site')->create(['client_id' => $client->id]);   
-
-        $domain = $site->addDomain([
-        	'name' => 'test.com',
-        	'registrar_id' => 1
-        ]);
-
-        $this->assertCount(1, $site->domains);
-        $this->assertTrue($site->domains->contains($domain));
+        $this->assertEquals($client->path() . '/sites/' . $site->id, $site->path());
     }
 }

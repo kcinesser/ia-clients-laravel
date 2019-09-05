@@ -10,5 +10,6 @@ $factory->define(App\Site::class, function (Faker $faker) {
         'name' => $faker->sentence(4),
         'technology' => 0,
         'status' => 0,
+        'prev_dev' => $faker->name,
     ];
 });

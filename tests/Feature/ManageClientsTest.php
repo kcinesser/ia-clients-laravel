@@ -17,7 +17,6 @@ class ManageClientsTest extends TestCase
         $attributes = factory('App\Client')->raw();
 
         $this->post('/clients', $attributes)->assertRedirect('login');
-        $this->get('/clients/create')->assertRedirect('login');
     }
 
     /** @test */
@@ -27,6 +26,7 @@ class ManageClientsTest extends TestCase
 
     /** @test */
     public function guests_cannot_view_single_clients() {
+        $user = $this->factoryWithoutObservers('App\User')->create();
         $client = $this->factoryWithoutObservers('App\Client')->create();
 
         $this->get('/clients/' . $client->id)->assertRedirect('login');
@@ -36,9 +36,8 @@ class ManageClientsTest extends TestCase
     public function a_user_can_create_a_client() {
         $this->signIn();
 
-        $this->get('/clients/create')->assertStatus(200);
-
-        $attributes = factory('App\Client')->raw();
+        $user = $this->factoryWithoutObservers('App\User')->create();
+        $attributes = factory('App\Client')->raw(['account_manager_id' => $user->id]);
 
         $response = $this->post('/clients', $attributes);
         $client = Client::where($attributes)->first();
@@ -72,7 +71,7 @@ class ManageClientsTest extends TestCase
     public function a_user_can_view_a_single_client() {
         $this->signIn();
 
-        $client = factory('App\Client')->create();
+        $client = $this->factoryWithoutObservers('App\Client')->create(['account_manager_id' => auth()->id()]);
 
         $this->get($client->path())->assertStatus(200);
     }
@@ -82,6 +81,6 @@ class ManageClientsTest extends TestCase
         $this->signIn();
         $attributes = factory('App\Client')->raw(['account_manager_id' => null]);
 
-        $this->post('/clients')->assertSessionHasErrors('account_manager_id');
+        $this->post('/clients', $attributes)->assertSessionHasErrors('account_manager_id');
     }
 }

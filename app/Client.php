@@ -56,7 +56,7 @@ class Client extends Model
         ]);
 
 
-        if ($attributes['URL']) {
+        if (isset($attributes['URL'])) {
             $site->urls()->create(['url' => $attributes['URL']]);
         }
 
