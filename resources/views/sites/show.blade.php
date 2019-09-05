@@ -45,7 +45,7 @@
                 <div class="mb-8">
                     <div class="flex flex-wrap items-center mb-2">
                         <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-globe mr-1"></i> Hosted Domains</h2>
-                        <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newDomainModal"><i class="fa fa-plus"></i></a>
+                        <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newDomainSiteModal"><i class="fa fa-plus"></i></a>
                     </div>
                     <div class="card mb-6">
                     @forelse ($site->hosted_domains as $domain)
@@ -59,7 +59,7 @@
                                 @endif
                             </div>
                             <div class="w-1/8 flex">
-                                <a  class="mr-3" href="" data-toggle="modal" data-target="#editDomainModal"  data-name="{{ $domain->name }}" data-exp="{{ $domain->exp_date }}" data-path="{{ $domain->path() }}"><i class="fa fa-pencil"></i></a>
+                                <a  class="mr-3" href="" data-toggle="modal" data-target="#editDomainModal"  data-name="{{ $domain->name }}" data-exp="{{ $domain->exp_date }}" data-path="{{ $domain->path() }}" data-siteid="{{ $domain->site->id }}"><i class="fa fa-pencil"></i></a>
                                 <form method="POST" action="{{ $domain->path() }}" class="delete-form">
                                     @method('DELETE')
                                     @csrf
@@ -234,7 +234,7 @@
         </div>
 
         @include('sites._edit_site_modal')
-        @include('domains._new_domain_modal')
+        @include('domains._new_domain_site_modal')
         @include('domains._edit_domain_modal')
         @include('jobs._new_job_modal')
         @include('urls._new_url_modal')
