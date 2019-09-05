@@ -2,18 +2,28 @@
 
 namespace App\Services;
 
-use App\Libraries\GoDaddy\GoDaddyClient;
+use App\Contracts\RemoteDomainsClient as RemoteDomainsClient;
 use Log;
 
 class getRemoteDomainsService
 {
-    public function __construct(GoDaddyClient $client)
+//     public function __construct(GoDaddyClient $client)
+//     {
+//         $this->client = $client;
+//     }
+    
+//     public function call()
+//     {
+//         return $this->client->get('/v1/domains', ['statusGroupsOnly' => 'RENEWABLE', 'statuses' => 'ACTIVE']);
+//     }
+
+    public function __construct(RemoteDomainsClient $client)
     {
         $this->client = $client;
     }
     
     public function call()
     {
-        return $this->client->get('/v1/domains', ['statusGroupsOnly' => 'RENEWABLE', 'statuses' => 'ACTIVE']);
+        return $this->client->getDomains();
     }
 }

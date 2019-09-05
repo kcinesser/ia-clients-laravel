@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Services\GetRemoteDomainsService;
 use App\Libraries\GoDaddy\GoDaddyClient;
+use App\Libraries\Namecheap\NamecheapClient;
 use Illuminate\Console\Command;
 use Carbon\Carbon;
 use Log;
@@ -69,14 +70,16 @@ class sendDomainRenewalNotices extends Command
     
     private function getAllDomains()
     {
-        $remoteDomainsService = new GetRemoteDomainsService(resolve(GoDaddyClient::class));
-        return $remoteDomainsService->call();
+        $godaddyDomainsService = new GetRemoteDomainsService(resolve(GoDaddyClient::class));
+        return $godaddyDomainsService->call();
+//         $namecheapDomainsService = new GetRemoteDomainsService(resolve(NamecheapClient::class));
+//         return $namecheapDomainsService->call();
     }
     
     private function getExpiringDomains($daysOut, $domains) 
     {
         return array_filter($domains, function($domain) use ($daysOut) {
-            $domainExpiration = Carbon::parse($domain['expires'])->setTimezone('UTC');
+            $domainExpiration = Carbon::parse($domain->expires)->setTimezone('UTC');
             $daysOutStart = Carbon::now()->startOfDay()->addDays($daysOut);
             $daysOutEnd = $daysOutStart->copy()->endOfDay();
             
@@ -91,7 +94,7 @@ class sendDomainRenewalNotices extends Command
     private function getRenewedYesterdayDomains($domains)
     {
         return array_filter($domains, function($domain) {
-            $domainExpiration = Carbon::parse($domain['expires'])->setTimezone('UTC');
+            $domainExpiration = Carbon::parse($domain->expires)->setTimezone('UTC');
             $daysOutStart = Carbon::now()->startOfDay()->subDays(1)->addYear(1);
             $daysOutEnd = $daysOutStart->copy()->endOfDay();
             
