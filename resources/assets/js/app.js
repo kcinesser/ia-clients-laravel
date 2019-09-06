@@ -299,6 +299,19 @@ $('.search-bar input').keyup(function(e){
   	})
 })
 
+$('.inputfile').on('change', function(e) {
+	if ($(this).val()) {
+		var file_name =  e.target.files[0].name
+	}
+
+	if (file_name) {
+		$('.inputfilelabel').text('')
+		$('.inputfilelabel').html('<i class="fa fa-check"></i> ' + file_name.substring(0,10) + '...' )
+	} else {
+		$('.inputfilelabel').html('<i class="fa fa-plus"></i> Select File')
+	}
+})
+
 
 
 

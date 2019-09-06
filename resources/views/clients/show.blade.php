@@ -15,7 +15,7 @@
  				@include ('clients.card')
 
                 <div class="mb-8">
-                    <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
+                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
                     <div class="card constrain-height">
                         @foreach ($client->activities as $activity)
                             <div class="border-b-2 py-6">
@@ -117,6 +117,103 @@
                         @endif
 
                     </div>
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-file-o mr-1"></i> Files</h2>
+
+                    <div class="card constrain-height">
+                        <div class="mb-6">
+                            @if(!$client->uploads()->exists() && !$client->job_uploads()->exists() && !$client->site_uploads()->exists() )
+                                <div class="lg:w-full p-2">
+                                    <p>No files yet.</p>
+                                </div>
+                            @else
+                                @foreach($client->uploads as $upload)
+                                    <div class="mb-3 flex items-center">
+                                        <div class="w-1/3">
+                                            <a href="{{ $upload->url }}" target="_blank">{{ $upload->name }}</a>
+                                        </div>
+                                        <div class="w-1/3 flex"><p class="text-gray-500 text-sm font-normal mb-0 mr-3"></p></div>
+                                        <div class="w-1/3 flex">
+                                            <p class="text-gray-500 text-sm font-normal mb-0 mr-3">{{ $upload->user->initials() }}</p>
+                                            <p class="text-gray-500 text-sm font-normal mb-0">{{ \Carbon\Carbon::parse($upload->created_at)->format('n/j/Y') }}</p>
+                                        </div>
+                                        <div class="w-1/8">
+                                            <form method="post" class="delete-form" action="/upload/{{ $upload->id}}" >
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"><i class="text-red-500 fa fa-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                @endforeach
+
+                                @foreach($client->job_uploads as $upload)
+                                    <div class="mb-3 flex items-center">
+                                        <div class="w-1/3">                                    
+                                            <a href="{{ $upload->url }}" target="_blank">{{ $upload->name }}</a>
+                                        </div>
+
+                                        <div class="w-1/3">
+                                            <p class="text-gray-500 text-sm font-normal mb-0">{{ $upload->uploadable->title }}</p>
+                                        </div>
+                                        <div class="w-1/3 flex">
+                                            <p class="text-gray-500 text-sm font-normal mb-0 mr-3">{{ $upload->user->initials() }}</p>
+                                            <p class="text-gray-500 text-sm font-normal mb-0">{{ \Carbon\Carbon::parse($upload->created_at)->format('n/j/Y') }}</p>
+                                        </div>
+                                        <div class="w-1/8">
+                                            <form method="post" class="delete-form" action="/upload/{{ $upload->id}}" >
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"><i class="text-red-500 fa fa-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                @endforeach
+
+                                @foreach($client->site_uploads as $upload)
+                                    <div class="mb-3 flex items-center">
+                                        <div class="w-1/3">                                                                        
+                                            <a href="{{ $upload->url }}" target="_blank">{{ $upload->name }}</a>
+                                        </div>
+                                     
+                                        <div class="w-1/3">
+                                            <p class="text-gray-500 text-sm font-normal mb-0">{{ $upload->uploadable->name }}</p>
+                                        </div>
+                                        <div class="w-1/3 flex">  
+                                            <p class="text-gray-500 text-sm font-normal mb-0 mr-3">{{ $upload->user->initials() }}</p>
+                                            <p class="text-gray-500 text-sm font-normal mb-0">{{ \Carbon\Carbon::parse($upload->created_at)->format('n/j/Y') }}</p>
+                                        </div> 
+                                        <div class="w-1/8">
+                                            <form method="post" class="delete-form" action="/upload/{{ $upload->id}}" >
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"><i class="text-red-500 fa fa-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
+                        </div>
+
+                        <form method="post" action="/upload/client/{{ $client->id }}" enctype="multipart/form-data">
+                            @csrf
+                            <input type="file" id="file" name="file" class="mb-3 inputfile" required multiple>
+                            <label for="file" class="inputfilelabel"><i class="fa fa-plus"></i> Select File</label>
+                            <button type="submit" class="button btn-primary"><i class="fa fa-upload"></i> Upload</button>
+                        </form>
+                        @if ($errors->any())
+                            <div class="mt-3">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li class="text-sm text-red-500">{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    </div>
+
                 </div>
 
                 <div class="mb-8">

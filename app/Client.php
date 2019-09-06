@@ -85,6 +85,18 @@ class Client extends Model
         return $this->morphMany(Comment::class, 'commentable');
     }
 
+    public function uploads() {
+        return $this->morphMany(Upload::class, 'uploadable');
+    }
+
+    public function site_uploads() {
+        return $this->hasManyThrough(Upload::class, Site::class, null, 'uploadable_id')->where('uploadable_type', Site::class);
+    }
+
+    public function job_uploads() {
+        return $this->hasManyThrough(Upload::class, Job::class, null, 'uploadable_id')->where('uploadable_type', Job::class);
+    }
+
     public function accountManager() {
         return $this->belongsTo(User::class);
     }
