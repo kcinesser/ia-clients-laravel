@@ -107,6 +107,71 @@
                 @endif
 
                 <div class="mb-8">
+                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-file-o mr-1"></i> Files</h2>
+
+                    <div class="card constrain-height">
+                            @foreach($site->uploads as $upload)
+                                <div class="mb-3 flex justify-between items-center">
+                                    <a href="{{ $upload->url }}" target="_blank">{{ $upload->name }}</a>
+
+                                    <form method="post" action="/upload/{{ $upload->id}}" >
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"><i class="text-red-500 fa fa-trash"></i></button>
+                                    </form>
+                                </div>
+                            @endforeach
+
+                            @foreach($site->job_uploads as $upload)
+                                <div class="mb-3 flex justify-between items-center">
+                                    <a href="{{ $upload->url }}" target="_blank">{{ $upload->name }}</a>
+                                    <a href="{{ $upload->uploadable->path() }}">{{ $upload->uploadable->title }}</a>
+
+                                    <form method="post" action="/upload/{{ $upload->id}}" >
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"><i class="text-red-500 fa fa-trash"></i></button>
+                                    </form>
+                                </div>
+                            @endforeach
+
+{{--                             @foreach($client->job_uploads as $upload)
+                                <div class="mb-3 flex justify-between items-center">
+                                    <a href="{{ $upload->url }}" target="_blank">{{ $upload->name }}</a>
+                                    <a href="{{ $upload->uploadable->path() }}">{{ $upload->uploadable->title }}</a>
+
+                                    <form method="post" action="/upload/{{ $upload->id}}" >
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"><i class="text-red-500 fa fa-trash"></i></button>
+                                    </form>
+                                </div>
+                            @endforeach --}}
+
+                        <form method="post" action="/upload/site/{{ $site->id }}" enctype="multipart/form-data">
+                            @csrf
+                            <label for="file" class="label text-sm mb-2 block">Upload File</label>
+                            <input type="file" name="file" class="mb-3">
+
+                            <button type="submit" class="button btn-primary">Submit</button>
+                        </form>
+                    </div>
+
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
+                    <div class="card constrain-height">
+                        @foreach ($client->activities as $activity)
+                            <div class="border-b-2 py-6">
+                                <span class="text-xs font-normal">{{ $activity->description }}</span>
+                                <span class="text-gray-500 text-xs font-normal">{{ \Carbon\Carbon::parse($activity->created_at)->format('n/j/Y') }}</span>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="mb-8">
                     <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-key mr-1"></i>Licenses</h2>
 
                     <div class="card">
