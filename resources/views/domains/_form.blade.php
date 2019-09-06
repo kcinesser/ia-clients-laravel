@@ -19,7 +19,7 @@
     <select name="site_id">
         <option value="">Select Site</option>
         @foreach($client->sites as $client_site)
-            <option value="{{ $client_site->id }}" {{ $site->id == $client_site->id ? "selected" : "" }}>{{ $client_site->name }}</option>
+            <option value="{{ $client_site->id }}">{{ $client_site->name }}</option>
         @endforeach
     </select>
 
