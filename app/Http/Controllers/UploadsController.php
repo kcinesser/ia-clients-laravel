@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Storage;
 class UploadsController extends Controller
 {
     public function store (Request $request, $model, $id) {
+        $request->validate([
+            'file' => 'file'
+        ]);
+
         $file_name = $request->file('file')->getClientOriginalName();
         $name = pathinfo($file_name, PATHINFO_FILENAME);
 		$extension = $request->file('file')->getClientOriginalExtension();
