@@ -123,7 +123,7 @@ class RefactorMigration extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->morphs('commentable');
-            $table->string('file_name');
+            $table->string('body');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

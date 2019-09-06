@@ -19,25 +19,70 @@
                     <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-file-o mr-1"></i> Files</h2>
 
                     <div class="card constrain-height">
-                            @foreach($job->uploads as $upload)
-                                <div class="mb-3 flex justify-between items-center">
-                                    <a href="{{ $upload->url }}" target="_blank">{{ $upload->name }}</a>
-
-                                    <form method="post" action="/upload/{{ $upload->id}}" >
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"><i class="text-red-500 fa fa-trash"></i></button>
-                                    </form>
+                        <div class="mb-6">
+                            @if(!$job->uploads()->exists())
+                                <div class="lg:w-full p-2">
+                                    <p>No files yet.</p>
                                 </div>
-                            @endforeach
+                            @else
+                                @foreach($job->uploads as $upload)
+                                    <div class="mb-3 flex justify-between items-center">
+                                        <div class="w-1/3">
+                                            <a href="{{ $upload->url }}" target="_blank">{{ $upload->name }}</a>
+                                        </div>
+                                        <div class="w-1/3 flex">
+                                            <p class="text-gray-500 text-sm font-normal mb-0 mr-3">{{ $upload->user->initials() }}</p>
+                                            <p class="text-gray-500 text-sm font-normal mb-0">{{ \Carbon\Carbon::parse($upload->created_at)->format('n/j/Y') }}</p>
+                                        </div>
+                                        <div class="w-1/8">
+                                            <form method="post" class="delete-form" action="/upload/{{ $upload->id}}" >
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"><i class="text-red-500 fa fa-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
+                        </div>
 
                         <form method="post" action="/upload/job/{{ $job->id }}" enctype="multipart/form-data">
                             @csrf
-                            <label for="file" class="label text-sm mb-2 block">Upload File</label>
-                            <input type="file" name="file" class="mb-3">
-
-                            <button type="submit" class="button btn-primary">Submit</button>
+                            <input type="file" id="file" name="file" class="mb-3 inputfile" required multiple>
+                            <label for="file" class="inputfilelabel"><i class="fa fa-plus"></i> Select File</label>
+                            <button type="submit" class="button btn-primary"><i class="fa fa-upload"></i> Upload</button>
                         </form>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-list-ol mr-1"></i> Tasks</h2>
+                    <div class="card">
+
+                        @foreach ($job->tasks as $task)
+                            <form method="POST" action="{{ $task->path() }}">
+                                {{ method_field('PATCH') }}
+                                {{ csrf_field() }}
+
+                                <div class="flex items-center mb-3">
+                                    <input class="w-full {{ $task->completed ? 'text-gray-500 line-through' : '' }}" name="body" value="{{ $task->body }}">
+                                    <input name="completed" type="checkbox" onChange="this.form.submit()" {{ $task->completed ? 'checked' : '' }}>
+                                </div>
+                            </form>
+                        @endforeach
+                        <form action="{{ $job->path() . '/tasks' }}" method="POST">
+                            @csrf
+                            <input name="body" class="w-full" placeholder="Add a task">
+                        </form>
+
+
+                        @if ($errors->any())
+                            <div class="field mt-6">
+                                @foreach ($errors->all() as $error)
+                                    <li class="text-sm text-red-500">{{ $error }}</li>
+                                @endforeach
+                            </div>
+                        @endif
                     </div>
 
                 </div>
@@ -84,38 +129,6 @@
             </div>
     		<div class="lg:w-1/4 px-3">
                 @include ('jobs.card')
-
-                <div class="mb-8">
-                    <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-list-ol mr-1"></i> Tasks</h2>
-                    <div class="card">
-
-                        @foreach ($job->tasks as $task)
-                            <form method="POST" action="{{ $task->path() }}">
-                                {{ method_field('PATCH') }}
-                                {{ csrf_field() }}
-
-                                <div class="flex items-center mb-3">
-                                    <input class="w-full {{ $task->completed ? 'text-gray-500' : '' }}" name="body" value="{{ $task->body }}">
-                                    <input name="completed" type="checkbox" onChange="this.form.submit()" {{ $task->completed ? 'checked' : '' }}>
-                                </div>
-                            </form>
-                        @endforeach
-                        <form action="{{ $job->path() . '/tasks' }}" method="POST">
-                            @csrf
-                            <input name="body" class="w-full" placeholder="Add a task">
-                        </form>
-
-
-                        @if ($errors->any())
-                            <div class="field mt-6">
-                                @foreach ($errors->all() as $error)
-                                    <li class="text-sm text-red-500">{{ $error }}</li>
-                                @endforeach
-                            </div>
-                        @endif
-                    </div>
-
-                </div>
 
                 <div class="mb-8">
                     <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
