@@ -123,12 +123,11 @@ class RefactorMigration extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->morphs('commentable');
-            $table->text('body');
+            $table->string('body');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
         });
-
 
         Schema::create('updates', function (Blueprint $table) {
             $table->increments('id');
