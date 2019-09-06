@@ -18,10 +18,9 @@ class CreateUploadsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->morphs('uploadable');
             $table->string('name');
-            $table->string('name_extension');
-            $table->string('extension');
-            $table->string('path');
+            $table->string('file_name');
             $table->string('url');
+            $table->string('path');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
