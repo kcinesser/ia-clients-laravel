@@ -158,6 +158,15 @@
                             <label for="file" class="inputfilelabel"><i class="fa fa-plus"></i> Select File</label>
                             <button type="submit" class="button btn-primary"><i class="fa fa-upload"></i> Upload</button>
                         </form>
+                        @if ($errors->any())
+                            <div class="mt-3">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li class="text-sm text-red-500">{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                     </div>
 
                 </div>
