@@ -2,8 +2,6 @@
 
 namespace App\Libraries\GoDaddy;
 
-use App\Contracts\RemoteDomainsClient as RemoteDomainsClient;
-use App\RemoteDomain;
 use GuzzleHttp\Client as Guzzle;
 use GuzzleHttp\RequestOptions;
 use function GuzzleHttp\json_decode;
@@ -14,7 +12,7 @@ use Log;
  *
  * @package App\Libraries\GuzzleHttp
  */
-class GoDaddyClient implements RemoteDomainsClient
+class GoDaddyClient
 {
     /**
      * @var string
@@ -99,18 +97,4 @@ class GoDaddyClient implements RemoteDomainsClient
             'debug' => true,
         ];
     }
-    
-    /**
-     * @return RemoteDomain[]
-     */
-    public function getDomains()
-    {
-        $domains = $this->get('/v1/domains', ['statusGroupsOnly' => 'RENEWABLE', 'statuses' => 'ACTIVE']);
-        
-        return array_map(function($remoteDomain){
-            // should probably use resolve(RemoteDomain::class, [...]) here instead of new RemoteDomain(...)
-            return new RemoteDomain('GoDaddy', $remoteDomain['domainId'], $remoteDomain['domain'], $remoteDomain['expires'], $remoteDomain['renewAuto'], $remoteDomain['renewable'], $remoteDomain['status']);
-        }, $domains);
-    }
-
 }

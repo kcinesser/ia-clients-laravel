@@ -22,4 +22,12 @@ class RemoteDomain
         $this->renewable = $renewable;
         $this->status = $status;
     }
+    
+    /**
+     * @return boolean
+     */
+    public function willAutoRenew()
+    {
+        return $this->renewAuto && $this->renewable;
+    }
 }

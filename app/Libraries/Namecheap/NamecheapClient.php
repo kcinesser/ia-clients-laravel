@@ -2,8 +2,6 @@
 
 namespace App\Libraries\Namecheap;
 
-use App\Contracts\RemoteDomainsClient as RemoteDomainsClient;
-use App\RemoteDomain;
 use function GuzzleHttp\json_decode;
 use Log;
 
@@ -12,20 +10,20 @@ use Log;
  *
  * @package App\Libraries\GuzzleHttp
  */
-class NamecheapClient implements RemoteDomainsClient
+class NamecheapClient
 {    
     /**
      * @return RemoteDomain[]
      */
-    public function getDomains()
-    {
-        $domains = json_decode('[
+    public function getFakeDomains()
+    {       
+        return json_decode('[
             {
                 "createdAt": "2004-09-03T13:16:27.000Z",
                 "domain": "jeffsdomain.com",
                 "domainId": 191284878,
                 "expirationProtected": false,
-                "expires": "2020-09-04T13:16:27.000Z",
+                "expires": "2019-10-12T13:16:27.000Z",
                 "holdRegistrar": false,
                 "locked": true,
                 "nameServers": null,
@@ -52,11 +50,6 @@ class NamecheapClient implements RemoteDomainsClient
                 "status": "ACTIVE",
                 "transferProtected": false
             }]', TRUE);
-        
-        return array_map(function($remoteDomain){
-            // should probably use resolve(RemoteDomain::class, [...]) here instead of new RemoteDomain(...)
-            return new RemoteDomain('NameCheap', $remoteDomain['domainId'], $remoteDomain['domain'], $remoteDomain['expires'], $remoteDomain['renewAuto'], $remoteDomain['renewable'], $remoteDomain['status']);
-        }, $domains);
     }
 
 }
