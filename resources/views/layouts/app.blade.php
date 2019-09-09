@@ -35,6 +35,28 @@
                     @guest
                         <li><a href="{{ route('login') }}">Login</a></li>
                     @else
+                        <div id="nav-search" class="mr-3 items-center nav-search-bar" tabindex="0">
+                            <div class="control dropdown">
+                                <input type="text" placeholder="Search..." id="addSearchResults" data-toggle="dropdown">
+                                <div class="dropdown-menu search-results" aria-labelledby="addSearchResults">
+                                    <h6 class="dropdown-header">Clients</h6>
+                                    <div class="nav-clients-results dropdown-item ">
+                                        <p class="text-gray-500 text-sm font-normal">No results found.</p>
+                                    </div>
+                                    <div class="dropdown-divider"></div>
+                                    <h6 class="dropdown-header">Sites</h6>
+                                    <div class="nav-sites-results dropdown-item ">
+                                        <p class="text-gray-500 text-sm font-normal">No results found.</p>
+                                    </div>
+                                    <div class="dropdown-divider"></div>
+                                    <h6 class="dropdown-header">Jobs</h6>
+                                    <div class="nav-jobs-results dropdown-item ">
+                                        <p class="text-gray-500 text-sm font-normal">No results found.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="mr-3 items-center">
                             <div class="dropdown">
                                 <button class="button btn-add dropdown-toggle btn-blue" type="button" id="addMenuButton" data-toggle="dropdown"><i class="fa fa-plus"></i></button>

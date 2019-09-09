@@ -60,7 +60,7 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/sort', 'FilterController@sort');
     Route::get('/filter', 'FilterController@filter');
-
+    Route::get('/search', 'FilterController@search');
 });
 
 Route::get('redirect/{driver}', 'Auth\LoginController@redirectToProvider')
