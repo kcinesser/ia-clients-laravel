@@ -24,8 +24,18 @@ class goDaddyDomainsService implements RemoteDomainsClientContract
         $domains = $this->client->get('/v1/domains', ['statusGroupsOnly' => 'RENEWABLE', 'statuses' => 'ACTIVE']);
         
         return array_map(function($remoteDomain){
-            // should probably use resolve(RemoteDomain::class, [...]) here instead of new RemoteDomain(...)
-            return new RemoteDomain('GoDaddy', $remoteDomain['domainId'], $remoteDomain['domain'], $remoteDomain['expires'], $remoteDomain['renewAuto'], $remoteDomain['renewable'], $remoteDomain['status']);
+            return resolve(
+                RemoteDomain::class,
+                [
+                    'providerName' => 'DoDaddy',
+                    'providerId' => $remoteDomain['domainId'],
+                    'domain' => $remoteDomain['domain'],
+                    'expires' => $remoteDomain['expires'],
+                    'renewAuto' => $remoteDomain['renewAuto'],
+                    'renewable' => $remoteDomain['renewable'],
+                    'status' => $remoteDomain['status']
+                ]
+            );
         }, $domains);
     }
 }
