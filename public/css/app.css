@@ -2411,6 +2411,10 @@ a.ui-button:active,
   background-color: transparent;
 }
 
+.dropdown-item.search-results {
+  padding: 0px 1.5rem;
+}
+
 .dropdown.open .dropdown-menu {
   display: block;
 }
