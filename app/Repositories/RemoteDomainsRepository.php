@@ -81,7 +81,6 @@ class RemoteDomainsRepository implements RemoteDomainsRepositoryContract
     private function filterByDaysOut($domains, int $daysOut)
     {
         return array_filter($domains, function($domain) use ($daysOut) {
-            $domainExpiration = Carbon::parse($domain->expires)->setTimezone('UTC');
             $daysOutStart = Carbon::now()->startOfDay();
             
             if ($daysOut < 0)
@@ -95,7 +94,7 @@ class RemoteDomainsRepository implements RemoteDomainsRepositoryContract
             
             $daysOutEnd = $daysOutStart->copy()->endOfDay();
             
-            if ($domainExpiration->isBetween($daysOutStart, $daysOutEnd)) {
+            if ($domain->expires->isBetween($daysOutStart, $daysOutEnd)) {
                 return true;
             }
             
