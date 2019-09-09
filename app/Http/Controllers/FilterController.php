@@ -165,6 +165,10 @@ class FilterController extends Controller
     	$attributes = request()->all();
 		$search_value = $attributes['value'];
 
+		if ($search_value === null) {
+			return response()->json('Please enter search term.');
+		}
+
 		$clients = App\Client::all()->whereNotIn('status', 3);
 
 		$filtered_clients = $clients->filter(function ($item) use ($search_value) {

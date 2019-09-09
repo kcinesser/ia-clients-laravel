@@ -11890,28 +11890,29 @@ $('.nav-search-bar input').keyup(function (e) {
 			value: value
 		},
 		success: function success(data) {
+			console.log(data);
 			$('.nav-clients-results').empty();
 			$('.nav-sites-results').empty();
 			$('.nav-jobs-results').empty();
 
-			if (jQuery.type(data.clients) === "string") {
-				$('.nav-clients-results').append('<p class="text-gray-500 text-sm font-normal">' + data.clients + '</p>');
+			if (jQuery.type(data.clients) === "string" || jQuery.type(data) === "string") {
+				$('.nav-clients-results').append('<p class="text-gray-500 text-sm font-normal">No results found.</p>');
 			} else {
 				$.each(data.clients, function (i) {
 					$('.nav-clients-results').append('<a href="' + data.clients[i].URL + '" class="dropdown-item search-results">' + data.clients[i].name + '</a>');
 				});
 			}
 
-			if (jQuery.type(data.sites) === "string") {
-				$('.nav-sites-results').append('<p class="text-gray-500 text-sm font-normal">' + data.sites + '</p>');
+			if (jQuery.type(data.sites) === "string" || jQuery.type(data) === "string") {
+				$('.nav-sites-results').append('<p class="text-gray-500 text-sm font-normal">No results found.</p>');
 			} else {
 				$.each(data.sites, function (i) {
 					$('.nav-sites-results').append('<a href="' + data.sites[i].URL + '" class="dropdown-item search-results">' + data.sites[i].name + '</a><p class="dropdown-item search-results text-gray-500 text-sm font-normal">' + data.sites[i].client_name + '</p>');
 				});
 			}
 
-			if (jQuery.type(data.jobs) === "string") {
-				$('.nav-jobs-results').append('<p class="text-gray-500 text-sm font-normal">' + data.jobs + '</p>');
+			if (jQuery.type(data.jobs) === "string" || jQuery.type(data) === "string") {
+				$('.nav-jobs-results').append('<p class="text-gray-500 text-sm font-normal">No results found.</p>');
 			} else {
 				$.each(data.jobs, function (i) {
 					$('.nav-jobs-results').append('<a href="' + data.jobs[i].URL + '" class="dropdown-item search-results">' + data.jobs[i].title + '</a><p class="dropdown-item search-results text-gray-500 text-sm font-normal">' + data.jobs[i].client_name + '</p>');
