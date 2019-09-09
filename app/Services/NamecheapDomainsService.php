@@ -11,7 +11,7 @@ class namecheapDomainsService implements RemoteDomainsClientContract
 {
     private $client;
     
-    public function __construct(namecheapClient $client)
+    public function __construct(NamecheapClient $client)
     {
         $this->client = $client;
     }
