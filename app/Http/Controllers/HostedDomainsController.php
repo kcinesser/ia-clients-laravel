@@ -64,7 +64,9 @@ class HostedDomainsController extends Controller
         return request()->validate([
             'name' => 'required',
             'exp_date' => 'nullable|date',
-            'site_id' => 'nullable|numeric|sometimes'
+            'site_id' => 'nullable|numeric|sometimes',
+            'remote_provider_type' => 'nullable|numeric|sometimes',
+            'remote_provider_id' => 'nullable|numeric',
         ]);
     }
 }

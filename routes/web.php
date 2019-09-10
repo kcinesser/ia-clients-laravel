@@ -1,5 +1,9 @@
 <?php
 
+use App\Services\NamecheapDomainsService;
+use App\Repositories\RemoteDomainsRepository;
+use App\HostedDomain;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -81,3 +85,16 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
+// Email Preview Routes...
+Route::get('mail_preview/domain_renewing_in_thirty_days', function () {
+    $namecheapRepository = resolve(RemoteDomainsRepository::class, ['client' => resolve(NamecheapDomainsService::class)]);
+    $domains = $namecheapRepository->getRenewingInThirtyDays();
+    $remoteDomain = $domains[0];
+    $hostedDomain = HostedDomain::with('client.accountManager')->where([
+        ['remote_provider_type', RemoteDomainsProviders::Namecheap],
+        ['remote_provider_id', $remoteDomain->providerId]
+    ])->first();
+
+    return new App\Mail\DomainRenewingInThirtyDays($remoteDomain, $hostedDomain);
+});

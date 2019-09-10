@@ -8,6 +8,10 @@ class HostedDomain extends Model
 {
     protected $guarded = [];
     protected $table = 'hosted_domains';
+    protected $casts = [
+        'remote_provider_type' => 'integer',
+        'remote_provider_id' => 'integer',
+    ];
 
     public function site() {
     	return $this->belongsTo(Site::class);

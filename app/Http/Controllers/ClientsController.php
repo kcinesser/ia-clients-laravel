@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\JobStatus;
+use App\Enums\RemoteDomainsProviders;
 use Illuminate\Http\Request;
 use App\Client;
 
