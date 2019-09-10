@@ -29,7 +29,6 @@ class ClientsController extends Controller
     }
 
     public function store() {
-
 	  	$attributes = $this->validate_data();
 
         $client = Client::create($attributes);
