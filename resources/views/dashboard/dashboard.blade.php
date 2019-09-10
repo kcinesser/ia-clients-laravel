@@ -25,21 +25,21 @@
 		    	<div class="text-right mb-4">
 		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#clientsModal"><i class="fa fa-th-list mr-1"></i> View All Clients</button>
 		    	</div>
-		  		<h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-tasks mr-1"></i> Your Jobs</h2>
+		  		<h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-tasks mr-1"></i> Your Projects</h2>
 		   		<div  class="lg:flex lg:flex-wrap card">
-			  		@forelse ($jobs as $job)
+			  		@forelse ($projects as $project)
 			            <div class="lg:w-full p-2">
-			            	<h3><a href="{{ $job->path() }}">{{ $job->title }}</a></h3>
-							<p><a href="{{ $job->client->path() }}" class="text-gray-500 text-sm font-normal">{{ $job->client->name }}</a></p>
+			            	<h3><a href="{{ $project->path() }}">{{ $project->title }}</a></h3>
+							<p><a href="{{ $project->client->path() }}" class="text-gray-500 text-sm font-normal">{{ $project->client->name }}</a></p>
 						</div>
 					@empty
 			            <div class="lg:w-full p-2">
-			            	<p>No jobs yet.</p>
+			            	<p>No projects yet.</p>
 			        	</div>
 			        @endforelse
 				</div>
 		    	<div class="text-right mb-4">
-		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#jobsModal"><i class="fa fa-th-list mr-1"></i> View All Jobs</button>
+		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#projectsModal"><i class="fa fa-th-list mr-1"></i> View All Projects</button>
 		    	</div>
 
 		    	<h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-window-maximize mr-1"></i> Your Sites</h2>
@@ -59,7 +59,7 @@
 						</div>
 					@empty
 			            <div class="lg:w-full p-2">
-			            	<p>No jobs yet.</p>
+			            	<p>No sites yet.</p>
 			        	</div>
 			        @endforelse
 				</div>
@@ -100,8 +100,8 @@
 			'clients' => App\Client::all()->whereNotIn('status', 3)->sortBy('name')
 		])
 
-		@include('dashboard._jobs_modal', [
-			'jobs' => App\Job::all()->whereNotIn('status', 3)->sortBy('title')
+		@include('dashboard._projects_modal', [
+			'projects' => App\Project::all()->whereNotIn('status', 3)->sortBy('title')
 		])
 
 		@include('dashboard._sites_modal', [

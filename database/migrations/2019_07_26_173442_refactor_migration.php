@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use App\Enums\Technologies;
-use App\Enums\JobStatus;
+use App\Enums\ProjectStatus;
 use App\Enums\UserTypes;
 use App\Enums\SiteStatus;
 
@@ -72,7 +72,7 @@ class RefactorMigration extends Migration
             $table->date('start_date')->nullable();
             $table->date('end_date')->default(NULL)->nullable();
             $table->timestamps();
-            $table->tinyInteger('status')->unsigned()->default(JobStatus::Incoming)->nullable();
+            $table->tinyInteger('status')->unsigned()->default(ProjectStatus::Incoming)->nullable();
 
             $table->foreign('developer_id')->references('id')->on('users')->onDelete('set null');
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');

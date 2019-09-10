@@ -53,7 +53,7 @@ $('.delete-form').submit(function(e){
 
 $('.archive-client-form').submit(function(e){
 	e.preventDefault();
-	if( confirm('Are you sure you want to archive this client? This will also archive any sites and jobs associated with this client.') ){
+	if( confirm('Are you sure you want to archive this client? This will also archive any sites and projects associated with this client.') ){
 	  this.submit();
 	}
 });
@@ -65,9 +65,9 @@ $('.archive-site-form').submit(function(e){
 	}
 });
 
-$('.archive-job-form').submit(function(e){
+$('.archive-project-form').submit(function(e){
 	e.preventDefault();
-	if( confirm('Are you sure you want to archive this job?') ){
+	if( confirm('Are you sure you want to archive this project?') ){
 	  this.submit();
 	}
 });
@@ -174,21 +174,21 @@ $('select#site-client-select').change(function() {
   	$(form).attr('action', '/clients/' + $(this).val() + '/sites')
 })
 
-$('select#job-client-select').change(function() {
+$('select#project-client-select').change(function() {
 	var form = $(this).closest('form');
 	var id = $(this).val()
 	
-  	$(form).attr('action', '/clients/' + $(this).val() + '/jobs')
+  	$(form).attr('action', '/clients/' + $(this).val() + '/projects')
 
 	$.ajax({
 	   type:'GET',
 	   url:'/clients/' + id + '/client-sites',
 	   success:function(data){
-      	  	$('#job-site-select').empty()
-			$('#job-site-select').append($('<option value="">None</option>'))
+      	  	$('#project-site-select').empty()
+			$('#project-site-select').append($('<option value="">None</option>'))
 
 		    $.each(data, function(i) {
-		    	$('#job-site-select').append($('<option>' + data[i].name + '</option>').val(data[i].id))
+		    	$('#project-site-select').append($('<option>' + data[i].name + '</option>').val(data[i].id))
 		    })
 		}
 	});
@@ -229,10 +229,10 @@ $('.sort').click(function(e) {
 				    	$('#client-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/2"><a href="' + data[i].URL + '" class="text-orange-500 no-underline lg:text-sm">' + data[i].name + '</a></div><div class="lg:w-1/2"><p>' + data[i].AM + '</p></div></div>')
 				    })
 				    break;
-				case "job":
-		      	  	$('#job-modal-list').empty()
+				case "project":
+		      	  	$('#project-modal-list').empty()
 				    $.each(data, function(i) {
-				    	$('#job-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/4"><a href="' + data[i].URL + '" class="text-orange-500 no-underline lg:text-sm">' + data[i].title + '</a></div><div class="lg:w-1/4"><p>' + data[i].clientName + '</p></div><div class="lg:w-1/4"><p>' + data[i].status + '</p></div><div class="lg:w-1/4"><p>' + data[i].developerName + '</p></div></div>')
+				    	$('#project-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/4"><a href="' + data[i].URL + '" class="text-orange-500 no-underline lg:text-sm">' + data[i].title + '</a></div><div class="lg:w-1/4"><p>' + data[i].clientName + '</p></div><div class="lg:w-1/4"><p>' + data[i].status + '</p></div><div class="lg:w-1/4"><p>' + data[i].developerName + '</p></div></div>')
 				    })
 					break;
 				case "site":
@@ -282,14 +282,14 @@ $('.search-bar input').keyup(function(e){
 						})
 					}
 					break;
-				case "job":
-					$('#job-modal-list').empty()
+				case "project":
+					$('#project-modal-list').empty()
 
 					if (jQuery.type(data) === "string") {
-						$('#job-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/4">' + data + '</div></div>')
+						$('#project-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/4">' + data + '</div></div>')
 					} else {
 						$.each(data, function(i) {
-							$('#job-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/4"><a href="' + data[i].URL + '">' + data[i].title + '</a></div><div class="lg:w-1/4"><p>' + data[i].client_name + '</p></div><div class="lg:w-1/4"><p>' + data[i].status + '</p></div><div class="lg:w-1/4"><p>' + data[i].developer_name + '</p></div></div>')
+							$('#project-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/4"><a href="' + data[i].URL + '">' + data[i].title + '</a></div><div class="lg:w-1/4"><p>' + data[i].client_name + '</p></div><div class="lg:w-1/4"><p>' + data[i].status + '</p></div><div class="lg:w-1/4"><p>' + data[i].developer_name + '</p></div></div>')
 						})
 					}
 					break;
@@ -302,6 +302,8 @@ $('.nav-search-bar input').keyup(function(e) {
 	var input = $(this)
 	var results = $('.search-results')
 	var value = input.val()
+	var control = $('.nav-search-bar .control')
+	control.addClass('open')
 
   	$.ajax({
 		type:'GET',
@@ -310,10 +312,9 @@ $('.nav-search-bar input').keyup(function(e) {
 			 value: value
 		},
 		success:function(data) {
-			console.log(data);
 			$('.nav-clients-results').empty();
 			$('.nav-sites-results').empty();
-			$('.nav-jobs-results').empty();
+			$('.nav-projects-results').empty();
 
 			if (jQuery.type(data.clients) === "string" || jQuery.type(data) === "string") {
 				$('.nav-clients-results').append('<p class="text-gray-500 text-sm font-normal">No results found.</p>')
@@ -331,11 +332,11 @@ $('.nav-search-bar input').keyup(function(e) {
 				})
 			}
 
-			if (jQuery.type(data.jobs) === "string"  || jQuery.type(data) === "string") {
-				$('.nav-jobs-results').append('<p class="text-gray-500 text-sm font-normal">No results found.</p>')
+			if (jQuery.type(data.projects) === "string"  || jQuery.type(data) === "string") {
+				$('.nav-projects-results').append('<p class="text-gray-500 text-sm font-normal">No results found.</p>')
 			} else {
-				$.each(data.jobs, function(i) {
-					$('.nav-jobs-results').append('<a href="' + data.jobs[i].URL + '" class="dropdown-item search-results">' + data.jobs[i].title + '</a><p class="dropdown-item search-results text-gray-500 text-sm font-normal">' + data.jobs[i].client_name + '</p>')
+				$.each(data.projects, function(i) {
+					$('.nav-projects-results').append('<a href="' + data.projects[i].URL + '" class="dropdown-item search-results">' + data.projects[i].title + '</a><p class="dropdown-item search-results text-gray-500 text-sm font-normal">' + data.projects[i].client_name + '</p>')
 				})
 			}
 		}

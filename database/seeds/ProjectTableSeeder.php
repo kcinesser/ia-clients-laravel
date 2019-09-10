@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class JobTableSeeder extends Seeder
+class ProjectTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class JobTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('jobs')->insert([
+        DB::table('projects')->insert([
         	'client_id' => 1,
         	'site_id' => 1,
         	'developer_id' => 2,
@@ -24,7 +24,7 @@ class JobTableSeeder extends Seeder
         	'status' => 1
         ]);
 
-        DB::table('jobs')->insert([
+        DB::table('projects')->insert([
         	'client_id' => 3,
         	'site_id' => 6,
         	'developer_id' => 5,
@@ -37,12 +37,12 @@ class JobTableSeeder extends Seeder
         	'status' => 1
         ]);
 
-        DB::table('jobs')->insert([
+        DB::table('projects')->insert([
         	'client_id' => 4,
         	'site_id' => 7,
         	'developer_id' => 3,
         	'title' => 'LRS Job Search Plugin',
-        	'description' => 'LRS wants their job search functionality to tie in with their job management system. Interactive to build custom plugin for users to search for and apply for jobs on the LRS site.',
+        	'description' => 'LRS wants their job search functionality to tie in with their job management system. Interactive to build custom plugin for users to search for and apply for projects on the LRS site.',
         	'technology' => 6,
         	'go_live_date' => null,
         	'start_date' => '2019-01-01',
@@ -50,7 +50,7 @@ class JobTableSeeder extends Seeder
         	'status' => 3
         ]);
 
-        DB::table('jobs')->insert([
+        DB::table('projects')->insert([
         	'client_id' => 5,
         	'site_id' => 9,
         	'developer_id' => 4,
@@ -64,7 +64,7 @@ class JobTableSeeder extends Seeder
         ]);
 
 
-        DB::table('jobs')->insert([
+        DB::table('projects')->insert([
         	'client_id' => 7,
         	'site_id' => 11,
         	'developer_id' => 1,

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Client;
-use App\Job;
+use App\Project;
 use App\Comment;
 use Auth;
 

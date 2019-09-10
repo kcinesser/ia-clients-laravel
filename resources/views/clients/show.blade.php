@@ -97,23 +97,23 @@
 
                 <div class="mb-8">
                     <div class="flex flex-wrap items-center mb-2">
-                        <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-tasks mr-1"></i> Jobs</h2>
-                        <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newJobModal"><i class="fa fa-plus"></i></a>
+                        <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-tasks mr-1"></i> Projects</h2>
+                        <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newProjectModal"><i class="fa fa-plus"></i></a>
                     </div>
                     <div class="lg:flex lg:flex-wrap card">
-                        @forelse ($jobs as $job)
+                        @forelse ($projects as $project)
                             <div class="lg:w-full p-2">
-                                <h3><a href="{{ $job->path() }}">{{ $job->title }}</a></h3>
-                                <p class="text-gray-500 text-sm font-normal">{{ \Illuminate\Support\Str::limit($job->description, 65) }}</p>
+                                <h3><a href="{{ $project->path() }}">{{ $project->title }}</a></h3>
+                                <p class="text-gray-500 text-sm font-normal">{{ \Illuminate\Support\Str::limit($project->description, 65) }}</p>
                             </div>
                         @empty
                             <div class="lg:w-full p-2">
-                                <p>No jobs yet.</p>
+                                <p>No projects yet.</p>
                             </div>
                         @endforelse
 
-                        @if($client->hasJobArchive())
-                            <a href="{{ $client->jobArchivePath() }}" class="headline-lead text-xs no-underline text-right ml-auto mt-3 block">View Archived Jobs</a>
+                        @if($client->hasProjectArchive())
+                            <a href="{{ $client->projectArchivePath() }}" class="headline-lead text-xs no-underline text-right ml-auto mt-3 block">View Archived Projects</a>
                         @endif
 
                     </div>
@@ -124,7 +124,7 @@
 
                     <div class="card constrain-height">
                         <div class="mb-6">
-                            @if(!$client->uploads()->exists() && !$client->job_uploads()->exists() && !$client->site_uploads()->exists() )
+                            @if(!$client->uploads()->exists() && !$client->project_uploads()->exists() && !$client->site_uploads()->exists() )
                                 <div class="lg:w-full p-2">
                                     <p>No files yet.</p>
                                 </div>
@@ -149,7 +149,7 @@
                                     </div>
                                 @endforeach
 
-                                @foreach($client->job_uploads as $upload)
+                                @foreach($client->project_uploads as $upload)
                                     <div class="mb-3 flex items-center">
                                         <div class="w-1/3">                                    
                                             <a href="{{ $upload->url }}" target="_blank">{{ $upload->name }}</a>
@@ -260,7 +260,7 @@
 
         @include('sites._new_site_modal')
         @include('clients._edit_client_modal')
-        @include('jobs._new_job_modal')
+        @include('projects._new_project_modal')
         @include('domains._new_domain_modal')
         @include('domains._edit_domain_modal')
         
