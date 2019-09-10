@@ -55,7 +55,8 @@ class Client extends Model
             'prev_dev' => $attributes['prev_dev']
         ]);
 
-        if ($attributes['URL']) {
+
+        if (isset($attributes['URL'])) {
             $site->urls()->create(['url' => $attributes['URL']]);
         }
 

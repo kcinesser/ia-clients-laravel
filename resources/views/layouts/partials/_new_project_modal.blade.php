@@ -25,7 +25,7 @@
                         <div class="control">
                             <select id="project-client-select" name="site_id">
                                     <option value="">None</option>
-                                @foreach (App\Client::all()->sortBy('name') as $client)
+                                @foreach (App\Client::all()->sortBy('name')->whereNotIn('status', 3) as $client)
                                     <option value="{{ $client->id }}">{{ $client->name }}</option>
                                 @endforeach
                             </select>

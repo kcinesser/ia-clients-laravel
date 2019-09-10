@@ -11,6 +11,7 @@ $factory->define(Client::class, function (Faker $faker) {
         'contact_name' => $faker->sentence,
         'contact_email' => $faker->safeEmail,
         'contact_phone' => $faker->phoneNumber,
-        'account_manager_id' => $faker->randomDigitNotNull
+        'account_manager_id' => 1,
+        'status' => 0
     ];
 });

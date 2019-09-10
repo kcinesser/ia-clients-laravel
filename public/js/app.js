@@ -11609,12 +11609,6 @@ const app = new Vue({
 //import jquery ui datepicker
 
 
-$.ajaxSetup({
-	headers: {
-		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-	}
-});
-
 //show/hide services list
 $('.edit-services').click(function (e) {
 	e.preventDefault();
