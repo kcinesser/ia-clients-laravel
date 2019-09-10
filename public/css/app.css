@@ -2411,6 +2411,10 @@ a.ui-button:active,
   background-color: transparent;
 }
 
+.dropdown-item.search-results {
+  padding: 0px 1.5rem;
+}
+
 .dropdown.open .dropdown-menu {
   display: block;
 }
@@ -11758,6 +11762,49 @@ Datepicker UI - START
 /***
 Datepicker UI - END
  */
+
+/***
+File Upload - START
+*/
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputfile + label {
+  background-color: #70BEBF;
+  color: #fff;
+  font-family: Montserrat, sans-serif;
+  font-weight: 800;
+  text-decoration: none;
+  border-radius: 9999px;
+  font-size: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  display: inline-block;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+  background-color: #80d7d9;
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+/***
+File Upload - END
+*/
 
 @media (min-width: 640px){
   .sm\:appearance-none{

@@ -48,6 +48,13 @@ class Site extends Model
         return $this->belongsTo(Hosting::class);
     }
 
+   public function uploads() {
+        return $this->morphMany(Upload::class, 'uploadable');
+    }
+
+    public function job_uploads() {
+        return $this->hasManyThrough(Upload::class, Job::class, null, 'uploadable_id')->where('uploadable_type', Job::class);
+    }
 
     public function path() {
         return "{$this->client->path()}/sites/{$this->id}";

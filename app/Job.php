@@ -44,6 +44,10 @@ class Job extends Model
         return $this->belongsToMany(Service::class);
     }
 
+    public function uploads() {
+        return $this->morphMany(Upload::class, 'uploadable');
+    }
+
     public function addTask($body) {
     	return $this->tasks()->create(compact('body'));
     }

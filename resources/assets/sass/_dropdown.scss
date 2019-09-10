@@ -70,6 +70,10 @@
     background-color: transparent;
     // Remove CSS gradients if they're enabled
   }
+
+  &.search-results {
+    padding: 0px $dropdown-item-padding-x;
+  }
 }
 
 .dropdown.open .dropdown-menu {

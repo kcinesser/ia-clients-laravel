@@ -11833,7 +11833,6 @@ $('.search-bar input').keyup(function (e) {
 			value: value
 		},
 		success: function success(data) {
-
 			switch (model) {
 				case "site":
 					$('#site-modal-list').empty();
@@ -11871,6 +11870,63 @@ $('.search-bar input').keyup(function (e) {
 			}
 		}
 	});
+});
+
+$('.nav-search-bar input').keyup(function (e) {
+	var input = $(this);
+	var results = $('.search-results');
+	var value = input.val();
+
+	$.ajax({
+		type: 'GET',
+		url: '/search',
+		data: {
+			value: value
+		},
+		success: function success(data) {
+			console.log(data);
+			$('.nav-clients-results').empty();
+			$('.nav-sites-results').empty();
+			$('.nav-jobs-results').empty();
+
+			if (jQuery.type(data.clients) === "string" || jQuery.type(data) === "string") {
+				$('.nav-clients-results').append('<p class="text-gray-500 text-sm font-normal">No results found.</p>');
+			} else {
+				$.each(data.clients, function (i) {
+					$('.nav-clients-results').append('<a href="' + data.clients[i].URL + '" class="dropdown-item search-results">' + data.clients[i].name + '</a>');
+				});
+			}
+
+			if (jQuery.type(data.sites) === "string" || jQuery.type(data) === "string") {
+				$('.nav-sites-results').append('<p class="text-gray-500 text-sm font-normal">No results found.</p>');
+			} else {
+				$.each(data.sites, function (i) {
+					$('.nav-sites-results').append('<a href="' + data.sites[i].URL + '" class="dropdown-item search-results">' + data.sites[i].name + '</a><p class="dropdown-item search-results text-gray-500 text-sm font-normal">' + data.sites[i].client_name + '</p>');
+				});
+			}
+
+			if (jQuery.type(data.jobs) === "string" || jQuery.type(data) === "string") {
+				$('.nav-jobs-results').append('<p class="text-gray-500 text-sm font-normal">No results found.</p>');
+			} else {
+				$.each(data.jobs, function (i) {
+					$('.nav-jobs-results').append('<a href="' + data.jobs[i].URL + '" class="dropdown-item search-results">' + data.jobs[i].title + '</a><p class="dropdown-item search-results text-gray-500 text-sm font-normal">' + data.jobs[i].client_name + '</p>');
+				});
+			}
+		}
+	});
+});
+
+$('.inputfile').on('change', function (e) {
+	if ($(this).val()) {
+		var file_name = e.target.files[0].name;
+	}
+
+	if (file_name) {
+		$('.inputfilelabel').text('');
+		$('.inputfilelabel').html('<i class="fa fa-check"></i> ' + file_name.substring(0, 10) + '...');
+	} else {
+		$('.inputfilelabel').html('<i class="fa fa-plus"></i> Select File');
+	}
 });
 
 /***/ }),

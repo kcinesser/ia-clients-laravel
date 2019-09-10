@@ -159,4 +159,64 @@ class FilterController extends Controller
 
     	return response()->json($filtered);
     }
+
+    public function search() {
+    	$results = array();
+    	$attributes = request()->all();
+		$search_value = $attributes['value'];
+
+		if ($search_value === null) {
+			return response()->json('Please enter search term.');
+		}
+
+		$clients = App\Client::all()->whereNotIn('status', 3);
+
+		$filtered_clients = $clients->filter(function ($item) use ($search_value) {
+			return false !== stristr($item->name, $search_value);
+		})->take(4);
+
+		if ($filtered_clients->isEmpty()) {
+			$filtered_clients = "No results found.";
+		} else {
+			foreach ($filtered_clients as $client) {
+				$client->URL = $client->path();
+			}
+		}
+
+		$sites = App\Site::all()->whereNotIn('status', 4);
+
+		$filtered_sites = $sites->filter(function ($item) use ($search_value) {
+			return false !== stristr($item->name, $search_value);
+		})->take(4);
+
+		if ($filtered_sites->isEmpty()) {
+			$filtered_sites = "No results found.";
+		} else {
+			foreach ($filtered_sites as $site) {
+				$site->URL = $site->path();
+				$site->client_name = $site->client->name;
+			}
+		}
+
+		$jobs = App\Job::all()->whereNotIn('status', 3);
+
+		$filtered_jobs = $jobs->filter(function ($item) use ($search_value) {
+			return false !== stristr($item->title, $search_value);
+		})->take(4);
+
+		if ($filtered_jobs->isEmpty()) {
+			$filtered_jobs = "No results found.";
+		} else {
+			foreach ($filtered_jobs as $job) {
+				$job->URL = $job->path();
+				$job->client_name = $job->client->name;
+			}
+		}
+
+		$results['clients'] = $filtered_clients;
+		$results['sites'] = $filtered_sites;
+		$results['jobs'] = $filtered_jobs;
+
+    	return response()->json($results);
+    }
 }
