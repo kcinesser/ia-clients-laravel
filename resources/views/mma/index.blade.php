@@ -30,7 +30,7 @@
 							@endif
 						</div>
 						<div class="lg:w-1/4 card mb-0">
-							@if(date('m',strtotime($site->mma_update)) == date('m'))
+							@if(date('m',strtotime($site->mma_update)) == date('m') && $site->updates()->where('mma',1)->exists())
 	                            <form method="POST" action="{{ $site->updates()->where('mma',1)->latest()->first()->path() }}">
 	                                @method('PATCH')
 	                                @csrf
@@ -75,7 +75,7 @@
 							@endif		
 						</div>
 						<div class="lg:w-1/4 card mb-0">
-							@if(date('m',strtotime($site->mma_update)) == date('m'))
+							@if(date('m',strtotime($site->mma_update)) == date('m') && $site->updates()->where('mma',1)->exists())
 	                            <form method="POST" action="{{ $site->updates()->where('mma',1)->latest()->first()->path() }}">
 	                                @method('PATCH')
 	                                @csrf
