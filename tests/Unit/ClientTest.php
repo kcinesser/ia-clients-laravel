@@ -32,14 +32,14 @@ class ClientTest extends TestCase
     }
 
     /** @test */
-    public function it_can_add_a_job() {
+    public function it_can_add_a_project() {
         $this->signIn();
 
         $client = factory('App\Client')->create(['account_manager_id' => auth()->id()]);
-        $job = $client->addJob(factory('App\Job')->raw());
+        $project = $client->addProject(factory('App\Project')->raw());
 
-        $this->assertCount(1, $client->jobs);
-        $this->assertTrue($client->jobs->contains($job));
+        $this->assertCount(1, $client->projects);
+        $this->assertTrue($client->projects->contains($project));
     }
 
     /** @test */

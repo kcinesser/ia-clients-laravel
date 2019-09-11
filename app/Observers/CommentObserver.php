@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Comment;
-use App\Job;
+use App\Project;
 use App\Site;
 use App\Client;
 use Auth;
@@ -22,8 +22,8 @@ class CommentObserver
         $change = '';
         $name = '';
 
-        if ($comment->commentable_type == "App\Job") {
-            $change = Job::find($comment->commentable_id);
+        if ($comment->commentable_type == "App\Project") {
+            $change = Project::find($comment->commentable_id);
             $name = $change->title;
         } elseif ($comment->commentable_type == "App\Client") {
             $change = Client::find($comment->commentable_id);

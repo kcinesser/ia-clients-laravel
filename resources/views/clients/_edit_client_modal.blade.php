@@ -14,7 +14,7 @@
                     @include('clients._form', [
                         'buttonText' => 'Update Client',
                         'account_managers' => App\User::all()->where('role', 1),
-                        'statuses' => App\Enums\JobStatus::toSelectArray()
+                        'statuses' => App\Enums\ProjectStatus::toSelectArray()
                     ])
                 </form>
             </div>

@@ -39,23 +39,23 @@ class User extends Authenticatable
         return $initials;
     }
 
-    public function dashboardJobs() {
-        $jobs = array();
+    public function dashboardProjects() {
+        $projects = array();
 
         if ($this->role == 0) {
-            $jobs = $this->jobs->whereNotIn('status', 3);
+            $projects = $this->projects->whereNotIn('status', 3);
         } elseif ($this->role == 1) {
-            $jobs = $this->accountManagerJobs->whereNotIn('status', 3);
+            $projects = $this->accountManagerProjects->whereNotIn('status', 3);
         }
 
-        return $jobs;
+        return $projects;
     }
 
     public function dashboardClients() {
         $clients = array();
         
         if ($this->role == 0) {
-            $client_ids = Job::where('developer_id', $this->id)->pluck('client_id');
+            $client_ids = Project::where('developer_id', $this->id)->pluck('client_id');
             $clients = Client::find($client_ids)->whereNotIn('status', 3);
         } else {
             $clients = $this->clients->whereNotIn('status', 3);
@@ -68,7 +68,7 @@ class User extends Authenticatable
         $sites = array();
 
         if ($this->role == 0) {
-            $site_ids = Job::where('developer_id', $this->id)->pluck('site_id');
+            $site_ids = Project::where('developer_id', $this->id)->pluck('site_id');
             $sites = Site::find($site_ids)->whereNotIn('status', 4);
         } else {
             $sites = Site::whereIn('client_id', $this->clients->pluck('id'))->get()->whereNotIn('status', 4);
@@ -82,12 +82,12 @@ class User extends Authenticatable
         return $this->hasMany(Client::class, 'account_manager_id');
     }
 
-    public function accountManagerJobs() {
-        return $this->hasManyThrough(Job::class, Client::class, 'account_manager_id');
+    public function accountManagerProjects() {
+        return $this->hasManyThrough(Project::class, Client::class, 'account_manager_id');
     }
 
-    public function jobs() {
-        return $this->hasMany(Job::class, 'developer_id');
+    public function projects() {
+        return $this->hasMany(Project::class, 'developer_id');
     }
 
     public function comments() {

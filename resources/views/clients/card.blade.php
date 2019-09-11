@@ -4,7 +4,7 @@
     </h3>
     <div class="mb-4">
         <p class="text-gray-800 text-xs headline-lead">Status</p>
-        <p class="text-gray-500 text-sm font-normal">{{ \App\Enums\JobStatus::getDescription($client->status) }}</p>
+        <p class="text-gray-500 text-sm font-normal">{{ \App\Enums\ProjectStatus::getDescription($client->status) }}</p>
     </div>
     <div class="mb-4">
         <p class="text-gray-800 text-xs headline-lead">Account Manager</p>

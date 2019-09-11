@@ -49,8 +49,8 @@
                                         <p class="text-gray-500 text-sm font-normal">No results found.</p>
                                     </div>
                                     <div class="dropdown-divider"></div>
-                                    <h6 class="dropdown-header">Jobs</h6>
-                                    <div class="nav-jobs-results dropdown-item ">
+                                    <h6 class="dropdown-header">Projects</h6>
+                                    <div class="nav-projects-results dropdown-item ">
                                         <p class="text-gray-500 text-sm font-normal">No results found.</p>
                                     </div>
                                 </div>
@@ -64,7 +64,7 @@
                                     <h6 class="dropdown-header">Create New</h6>
                                     <button class="dropdown-item" data-toggle="modal" data-target="#newClientMenuModal">Client</button>
                                     <button class="dropdown-item" data-toggle="modal" data-target="#newSiteMenuModal">Site</button>
-                                    <button class="dropdown-item" data-toggle="modal" data-target="#newJobMenuModal">Job</button>
+                                    <button class="dropdown-item" data-toggle="modal" data-target="#newProjectMenuModal">Project</button>
                                 </div>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
 
             @include('layouts.partials._new_client_modal')
             @include('layouts.partials._new_site_modal')
-            @include('layouts.partials._new_job_modal')
+            @include('layouts.partials._new_project_modal')
         </main>
     </div>
 

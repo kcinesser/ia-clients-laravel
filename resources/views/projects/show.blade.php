@@ -3,14 +3,14 @@
 @section('content')
     <header class="mb-3 py-4">
         <div class="mb-2 flex items-center w-full ">
-            <h1 class="text-blue-500"><i class="fa fa-tasks mr-3"></i>Jobs / {{ $job->title }}</h1>
-            <a href="" class="button btn-add ml-4" data-toggle="modal" data-target="#editJobModal"><i class="fa fa-pencil"></i></a>
+            <h1 class="text-blue-500"><i class="fa fa-tasks mr-3"></i>Projects / {{ $project->title }}</h1>
+            <a href="" class="button btn-add ml-4" data-toggle="modal" data-target="#editProjectModal"><i class="fa fa-pencil"></i></a>
         </div>
 
-        <p class="text-gray-500 text-sm font-normal">{{ $job->description }}</p>
+        <p class="text-gray-500 text-sm font-normal">{{ $project->description }}</p>
     </header>
 
-    <main class="jobs-show">
+    <main class="projects-show">
     	<div class="lg:flex -mx-3 flex-row-reverse">
             <div class="lg:w-3/4 px-3">
 
@@ -20,12 +20,12 @@
 
                     <div class="card constrain-height">
                         <div class="mb-6">
-                            @if(!$job->uploads()->exists())
+                            @if(!$project->uploads()->exists())
                                 <div class="lg:w-full p-2">
                                     <p>No files yet.</p>
                                 </div>
                             @else
-                                @foreach($job->uploads as $upload)
+                                @foreach($project->uploads as $upload)
                                     <div class="mb-3 flex justify-between items-center">
                                         <div class="w-1/3">
                                             <a href="{{ $upload->url }}" target="_blank">{{ $upload->name }}</a>
@@ -46,7 +46,7 @@
                             @endif
                         </div>
 
-                        <form method="post" action="/upload/job/{{ $job->id }}" enctype="multipart/form-data">
+                        <form method="post" action="/upload/project/{{ $project->id }}" enctype="multipart/form-data">
                             @csrf
                             <input type="file" id="file" name="file" class="mb-3 inputfile" required multiple>
                             <label for="file" class="inputfilelabel"><i class="fa fa-plus"></i> Select File</label>
@@ -68,7 +68,7 @@
                     <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-list-ol mr-1"></i> Tasks</h2>
                     <div class="card">
 
-                        @foreach ($job->tasks as $task)
+                        @foreach ($project->tasks as $task)
                             <form method="POST" action="{{ $task->path() }}">
                                 {{ method_field('PATCH') }}
                                 {{ csrf_field() }}
@@ -79,7 +79,7 @@
                                 </div>
                             </form>
                         @endforeach
-                        <form action="{{ $job->path() . '/tasks' }}" method="POST">
+                        <form action="{{ $project->path() . '/tasks' }}" method="POST">
                             @csrf
                             <input name="body" class="w-full" placeholder="Add a task">
                         </form>
@@ -98,10 +98,10 @@
 
                 <div class="mb-8">
                     <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-pencil-square-o mr-1"></i> Notes</h2>
-                    <form method="POST" action="{{ $job->path() . '/notes' }}">
+                    <form method="POST" action="{{ $project->path() . '/notes' }}">
                         @csrf
                         @method('PATCH')
-                        <textarea name="notes" class="card w-full mb-3 h-300">{{ $job->notes }}</textarea>
+                        <textarea name="notes" class="card w-full mb-3 h-300">{{ $project->notes }}</textarea>
                         <button type="submit" class="button">Save</button>
                     </form>
                 </div>
@@ -110,13 +110,13 @@
                     <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-comment-o mr-1"></i> Comments / Updates</h2>
 
                     <div class="card mb-3">
-                        <form action="/comment/job/{{ $job->id }}" method="POST">
+                        <form action="/comment/project/{{ $project->id }}" method="POST">
                             {{ csrf_field() }}
                             <input name="body" class="w-full" placeholder="Add a comment.">
                         </form>
                     </div>
 
-                    @foreach ($job->comments->sortByDesc('created_at') as $comment)
+                    @foreach ($project->comments->sortByDesc('created_at') as $comment)
                         <div class="card mb-3">
                             <form method="POST" action="/comment/{{ $comment->id }}">
                                 {{ method_field('PATCH') }}
@@ -137,12 +137,12 @@
 
             </div>
     		<div class="lg:w-1/4 px-3">
-                @include ('jobs.card')
+                @include ('projects.card')
 
                 <div class="mb-8">
                     <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
                     <div class="card constrain-height">
-                        @foreach ($job->activities as $activity)
+                        @foreach ($project->activities as $activity)
                             <div class="border-b-2 py-6">
                                 <span class="text-xs font-normal">{{ $activity->description }}</span>
                                 <span class="text-gray-500 text-xs font-normal">{{ \Carbon\Carbon::parse($activity->created_at)->format('n/j/Y') }}</span>
@@ -154,7 +154,7 @@
     		</div>
     	</div>
 
-        @include('jobs._edit_job_modal')
+        @include('projects._edit_project_modal')
 
     </main>
 

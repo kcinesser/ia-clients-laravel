@@ -92,7 +92,7 @@ class ManageClientsTest extends TestCase
         $client = factory('App\Client')->create(['account_manager_id' => auth()->id()]);
         $host = $this->factoryWithoutObservers('App\Hosting')->create();
         $site = factory('App\Site')->create(['client_id' => $client->id, 'host_id' => $host->id]);
-        $job = factory('App\Job')->create(['client_id' => $client->id]);
+        $project = factory('App\Project')->create(['client_id' => $client->id]);
 
         $response = $this->patch($client->path() . '/archive');
 
@@ -103,8 +103,8 @@ class ManageClientsTest extends TestCase
             'status' => 3
         ]);
 
-        $this->assertDatabaseHas('jobs', [
-            'title' => $job->title,
+        $this->assertDatabaseHas('projects', [
+            'title' => $project->title,
             'status' => 3
         ]);
 

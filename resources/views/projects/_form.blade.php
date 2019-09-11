@@ -2,7 +2,7 @@
     <label for="title" class="label text-sm mb-2 block">Title <span class="required-text">*</span></label>
 
     <div class="control">
-        <input type="text" name="title" value="{{ $job->title }}" required>
+        <input type="text" name="title" value="{{ $project->title }}" required>
     </div>
 </div>
 
@@ -23,7 +23,7 @@
     <label for="description" class="label text-sm mb-2 block">Description</label>
 
     <div class="control">
-        <textarea name="description" rows="10">{{ $job->description }}</textarea>
+        <textarea name="description" rows="10">{{ $project->description }}</textarea>
     </div>
 
     @if ($errors->has('site_id'))
@@ -39,7 +39,7 @@
     <div class="control">
         <select id="status" id="grid-state" name="status" required>
             @foreach ($statuses as $value => $status)
-                <option value="{{$value}}" {{ $value == $job->status ? "selected" : "" }}>{{ $status }}</option>
+                <option value="{{$value}}" {{ $value == $project->status ? "selected" : "" }}>{{ $status }}</option>
             @endforeach
         </select>
 
@@ -55,7 +55,7 @@
     <label for="start_date" class="label text-sm mb-2 block">Start Date</label>
 
     <div class="control">
-       <input type="text" class="date-field" autocomplete="off" name="start_date" value="{{ $job->start_date }}">
+       <input type="text" class="date-field" autocomplete="off" name="start_date" value="{{ $project->start_date }}">
     </div>
 </div>
 
@@ -63,7 +63,7 @@
     <label for="end_date" class="label text-sm mb-2 block">End Date</label>
 
     <div class="control">
-       <input type="text" class="date-field" autocomplete="off" name="end_date" value="{{ $job->end_date }}">
+       <input type="text" class="date-field" autocomplete="off" name="end_date" value="{{ $project->end_date }}">
     </div>
 </div>
 
@@ -71,7 +71,7 @@
     <label for="go_live_date" class="label text-sm mb-2 block">Go Live Date</label>
 
     <div class="control">
-       <input type="text" name="go_live_date" class="date-field" autocomplete="off" value="{{ $job->go_live_date }}">
+       <input type="text" name="go_live_date" class="date-field" autocomplete="off" value="{{ $project->go_live_date }}">
     </div>
 </div>
 
@@ -82,7 +82,7 @@
         <select name="developer_id">
                 <option value="">Select Developer</option>
             @foreach($developers as $developer)
-                <option value="{{ $developer->id }}" {{ $developer->id == $job->developer_id ? "selected" : "" }}>{{ $developer->name }}</option>
+                <option value="{{ $developer->id }}" {{ $developer->id == $project->developer_id ? "selected" : "" }}>{{ $developer->name }}</option>
             @endforeach
         </select>
     </div>
@@ -94,7 +94,7 @@
     <div class="control">
         <select name="technology">
             @foreach ($technologies as $value => $technology)
-                <option value="{{$value}}" {{ $value == $job->technology ? "selected" : "" }} >{{ $technology }}</option>
+                <option value="{{$value}}" {{ $value == $project->technology ? "selected" : "" }} >{{ $technology }}</option>
             @endforeach
         </select>
     </div>

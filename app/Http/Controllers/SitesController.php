@@ -33,9 +33,9 @@ class SitesController extends Controller
     public function show(Client $client, Site $site)
     {
         $services = Service::all();
-        $jobs = $site->jobs->whereNotIn('status', 3);
+        $projects = $site->projects->whereNotIn('status', 3);
 
-        return view('sites.show' , compact('client', 'site', 'services', 'jobs'));
+        return view('sites.show' , compact('client', 'site', 'services', 'projects'));
     }
 
     /**

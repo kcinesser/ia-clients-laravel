@@ -4,7 +4,7 @@
     </h3>
     <div class="mb-4">
         <p class="text-gray-800 text-xs headline-lead">Status</p>
-        <p class="text-gray-500 text-sm font-normal">{{ \App\Enums\JobStatus::getDescription($job->status) }}</p>
+        <p class="text-gray-500 text-sm font-normal">{{ \App\Enums\ProjectStatus::getDescription($project->status) }}</p>
     </div>
     <div class="mb-4">
         <p class="text-gray-800 text-xs headline-lead">Account Manager</p>
@@ -24,47 +24,47 @@
     </div>
     <div class="mb-4">
         <p class="text-gray-800 text-xs headline-lead">Primary Developer</p>
-        <p class="text-gray-500 text-sm font-normal">{{ !empty($job->developer->name) ? $job->developer->name : 'None' }}</p>
+        <p class="text-gray-500 text-sm font-normal">{{ !empty($project->developer->name) ? $project->developer->name : 'None' }}</p>
     </div>
-    @if($job->site()->exists())
+    @if($project->site()->exists())
         <div class="mb-4">
             <p class="text-gray-800 text-xs headline-lead">Site</p>
-            <p class="text-gray-500 text-sm font-normal"><a class="text-blue-500 no-underline" href="{{ $job->site->path() }}">{{ $job->site->name }}</a></p>
+            <p class="text-gray-500 text-sm font-normal"><a class="text-blue-500 no-underline" href="{{ $project->site->path() }}">{{ $project->site->name }}</a></p>
         </div>
     @endif
     <div class="mb-4">
         <p class="text-gray-800 text-xs headline-lead">Technology/Framework</p>
-        <p class="text-gray-500 text-sm font-normal">{{ \App\Enums\Technologies::getDescription($job->technology) }}</p>
+        <p class="text-gray-500 text-sm font-normal">{{ \App\Enums\Technologies::getDescription($project->technology) }}</p>
     </div>
     <div class="mb-4">
-        <p class="text-gray-800 text-xs headline-lead">Job Start Date</p>
-        <p class="text-gray-500 text-sm font-normal"> {{ isset($job->start_date) ? \Carbon\Carbon::parse($job->start_date)->format('n/j/Y') : $job->created_at }}</p>
+        <p class="text-gray-800 text-xs headline-lead">Project Start Date</p>
+        <p class="text-gray-500 text-sm font-normal"> {{ isset($project->start_date) ? \Carbon\Carbon::parse($project->start_date)->format('n/j/Y') : $project->created_at }}</p>
     </div>
     <div class="mb-4">
-        <p class="text-gray-800 text-xs headline-lead">Job End Date</p>
-        <p class="text-gray-500 text-sm font-normal"> {{ isset($job->end_date) ? \Carbon\Carbon::parse($job->end_date)->format('n/j/Y') : "None" }}</p>
+        <p class="text-gray-800 text-xs headline-lead">Project End Date</p>
+        <p class="text-gray-500 text-sm font-normal"> {{ isset($project->end_date) ? \Carbon\Carbon::parse($project->end_date)->format('n/j/Y') : "None" }}</p>
     </div>
     <div class="mb-4">
         <p class="text-gray-800 text-xs headline-lead">Go Live Date</p>
-        <p class="text-gray-500 text-sm font-normal"> {{ isset($job->go_live_date) ? \Carbon\Carbon::parse($job->go_live_date)->format('n/j/Y') : "None" }}</p>
+        <p class="text-gray-500 text-sm font-normal"> {{ isset($project->go_live_date) ? \Carbon\Carbon::parse($project->go_live_date)->format('n/j/Y') : "None" }}</p>
     </div>
 
 
     <div class="text-right">
-        @if ($job->status != 3)
-            <form class="archive-job-form" method="POST" action="{{ $job->path() . '/archive' }}">
+        @if ($project->status != 3)
+            <form class="archive-project-form" method="POST" action="{{ $project->path() . '/archive' }}">
                 @method('PATCH')
                 @csrf
-                <button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500"><i class="fa fa-archive mr-1"></i> Archive Job</button>
+                <button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500"><i class="fa fa-archive mr-1"></i> Archive Project</button>
             </form>
         @else
-            <form method="POST" action="{{ $job->path() }}">
+            <form method="POST" action="{{ $project->path() }}">
                 @method('PATCH')
                 @csrf
                 <input type="hidden" name="status" value="1">
-                <button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500"><i class="fa fa-archive mr-1"></i> Restore Job</button>
+                <button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500"><i class="fa fa-archive mr-1"></i> Restore Project</button>
             </form>
-            <form class="delete-form" method="POST" action="{{ $job->path() }}">
+            <form class="delete-form" method="POST" action="{{ $project->path() }}">
                 @method('DELETE')
                 @csrf
                 <input type="hidden" name="status" value="1">

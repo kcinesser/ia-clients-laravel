@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
     protected $guarded = [];
-    protected $touches = ['job'];
+    protected $touches = ['project'];
 
-    public function job() {
-    	return $this->belongsTo(Job::class);
+    public function project() {
+    	return $this->belongsTo(Project::class);
     }
 
     public function path() {
-    	return "/clients/{$this->job->client->id}/jobs/{$this->job->id}/tasks/{$this->id}";
+    	return "/clients/{$this->project->client->id}/projects/{$this->project->id}/tasks/{$this->id}";
     }
 }

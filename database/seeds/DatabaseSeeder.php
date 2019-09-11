@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             ClientTableSeeder::class,
             HostingTableSeeder::class,
             SiteTableSeeder::class,
-            JobTableSeeder::class,
+            ProjectTableSeeder::class,
             DomainTableSeeder::class,
             ServiceSiteSeeder::class,
             SiteURLSeeder::class

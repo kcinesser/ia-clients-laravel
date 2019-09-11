@@ -1,8 +1,8 @@
-<div class="modal fade" id="newJobMenuModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="newProjectMenuModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New Job</h5>
+                <h5 class="modal-title" id="exampleModalLabel">New Project</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -23,7 +23,7 @@
                        <label for="site" class="label text-sm mb-2 block">Client</label>
 
                         <div class="control">
-                            <select id="job-client-select" name="site_id">
+                            <select id="project-client-select" name="site_id">
                                     <option value="">None</option>
                                 @foreach (App\Client::all()->sortBy('name')->whereNotIn('status', 3) as $client)
                                     <option value="{{ $client->id }}">{{ $client->name }}</option>
@@ -37,7 +37,7 @@
                        <label for="site" class="label text-sm mb-2 block">Site (optional)</label>
 
                         <div class="control">
-                            <select id="job-site-select" name="site_id">
+                            <select id="project-site-select" name="site_id">
                                     <option value="">None</option>
                             </select>
                         </div>
@@ -56,7 +56,7 @@
 
                         <div class="control">
                             <select id="grid-state" name="status" value="{{ old('status') }}" required>
-                                @foreach (App\Enums\JobStatus::toSelectArray() as $value => $status)
+                                @foreach (App\Enums\ProjectStatus::toSelectArray() as $value => $status)
                                     <option value="{{$value}}">{{ $status }}</option>
                                 @endforeach
                             </select>
@@ -114,7 +114,7 @@
 
                     <div class="modal-footer">
                         <a href="" class="button btn-blue" data-dismiss="modal">Cancel</a>
-                        <button type="submit" class="button is-link">Create Job</button>
+                        <button type="submit" class="button is-link">Create Project</button>
                     </div>
 
 

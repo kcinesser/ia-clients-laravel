@@ -12,8 +12,8 @@ class Site extends Model
     	return $this->belongsTo(Client::class);
     }
 
-    public function jobs() {
-        return $this->hasMany(Job::class);
+    public function projects() {
+        return $this->hasMany(Project::class);
     }
 
     public function urls() {
@@ -52,17 +52,17 @@ class Site extends Model
         return $this->morphMany(Upload::class, 'uploadable');
     }
 
-    public function job_uploads() {
-        return $this->hasManyThrough(Upload::class, Job::class, null, 'uploadable_id')->where('uploadable_type', Job::class);
+    public function project_uploads() {
+        return $this->hasManyThrough(Upload::class, Project::class, null, 'uploadable_id')->where('uploadable_type', Project::class);
     }
 
     public function path() {
         return "{$this->client->path()}/sites/{$this->id}";
     }
 
-    public function hasJobArchive() {
-        foreach($this->jobs as $job) {
-            if($job->status == 3) {
+    public function hasProjectArchive() {
+        foreach($this->projects as $project) {
+            if($project->status == 3) {
                 return true;
             } 
         }

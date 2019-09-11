@@ -3551,14 +3551,14 @@ select:focus {
 
 #client-modal-list p,
 #site-modal-list p,
-#job-modal-list p {
+#project-modal-list p {
   font-size: 0.875rem;
   color: #a0aec0;
 }
 
 #client-modal-list a,
 #site-modal-list a,
-#job-modal-list a {
+#project-modal-list a {
   color: #F15B39;
   text-decoration: none;
 }
@@ -3566,7 +3566,7 @@ select:focus {
 @media (min-width: 1024px) {
   #client-modal-list a,
   #site-modal-list a,
-  #job-modal-list a {
+  #project-modal-list a {
     font-size: 0.875rem;
   }
 }
