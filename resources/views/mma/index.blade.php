@@ -30,8 +30,6 @@
 							@endif
 						</div>
 						<div class="lg:w-1/4 card mb-0">
-							{{ dd($site->mma_update) }}
-
 							@if(date('m',strtotime($site->mma_update)) == date('m'))
 	                            <form method="POST" action="{{ $site->updates()->where('mma',1)->latest()->first()->path() }}">
 	                                @method('PATCH')
