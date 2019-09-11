@@ -12,8 +12,8 @@ class Client extends Model
         return "/clients/{$this->id}";
     }  
 
-    public function jobArchivePath() {
-        return "/clients/{$this->id}/jobs/archives";
+    public function projectArchivePath() {
+        return "/clients/{$this->id}/projects/archives";
     }
 
     public function siteArchivePath() {
@@ -30,9 +30,9 @@ class Client extends Model
         return false;
     }
 
-    public function hasJobArchive() {
-        foreach($this->jobs as $job) {
-            if($job->status == 3) {
+    public function hasProjectArchive() {
+        foreach($this->projects as $project) {
+            if($project->status == 3) {
                 return true;
             } 
         }
@@ -40,10 +40,10 @@ class Client extends Model
         return false;
     }
 
-    public function addJob($attributes) {
-    	$job = $this->jobs()->create($attributes);
+    public function addProject($attributes) {
+    	$project = $this->projects()->create($attributes);
 
-        return $job;
+        return $project;
     }
 
     public function addSite($attributes) {
@@ -55,7 +55,8 @@ class Client extends Model
             'prev_dev' => $attributes['prev_dev']
         ]);
 
-        if ($attributes['URL']) {
+
+        if (isset($attributes['URL'])) {
             $site->urls()->create(['url' => $attributes['URL']]);
         }
 
@@ -77,8 +78,8 @@ class Client extends Model
         return $this->hasMany(HostedDomain::class);
     }
 
-    public function jobs() {
-    	return $this->hasMany(Job::class);
+    public function projects() {
+    	return $this->hasMany(Project::class);
     }
 
     public function comments() {
@@ -93,8 +94,8 @@ class Client extends Model
         return $this->hasManyThrough(Upload::class, Site::class, null, 'uploadable_id')->where('uploadable_type', Site::class);
     }
 
-    public function job_uploads() {
-        return $this->hasManyThrough(Upload::class, Job::class, null, 'uploadable_id')->where('uploadable_type', Job::class);
+    public function project_uploads() {
+        return $this->hasManyThrough(Upload::class, Project::class, null, 'uploadable_id')->where('uploadable_type', Project::class);
     }
 
     public function accountManager() {

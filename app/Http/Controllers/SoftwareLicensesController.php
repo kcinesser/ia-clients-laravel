@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\SoftwareLicense;
 use App\Client;
-use App\Job;
+use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 

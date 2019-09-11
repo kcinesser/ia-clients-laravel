@@ -33,12 +33,12 @@ class FilterController extends Controller
     			}
 
     			break;
-    		case 'job':
-    			$results = App\Job::all()->whereNotIn('status', 3);
+    		case 'project':
+    			$results = App\Project::all()->whereNotIn('status', 3);
 
     			foreach ($results as $result) {
     				$result->clientName = $result->client->name;
-    				$result->status = \App\Enums\JobStatus::getDescription($result->status);
+    				$result->status = \App\Enums\ProjectStatus::getDescription($result->status);
     				$result->developerName = $result->developer->name;
     				$result->URL = $result->path();
     			}
@@ -121,8 +121,8 @@ class FilterController extends Controller
 				}
 				break;
 
-			case 'job':
-				$results = App\Job::all()->whereNotIn('status', 3);
+			case 'project':
+				$results = App\Project::all()->whereNotIn('status', 3);
 
 				if ($search_value === null) {
 					$filtered = $results;
@@ -148,7 +148,7 @@ class FilterController extends Controller
 					foreach ($filtered as $result) {
 						$result->client_name = $result->client->name;
 						$result->URL = $result->path();
-						$result->status = \App\Enums\JobStatus::getDescription($result->status);
+						$result->status = \App\Enums\ProjectStatus::getDescription($result->status);
 						$result->developer_name = $result->developer->name;
 					}
 				} else {
@@ -198,24 +198,24 @@ class FilterController extends Controller
 			}
 		}
 
-		$jobs = App\Job::all()->whereNotIn('status', 3);
+		$projects = App\Project::all()->whereNotIn('status', 3);
 
-		$filtered_jobs = $jobs->filter(function ($item) use ($search_value) {
+		$filtered_projects = $projects->filter(function ($item) use ($search_value) {
 			return false !== stristr($item->title, $search_value);
 		})->take(4);
 
-		if ($filtered_jobs->isEmpty()) {
-			$filtered_jobs = "No results found.";
+		if ($filtered_projects->isEmpty()) {
+			$filtered_projects = "No results found.";
 		} else {
-			foreach ($filtered_jobs as $job) {
-				$job->URL = $job->path();
-				$job->client_name = $job->client->name;
+			foreach ($filtered_projects as $project) {
+				$project->URL = $project->path();
+				$project->client_name = $project->client->name;
 			}
 		}
 
 		$results['clients'] = $filtered_clients;
 		$results['sites'] = $filtered_sites;
-		$results['jobs'] = $filtered_jobs;
+		$results['projects'] = $filtered_projects;
 
     	return response()->json($results);
     }

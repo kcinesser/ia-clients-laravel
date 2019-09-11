@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Project;
+use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -14,86 +14,93 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function guests_cannot_create_projects() {
         $attributes = factory('App\Project')->raw();
+        $user = $this->factoryWithoutObservers('App\User')->create();
+        $client = $this->factoryWithoutObservers('App\Client')->create(['account_manager_id' => $user->id]);
 
-        $this->post('/projects', $attributes)->assertRedirect('login');
-        $this->get('/projects/create')->assertRedirect('login');
+        $this->post($client->path() . '/projects', $attributes)->assertRedirect('login');
     }
 
     /** @test */
     public function guests_cannot_view_projects() {
-        $this->get('/projects')->assertRedirect('login');
-    }
+        $user = $this->factoryWithoutObservers('App\User')->create();
+        $client = $this->factoryWithoutObservers('App\Client')->create(['account_manager_id' => $user->id]);
+        $project = $this->factoryWithoutObservers('App\Project')->create(['client_id' => $client->id]);
 
-    /** @test */
-    public function guests_cannot_view_single_projects() {
-        $project = factory('App\Project')->create();
-
-        $this->get($project->path())->assertRedirect('login');
+        $this->get($client->path() . '/projects/' . $project->id)->assertRedirect('login');
     }
 
     /** @test */
     public function a_user_can_create_a_project() {
         $this->signIn();
 
-        $this->get('/projects/create')->assertStatus(200);
+        $client = factory('App\Client')->create(['account_manager_id' => auth()->id()]);
+        $attributes = factory('App\Project')->raw(['client_id' => $client->id]);
 
-        $attributes = [
-            'title' => $this->faker->sentence,
-            'description' => $this->faker->sentence,
-            'notes' => 'General notes here.'
-        ];
-
-        $response = $this->post('/projects', $attributes);
+        $response = $this->post($client->path() . '/projects', $attributes);
         $project = Project::where($attributes)->first();
+
         $response->assertRedirect($project->path());
 
         $this->assertDatabaseHas('projects', $attributes);
-        $this->get($project->path())
-            ->assertSee($attributes['title'])
-            ->assertSee($attributes['description'])
-            ->assertSee($attributes['notes']);
+        $this->get($project->path())->assertSee($attributes['title']);
     }
 
     /** @test */
     public function a_user_can_update_a_project() {
         $this->signIn();
 
-        $project = factory('App\Project')->create(['owner_id' => auth()->id()]);
+        $client = factory('App\Client')->create(['account_manager_id' => auth()->id()]);
+        $project = factory('App\Project')->create(['client_id' => $client->id]);
 
         $this->patch($project->path(), $attributes = [
-            'notes' => 'changed',
-            'title' => 'changed',
-            'description' => 'changed'
+            'title' => 'changed'
         ]);
 
         $this->assertDatabaseHas('projects', $attributes);
     }
 
     /** @test */
-    public function a_user_can_view_their_project() {
+    public function a_user_can_view_clients_projects() {
         $this->signIn();
 
-        $project = factory('App\Project')->create(['owner_id' => auth()->id()]);
+        $client = factory('App\Client')->create(['account_manager_id' => auth()->id()]);
+        $project = factory('App\Project')->create(['client_id' => $client->id]);
 
-        $this->get($project->path())
-            ->assertSee($project->title)
-            ->assertSee($project->description);
-    }
-
-
-    /** @test */
-    public function a_project_requires_a_title() {
-        $this->signIn();
-        $attributes = factory('App\Project')->raw(['title' => '']);
-
-        $this->post('/projects', $attributes)->assertSessionHasErrors('title');
+        $this->get($client->path())->assertSee($project->title);
     }
 
     /** @test */
-    public function a_project_requires_a_description() {
+    public function a_user_can_view_a_single_project() {
         $this->signIn();
-        $attributes = factory('App\Project')->raw(['description' => '']);
 
-        $this->post('/projects', $attributes)->assertSessionHasErrors('description');
+        $client = factory('App\Client')->create(['account_manager_id' => auth()->id()]);
+        $project = factory('App\Project')->create(['client_id' => $client->id]);
+
+        $this->get($project->path())->assertSee($project->title);
+    }
+
+    /** @test */
+    public function a_project_belongs_to_a_client() {
+        $this->signIn();
+
+        $client = factory('App\Client')->create(['account_manager_id' => auth()->id()]);
+        $attributes = factory('App\Project')->raw(['client_id' => null]);
+
+        $this->post($client->path() . '/projects', $attributes);
+        $this->assertDatabaseMissing('projects', $attributes);
+    }
+
+    /** @test */
+    public function a_project_can_belong_to_a_site() {
+        $this->signIn();
+
+        $client = factory('App\Client')->create(['account_manager_id' => auth()->id()]);
+        $host = $this->factoryWithoutObservers('App\Hosting')->create();
+        $site = factory('App\Site')->create(['client_id' => $client->id, 'host_id' => $host->id]);
+        $attributes = factory('App\Project')->raw(['client_id' => $client->id, 'site_id' => $site->id]);
+
+        $this->post($client->path() . '/projects', $attributes);
+        $this->assertDatabaseHas('projects', $attributes);
+        $this->get($site->path())->assertSee($attributes['title']);
     }
 }

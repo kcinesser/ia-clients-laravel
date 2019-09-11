@@ -19,12 +19,12 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('activities', 'ActivitiesController')->only(['index']);
     Route::get('/clients/archives', 'ClientsController@archives');
     Route::resource('clients', 'ClientsController');
-    Route::get('/clients/{client}/jobs/archives', 'JobsController@client_job_archives');
-    Route::patch('/clients/{client}/jobs/{job}/archive', 'JobsController@archive');
+    Route::get('/clients/{client}/projects/archives', 'ProjectsController@client_project_archives');
+    Route::patch('/clients/{client}/projects/{project}/archive', 'ProjectsController@archive');
     Route::patch('/clients/{client}/sites/{site}/archive', 'SitesController@archive');
     Route::get('/clients/{client}/sites/archives', 'SitesController@client_site_archives');
     Route::patch('/clients/{client}/archive', 'ClientsController@archive');
-    Route::resource('clients.jobs', 'JobsController')->except(['index', 'create', 'edit']);
+    Route::resource('clients.projects', 'ProjectsController')->except(['index', 'create', 'edit']);
     Route::get('/clients/{client}/client-sites', 'ClientsController@clientSites');
     Route::resource('clients.sites', 'SitesController')->except(['index', 'create', 'edit']);
     Route::resource('clients.domains', 'HostedDomainsController')->only(['store', 'update', 'destroy']);
@@ -34,19 +34,19 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('services', 'ServicesController')->only(['store', 'destroy', 'update']);
     Route::resource('hosting', 'HostingController')->only(['index','store', 'destroy', 'update']);
 
-    Route::get('/jobs/archives', 'JobsController@all_archives');
+    Route::get('/projects/archives', 'ProjectsController@all_archives');
     Route::get('/sites/archives', 'SitesController@all_archives');
-    Route::patch('/clients/{client}/jobs/{job}/notes', 'JobsController@notes');
+    Route::patch('/clients/{client}/projects/{project}/notes', 'ProjectsController@notes');
     Route::patch('/clients/{client}/sites/{site}/notes', 'SitesController@notes');
     Route::patch('/clients/{client}/sites/{site}/services', 'SitesController@services');
     Route::patch('/clients/{client}/notes', 'ClientsController@notes');
 
-    Route::post('/clients/{client}/jobs/{job}/tasks', 'TasksController@store');
-    Route::patch('/clients/{client}/jobs/{job}/tasks/{task}', 'TasksController@update');
+    Route::post('/clients/{client}/projects/{project}/tasks', 'TasksController@store');
+    Route::patch('/clients/{client}/projects/{project}/tasks/{task}', 'TasksController@update');
 
-    Route::post('/comment/{model}/{id}', 'CommentsController@store')->where('model', ('client|job|site'));
+    Route::post('/comment/{model}/{id}', 'CommentsController@store')->where('model', ('client|project|site'));
     Route::patch('/comment/{comment}', 'CommentsController@update');
-    Route::post('/software_license/{model}/{id}', 'SoftwareLicensesController@store')->where('model', ('job|site'));
+    Route::post('/software_license/{model}/{id}', 'SoftwareLicensesController@store')->where('model', ('project|site'));
     Route::patch('/software_license/{software_license}', 'SoftwareLicensesController@update');
     Route::delete('/software_license/{software_license}', 'SoftwareLicensesController@destroy');
     Route::post('/upload/{model}/{id}', 'UploadsController@store');

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\JobStatus;
 use App\Enums\RemoteDomainsProviders;
+use App\Enums\ProjectStatus;
 use Illuminate\Http\Request;
 use App\Client;
 
@@ -16,21 +16,20 @@ class ClientsController extends Controller
     }
 
     public function show(Client $client) {
-        $jobs = $client->jobs->whereNotIn('status', 3);
+        $projects = $client->projects->whereNotIn('status', 3);
         $sites = $client->sites->whereNotIn('status', 4);
 
-        return view('clients.show', compact('client', 'jobs', 'sites'));
+        return view('clients.show', compact('client', 'projects', 'sites'));
     }
 
 
     public function create() {
-        $statuses = JobStatus::toSelectArray();
+        $statuses = ProjectStatus::toSelectArray();
 
         return view('clients.create', compact('statuses'));
     }
 
     public function store() {
-
 	  	$attributes = $this->validate_data();
 
         $client = Client::create($attributes);
@@ -40,7 +39,7 @@ class ClientsController extends Controller
 
 
     public function edit(Client $client) {
-        $statuses = JobStatus::toSelectArray();
+        $statuses = ProjectStatus::toSelectArray();
 
     	return view ('clients.edit', compact('client', 'statuses'));
     }
@@ -97,8 +96,8 @@ class ClientsController extends Controller
             ]);
         }
 
-        foreach($client->jobs as $job) {
-            $job->update([
+        foreach($client->projects as $project) {
+            $project->update([
                 'status' => 3
             ]);
         }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Client;
-use App\Job;
+use App\Project;
 use App\Site;
 use App\Upload;
 use Illuminate\Support\Facades\Storage;

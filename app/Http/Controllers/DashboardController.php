@@ -13,11 +13,11 @@ class DashboardController extends Controller
     public function index() {
     	$user = Auth::user();
     	$clients = $user->dashboardClients();
-    	$jobs = $user->dashboardJobs();
+    	$projects = $user->dashboardProjects();
     	$sites = $user->dashboardSites();
     	$updates = Update::all();
     	$activities = Activity::latest()->take(10)->get();
 
-    	return view('dashboard.dashboard', compact('user', 'clients', 'jobs', 'updates', 'activities', 'sites'));
+    	return view('dashboard.dashboard', compact('user', 'clients', 'projects', 'updates', 'activities', 'sites'));
     }
 }

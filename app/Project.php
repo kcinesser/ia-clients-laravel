@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Job extends Model
+class Project extends Model
 {
     protected $guarded = [];
 
     public function path() {
-        return "/clients/{$this->client->id}/jobs/{$this->id}";
+        return "/clients/{$this->client->id}/projects/{$this->id}";
     }
 
     public function client() {
@@ -50,13 +50,5 @@ class Job extends Model
 
     public function addTask($body) {
     	return $this->tasks()->create(compact('body'));
-    }
-
-    public function addComment($body) {
-        return $this->comments()->create(compact('body'));
-    }
-
-    public function addLicense($attributes) {
-        return $this->licenses()->create($attributes);
     }
 }
