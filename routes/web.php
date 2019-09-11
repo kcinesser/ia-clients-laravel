@@ -3,6 +3,7 @@
 use App\Services\NamecheapDomainsService;
 use App\Repositories\RemoteDomainsRepository;
 use App\HostedDomain;
+use App\RemoteDomain;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,13 +89,45 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 // Email Preview Routes...
 Route::get('mail_preview/domain_renewing_in_thirty_days', function () {
-    $namecheapRepository = resolve(RemoteDomainsRepository::class, ['client' => resolve(NamecheapDomainsService::class)]);
-    $domains = $namecheapRepository->getRenewingInThirtyDays();
-    $remoteDomain = $domains[0];
+    $remoteDomain = resolve(
+        RemoteDomain::class,
+        [
+            'providerName' => 'Namecheap',
+            'providerId' => '191284878',
+            'domain' => 'jeffsdomain.com',
+            'expires' => "2019-10-11T13:16:27.000Z",
+            'renewAuto' => TRUE,
+            'renewable' => TRUE,
+            'status' => 'ACTIVE'
+        ]
+    );
+    
     $hostedDomain = HostedDomain::with('client.accountManager')->where([
         ['remote_provider_type', RemoteDomainsProviders::Namecheap],
         ['remote_provider_id', $remoteDomain->providerId]
     ])->first();
 
     return new App\Mail\UpcomingDomainRenewal($remoteDomain, $hostedDomain, 30);
+});
+
+Route::get('mail_preview/domain_expiring_in_thirty_days', function () {
+    $remoteDomain = resolve(
+        RemoteDomain::class,
+        [
+            'providerName' => 'Namecheap',
+            'providerId' => '191284878',
+            'domain' => 'jeffsdomain.com',
+            'expires' => "2019-10-11T13:16:27.000Z",
+            'renewAuto' => FALSE,
+            'renewable' => TRUE,
+            'status' => 'ACTIVE'
+        ]
+        );
+    
+    $hostedDomain = HostedDomain::with('client.accountManager')->where([
+        ['remote_provider_type', RemoteDomainsProviders::Namecheap],
+        ['remote_provider_id', $remoteDomain->providerId]
+    ])->first();
+    
+    return new App\Mail\UpcomingDomainExpiration($remoteDomain, $hostedDomain, 30);
 });

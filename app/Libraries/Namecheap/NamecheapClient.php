@@ -28,7 +28,7 @@ class NamecheapClient
                 "locked": true,
                 "nameServers": null,
                 "privacy": false,
-                "renewAuto": true,
+                "renewAuto": false,
                 "renewDeadline": "2020-10-18T13:16:27.000Z",
                 "renewable": true,
                 "status": "ACTIVE",
