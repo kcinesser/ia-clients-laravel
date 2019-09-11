@@ -88,7 +88,7 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 // Email Preview Routes...
-Route::get('mail_preview/domain_renewing_in_thirty_days', function () {
+Route::get('mail_preview/domain_renewing/{daysOut}', function ($daysOut) {
     $remoteDomain = resolve(
         RemoteDomain::class,
         [
@@ -107,10 +107,10 @@ Route::get('mail_preview/domain_renewing_in_thirty_days', function () {
         ['remote_provider_id', $remoteDomain->providerId]
     ])->first();
 
-    return new App\Mail\UpcomingDomainRenewal($remoteDomain, $hostedDomain, 30);
+    return new App\Mail\UpcomingDomainRenewal($remoteDomain, $hostedDomain, $daysOut);
 });
 
-Route::get('mail_preview/domain_expiring_in_thirty_days', function () {
+Route::get('mail_preview/domain_expiring/{daysOut}', function ($daysOut) {
     $remoteDomain = resolve(
         RemoteDomain::class,
         [
@@ -129,5 +129,5 @@ Route::get('mail_preview/domain_expiring_in_thirty_days', function () {
         ['remote_provider_id', $remoteDomain->providerId]
     ])->first();
     
-    return new App\Mail\UpcomingDomainExpiration($remoteDomain, $hostedDomain, 30);
+    return new App\Mail\UpcomingDomainExpiration($remoteDomain, $hostedDomain, $daysOut);
 });

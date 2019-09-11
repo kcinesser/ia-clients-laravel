@@ -43,12 +43,12 @@ class sendThirtyDayExpiringDomainsNotificationsService
                 }
                 else
                 {
-                    Log::warning("No Account Manager found for { $remote->domain }. Upcoming domain expiration notification not sent to account manager.");
+                    Log::warning("No Account Manager found for { $remoteDomain->domain }. Upcoming domain expiration notification not sent to account manager.");
                 }
             } 
             else 
             {
-                Log::warning("No HostedDomain found for { $remoteDomain->providerId }: { $remote->domain }. Upcoming domain expiration notification not sent to account manager.");
+                Log::warning("No HostedDomain found for { $remoteDomain->providerId }: { $remoteDomain->domain }. Upcoming domain expiration notification not sent to account manager.");
             }
         }
     }

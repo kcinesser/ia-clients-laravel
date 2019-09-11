@@ -53,6 +53,6 @@ class UpcomingDomainRenewal extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.domain_notices.upcoming_domain_renewal');
+        return $this->subject("{$this->remoteDomain->domain} - {$this->daysOut} days until domain renewal")->view('emails.domain_notices.upcoming_domain_renewal');
     }
 }

@@ -53,6 +53,6 @@ class UpcomingDomainExpiration extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.domain_notices.upcoming_domain_expiration');
+        return $this->subject("{$this->remoteDomain->domain} - {$this->daysOut} days until domain expiration")->view('emails.domain_notices.upcoming_domain_expiration');
     }
 }

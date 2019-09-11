@@ -39,7 +39,7 @@ class NamecheapClient
                 "domain": "jeffsdomain.org",
                 "domainId": 207946753,
                 "expirationProtected": false,
-                "expires": "2020-08-28T20:03:08.000Z",
+                "expires": "2019-09-21T20:03:08.000Z",
                 "holdRegistrar": false,
                 "locked": true,
                 "nameServers": null,

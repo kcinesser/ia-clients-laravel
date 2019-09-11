@@ -9,7 +9,7 @@ use App\HostedDomain;
 use Illuminate\Support\Facades\Mail;
 use Log;
 
-class sendThirtyDayRenewingDomainsNotificationsService
+class sendTenDayRenewingDomainsNotificationsService
 {
     public function __construct(RemoteDomainsRepository $domainHost)
     {
@@ -18,15 +18,15 @@ class sendThirtyDayRenewingDomainsNotificationsService
     
     public function call()
     {
-        $remoteDomains = $this->domainHost->getRenewingInThirtyDays();
+        $remoteDomains = $this->domainHost->getRenewingInTenDays();
         
         if (empty($remoteDomains)) 
         {
-            Log::info("No domains found to be renewing in 30 days.");
+            Log::info("No domains found to be renewing in 10 days.");
         }
         
         foreach($remoteDomains as $remoteDomain) {
-            Log::info("{$remoteDomain->domain} is renewing in 30 days. Sending Notification");
+            Log::info("{$remoteDomain->domain} is renewing in 10 days. Sending Notification");
             
             $hostedDomain = HostedDomain::with('client.accountManager')->where([
                 ['remote_provider_type', RemoteDomainsProviders::Namecheap],
@@ -39,7 +39,7 @@ class sendThirtyDayRenewingDomainsNotificationsService
 
                 if (!empty($accountManager))
                 {
-                    Mail::to($accountManager)->send(new UpcomingDomainRenewal($remoteDomain, $hostedDomain, 30));
+                    Mail::to($accountManager)->send(new UpcomingDomainRenewal($remoteDomain, $hostedDomain, 10));
                 }
                 else
                 {
