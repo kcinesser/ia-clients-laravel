@@ -96,5 +96,5 @@ Route::get('mail_preview/domain_renewing_in_thirty_days', function () {
         ['remote_provider_id', $remoteDomain->providerId]
     ])->first();
 
-    return new App\Mail\DomainRenewingInThirtyDays($remoteDomain, $hostedDomain);
+    return new App\Mail\UpcomingDomainRenewal($remoteDomain, $hostedDomain, 30);
 });

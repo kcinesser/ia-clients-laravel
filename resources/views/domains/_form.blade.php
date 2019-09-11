@@ -52,6 +52,21 @@
 	<input type="hidden" name="site_id" value="{{$site->id}}">
 @endif
 
+<div class="field mb-6">
+    <div class="control">
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="free_with_mma" {{ $domain->free_with_mma ? 'checked' : '' }}> Free With MMA
+                <p class="text-gray-600 text-xs italic">
+                    Checking this box indicates that when this domain is connected to a site on the MMA, no renewal charges will be billed to the client. 
+                    There should only be one domain marked per MMA site and it should be the .com domain in the case of multiples. 
+                    <span class="block">This option has no effect on sites not attached to an MMA (clients will still be charged).</span>
+                </p>
+            </label>
+        </div>
+    </div>
+</div>
+
 <div class="modal-footer">
     <a href="" class="button btn-blue" data-dismiss="modal">Cancel</a>
     <button type="submit" class="button is-link">{{ $buttonText }}</button>

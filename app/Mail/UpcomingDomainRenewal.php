@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class DomainRenewingInThirtyDays extends Mailable
+class UpcomingDomainRenewal extends Mailable
 {
     use Queueable, SerializesModels;
     
@@ -26,16 +26,24 @@ class DomainRenewingInThirtyDays extends Mailable
      * @var HostedDomain
      */
     public $hostedDomain;
+    
+    /**
+     * The number of days until the domain will renew.
+     *
+     * @var integer
+     */
+    public $daysOut;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(RemoteDomain $remoteDomain, HostedDomain $hostedDomain)
+    public function __construct(RemoteDomain $remoteDomain, HostedDomain $hostedDomain, int $daysOut)
     {
         $this->remoteDomain = $remoteDomain;
         $this->hostedDomain = $hostedDomain;
+        $this->daysOut = $daysOut;
     }
 
     /**
@@ -45,6 +53,6 @@ class DomainRenewingInThirtyDays extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.domain_notices.domain_renewing_in_thirty_days');
+        return $this->view('emails.domain_notices.upcoming_domain_renewal');
     }
 }
