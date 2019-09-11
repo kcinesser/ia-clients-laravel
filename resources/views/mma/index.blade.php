@@ -30,6 +30,8 @@
 							@endif
 						</div>
 						<div class="lg:w-1/4 card mb-0">
+							{{ dd($site->mma_update) }}
+
 							@if(date('m',strtotime($site->mma_update)) == date('m'))
 	                            <form method="POST" action="{{ $site->updates()->where('mma',1)->latest()->first()->path() }}">
 	                                @method('PATCH')
@@ -75,10 +77,26 @@
 							@endif		
 						</div>
 						<div class="lg:w-1/4 card mb-0">
-							<form action="{{ $site->path() . '/mma-update' }}" method="POST" class="flex justify-between">
-	                            @csrf
-	                            <input name="description" class="w-full text-xs" placeholder="Create new update." required autocomplete="off">
-	                        </form>
+							@if(date('m',strtotime($site->mma_update)) == date('m'))
+	                            <form method="POST" action="{{ $site->updates()->where('mma',1)->latest()->first()->path() }}">
+	                                @method('PATCH')
+	                                @csrf
+
+	                                <div class="flex justify-between items-center">
+	                                    <input class="mb-0 text-xs mb-0" name="description" value="{{ $site->updates()->where('mma',1)->latest()->first()->description }}">
+	                                    <div>
+	                                        <span class="text-gray-500 text-xs mr-1">{{ $site->updates()->where('mma',1)->latest()->first()->user->initials() }} - </span>
+	                                        <span class="text-gray-500 text-xs"> {{ \Carbon\Carbon::parse($site->updates()->where('mma',1)->latest()->first()->updated_at)->format('n/j/Y')}}</span>
+	                                    </div>
+	                                </div>
+	                            </form>
+							@else
+	                       		<form action="{{ $site->path() . '/mma-update' }}" method="POST" class="flex justify-between">
+	                            	@csrf
+	                            	<input name="description" class="w-full text-xs" placeholder="Create new update." required autocomplete="off">
+	                            	<input type="hidden" name="mma" value="1">
+	                        	</form>
+	                    	@endif
 	                    </div>
 					</div>
 				@endforeach
