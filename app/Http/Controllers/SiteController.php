@@ -9,7 +9,7 @@ use App\HostedDomain;
 use App\Hosting;
 use Illuminate\Http\Request;
 
-class SitesController extends Controller
+class SiteController extends Controller
 {
 
     /**
@@ -141,11 +141,5 @@ class SitesController extends Controller
         $mma_internal_sites = $mma_internal_sites->sortBy('name');
 
         return view('mma.index', compact('mma_sites', 'mma_internal_sites'));
-    }
-
-    public function get_mma_site() {
-        if ($site->services(name) === "MMA") {
-            return stringValue("MMA");
-        }
     }
 }

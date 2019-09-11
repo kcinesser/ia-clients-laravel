@@ -10,7 +10,7 @@ use App\Site;
 use App\Upload;
 use Illuminate\Support\Facades\Storage;
 
-class UploadsController extends Controller
+class UploadController extends Controller
 {
     public function store (Request $request, $model, $id) {
         $file_name = $request->file('file')->getClientOriginalName();

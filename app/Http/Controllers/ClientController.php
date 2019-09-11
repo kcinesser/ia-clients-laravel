@@ -6,7 +6,7 @@ use App\Enums\ProjectStatus;
 use Illuminate\Http\Request;
 use App\Client;
 
-class ClientsController extends Controller
+class ClientController extends Controller
 {
     public function index() {
     	$clients = Client::all()->whereNotIn('status', 3);
