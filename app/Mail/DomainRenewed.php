@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class DomainExpired extends Mailable
+class DomainRenewed extends Mailable
 {
     use Queueable, SerializesModels;
     
@@ -45,6 +45,6 @@ class DomainExpired extends Mailable
      */
     public function build()
     {
-        return $this->subject("{$this->remoteDomain->domain} - domain has expired")->view('emails.domain_notices.domain_expired');
+        return $this->subject("{$this->remoteDomain->domain} - domain has renewed")->view('emails.domain_notices.domain_renewed');
     }
 }

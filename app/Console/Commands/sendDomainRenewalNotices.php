@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Services\SendRenewingDomainsNotificationsService;
 use App\Services\SendExpiringDomainsNotificationsService;
+use App\Services\SendRenewedDomainsNotificationsService;
 use App\Services\SendExpiredDomainsNotificationsService;
 use App\Services\GoDaddyDomainsService;
 use App\Services\NamecheapDomainsService;
@@ -48,36 +49,41 @@ class sendDomainRenewalNotices extends Command
     {
         Log::info('Running sendDomainRenewalNotices command.');
             
-        //$repository = resolve(RemoteDomainsRepository::class, ['client' => resolve(GoDaddyDomainsService::class)]);
-        $repository = resolve(RemoteDomainsRepository::class, ['client' => resolve(NamecheapDomainsService::class)]);
+        $repository = resolve(RemoteDomainsRepository::class, ['client' => resolve(GoDaddyDomainsService::class)]);
         
-        // Send thirty day renewal notices
+        // Send thirty day upcoming renewal notices
         resolve(
             SendRenewingDomainsNotificationsService::class, 
             ['domainHost' => $repository, 'daysOut' => 30]
         )->call();
         
-        // Send thirty day expiration notices
+        // Send thirty day upcoming expiration notices
         resolve(
             SendExpiringDomainsNotificationsService::class, 
             ['domainHost' => $repository, 'daysOut' => 30]
         )->call();
         
-        // Send ten day renewal notices
+        // Send ten day upcoming renewal notices
         resolve(
             SendRenewingDomainsNotificationsService::class, 
             ['domainHost' => $repository, 'daysOut' => 10]
         )->call();
         
-        // Send ten day expiration notices
+        // Send ten day upcoming expiration notices
         resolve(
             SendExpiringDomainsNotificationsService::class, 
             ['domainHost' => $repository, 'daysOut' => 10]
         )->call();
         
-        // Send yesterday expiration notices
+        // Send yesterdays expiration notices
         resolve(
             SendExpiredDomainsNotificationsService::class, 
+            ['domainHost' => $repository]
+        )->call();
+        
+        // Send yesterdays renewal notices
+        resolve(
+            SendRenewedDomainsNotificationsService::class,
             ['domainHost' => $repository]
         )->call();
         
