@@ -7,7 +7,7 @@ use App\Contracts\RemoteDomainsClientContract as RemoteDomainsClientContract;
 use App\Libraries\GoDaddy\GoDaddyClient;
 use Log;
 
-class goDaddyDomainsService implements RemoteDomainsClientContract
+class GoDaddyDomainsService implements RemoteDomainsClientContract
 {
     private $client;
     
@@ -27,7 +27,7 @@ class goDaddyDomainsService implements RemoteDomainsClientContract
             return resolve(
                 RemoteDomain::class,
                 [
-                    'providerName' => 'DoDaddy',
+                    'providerName' => 'GoDaddy',
                     'providerId' => $remoteDomain['domainId'],
                     'domain' => $remoteDomain['domain'],
                     'expires' => $remoteDomain['expires'],

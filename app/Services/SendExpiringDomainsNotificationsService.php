@@ -2,31 +2,32 @@
 
 namespace App\Services;
 
-use App\Mail\UpcomingDomainRenewal;
+use App\Mail\UpcomingDomainExpiration;
 use App\Enums\RemoteDomainsProviders;
 use App\Contracts\RemoteDomainsRepositoryContract as RemoteDomainsRepository;
 use App\HostedDomain;
 use Illuminate\Support\Facades\Mail;
 use Log;
 
-class sendThirtyDayRenewingDomainsNotificationsService
+class SendExpiringDomainsNotificationsService
 {
-    public function __construct(RemoteDomainsRepository $domainHost)
+    public function __construct(RemoteDomainsRepository $domainHost, int $daysOut)
     {
         $this->domainHost = $domainHost;
+        $this->daysOut = $daysOut;
     }
     
     public function call()
     {
-        $remoteDomains = $this->domainHost->getRenewingInThirtyDays();
+        $remoteDomains = $this->domainHost->getExpiringDaysFromToday($this->daysOut);
         
         if (empty($remoteDomains)) 
         {
-            Log::info("No domains found to be renewing in 30 days.");
+            Log::info("No domains found to be expiring in {$this->daysOut} days.");
         }
         
         foreach($remoteDomains as $remoteDomain) {
-            Log::info("{$remoteDomain->domain} is renewing in 30 days. Sending Notification");
+            Log::info("{$remoteDomain->domain} is expiring in {$this->daysOut} days. Sending Notification");
             
             $hostedDomain = HostedDomain::with('client.accountManager')->where([
                 ['remote_provider_type', RemoteDomainsProviders::Namecheap],
@@ -39,16 +40,16 @@ class sendThirtyDayRenewingDomainsNotificationsService
 
                 if (!empty($accountManager))
                 {
-                    Mail::to($accountManager)->send(new UpcomingDomainRenewal($remoteDomain, $hostedDomain, 30));
+                    Mail::to($accountManager)->send(new UpcomingDomainExpiration($remoteDomain, $hostedDomain, $this->daysOut));
                 }
                 else
                 {
-                    Log::warning("No Account Manager found for { $remoteDomain->domain }. Upcoming domain renewal notification not sent to account manager.");
+                    Log::warning("No Account Manager found for { $remoteDomain->domain }. Upcoming domain expiration notification not sent to account manager.");
                 }
             } 
             else 
             {
-                Log::warning("No HostedDomain found for { $remoteDomain->providerId }: { $remoteDomain->domain }. Upcoming domain renewal notification not sent to account manager.");
+                Log::warning("No HostedDomain found for { $remoteDomain->providerId }: { $remoteDomain->domain }. Upcoming domain expiration notification not sent to account manager.");
             }
         }
     }

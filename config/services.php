@@ -46,6 +46,7 @@ return [
             'url' => env('GODADDY_URL', 'https://api.ote-godaddy.com'),
             'key' => env('GODADDY_KEY'),
             'secret' => env('GODADDY_SECRET'),
+            'debug' => env('GODADDY_DEBUG_ON', FALSE),
         ],
     ],
 

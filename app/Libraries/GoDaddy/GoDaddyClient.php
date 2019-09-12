@@ -8,7 +8,7 @@ use function GuzzleHttp\json_decode;
 use Log;
 
 /**
- * Class FdpApiClient
+ * Class GoDaddyClient
  *
  * @package App\Libraries\GuzzleHttp
  */
@@ -94,7 +94,7 @@ class GoDaddyClient
                 'Accept' => 'application/json', 
                 'Authorization' => "sso-key {$this->apiKey}:{$this->apiSecret}",
             ],
-            'debug' => true,
+            'debug' => config('services.godaddy.api.debug'),
         ];
     }
 }

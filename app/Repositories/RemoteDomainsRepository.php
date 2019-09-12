@@ -33,50 +33,66 @@ class RemoteDomainsRepository implements RemoteDomainsRepositoryContract
     /**
      * @return array
      */
-    public function getExpiringInTenDays()
+    public function getExpiringDaysFromToday(int $daysOut)
     {
-        return $this->filterByDaysOut($this->getExpiring(), 10);
+        return $this->getExpiring($daysOut);
     }
     
     /**
      * @return array
      */
-    public function getExpiringInThirtyDays()
+    public function getRenewingDaysFromToday(int $daysOut)
     {
-        return $this->filterByDaysOut($this->getExpiring(), 30);
+        return $this->getRenewing($daysOut);
     }
     
-    /**
-     * @return array
-     */
-    public function getRenewingInTenDays()
-    {
-        return $this->filterByDaysOut($this->getRenewing(), 10);
-    }
+//     /**
+//      * @return array
+//      */
+//     public function getExpiringInTenDays()
+//     {
+//         return $this->getExpiring(10);
+//     }
     
-    /**
-     * @return array
-     */
-    public function getRenewingInThirtyDays()
-    {
-        return $this->filterByDaysOut($this->getRenewing(), 30);
-    }
+//     /**
+//      * @return array
+//      */
+//     public function getExpiringInThirtyDays()
+//     {
+//         return $this->getExpiring(30);
+//     }
     
-    /**
-     * @return array
-     */
-    public function getExpiredYesterday()
-    {
-        return $this->filterByDaysOut($this->getExpiring(), -1);
-    }
+//     /**
+//      * @return array
+//      */
+//     public function getRenewingInTenDays()
+//     {
+//         return $this->getRenewing(10);
+//     }
     
-    /**
-     * @return array
-     */
-    public function getRenewedYesterday()
-    {
-        return $this->filterByDaysOut($this->getRenewing(), -1);
-    }
+//     /**
+//      * @return array
+//      */
+//     public function getRenewingInThirtyDays()
+//     {
+//         return $this->getRenewing(30);
+//     }
+    
+//     /**
+//      * @return array
+//      */
+//     public function getExpiredYesterday()
+//     {
+//         return $this->getExpiring(-1);
+//     }
+    
+//     /**
+//      * @return array
+//      */
+//     public function getRenewedYesterday()
+//     {
+//         return $this->getRenewing(-1);
+//     }
     
     private function filterByDaysOut($domains, int $daysOut)
     {
@@ -102,17 +118,35 @@ class RemoteDomainsRepository implements RemoteDomainsRepositoryContract
         });
     }
     
-    private function getRenewing()
+    private function getRenewing(int $daysOutFilter = NULL)
     {
-        return array_filter($this->all(), function($domain) {
+        $renewing = array_filter($this->all(), function($domain) {
             return $domain->willAutoRenew();
         });
+        
+        if (is_int($daysOutFilter))
+        {
+            return $this->filterByDaysOut($renewing, $daysOutFilter);
+        }
+        else
+        {
+            return $renewing;
+        }
     }
     
-    private function getExpiring()
+    private function getExpiring(int $daysOutFilter = NULL)
     {
-        return array_filter($this->all(), function($domain) {
+        $expiring = array_filter($this->all(), function($domain) {
             return !$domain->willAutoRenew();
         });
+        
+        if (is_int($daysOutFilter)) 
+        {
+            return $this->filterByDaysOut($expiring, $daysOutFilter);
+        }
+        else
+        {
+            return $expiring;
+        }
     }
 }

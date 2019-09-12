@@ -2,10 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Services\SendThirtyDayRenewingDomainsNotificationsService;
-use App\Services\SendThirtyDayExpiringDomainsNotificationsService;
-use App\Services\SendTenDayRenewingDomainsNotificationsService;
-use App\Services\SendTenDayExpiringDomainsNotificationsService;
+use App\Services\SendRenewingDomainsNotificationsService;
+use App\Services\SendExpiringDomainsNotificationsService;
 use App\Services\GoDaddyDomainsService;
 use App\Services\NamecheapDomainsService;
 use App\Repositories\RemoteDomainsRepository;
@@ -48,32 +46,32 @@ class sendDomainRenewalNotices extends Command
     public function handle()
     {
         Log::info('Running sendDomainRenewalNotices command.');
-        
-        //         $goDaddyRepository = resolve(RemoteDomainsRepository::class, ['client' => resolve(GoDaddyDomainsService::class)]);
-        //         resolve(
-        //             SendThirtyDayRenewingDomainsNotificationsService::class, ['domainHost' => $goDaddyRepository]
-        //         )->call();
             
-        $namecheapRepository = resolve(RemoteDomainsRepository::class, ['client' => resolve(NamecheapDomainsService::class)]);
+        $repository = resolve(RemoteDomainsRepository::class, ['client' => resolve(GoDaddyDomainsService::class)]);
+        //$repository = resolve(RemoteDomainsRepository::class, ['client' => resolve(NamecheapDomainsService::class)]);
         
         // Send thirty day renewal notices
         resolve(
-            SendThirtyDayRenewingDomainsNotificationsService::class, ['domainHost' => $namecheapRepository]
+            SendRenewingDomainsNotificationsService::class, 
+            ['domainHost' => $repository, 'daysOut' => 30]
         )->call();
         
         // Send thirty day expiration notices
         resolve(
-            SendThirtyDayExpiringDomainsNotificationsService::class, ['domainHost' => $namecheapRepository]
+            SendExpiringDomainsNotificationsService::class, 
+            ['domainHost' => $repository, 'daysOut' => 30]
         )->call();
         
         // Send ten day renewal notices
         resolve(
-            SendTenDayRenewingDomainsNotificationsService::class, ['domainHost' => $namecheapRepository]
+            SendRenewingDomainsNotificationsService::class, 
+            ['domainHost' => $repository, 'daysOut' => 10]
         )->call();
         
         // Send ten day expiration notices
         resolve(
-            SendTenDayExpiringDomainsNotificationsService::class, ['domainHost' => $namecheapRepository]
+            SendExpiringDomainsNotificationsService::class, 
+            ['domainHost' => $repository, 'daysOut' => 10]
         )->call();
         
         Log::info('sendDomainRenewalNotices Command run successfully.');

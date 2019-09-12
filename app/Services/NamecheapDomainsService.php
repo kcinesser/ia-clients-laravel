@@ -7,7 +7,7 @@ use App\Contracts\RemoteDomainsClientContract as RemoteDomainsClientContract;
 use App\Libraries\Namecheap\NamecheapClient;
 use Log;
 
-class namecheapDomainsService implements RemoteDomainsClientContract
+class NamecheapDomainsService implements RemoteDomainsClientContract
 {
     private $client;
     

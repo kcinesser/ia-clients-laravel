@@ -6,7 +6,11 @@ use function GuzzleHttp\json_decode;
 use Log;
 
 /**
- * Class FdpApiClient
+ * Class NamecheapClient
+ * 
+ * Implemented for Interface and Repository testing. 
+ * Will need to be fully implemented if we begin using Namecheap as a
+ * domain host in Interactive.
  *
  * @package App\Libraries\GuzzleHttp
  */
@@ -23,12 +27,12 @@ class NamecheapClient
                 "domain": "jeffsdomain.com",
                 "domainId": 191284878,
                 "expirationProtected": false,
-                "expires": "2019-10-11T13:16:27.000Z",
+                "expires": "2019-10-12T13:16:27.000Z",
                 "holdRegistrar": false,
                 "locked": true,
                 "nameServers": null,
                 "privacy": false,
-                "renewAuto": false,
+                "renewAuto": true,
                 "renewDeadline": "2020-10-18T13:16:27.000Z",
                 "renewable": true,
                 "status": "ACTIVE",
@@ -39,12 +43,12 @@ class NamecheapClient
                 "domain": "jeffsdomain.org",
                 "domainId": 207946753,
                 "expirationProtected": false,
-                "expires": "2019-09-21T20:03:08.000Z",
+                "expires": "2019-09-22T20:03:08.000Z",
                 "holdRegistrar": false,
                 "locked": true,
                 "nameServers": null,
                 "privacy": false,
-                "renewAuto": true,
+                "renewAuto": false,
                 "renewDeadline": "2020-10-12T20:03:08.000Z",
                 "renewable": true,
                 "status": "ACTIVE",
