@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Repositories;
 
@@ -13,7 +13,7 @@ class RemoteDomainsRepository implements RemoteDomainsRepositoryContract
      * @var RemoteDomainsClient
      */
     protected $client;
-
+    
     /**
      * @return array
      */
@@ -21,7 +21,7 @@ class RemoteDomainsRepository implements RemoteDomainsRepositoryContract
     {
         $this->client = $client;
     }
-
+    
     /**
      * @return array
      */
@@ -46,68 +46,39 @@ class RemoteDomainsRepository implements RemoteDomainsRepositoryContract
         return $this->getRenewing($daysOut);
     }
     
-//     /**
-//      * @return array
-//      */
-//     public function getExpiringInTenDays()
-//     {
-//         return $this->getExpiring(10);
-//     }
+    /**
+     * @return array
+     */
+    public function getExpiredDaysBeforeToday(int $daysBefore)
+    {
+        return $this->getExpiring($this->ensureNegative($daysBefore));
+    }
     
-//     /**
-//      * @return array
-//      */
-//     public function getExpiringInThirtyDays()
-//     {
-//         return $this->getExpiring(30);
-//     }
+    /**
+     * @return array
+     */
+    public function getRenewedDaysBeforeToday(int $daysBefore)
+    {
+        return $this->getRenewing($this->ensureNegative($daysBefore));
+    }
     
-//     /**
-//      * @return array
-//      */
-//     public function getRenewingInTenDays()
-//     {
-//         return $this->getRenewing(10);
-//     }
-    
-//     /**
-//      * @return array
-//      */
-//     public function getRenewingInThirtyDays()
-//     {
-//         return $this->getRenewing(30);
-//     }
-    
-//     /**
-//      * @return array
-//      */
-//     public function getExpiredYesterday()
-//     {
-//         return $this->getExpiring(-1);
-//     }
-    
-//     /**
-//      * @return array
-//      */
-//     public function getRenewedYesterday()
-//     {
-//         return $this->getRenewing(-1);
-//     }
+    /**
+     * Takes any integer and returns it as a negative number.
+     * Negative arguments return negative. Positive arguments return negative.
+     *
+     * @return integer
+     */
+    private function ensureNegative(int $number)
+    {
+        return (-1 * abs($number));
+    }
     
     private function filterByDaysOut($domains, int $daysOut)
     {
         return array_filter($domains, function($domain) use ($daysOut) {
             $daysOutStart = Carbon::now()->startOfDay();
             
-            if ($daysOut < 0)
-            {
-                $daysOutStart->subDays($daysOut);
-            }
-            else
-            {
-                $daysOutStart->addDays($daysOut);
-            }
-            
+            $daysOutStart->addDays($daysOut);
             $daysOutEnd = $daysOutStart->copy()->endOfDay();
             
             if ($domain->expires->isBetween($daysOutStart, $daysOutEnd)) {
@@ -123,7 +94,7 @@ class RemoteDomainsRepository implements RemoteDomainsRepositoryContract
         $renewing = array_filter($this->all(), function($domain) {
             return $domain->willAutoRenew();
         });
-        
+            
         if (is_int($daysOutFilter))
         {
             return $this->filterByDaysOut($renewing, $daysOutFilter);
@@ -139,8 +110,8 @@ class RemoteDomainsRepository implements RemoteDomainsRepositoryContract
         $expiring = array_filter($this->all(), function($domain) {
             return !$domain->willAutoRenew();
         });
-        
-        if (is_int($daysOutFilter)) 
+            
+        if (is_int($daysOutFilter))
         {
             return $this->filterByDaysOut($expiring, $daysOutFilter);
         }

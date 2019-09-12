@@ -19,5 +19,15 @@ interface RemoteDomainsRepositoryContract
      * @return array
      */
     public function getRenewingDaysFromToday(int $daysOut);
+    
+    /**
+     * @return array
+     */
+    public function getExpiredDaysBeforeToday(int $daysBefore);
+    
+    /**
+     * @return array
+     */
+    public function getRenewedDaysBeforeToday(int $daysBefore);
 	
 }

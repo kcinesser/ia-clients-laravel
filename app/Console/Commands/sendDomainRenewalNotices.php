@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Services\SendRenewingDomainsNotificationsService;
 use App\Services\SendExpiringDomainsNotificationsService;
+use App\Services\SendExpiredDomainsNotificationsService;
 use App\Services\GoDaddyDomainsService;
 use App\Services\NamecheapDomainsService;
 use App\Repositories\RemoteDomainsRepository;
@@ -47,8 +48,8 @@ class sendDomainRenewalNotices extends Command
     {
         Log::info('Running sendDomainRenewalNotices command.');
             
-        $repository = resolve(RemoteDomainsRepository::class, ['client' => resolve(GoDaddyDomainsService::class)]);
-        //$repository = resolve(RemoteDomainsRepository::class, ['client' => resolve(NamecheapDomainsService::class)]);
+        //$repository = resolve(RemoteDomainsRepository::class, ['client' => resolve(GoDaddyDomainsService::class)]);
+        $repository = resolve(RemoteDomainsRepository::class, ['client' => resolve(NamecheapDomainsService::class)]);
         
         // Send thirty day renewal notices
         resolve(
@@ -72,6 +73,12 @@ class sendDomainRenewalNotices extends Command
         resolve(
             SendExpiringDomainsNotificationsService::class, 
             ['domainHost' => $repository, 'daysOut' => 10]
+        )->call();
+        
+        // Send yesterday expiration notices
+        resolve(
+            SendExpiredDomainsNotificationsService::class, 
+            ['domainHost' => $repository]
         )->call();
         
         Log::info('sendDomainRenewalNotices Command run successfully.');
