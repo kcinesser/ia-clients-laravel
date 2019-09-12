@@ -10,8 +10,13 @@
     <main>
     	<div class="lg:flex">
     		<div class="lg:w-3/4 lg:pr-6">
-		   		<h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-users mr-1"></i> Your Clients</h2>
-		   		<div  class="lg:flex lg:flex-wrap card">
+    			<div class="flex justify-between mb-1">
+    		   		<h2 class="inline-block text-gray-500 headline-lead"><i class="fa fa-users mr-1"></i> Your Clients</h2>
+    		   		<div class="inline-block text-right">
+    		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#clientsModal"><i class="fa fa-th-list mr-1"></i> <span class="hidden sm:inline">View </span>All Clients</button>
+    		    	</div>
+    		    </div>
+		   		<div  class="lg:flex lg:flex-wrap card mb-8">
 			   		@forelse ($clients as $client)
 						<div class="lg:w-full p-2">
 							<h3><a href="{{ $client->path() }}">{{ $client->name }}</a></h3>
@@ -22,11 +27,14 @@
 			        	</div>
 			        @endforelse
 		    	</div>
-		    	<div class="text-right mb-4">
-		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#clientsModal"><i class="fa fa-th-list mr-1"></i> View All Clients</button>
+		    	
+		    	<div class="flex justify-between mb-1">
+    		  		<h2 class="inline-block text-gray-500 headline-lead"><i class="fa fa-tasks mr-1"></i> Your Projects</h2>
+    		  		<div class="inline-block text-right">
+    		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#projectsModal"><i class="fa fa-th-list mr-1"></i> <span class="hidden sm:inline">View </span>All Projects</button>
+    		    	</div>
 		    	</div>
-		  		<h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-tasks mr-1"></i> Your Projects</h2>
-		   		<div  class="lg:flex lg:flex-wrap card">
+		   		<div  class="lg:flex lg:flex-wrap card mb-8">
 			  		@forelse ($projects as $project)
 			            <div class="lg:w-full p-2">
 			            	<h3><a href="{{ $project->path() }}">{{ $project->title }}</a></h3>
@@ -38,12 +46,14 @@
 			        	</div>
 			        @endforelse
 				</div>
-		    	<div class="text-right mb-4">
-		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#projectsModal"><i class="fa fa-th-list mr-1"></i> View All Projects</button>
+				
+				<div class="flex justify-between mb-1">
+    		    	<h2 class="inline-block text-gray-500 headline-lead"><i class="fa fa-window-maximize mr-1"></i> Your Sites</h2>
+    		    	<div class="inline-block text-right">
+    		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#sitesModal"><i class="fa fa-th-list mr-1"></i> <span class="hidden sm:inline">View </span>All Sites</button>
+    		    	</div>
 		    	</div>
-
-		    	<h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-window-maximize mr-1"></i> Your Sites</h2>
-		   		<div  class="lg:flex lg:flex-wrap card">
+		   		<div  class="lg:flex lg:flex-wrap card mb-8">
 			  		@forelse ($sites as $site)
 			            <div class="lg:w-full p-2">
 			            	<h3><a href="{{ $site->path() }}">{{ $site->name }}</a>
@@ -63,9 +73,6 @@
 			        	</div>
 			        @endforelse
 				</div>
-		    	<div class="text-right mb-4">
-		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#sitesModal"><i class="fa fa-th-list mr-1"></i> View All Sites</button>
-		    	</div>
 			</div>
 			<div class="lg:w-1/4 lg:pl-6">
 		   		<h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
