@@ -3440,6 +3440,12 @@ hr.with-text:after {
   margin-left: 0.5rem;
 }
 
+.save-link {
+  color: #F15B39;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
 p > .fa {
   min-width: 14px;
   text-align: center;

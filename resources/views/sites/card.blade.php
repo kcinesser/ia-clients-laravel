@@ -1,10 +1,9 @@
-<div class="card mb-6">
+<div class="card">
     <h3 class="mb-3">
         <i class="fa fa-users mr-3"></i><a href="{{ $site->client->path() }}" class="text-black no-underline">{{ $site->client->name }}</a>
     </h3>
-    <div class="mb-4">
+    <div class="mb-6">
         <p class="text-gray-800 text-xs headline-lead">Status</p>
-{{--        <p class="text-gray-500 text-sm font-normal">{{ \App\Enums\SiteStatus::getDescription($site->status) }}</p>--}}
         <span class="badge {{$site->status == App\Enums\SiteStatus::InDevelopment ? 'badge-dev' : 'badge-live'}}">{{$site->status == App\Enums\SiteStatus::InDevelopment ? 'In Dev' : 'Live'}}</span>
 
         @if ($site->services->contains(1))
@@ -13,44 +12,44 @@
             <span class="badge badge-mma">MMA - Internal</span>
         @endif
     </div>
-    <div class="mb-4">
+    <div class="mb-6">
         <p class="text-gray-800 text-xs headline-lead">Account Manager</p>
-        <p class="text-gray-500 text-sm font-normal">{{ $client->accountManager->name }}</p>
+        <p class="small">{{ $client->accountManager->name }}</p>
     </div>
 
     @if ($client->contact_name || $client->contact_email || $client->contact_phone)
-    <div class="mb-4">
+    <div class="mb-6">
         <p class="text-gray-800 text-xs headline-lead">Primary Contact Information</p>
-        @if($client->contact_name)<p class="text-gray-500 text-sm font-normal"><i class="fa fa-user mr-3"></i>{{ $client->contact_name }}</p>@endif
-        @if($client->contact_email)<p class="text-gray-500 text-sm font-normal"><i class="fa fa-envelope mr-3"></i>{{ $client->contact_email }}</p>@endif
-        @if($client->contact_phone)<p class="text-gray-500 text-sm font-normal"><i class="fa fa-phone mr-3"></i>{{ $client->contact_phone }}</p>@endif
+        @if($client->contact_name)<p class="small"><i class="fa fa-user mr-3"></i>{{ $client->contact_name }}</p>@endif
+        @if($client->contact_email)<p class="small"><i class="fa fa-envelope mr-3"></i>{{ $client->contact_email }}</p>@endif
+        @if($client->contact_phone)<p class="small"><i class="fa fa-phone mr-3"></i>{{ $client->contact_phone }}</p>@endif
     </div>
     @endif
 
-    <div class="mb-4">
+    <div class="mb-6">
         <p class="text-gray-800 text-xs headline-lead">Technology/Framework</p>
-        <p class="text-gray-500 text-sm font-normal">{{ \App\Enums\Technologies::getDescription($site->technology) }}</p>
+        <p class="small">{{ \App\Enums\Technologies::getDescription($site->technology) }}</p>
     </div>
     
-    <div class="mb-4">
+    <div class="mb-6">
         <p class="text-gray-800 text-xs headline-lead">Hosting</p>
-        <p class="text-gray-500 text-sm font-normal">{{$site->host->name}} ({{ \App\Enums\Owners::getKey($site->host->owner) }})</p>
+        <p class="small">{{$site->host->name}} ({{ \App\Enums\Owners::getKey($site->host->owner) }})</p>
     </div>
 
     @if($site->prev_dev)
-    <div class="mb-4">
+    <div class="mb-6">
         <p class="text-gray-800 text-xs headline-lead">Previous Developers</p>
-        <p class="text-gray-500 text-sm font-normal">{{$site->prev_dev}}</p>
+        <p class="small">{{$site->prev_dev}}</p>
     </div>
     @endif
 
-    <div class="mb-4">
+    <div class="mb-6">
         <p class="text-gray-800 text-xs headline-lead">Services</p>
 
         @forelse ($site->services as $service)
-            <p class="text-gray-500 text-sm font-normal">{{ $service->name }}</p>
+            <p class="small">{{ $service->name }}</p>
         @empty
-            <p class="text-gray-500 text-sm font-normal">None</p>
+            <p class="small">None</p>
         @endforelse
             <a href="#" class="headline-lead text-xs edit-services"><i class="fa fa-cog mr-1"></i> Edit Services</a>
         <div class="mt-1">

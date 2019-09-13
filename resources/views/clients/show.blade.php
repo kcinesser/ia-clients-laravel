@@ -66,7 +66,8 @@
                     </div>
                 @endif
 
-                @if( !(count(($client->hosted_domains)) == 0) )
+
+                @if(($client->hosted_domains()->exists()))
                     <div>
                     <div class="flex flex-wrap items-center mb-2">
                         <h2 class="card-title"><i class="fa fa-globe mr-1"></i> Hosted Domains</h2>
@@ -239,7 +240,7 @@
                         @csrf
                         @method('PATCH')
                         <textarea name="notes" class="card w-full mb-2 min-h-300">{{ $client->notes }}</textarea>
-                        <button type="submit" class="button">Save</button>
+                        <button type="submit" class="save-link">Save</button>
                     </form>
                 </div>
 
