@@ -83,7 +83,7 @@ class UpcomingDomainExpiration extends Notification implements ShouldQueue
         $message = ":spiral_calendar_pad: Expiration Notice: The domain {$this->remoteDomain->domain} belonging to {$this->hostedDomain->client->name} is set to expire in {$this->daysOut} days.";
         $message .= " {$this->hostedDomain->client->accountManager->name} has been sent an email with details.";
         
-        return (new SlackMessage)->to('#ia-clients-test')->content($message);
+        return (new SlackMessage)->to(config('services.slack.accounts_alert_channel'))->content($message);
     }
 
     /**
