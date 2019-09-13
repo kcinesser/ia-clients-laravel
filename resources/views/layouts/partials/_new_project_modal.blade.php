@@ -51,7 +51,7 @@
                         </div>
                     </div>
 
-                     <div class="field mb-6}">
+                     <div class="field mb-6">
                         <label for="status" class="label text-sm mb-2 block">Status</label>
 
                         <div class="control">
@@ -93,7 +93,7 @@
                         <div class="control">
                             <select name="developer_id" value="" required>
                                     <option>Select Developer</option>
-                                @foreach(App\User::all()->where('role', 0) as $developer)
+                                @foreach(App\User::all()->where('role', 0)->sortBy('name') as $developer)
                                     <option value="{{ $developer->id }}">{{ $developer->name }}</option>
                                 @endforeach
                             </select>

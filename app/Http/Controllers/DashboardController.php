@@ -15,7 +15,7 @@ class DashboardController extends Controller
     	$clients = $user->dashboardClients();
     	$projects = $user->dashboardProjects();
     	$sites = $user->dashboardSites();
-    	$updates = Update::all();
+    	$updates = Update::all()->sortByDesc('created_at');
     	$activities = Activity::latest()->take(10)->get();
 
     	return view('dashboard.dashboard', compact('user', 'clients', 'projects', 'updates', 'activities', 'sites'));

@@ -98,6 +98,14 @@ code {
 	font-weight: bold;
 }
 
+.input-description {
+	@apply text-gray-500;
+	@apply text-sm;
+	@apply font-normal;
+	@apply ml-3;
+	@apply mt-1;
+}
+
 .headline-lead {
 	@apply text-sm font-display font-medium uppercase tracking-wider;
 }
