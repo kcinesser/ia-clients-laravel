@@ -49,5 +49,12 @@ return [
             'debug' => env('GODADDY_DEBUG_ON', FALSE),
         ],
     ],
+    
+    'slack' => [
+        'webhook' => [
+            'url' => env('SLACK_WEBHOOK_URL'),
+        ],
+        'dev_alert_channel' => env('SLACK_DEV_ALERT_CHANNEL'),
+    ],
 
 ];

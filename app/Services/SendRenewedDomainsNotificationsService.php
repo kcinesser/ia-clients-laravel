@@ -2,11 +2,14 @@
 
 namespace App\Services;
 
-use App\Mail\DomainRenewed;
+use App\Notifications\DomainRenewed;
+use App\Notifications\MissingAccountManagerForDomain;
+use App\Notifications\MissingRecordForDomain;
 use App\Enums\RemoteDomainsProviders;
 use App\Contracts\RemoteDomainsRepositoryContract as RemoteDomainsRepository;
 use App\HostedDomain;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
+use Carbon\Carbon;
 use Log;
 
 class SendRenewedDomainsNotificationsService
@@ -18,7 +21,7 @@ class SendRenewedDomainsNotificationsService
     
     public function call()
     {
-        $remoteDomains = $this->domainHost->getRenewedDaysBeforeToday(1);
+        $remoteDomains = $this->domainHost->getRenewedYesterday();
         
         if (empty($remoteDomains)) 
         {
@@ -39,16 +42,22 @@ class SendRenewedDomainsNotificationsService
 
                 if (!empty($accountManager))
                 {
-                    Mail::to($accountManager)->send(new DomainRenewed($remoteDomain, $hostedDomain));
+                    Notification::route('slack', config('services.slack.webhook.url'))
+                                ->route('mail', $accountManager)
+                                ->notify(new DomainRenewed($remoteDomain, $hostedDomain));
                 }
                 else
                 {
                     Log::warning("No Account Manager found for { $remoteDomain->domain }. Domain renewal notification not sent to account manager.");
+                    Notification::route('slack', config('services.slack.webhook.url'))
+                                ->notify(new MissingAccountManagerForDomain($remoteDomain));
                 }
             } 
             else 
             {
                 Log::warning("No HostedDomain found for { $remoteDomain->providerId }: { $remoteDomain->domain }. Domain renewal notification not sent to account manager.");
+                Notification::route('slack', config('services.slack.webhook.url'))
+                            ->notify(new MissingRecordForDomain($remoteDomain));
             }
         }
     }

@@ -28,6 +28,6 @@ interface RemoteDomainsRepositoryContract
     /**
      * @return array
      */
-    public function getRenewedDaysBeforeToday(int $daysBefore);
+    public function getRenewedYesterday();
 	
 }

@@ -55,11 +55,20 @@ class RemoteDomainsRepository implements RemoteDomainsRepositoryContract
     }
     
     /**
+     * If a domain renewed yesterday, the date expired will be yesterday's date of next year.
+     * This method will return all domains that have auto-renew enabled and an expiration
+     * date of Yesterday + 1 year.
+     * 
      * @return array
      */
-    public function getRenewedDaysBeforeToday(int $daysBefore)
+    public function getRenewedYesterday()
     {
-        return $this->getRenewing($this->ensureNegative($daysBefore));
+        // do this to factor in leap year
+        $today = Carbon::now();
+        $nextYearYesterday = $today->copy()->subDay()->addYear();
+        $daysOut = $today->diffInDays($nextYearYesterday);
+        
+        return $this->getRenewing($daysOut);
     }
     
     /**

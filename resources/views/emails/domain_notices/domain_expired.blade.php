@@ -20,7 +20,8 @@
 
         <!-- Body copy -->
         <p>
-            The domain belonging to {{ $hostedDomain->client->name }} expired on <span style="white-space: nowrap;">{{ $remoteDomain->expires->toFormattedDateString() }}</span>. 
+            The domain <a href="https://{{ $remoteDomain->domain }}">{{ $remoteDomain->domain }}</a> belonging to {{ $hostedDomain->client->name }} 
+            expired on <span style="white-space: nowrap;">{{ $remoteDomain->expires->toFormattedDateString() }}</span>. 
         </p>
         
         

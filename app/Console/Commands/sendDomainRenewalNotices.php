@@ -49,7 +49,8 @@ class sendDomainRenewalNotices extends Command
     {
         Log::info('Running sendDomainRenewalNotices command.');
             
-        $repository = resolve(RemoteDomainsRepository::class, ['client' => resolve(GoDaddyDomainsService::class)]);
+        //$repository = resolve(RemoteDomainsRepository::class, ['client' => resolve(GoDaddyDomainsService::class)]);
+        $repository = resolve(RemoteDomainsRepository::class, ['client' => resolve(NamecheapDomainsService::class)]);
         
         // Send thirty day upcoming renewal notices
         resolve(

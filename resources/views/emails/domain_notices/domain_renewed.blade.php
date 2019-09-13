@@ -20,7 +20,8 @@
 
         <!-- Body copy -->
         <p>
-            The domain belonging to {{ $hostedDomain->client->name }} renewed on <span style="white-space: nowrap;">{{ $remoteDomain->expires->toFormattedDateString() }}</span>. 
+            The domain <a href="https://{{ $remoteDomain->domain }}">{{ $remoteDomain->domain }}</a> belonging to {{ $hostedDomain->client->name }} 
+            has auto-renewed. 
         </p>
         
         @if ($hostedDomain->free_with_mma)

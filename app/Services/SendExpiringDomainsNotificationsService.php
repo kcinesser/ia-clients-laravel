@@ -2,11 +2,13 @@
 
 namespace App\Services;
 
-use App\Mail\UpcomingDomainExpiration;
+use App\Notifications\UpcomingDomainExpiration;
+use App\Notifications\MissingAccountManagerForDomain;
+use App\Notifications\MissingRecordForDomain;
 use App\Enums\RemoteDomainsProviders;
 use App\Contracts\RemoteDomainsRepositoryContract as RemoteDomainsRepository;
 use App\HostedDomain;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Log;
 
 class SendExpiringDomainsNotificationsService
@@ -40,16 +42,22 @@ class SendExpiringDomainsNotificationsService
 
                 if (!empty($accountManager))
                 {
-                    Mail::to($accountManager)->send(new UpcomingDomainExpiration($remoteDomain, $hostedDomain, $this->daysOut));
+                    Notification::route('slack', config('services.slack.webhook.url'))
+                                ->route('mail', $accountManager)
+                                ->notify(new UpcomingDomainExpiration($remoteDomain, $hostedDomain, $this->daysOut));
                 }
                 else
                 {
                     Log::warning("No Account Manager found for { $remoteDomain->domain }. Upcoming domain expiration notification not sent to account manager.");
+                    Notification::route('slack', config('services.slack.webhook.url'))
+                                ->notify(new MissingAccountManagerForDomain($remoteDomain));
                 }
             } 
             else 
             {
                 Log::warning("No HostedDomain found for { $remoteDomain->providerId }: { $remoteDomain->domain }. Upcoming domain expiration notification not sent to account manager.");
+                Notification::route('slack', config('services.slack.webhook.url'))
+                            ->notify(new MissingRecordForDomain($remoteDomain));
             }
         }
     }
