@@ -3587,6 +3587,20 @@ select:focus {
   background: #fff;
 }
 
+.mma-list > div.updated p {
+  color: #000;
+  text-decoration: line-through;
+}
+
+.mma-list > div.updated a {
+  color: #000;
+  text-decoration: line-through underline;
+}
+
+.mma-list > div.updated span {
+  color: #a0aec0;
+}
+
 .mma-list > div:nth-child(odd) {
   background: #f1f1f1;
 }

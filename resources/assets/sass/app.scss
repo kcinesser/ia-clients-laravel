@@ -403,6 +403,21 @@ select {
 
 .mma-list > div {
 	background: #fff;
+
+	&.updated {
+		p {
+			@apply text-black;
+			@apply line-through;
+		}
+		
+		a {
+			@apply text-black;
+			text-decoration: line-through underline;
+		}
+		span {
+			@apply text-gray-500;
+		}
+	}
 }
 
 .mma-list > div:nth-child(odd) {

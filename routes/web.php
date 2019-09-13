@@ -26,7 +26,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('clients.domains', 'HostedDomainsController')->only(['store', 'update', 'destroy']);
     Route::resource('clients.sites.urls', 'SiteURLsController')->only(['store', 'destroy', 'update']);
     Route::resource('clients.sites.updates', 'UpdatesController')->only('store', 'update');
-    Route::post('clients/{client}/sites/{site}/mma-update', 'UpdatesController@mma');
+    Route::post('clients/{client}/sites/{site}/mma-update', 'MMAController@store');
     Route::resource('services', 'ServicesController')->only(['store', 'destroy', 'update']);
     Route::resource('hosting', 'HostingController')->only(['index','store', 'destroy', 'update']);
 
@@ -50,7 +50,7 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/settings', 'SettingsController@index');
-    Route::get('/mma', 'SitesController@mma');
+    Route::get('/mma', 'MMAController@mma');
 
     Route::resource('user', 'UserController')->only(['create', 'store', 'edit', 'update', 'destroy']);
 
