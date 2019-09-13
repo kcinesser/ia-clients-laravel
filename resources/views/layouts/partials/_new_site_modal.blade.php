@@ -32,7 +32,7 @@
                         <div class="control">
                             <select id="site-client-select" name="client" required>
                                     <option value="">Select Client</option>
-                                    @foreach(App\Client::all()->sortBy('name')->whereNotIn('status', 3) as $client)
+                                    @foreach(App\Client::all()->sortBy('name')->whereNotIn('status', App\Enums\ClientStatus::Archived) as $client)
                                         <option value="{{ $client->id }}">{{ $client->name }}</option>
                                     @endforeach
                             </select>

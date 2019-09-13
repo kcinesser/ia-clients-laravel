@@ -104,15 +104,15 @@
 
 
 		@include('dashboard._clients_modal', [
-			'clients' => App\Client::all()->whereNotIn('status', 3)->sortBy('name')
+			'clients' => App\Client::all()->whereNotIn('status', App\Enums\ClientStatus::Archived)->sortBy('name')
 		])
 
 		@include('dashboard._projects_modal', [
-			'projects' => App\Project::all()->whereNotIn('status', 3)->sortBy('title')
+			'projects' => App\Project::all()->whereNotIn('status', App\Enums\ProjectStatus::Archived)->sortBy('title')
 		])
 
 		@include('dashboard._sites_modal', [
-			'sites' => App\Site::all()->whereNotIn('status', 4)->sortBy('name')
+			'sites' => App\Site::all()->whereNotIn('status', App\Enums\SiteStatus::Archived)->sortBy('name')
 		])
 
 	</main>

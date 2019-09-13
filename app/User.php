@@ -5,6 +5,7 @@ namespace App;
 use App\Enums\ClientStatus;
 use App\Enums\ProjectStatus;
 use App\Enums\SiteStatus;
+use App\Enums\UserTypes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -45,9 +46,9 @@ class User extends Authenticatable
     public function dashboardProjects() {
         $projects = array();
 
-        if ($this->role == 0) {
+        if ($this->role == UserTypes::Developer) {
             $projects = $this->projects->whereNotIn('status', ProjectStatus::Archived);
-        } elseif ($this->role == 1) {
+        } elseif ($this->role == UserTypes::AccountManager) {
             $projects = $this->accountManagerProjects->whereNotIn('status', ProjectStatus::Archived);
         }
 
@@ -57,7 +58,7 @@ class User extends Authenticatable
     public function dashboardClients() {
         $clients = array();
         
-        if ($this->role == 0) {
+        if ($this->role == UserTypes::Developer) {
             $client_ids = Project::where('developer_id', $this->id)->pluck('client_id');
             $clients = Client::find($client_ids)->whereNotIn('status', ClientStatus::Archived);
         } else {
@@ -70,7 +71,7 @@ class User extends Authenticatable
     public function dashboardSites() {
         $sites = array();
 
-        if ($this->role == 0) {
+        if ($this->role == UserTypes::Developer) {
             $site_ids = Project::where('developer_id', $this->id)->pluck('site_id');
             $sites = Site::find($site_ids)->whereNotIn('status', SiteStatus::Archived);
         } else {
