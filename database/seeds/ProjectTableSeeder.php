@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\ProjectStatus;
 use Illuminate\Database\Seeder;
 
 class ProjectTableSeeder extends Seeder
@@ -21,7 +22,7 @@ class ProjectTableSeeder extends Seeder
         	'go_live_date' => '2019-08-31',
         	'start_date' => '2019-06-01',
         	'end_date' => '2019-08-31',
-        	'status' => 1
+        	'status' => ProjectStatus::Active
         ]);
 
         DB::table('projects')->insert([
@@ -34,7 +35,7 @@ class ProjectTableSeeder extends Seeder
         	'go_live_date' => '2019-08-31',
         	'start_date' => '2019-07-01',
         	'end_date' => null,
-        	'status' => 1
+        	'status' => ProjectStatus::Active
         ]);
 
         DB::table('projects')->insert([
@@ -47,7 +48,7 @@ class ProjectTableSeeder extends Seeder
         	'go_live_date' => null,
         	'start_date' => '2019-01-01',
         	'end_date' => null,
-        	'status' => 3
+        	'status' => ProjectStatus::Archived
         ]);
 
         DB::table('projects')->insert([
@@ -60,7 +61,7 @@ class ProjectTableSeeder extends Seeder
         	'go_live_date' => null,
         	'start_date' => '2019-01-01',
         	'end_date' => null,
-        	'status' => 3
+        	'status' => ProjectStatus::Archived
         ]);
 
 
@@ -74,7 +75,7 @@ class ProjectTableSeeder extends Seeder
         	'go_live_date' => '2019-09-30',
         	'start_date' => '2019-01-01',
         	'end_date' => null,
-        	'status' => 1
+        	'status' => ProjectStatus::Active
         ]);
     }
 }

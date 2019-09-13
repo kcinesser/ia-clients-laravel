@@ -2,6 +2,9 @@
 
 namespace App;
 
+use App\Enums\ClientStatus;
+use App\Enums\ProjectStatus;
+use App\Enums\SiteStatus;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -43,9 +46,9 @@ class User extends Authenticatable
         $projects = array();
 
         if ($this->role == 0) {
-            $projects = $this->projects->whereNotIn('status', 3);
+            $projects = $this->projects->whereNotIn('status', ProjectStatus::Archived);
         } elseif ($this->role == 1) {
-            $projects = $this->accountManagerProjects->whereNotIn('status', 3);
+            $projects = $this->accountManagerProjects->whereNotIn('status', ProjectStatus::Archived);
         }
 
         return $projects;
@@ -56,9 +59,9 @@ class User extends Authenticatable
         
         if ($this->role == 0) {
             $client_ids = Project::where('developer_id', $this->id)->pluck('client_id');
-            $clients = Client::find($client_ids)->whereNotIn('status', 3);
+            $clients = Client::find($client_ids)->whereNotIn('status', ClientStatus::Archived);
         } else {
-            $clients = $this->clients->whereNotIn('status', 3);
+            $clients = $this->clients->whereNotIn('status', ClientStatus::Archived);
         }
         
         return $clients;
@@ -69,9 +72,9 @@ class User extends Authenticatable
 
         if ($this->role == 0) {
             $site_ids = Project::where('developer_id', $this->id)->pluck('site_id');
-            $sites = Site::find($site_ids)->whereNotIn('status', 4);
+            $sites = Site::find($site_ids)->whereNotIn('status', SiteStatus::Archived);
         } else {
-            $sites = Site::whereIn('client_id', $this->clients->pluck('id'))->get()->whereNotIn('status', 4);
+            $sites = Site::whereIn('client_id', $this->clients->pluck('id'))->get()->whereNotIn('status', SiteStatus::Archived);
         }
         
         return $sites;

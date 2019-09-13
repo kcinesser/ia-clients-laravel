@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Enums\ProjectStatus;
 use Illuminate\Database\Eloquent\Model;
 
 class Site extends Model
@@ -62,7 +63,7 @@ class Site extends Model
 
     public function hasProjectArchive() {
         foreach($this->projects as $project) {
-            if($project->status == 3) {
+            if($project->status == ProjectStatus::Archived) {
                 return true;
             } 
         }
