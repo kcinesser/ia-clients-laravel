@@ -24,6 +24,7 @@
                         <div class="control">
                             <input type="text" name="URL" required>
                         </div>
+                        <p class="input-description">Must contain http:// or https://</p>
                     </div>
 
                     <div class="field mb-6">
