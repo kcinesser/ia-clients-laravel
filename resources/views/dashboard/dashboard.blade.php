@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <header class="flex items-center mb-3 py-4">
+    <header class="flex items-center mb-6 py-4">
         <div class="flex justify-between w-full items-center">
             <h1>Dashboard</h1>
         </div>
@@ -16,7 +16,7 @@
     		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#clientsModal"><i class="fa fa-th-list mr-1"></i> <span class="hidden sm:inline">View </span>All Clients</button>
     		    	</div>
     		    </div>
-		   		<div  class="lg:flex lg:flex-wrap card mb-8">
+		   		<div  class="lg:flex lg:flex-wrap card">
 			   		@forelse ($clients as $client)
 						<div class="lg:w-full p-2">
 							<h3><a href="{{ $client->path() }}">{{ $client->name }}</a></h3>
@@ -34,7 +34,7 @@
     		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#projectsModal"><i class="fa fa-th-list mr-1"></i> <span class="hidden sm:inline">View </span>All Projects</button>
     		    	</div>
 		    	</div>
-		   		<div  class="lg:flex lg:flex-wrap card mb-8">
+		   		<div  class="lg:flex lg:flex-wrap card">
 			  		@forelse ($projects as $project)
 			            <div class="lg:w-full p-2">
 			            	<h3><a href="{{ $project->path() }}">{{ $project->title }}</a></h3>
@@ -53,7 +53,7 @@
     		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#sitesModal"><i class="fa fa-th-list mr-1"></i> <span class="hidden sm:inline">View </span>All Sites</button>
     		    	</div>
 		    	</div>
-		   		<div  class="lg:flex lg:flex-wrap card mb-8">
+		   		<div  class="lg:flex lg:flex-wrap card">
 			  		@forelse ($sites as $site)
 			            <div class="lg:w-full p-2">
 			            	<h3><a href="{{ $site->path() }}">{{ $site->name }}</a>
@@ -76,10 +76,10 @@
 			</div>
 			<div class="lg:w-1/4 lg:pl-6">
 		   		<h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
-				<div class="card constrain-height">
+				<div class="card">
 					@foreach ($activities as $activity)
 						<div class="border-b-2 py-6">
-							<span class="text-gray-500 text-xs font-normal block">{{ \Carbon\Carbon::parse($activity->created_at)->format('n/j/Y') }}</span>
+							<span class="text-gray-500 text-xs font-normal block tracking-wider">{{ \Carbon\Carbon::parse($activity->created_at)->format('n/j/Y') }}</span>
 							<span class="text-xs font-normal">{{ $activity->description }}</span>
 						</div>
 					@endforeach

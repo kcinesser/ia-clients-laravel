@@ -71,6 +71,10 @@ p {
 	margin-bottom: 0.75em;
 
 	&:last-child { margin-bottom: 0; }
+
+	&.small {
+		@apply text-gray-500 text-sm font-normal;
+	}
 }
 
 ul {
@@ -231,8 +235,9 @@ hr {
 }
 
 .card {
-	@apply bg-white p-5 rounded-lg shadow mb-4 font-display;
+	@apply bg-white p-5 mb-12 font-display;
 	color: #4B5783;
+	border: 1px solid rgba(160, 174, 192, 0.3);
 
 	a:link, a:visited {
 		font-family: Montserrat, sans-serif;
@@ -282,6 +287,15 @@ hr {
 	max-height: 35vh;
 	overflow-y: scroll;
 }
+
+.card-title {
+	@apply text-gray-500 mb-1 headline-lead;
+}
+.add-toggle {
+	@apply mb-1 -mt-1 ml-2;
+}
+
+
 
 p>.fa {
 	min-width: 14px;

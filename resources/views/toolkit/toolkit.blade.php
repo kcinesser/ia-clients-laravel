@@ -18,6 +18,14 @@
                 </ul>
             </div>
             <div class="lg:w-3/4 px-3">
+                <div class="lg:w-full px-3 mb-16" id="design-considerations">
+                    <h2 class="mb-3">Design Considerations</h2>
+                    <p>We are using the <a href="https://tailwindcss.com" target="_blank">TailwindCSS</a> framework as our starting point.</p>
+                    <p>Each element should have a <strong>bottom margin of 1.25rem</strong> (or <code>mb-12</code> in class terms). The sidebar and main content areas should also have the equivalent of 1.25rem of space between them.</p>
+                    <p>Use the elements and modules below to build out the pages.</p>
+                </div>
+
+
                 <div class="lg:w-full px-3 mb-16" id="typography">
                     <h2 class="mb-3">Typography</h2>
                     <p>The font-family we are using is Montserrat. The font styles are based off the Firespring Brand Guide.
