@@ -3,6 +3,7 @@
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
 use App\Client;
+use App\Enums\ClientStatus;
 use Faker\Generator as Faker;
 
 $factory->define(Client::class, function (Faker $faker) {
@@ -12,6 +13,6 @@ $factory->define(Client::class, function (Faker $faker) {
         'contact_email' => $faker->safeEmail,
         'contact_phone' => $faker->phoneNumber,
         'account_manager_id' => 1,
-        'status' => 0
+        'status' => ClientStatus::Archived
     ];
 });

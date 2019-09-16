@@ -50,7 +50,7 @@ class ClientTest extends TestCase
 
         $domain = $client->addDomain(factory('App\HostedDomain')->raw());
 
-        $this->assertCount(1, $client->hosted_domains);
-        $this->assertTrue($client->hosted_domains->contains($domain));
+        $this->assertCount(1, $client->hostedDomains);
+        $this->assertTrue($client->hostedDomains->contains($domain));
     }
 }

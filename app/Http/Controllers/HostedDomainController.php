@@ -8,7 +8,7 @@ use App\Site;
 use App\DomainAccount;
 use Illuminate\Http\Request;
 
-class HostedDomainsController extends Controller
+class HostedDomainController extends Controller
 {
 
     /**
@@ -39,7 +39,7 @@ class HostedDomainsController extends Controller
      */
     public function update(Client $client, HostedDomain $domain)
     {
-        $domain->update($this->validate_data());
+        $domain->update($this->validate_data($domain));
 
         return redirect($client->path());
     }
@@ -60,9 +60,15 @@ class HostedDomainsController extends Controller
     /**
      * Validates the form data
      */
-    private function validate_data(){
+    private function validate_data(HostedDomain $domain = NULL){
+        $name_rule = "required|unique:hosted_domains";
+        $id = $domain->id ?? NULL;
+        if ($id)
+        {
+            $name_rule .= ",name,{$id}";  
+        }
         $validatedAttributes = request()->validate([
-            'name' => 'required|unique:hosted_domains',
+            'name' => $name_rule,
             'exp_date' => 'nullable|date',
             'site_id' => 'nullable|numeric|sometimes',
             'remote_provider_type' => 'nullable|numeric|sometimes',

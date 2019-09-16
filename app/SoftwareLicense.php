@@ -9,6 +9,6 @@ class SoftwareLicense extends Model
     protected $guarded = [];
 
     public function licenseable() {
-    	return $this->morphMany();
+    	return $this->morphTo();
     }
 }
