@@ -144,10 +144,4 @@ class SitesController extends Controller
 
         return view('mma.index', compact('mma_sites', 'mma_internal_sites'));
     }
-
-    public function get_mma_site() {
-        if ($site->services(name) === "MMA") {
-            return stringValue("MMA");
-        }
-    }
 }

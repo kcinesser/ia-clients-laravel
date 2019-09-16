@@ -17,7 +17,7 @@
                         'cancelURL' => $project->path(),
                         'services' => App\Service::all(),
                         'technologies' => App\Enums\Technologies::toSelectArray(),
-                        'developers' => App\User::all()->where('role', 0),
+                        'developers' => App\User::all()->where('role', 0)->sortBy('name'),
                         'sites' => $client->sites,
                         'statuses' => App\Enums\ProjectStatus::toSelectArray()
                     ])

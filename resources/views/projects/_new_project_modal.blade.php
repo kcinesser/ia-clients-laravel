@@ -17,7 +17,7 @@
                         'services' => App\Service::all(),
                         'statuses' => App\Enums\ProjectStatus::toSelectArray(),
                         'technologies' => App\Enums\Technologies::toSelectArray(),
-                        'developers' => App\User::all()->where('role', 0),
+                        'developers' => App\User::all()->where('role', 0)->sortBy('name'),
                         'sites' => $client->sites,
                     ])
 
