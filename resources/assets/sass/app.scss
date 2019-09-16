@@ -19,8 +19,7 @@
 // START - base styles
 
 body {
-	@apply font-body;
-	color: #333;
+	@apply font-body text-gray-900;
 }
 
 button:focus {
@@ -63,17 +62,6 @@ a.no-underline {
 	text-decoration: none;
 }
 
-.container a:not(.button) {
-	@apply font-body underline;
-	text-decoration-color: #F15B51;
-	&:hover {
-		// @apply text-primary;
-	}
-	&.no-underline {
-		text-decoration: none;
-	}
-}
-
 .header {
 	@apply bg-orange-500 p-6;
 
@@ -82,8 +70,16 @@ a.no-underline {
 	}
 }
 
+.sub-nav {
+	@apply flex items-center justify-center w-full text-white bg-gray-900 p-3;
+
+	a:hover, a:active {
+		opacity: 0.8;
+	}
+}
+
 .footer {
-	@apply bg-gray-800 p-6;
+	@apply bg-gray-900 p-6;
 
 	.container {
 		@apply mx-auto flex items-center justify-between flex-wrap px-6;
@@ -372,6 +368,22 @@ hr {
 		 @apply w-3/4;
 	 }
 }
+
+.nav-search-bar {
+	overflow: hidden;
+	float: right;
+	//height: 33px;
+	width: 30px;
+	-moz-transition: all 0.35s;
+	-webkit-transition: all 0.35s;
+
+	&:hover, &:focus, &:focus-within {
+		width: 275px;
+		overflow: visible;
+	}
+}
+
+
 
 p>.fa {
 	min-width: 14px;

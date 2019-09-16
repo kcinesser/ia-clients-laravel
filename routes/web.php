@@ -32,6 +32,7 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/projects', 'ProjectController@index');
     Route::get('/sites', 'SiteController@index');
+    Route::get('/domains', 'HostedDomainController@index');
 
     Route::get('/projects/archives', 'ProjectController@all_archives');
     Route::get('/sites/archives', 'SiteController@all_archives');

@@ -2367,6 +2367,7 @@ a.ui-button:active,
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25rem;
+  width: 100%;
 }
 
 .dropdown-menu.right-drop {
@@ -2411,7 +2412,7 @@ a.ui-button:active,
 }
 
 .dropdown-item.search-results {
-  padding: 0px 1.5rem;
+  padding: 0px;
 }
 
 .dropdown.open .dropdown-menu {
@@ -3027,7 +3028,7 @@ video {
 
 body {
   font-family: Montserrat, sans-serif;
-  color: #333;
+  color: #1a202c;
 }
 
 button:focus {
@@ -3102,17 +3103,6 @@ a.no-underline {
   text-decoration: none;
 }
 
-.container a:not(.button) {
-  font-family: Montserrat, sans-serif;
-  text-decoration: underline;
-  -webkit-text-decoration-color: #F15B51;
-          text-decoration-color: #F15B51;
-}
-
-.container a:not(.button).no-underline {
-  text-decoration: none;
-}
-
 .header {
   background-color: #F15B39;
   padding: 1.5rem;
@@ -3137,8 +3127,28 @@ a.no-underline {
   padding-right: 1.5rem;
 }
 
+.sub-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  color: #fff;
+  background-color: #1a202c;
+  padding: 0.75rem;
+}
+
+.sub-nav a:hover, .sub-nav a:active {
+  opacity: 0.8;
+}
+
 .footer {
-  background-color: #2d3748;
+  background-color: #1a202c;
   padding: 1.5rem;
 }
 
@@ -3578,6 +3588,19 @@ hr.with-text:after {
   .main-content {
     width: 75%;
   }
+}
+
+.nav-search-bar {
+  overflow: hidden;
+  float: right;
+  width: 30px;
+  -moz-transition: all 0.35s;
+  -webkit-transition: all 0.35s;
+}
+
+.nav-search-bar:hover, .nav-search-bar:focus, .nav-search-bar:focus-within {
+  width: 275px;
+  overflow: visible;
 }
 
 p > .fa {

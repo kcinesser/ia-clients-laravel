@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class HostedDomainController extends Controller
 {
+    public function index() {
+        $domains = HostedDomain::all();
+
+        return view('domains.index', compact('domains'));
+    }
 
     /**
      * Store a newly created resource in storage.

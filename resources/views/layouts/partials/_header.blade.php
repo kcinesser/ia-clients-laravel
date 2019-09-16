@@ -11,7 +11,9 @@
                 @guest
                     <li><a href="{{ route('login') }}">Login</a></li>
                 @else
-                    <div id="nav-search" class="mr-3 items-center nav-search-bar" tabindex="0">
+
+                    <div id="nav-search" class="md:flex justify-between items-center mr-3 nav-search-bar hidden" tabindex="0">
+                        <i class="fa fa-2x fa-search mr-1"></i>
                         <div class="control dropdown">
                             <input type="text" placeholder="Search..." id="addSearchResults" data-toggle="dropdown">
                             <div class="dropdown-menu search-results" aria-labelledby="addSearchResults">
@@ -77,5 +79,12 @@
             </ul>
         </div>
     </nav>
+</div>
+
+<div class="sub-nav">
+    <a class="mx-3 headline-lead" href="/clients">Clients</a>
+    <a class="mx-3 headline-lead" href="/projects">Projects</a>
+    <a class="mx-3 headline-lead" href="/sites">Sites</a>
+    <a class="mx-3 headline-lead" href="/domains">Hosted Domains</a>
 </div>
 

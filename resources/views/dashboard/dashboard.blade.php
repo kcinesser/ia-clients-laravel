@@ -3,7 +3,7 @@
 @section('content')
     <header class="flex items-center mb-6 py-4">
         <div class="flex justify-between w-full items-center">
-            <h1>Dashboard</h1>
+            <h1 class="text-blue-500"><i class="fa fa-th-large mr-2"></i>Dashboard</h1>
         </div>
     </header>
 

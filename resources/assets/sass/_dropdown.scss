@@ -24,6 +24,7 @@
   background-clip: padding-box;
   border: $dropdown-border-width solid $dropdown-border-color;
   @include border-radius($dropdown-border-radius);
+  width: 100%;
 
   &.right-drop {
     left: auto;
@@ -72,7 +73,7 @@
   }
 
   &.search-results {
-    padding: 0px $dropdown-item-padding-x;
+    padding: 0px;
   }
 }
 
