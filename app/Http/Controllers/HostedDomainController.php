@@ -8,7 +8,7 @@ use App\Site;
 use App\DomainAccount;
 use Illuminate\Http\Request;
 
-class HostedDomainsController extends Controller
+class HostedDomainController extends Controller
 {
 
     /**

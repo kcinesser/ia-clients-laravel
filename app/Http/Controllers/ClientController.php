@@ -2,28 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\ProjectStatus;
 use Illuminate\Http\Request;
 use App\Client;
+use App\Enums\ClientStatus;
+use App\Enums\SiteStatus;
+use App\Enums\ProjectStatus;
 
-class ClientsController extends Controller
+class ClientController extends Controller
 {
     public function index() {
-    	$clients = Client::all()->whereNotIn('status', 3);
+    	$clients = Client::all()->whereNotIn('status', ClientStatus::Archived);
 
     	return view('clients.index', compact('clients'));
     }
 
     public function show(Client $client) {
-        $projects = $client->projects->whereNotIn('status', 3);
-        $sites = $client->sites->whereNotIn('status', 4);
+        $projects = $client->projects->whereNotIn('status', ProjectStatus::Archived);
+        $sites = $client->sites->whereNotIn('status', SiteStatus::Archived);
 
         return view('clients.show', compact('client', 'projects', 'sites'));
     }
 
 
     public function create() {
-        $statuses = ProjectStatus::toSelectArray();
+        $statuses = ClientStatus::toSelectArray();
 
         return view('clients.create', compact('statuses'));
     }
@@ -38,7 +40,7 @@ class ClientsController extends Controller
 
 
     public function edit(Client $client) {
-        $statuses = ProjectStatus::toSelectArray();
+        $statuses = ClientStatus::toSelectArray();
 
     	return view ('clients.edit', compact('client', 'statuses'));
     }
@@ -79,25 +81,25 @@ class ClientsController extends Controller
     }
 
     public function archives() {
-        $archived_clients = Client::all()->where('status', 3);
+        $archived_clients = Client::all()->where('status', ClientStatus::Archived);
 
         return view('clients.archive', compact('archived_clients'));
     }
 
     public function archive(Client $client) {
         $client->update([
-            'status' => 3
+            'status' => ClientStatus::Archived
         ]);
 
         foreach($client->sites as $site) {
             $site->update([
-                'status' => 4
+                'status' => SiteStatus::Archived
             ]);
         }
 
         foreach($client->projects as $project) {
             $project->update([
-                'status' => 3
+                'status' => ProjectStatus::Archived
             ]);
         }
 

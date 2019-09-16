@@ -11,13 +11,14 @@
     <div class="control">
         <input type="text" name="URL" required>
     </div>
+    <p class="input-description">Must contain http:// or https://</p>
 </div>
 
 <div class="field mb-6">
     <label for="description" class="label text-sm mb-2 block">Description</label>
 
     <div class="control">
-        <input type="text" name="description" ></input>
+        <input type="text" name="description" >
     </div>
 </div>
 

@@ -66,14 +66,15 @@
                 @endif
 
 
-                @if(($client->hosted_domains()->exists()))
+                @if(($client->hostedDomains()->exists()))
                     <div>
                     <div class="flex flex-wrap items-center mb-2">
                         <h2 class="card-title"><i class="fa fa-globe mr-1"></i> Hosted Domains</h2>
                         <a href="" class="add-toggle button btn-add-sm" data-toggle="modal" data-target="#newDomainModal"><i class="fa fa-plus"></i></a>
                     </div>
+
                     <div class="card">
-                    @foreach ($client->hosted_domains as $domain)
+                    @foreach ($client->hostedDomains as $domain)
                         <div class="flex justify-between">
                             <div class="w-1/3">
                                 <p class="text-sm">{{ $domain->name }}</p>
@@ -140,7 +141,7 @@
 
                     <div class="card constrain-height">
                         <div class="mb-6">
-                            @if(!$client->uploads()->exists() && !$client->project_uploads()->exists() && !$client->site_uploads()->exists() )
+                            @if(!$client->uploads()->exists() && !$client->projectUploads()->exists() && !$client->siteUploads()->exists() )
                                 <div class="lg:w-full px-2">
                                     <p>No files yet.</p>
                                 </div>
@@ -165,7 +166,7 @@
                                     </div>
                                 @endforeach
 
-                                @foreach($client->project_uploads as $upload)
+                                @foreach($client->projectUploads as $upload)
                                     <div class="mb-3 flex items-center">
                                         <div class="w-1/3">                                    
                                             <a href="{{ $upload->url }}" target="_blank">{{ $upload->name }}</a>
@@ -188,7 +189,7 @@
                                     </div>
                                 @endforeach
 
-                                @foreach($client->site_uploads as $upload)
+                                @foreach($client->siteUploads as $upload)
                                     <div class="mb-3 flex items-center">
                                         <div class="w-1/3">                                                                        
                                             <a href="{{ $upload->url }}" target="_blank">{{ $upload->name }}</a>

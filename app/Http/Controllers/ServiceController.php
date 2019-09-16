@@ -5,7 +5,7 @@ use App\Service;
 
 use Illuminate\Http\Request;
 
-class ServicesController extends Controller
+class ServiceController extends Controller
 {
     public function store() {
         Service::create($this->validate_data());

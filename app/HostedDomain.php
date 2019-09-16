@@ -17,14 +17,6 @@ class HostedDomain extends Model
         return $this->belongsTo(Client::class);
     }
 
-    public function registrar() {
-        return $this->belongsTo(Registrar::class);
-    }
-
-    public function domain_account() {
-        return $this->belongsTo(DomainAccount::class);
-    }
-
     public function path() {
     	return "/clients/{$this->client->id}/domains/{$this->id}";
     }

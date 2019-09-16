@@ -7,7 +7,7 @@ use App\Client;
 use App\Project;
 use App\Task;
 
-class TasksController extends Controller
+class TaskController extends Controller
 {
     public function store(Client $client, Project $project) {
         $data = $this->validate_data();

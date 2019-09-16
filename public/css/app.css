@@ -3221,6 +3221,14 @@ code {
   font-weight: bold;
 }
 
+.input-description {
+  color: #a0aec0;
+  font-size: 0.875rem;
+  font-weight: 400;
+  margin-left: 0.75rem;
+  margin-top: 0.25rem;
+}
+
 .headline-lead {
   font-size: 0.875rem;
   font-family: Montserrat, sans-serif;

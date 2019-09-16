@@ -49,14 +49,14 @@
                 @endif
 
 
-                @if($site->hosted_domains()->exists())
+                @if($site->hostedDomains()->exists())
                     <div>
                         <div class="flex flex-wrap items-center mb-2">
                             <h2 class="card-title"><i class="fa fa-globe mr-1"></i> Hosted Domains</h2>
                             <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newDomainSiteModal"><i class="fa fa-plus"></i></a>
                         </div>
                         <div class="card">
-                        @foreach ($site->hosted_domains as $domain)
+                        @foreach ($site->hostedDomains as $domain)
                             <div class="flex justify-between">
                                 <div class="w-1/3">
                                     <p class="text-sm">{{ $domain->name }}</p>
@@ -115,7 +115,7 @@
 
                     <div class="card constrain-height">
                         <div class="mb-6">
-                            @if(!$site->uploads()->exists() && !$site->project_uploads()->exists())
+                            @if(!$site->uploads()->exists() && !$site->projectUploads()->exists())
                                 <div class="lg:w-full p-2">
                                     <p>No files yet.</p>
                                 </div>
@@ -140,7 +140,7 @@
                                     </div>
                                 @endforeach
 
-                                @foreach($site->project_uploads as $upload)
+                                @foreach($site->projectUploads as $upload)
                                     <div class="mb-3 flex justify-between items-center">
                                         <div class="w-1/3">
                                             <a href="{{ $upload->url }}" target="_blank">{{ $upload->name }}</a>
