@@ -34,6 +34,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // generate urls with https by default in production
+        if (env('APP_ENV') === 'production') {
+            $this->app['url']->forceScheme('https');
+        }
+        
         $this->app->singleton(CheckUserRole::class, function(Application $app) {
             return new CheckUserRole(
                 $app->make(RoleChecker::class)
