@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 
-class SoftwareLicensesController extends Controller
+class SoftwareLicenseController extends Controller
 {
 
     public function store(Request $request, $model, $id)

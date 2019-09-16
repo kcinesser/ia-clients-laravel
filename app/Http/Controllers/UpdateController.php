@@ -9,7 +9,7 @@ use App\Update;
 use Carbon;
 use Auth;
 
-class UpdatesController extends Controller
+class UpdateController extends Controller
 {
 	public function store(Client $client, Site $site) {
     	$attributes = $this->validate_data();

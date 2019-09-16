@@ -15,9 +15,8 @@
                         'buttonText' => 'Create Client',
                         'cancelURL' => '/clients',
                         'account_managers' => App\User::all()->where('role', 1)->sortBy('name'),
-                        'statuses' => App\Enums\ProjectStatus::toSelectArray()
+                        'statuses' => App\Enums\ClientStatus::toSelectArray()
                     ])
-
                 </form>
             </div>
         </div>

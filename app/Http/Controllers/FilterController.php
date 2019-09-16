@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App;
+use App\Enums\ClientStatus;
+use App\Enums\ProjectStatus;
+use App\Enums\SiteStatus;
+use App\Site;
 
 class FilterController extends Controller
 {
@@ -15,7 +19,7 @@ class FilterController extends Controller
 
     	switch ($attributes['model']) {
     		case 'client':
-    			$results = App\Client::all()->whereNotIn('status', 3);
+    			$results = App\Client::all()->whereNotIn('status', ClientStatus::Archived);
 
     			foreach ($results as $result) {
     				$result->AM = $result->accountManager->name;
@@ -24,7 +28,7 @@ class FilterController extends Controller
 
     			break;
     		case 'site':
-    			$results = App\Site::all()->whereNotIn('status', 4);
+    			$results = App\Site::all()->whereNotIn('status', SiteStatus::Archived);
 
     			foreach ($results as $result) {
     				$result->clientName = $result->client->name;
@@ -34,7 +38,7 @@ class FilterController extends Controller
 
     			break;
     		case 'project':
-    			$results = App\Project::all()->whereNotIn('status', 3);
+    			$results = App\Project::all()->whereNotIn('status', ProjectStatus::Archived);
 
     			foreach ($results as $result) {
     				$result->clientName = $result->client->name;
@@ -66,7 +70,7 @@ class FilterController extends Controller
 
     	switch ($attributes['model']) {
 			case 'client':
-				$results = App\Client::all()->whereNotIn('status', 3);
+				$results = App\Client::all()->whereNotIn('status', ClientStatus::Archived);
 
 				if ($search_value === null) {
 					$filtered = $results;
@@ -94,7 +98,7 @@ class FilterController extends Controller
 				break;
 
 			case 'site':
-				$results = App\Site::all()->whereNotIn('status', 4);
+				$results = App\Site::all()->whereNotIn('status', SiteStatus::Archived);
 
 				if ($search_value === null) {
 					$filtered = $results;
@@ -122,7 +126,7 @@ class FilterController extends Controller
 				break;
 
 			case 'project':
-				$results = App\Project::all()->whereNotIn('status', 3);
+				$results = App\Project::all()->whereNotIn('status', ProjectStatus::Archived);
 
 				if ($search_value === null) {
 					$filtered = $results;
@@ -169,7 +173,7 @@ class FilterController extends Controller
 			return response()->json('Please enter search term.');
 		}
 
-		$clients = App\Client::all()->whereNotIn('status', 3);
+		$clients = App\Client::all()->whereNotIn('status', ClientStatus::Archived);
 
 		$filtered_clients = $clients->filter(function ($item) use ($search_value) {
 			return false !== stristr($item->name, $search_value);
@@ -183,7 +187,7 @@ class FilterController extends Controller
 			}
 		}
 
-		$sites = App\Site::all()->whereNotIn('status', 4);
+		$sites = App\Site::all()->whereNotIn('status', SiteStatus::Archived);
 
 		$filtered_sites = $sites->filter(function ($item) use ($search_value) {
 			return false !== stristr($item->name, $search_value);
@@ -198,7 +202,7 @@ class FilterController extends Controller
 			}
 		}
 
-		$projects = App\Project::all()->whereNotIn('status', 3);
+		$projects = App\Project::all()->whereNotIn('status', ProjectStatus::Archived);
 
 		$filtered_projects = $projects->filter(function ($item) use ($search_value) {
 			return false !== stristr($item->title, $search_value);

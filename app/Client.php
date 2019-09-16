@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\ProjectStatus;
+use App\Enums\SiteStatus;
 
 class Client extends Model
 {
@@ -22,7 +24,7 @@ class Client extends Model
 
     public function hasSiteArchive() {
         foreach($this->sites as $site) {
-            if($site->status == 4) {
+            if($site->status == SiteStatus::Archived) {
                 return true;
             } 
         }
@@ -32,7 +34,7 @@ class Client extends Model
 
     public function hasProjectArchive() {
         foreach($this->projects as $project) {
-            if($project->status == 3) {
+            if($project->status == ProjectStatus::Archived) {
                 return true;
             } 
         }
@@ -67,14 +69,14 @@ class Client extends Model
     }
 
     public function addDomain($attributes) {
-        return $this->hosted_domains()->create($attributes);
+        return $this->hostedDomains()->create($attributes);
     }
 
     public function sites() {
         return $this->hasMany(Site::class);
     }
 
-    public function hosted_domains() {
+    public function hostedDomains() {
         return $this->hasMany(HostedDomain::class);
     }
 
@@ -90,11 +92,11 @@ class Client extends Model
         return $this->morphMany(Upload::class, 'uploadable');
     }
 
-    public function site_uploads() {
+    public function siteUploads() {
         return $this->hasManyThrough(Upload::class, Site::class, null, 'uploadable_id')->where('uploadable_type', Site::class);
     }
 
-    public function project_uploads() {
+    public function projectUploads() {
         return $this->hasManyThrough(Upload::class, Project::class, null, 'uploadable_id')->where('uploadable_type', Project::class);
     }
 

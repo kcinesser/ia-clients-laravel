@@ -13,40 +13,40 @@
 
 Route::group(['middleware' => 'auth'], function(){
     Route::resource('activities', 'ActivitiesController')->only(['index']);
-    Route::get('/clients/archives', 'ClientsController@archives');
-    Route::resource('clients', 'ClientsController');
-    Route::get('/clients/{client}/projects/archives', 'ProjectsController@client_project_archives');
-    Route::patch('/clients/{client}/projects/{project}/archive', 'ProjectsController@archive');
-    Route::patch('/clients/{client}/sites/{site}/archive', 'SitesController@archive');
-    Route::get('/clients/{client}/sites/archives', 'SitesController@client_site_archives');
-    Route::patch('/clients/{client}/archive', 'ClientsController@archive');
-    Route::resource('clients.projects', 'ProjectsController')->except(['index', 'create', 'edit']);
-    Route::get('/clients/{client}/client-sites', 'ClientsController@clientSites');
-    Route::resource('clients.sites', 'SitesController')->except(['index', 'create', 'edit']);
-    Route::resource('clients.domains', 'HostedDomainsController')->only(['store', 'update', 'destroy']);
-    Route::resource('clients.sites.urls', 'SiteURLsController')->only(['store', 'destroy', 'update']);
-    Route::resource('clients.sites.updates', 'UpdatesController')->only('store', 'update');
+    Route::get('/clients/archives', 'ClientController@archives');
+    Route::resource('clients', 'ClientController');
+    Route::get('/clients/{client}/projects/archives', 'ProjectController@client_project_archives');
+    Route::patch('/clients/{client}/projects/{project}/archive', 'ProjectController@archive');
+    Route::patch('/clients/{client}/sites/{site}/archive', 'SiteController@archive');
+    Route::get('/clients/{client}/sites/archives', 'SiteController@client_site_archives');
+    Route::patch('/clients/{client}/archive', 'ClientController@archive');
+    Route::resource('clients.projects', 'ProjectController')->except(['index', 'create', 'edit']);
+    Route::get('/clients/{client}/client-sites', 'ClientController@clientSites');
+    Route::resource('clients.sites', 'SiteController')->except(['index', 'create', 'edit']);
+    Route::resource('clients.domains', 'HostedDomainController')->only(['store', 'update', 'destroy']);
+    Route::resource('clients.sites.urls', 'SiteURLController')->only(['store', 'destroy', 'update']);
+    Route::resource('clients.sites.updates', 'UpdateController')->only('store', 'update');
     Route::post('clients/{client}/sites/{site}/mma-update', 'MMAController@store');
-    Route::resource('services', 'ServicesController')->only(['store', 'destroy', 'update']);
+    Route::resource('services', 'ServiceController')->only(['store', 'destroy', 'update']);
     Route::resource('hosting', 'HostingController')->only(['index','store', 'destroy', 'update']);
 
-    Route::get('/projects/archives', 'ProjectsController@all_archives');
-    Route::get('/sites/archives', 'SitesController@all_archives');
-    Route::patch('/clients/{client}/projects/{project}/notes', 'ProjectsController@notes');
-    Route::patch('/clients/{client}/sites/{site}/notes', 'SitesController@notes');
-    Route::patch('/clients/{client}/sites/{site}/services', 'SitesController@services');
-    Route::patch('/clients/{client}/notes', 'ClientsController@notes');
+    Route::get('/projects/archives', 'ProjectController@all_archives');
+    Route::get('/sites/archives', 'SiteController@all_archives');
+    Route::patch('/clients/{client}/projects/{project}/notes', 'ProjectController@notes');
+    Route::patch('/clients/{client}/sites/{site}/notes', 'SiteController@notes');
+    Route::patch('/clients/{client}/sites/{site}/services', 'SiteController@services');
+    Route::patch('/clients/{client}/notes', 'ClientController@notes');
 
-    Route::post('/clients/{client}/projects/{project}/tasks', 'TasksController@store');
-    Route::patch('/clients/{client}/projects/{project}/tasks/{task}', 'TasksController@update');
+    Route::post('/clients/{client}/projects/{project}/tasks', 'TaskController@store');
+    Route::patch('/clients/{client}/projects/{project}/tasks/{task}', 'TaskController@update');
 
-    Route::post('/comment/{model}/{id}', 'CommentsController@store')->where('model', ('client|project|site'));
-    Route::patch('/comment/{comment}', 'CommentsController@update');
-    Route::post('/software_license/{model}/{id}', 'SoftwareLicensesController@store')->where('model', ('project|site'));
-    Route::patch('/software_license/{software_license}', 'SoftwareLicensesController@update');
-    Route::delete('/software_license/{software_license}', 'SoftwareLicensesController@destroy');
-    Route::post('/upload/{model}/{id}', 'UploadsController@store');
-    Route::delete('/upload/{upload}', 'UploadsController@destroy');
+    Route::post('/comment/{model}/{id}', 'CommentController@store')->where('model', ('client|project|site'));
+    Route::patch('/comment/{comment}', 'CommentController@update');
+    Route::post('/software_license/{model}/{id}', 'SoftwareLicenseController@store')->where('model', ('project|site'));
+    Route::patch('/software_license/{software_license}', 'SoftwareLicenseController@update');
+    Route::delete('/software_license/{software_license}', 'SoftwareLicenseController@destroy');
+    Route::post('/upload/{model}/{id}', 'UploadController@store');
+    Route::delete('/upload/{upload}', 'UploadController@destroy');
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/settings', 'SettingsController@index');

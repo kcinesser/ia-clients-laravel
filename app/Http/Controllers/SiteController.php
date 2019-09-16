@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Site;
 use App\Client;
+use App\Enums\ProjectStatus;
+use App\Enums\SiteStatus;
 use App\Service;
 use App\HostedDomain;
 use App\Hosting;
 use Illuminate\Http\Request;
 
-class SitesController extends Controller
+class SiteController extends Controller
 {
 
     /**
@@ -33,7 +35,7 @@ class SitesController extends Controller
     public function show(Client $client, Site $site)
     {
         $services = Service::all();
-        $projects = $site->projects->whereNotIn('status', 3);
+        $projects = $site->projects->whereNotIn('status', ProjectStatus::Archived);
 
         return view('sites.show' , compact('client', 'site', 'services', 'projects'));
     }
@@ -115,20 +117,20 @@ class SitesController extends Controller
     }
 
     public function all_archives() {
-        $archive_sites = Site::all()->where('status', 4);
+        $archive_sites = Site::all()->where('status', SiteStatus::Archived);
 
         return view('sites.all_archive', compact('archive_sites'));
     }
 
     public function client_site_archives(Client $client) {
-        $archived_sites = $client->sites->where('status', 4);
+        $archived_sites = $client->sites->where('status', SiteStatus::Archived);
 
         return view('sites.archive', compact('archived_sites', 'client'));
     }
 
     public function archive(Client $client, Site $site) {
         $site->update([
-            'status' => 4
+            'status' => SiteStatus::Archived
         ]);
 
         return redirect($client->path());

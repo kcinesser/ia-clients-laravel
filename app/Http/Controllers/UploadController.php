@@ -10,7 +10,7 @@ use App\Site;
 use App\Upload;
 use Illuminate\Support\Facades\Storage;
 
-class UploadsController extends Controller
+class UploadController extends Controller
 {
     public function store (Request $request, $model, $id) {
         $file_name = $request->file('file')->getClientOriginalName();
@@ -20,7 +20,7 @@ class UploadsController extends Controller
 
         Storage::putFileAs('public/uploads/' . date('Y') . '/' . date('m'), $request->file('file'), $file_name, 'public');
 
-        if (env('FILESYSTEM_DRIVER') == 's3') {
+        if (config('filesystems.default') == 's3') {
             $url = 'https://ia-clients.s3.amazonaws.com/public/uploads/' . date('Y') . '/' . date('m') . '/' . $file_name;
         } else {
             $url = '/storage/uploads/' . date('Y') . '/' . date('m') . '/' . $file_name;
@@ -43,7 +43,7 @@ class UploadsController extends Controller
     }
 
     public function destroy (Upload $upload) {
-    	Storage::disk(env('FILESYSTEM_DRIVER'))->delete($upload->path);
+    	Storage::disk(config('filesystems.default'))->delete($upload->path);
 
     	$upload->delete();
 

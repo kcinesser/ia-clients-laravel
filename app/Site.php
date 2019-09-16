@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Enums\ProjectStatus;
 use Illuminate\Database\Eloquent\Model;
 
 class Site extends Model
@@ -20,7 +21,7 @@ class Site extends Model
         return $this->hasMany(SiteURL::class);
     }
 
-    public function hosted_domains() {
+    public function hostedDomains() {
     	return $this->hasMany(HostedDomain::class);
     }
 
@@ -52,7 +53,7 @@ class Site extends Model
         return $this->morphMany(Upload::class, 'uploadable');
     }
 
-    public function project_uploads() {
+    public function projectUploads() {
         return $this->hasManyThrough(Upload::class, Project::class, null, 'uploadable_id')->where('uploadable_type', Project::class);
     }
 
@@ -62,7 +63,7 @@ class Site extends Model
 
     public function hasProjectArchive() {
         foreach($this->projects as $project) {
-            if($project->status == 3) {
+            if($project->status == ProjectStatus::Archived) {
                 return true;
             } 
         }
