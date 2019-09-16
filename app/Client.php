@@ -69,14 +69,14 @@ class Client extends Model
     }
 
     public function addDomain($attributes) {
-        return $this->hosted_domains()->create($attributes);
+        return $this->hostedDomains()->create($attributes);
     }
 
     public function sites() {
         return $this->hasMany(Site::class);
     }
 
-    public function hosted_domains() {
+    public function hostedDomains() {
         return $this->hasMany(HostedDomain::class);
     }
 
@@ -92,11 +92,11 @@ class Client extends Model
         return $this->morphMany(Upload::class, 'uploadable');
     }
 
-    public function site_uploads() {
+    public function siteUploads() {
         return $this->hasManyThrough(Upload::class, Site::class, null, 'uploadable_id')->where('uploadable_type', Site::class);
     }
 
-    public function project_uploads() {
+    public function projectUploads() {
         return $this->hasManyThrough(Upload::class, Project::class, null, 'uploadable_id')->where('uploadable_type', Project::class);
     }
 

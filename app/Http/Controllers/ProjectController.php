@@ -7,7 +7,7 @@ use App\Enums\ProjectStatus;
 use App\Project;
 use App\Client;
 
-class ProjectsController extends Controller
+class ProjectController extends Controller
 {
     public function show(Client $client, Project $project) {
         return view('projects.show', compact('project', 'client'));

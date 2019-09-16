@@ -7,7 +7,7 @@ use App\Client;
 use App\Site;
 use App\SiteURL;
 
-class SiteURLsController extends Controller
+class SiteURLController extends Controller
 {
     public function store (Client $client, Site $site) {
     	$attributes = request()->validate([

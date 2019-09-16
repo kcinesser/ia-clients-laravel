@@ -8,7 +8,7 @@ use App\Project;
 use App\Comment;
 use Auth;
 
-class CommentsController extends Controller
+class CommentController extends Controller
 {
 
     public function store(Request $request, $model, $id) {

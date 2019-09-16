@@ -8,7 +8,7 @@ use App\Enums\ClientStatus;
 use App\Enums\SiteStatus;
 use App\Enums\ProjectStatus;
 
-class ClientsController extends Controller
+class ClientController extends Controller
 {
     public function index() {
     	$clients = Client::all()->whereNotIn('status', ClientStatus::Archived);

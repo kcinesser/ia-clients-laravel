@@ -11,7 +11,7 @@ use App\HostedDomain;
 use App\Hosting;
 use Illuminate\Http\Request;
 
-class SitesController extends Controller
+class SiteController extends Controller
 {
 
     /**
