@@ -4,6 +4,7 @@
     <div class="control">
         <input type="text" name="url" required>
     </div>
+    <p class="input-description">Must contain http:// or https://</p>
 </div>
 
 <div class="field mb-6">
@@ -34,7 +35,6 @@
     <a href="" class="button btn-blue" data-dismiss="modal">Cancel</a>
     <button type="submit" class="button is-link">{{ $buttonText }}</button>
 </div>
-
 
 @if ($errors->any())
     <div class="field mt-6">

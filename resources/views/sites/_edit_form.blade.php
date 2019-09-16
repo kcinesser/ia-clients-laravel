@@ -10,7 +10,7 @@
     <label for="description" class="label text-sm mb-2 block">Description</label>
 
     <div class="control">
-        <input type="text" name="description">{{ $site->description }}</textarea>
+        <input type="text" name="description" value="{{ $site->description }}">
     </div>
 </div>
 
