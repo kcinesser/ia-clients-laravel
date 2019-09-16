@@ -49,7 +49,7 @@ class ProjectsController extends Controller
 
     public function archive(Client $client, Project $project) {
         $project->update([
-            'status' => 3
+            'status' => ProjectStatus::Archived
         ]);
 
         return redirect($client->path());
