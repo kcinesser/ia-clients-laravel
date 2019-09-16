@@ -62,7 +62,7 @@ class HostedDomainsController extends Controller
      */
     private function validate_data(){
         $validatedAttributes = request()->validate([
-            'name' => 'required',
+            'name' => 'required|unique:hosted_domains',
             'exp_date' => 'nullable|date',
             'site_id' => 'nullable|numeric|sometimes',
             'remote_provider_type' => 'nullable|numeric|sometimes',
