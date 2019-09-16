@@ -2,7 +2,6 @@
 
 @section('content')
     <header class="flex items-center mb-3 py-4">
-
         <div class="flex justify-start w-full items-center">
             <h1 class="text-blue-500"><i class="fa fa-users mr-3"></i>Client / {{ $client->name }}</h1>
             <a href="" class="button btn-add ml-4" data-toggle="modal" data-target="#editClientModal"><i class="fa fa-pencil"></i></a>
@@ -11,7 +10,7 @@
 
     <main>
     	<div class="lg:flex -mx-3">
-    		<div class="lg:w-1/4 pr-6">
+    		<div class="client-data">
  				@include ('clients.card')
 
                 <div>
@@ -26,7 +25,7 @@
                     </div>
                 </div>
     		</div>
-            <div class="lg:w-3/4 pl-6">
+            <div class="main-content">
                 @if( !(count($sites) == 0) )
                     <div>
                         <div class="flex flex-wrap items-center mb-2">
@@ -234,7 +233,7 @@
                 </div>
 
                 <div class="mb-12">
-                    <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-pencil-square-o mr-1"></i> Notes</h2>
+                    <h2 class="card-title"><i class="fa fa-pencil-square-o mr-1"></i> Notes</h2>
 
                     <form method="POST" action="{{ $client->path() . '/notes' }}">
                         @csrf
@@ -245,9 +244,9 @@
                 </div>
 
                 <div>
-                    <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-comment-o mr-1"></i> Comments / Updates</h2>
+                    <h2 class="card-title"><i class="fa fa-comment-o mr-1"></i> Comments / Updates</h2>
 
-                    <div class="card">
+                    <div class="card comment-card">
                         <form action="/comment/client/{{ $client->id }}" method="POST">
                             {{ csrf_field() }}
                             <input name="body" class="w-full" placeholder="Add a comment.">
@@ -255,7 +254,7 @@
                     </div>
 
                     @foreach ($client->comments->sortByDesc('created_at') as $comment)
-                        <div class="card">
+                        <div class="card comment-card">
                             <form method="POST" action="/comment/{{ $comment->id }}">
                                 {{ method_field('PATCH') }}
                                 {{ csrf_field() }}

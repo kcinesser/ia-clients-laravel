@@ -2,21 +2,19 @@
 
 @section('content')
     <header class="mb-3 py-4">
-        <div class="mb-2 flex items-center w-full ">
+        <div class="flex justify-start w-full items-center">
             <h1 class="text-blue-500"><i class="fa fa-tasks mr-3"></i>Projects / {{ $project->title }}</h1>
             <a href="" class="button btn-add ml-4" data-toggle="modal" data-target="#editProjectModal"><i class="fa fa-pencil"></i></a>
         </div>
-
-        <p class="text-gray-500 text-sm font-normal">{{ $project->description }}</p>
+        <p class="small">{{ $project->description }}</p>
     </header>
 
     <main class="projects-show">
     	<div class="lg:flex -mx-3 flex-row-reverse">
-            <div class="lg:w-3/4 px-3">
+            <div class="main-content">
 
-
-                <div class="mb-8">
-                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-file-o mr-1"></i> Files</h2>
+                <div>
+                    <h2 class="card-title"><i class="fa fa-file-o mr-1"></i> Files</h2>
 
                     <div class="card constrain-height">
                         <div class="mb-6">
@@ -31,8 +29,8 @@
                                             <a href="{{ $upload->url }}" target="_blank">{{ $upload->name }}</a>
                                         </div>
                                         <div class="w-1/3 flex">
-                                            <p class="text-gray-500 text-sm font-normal mb-0 mr-3">{{ $upload->user->initials() }}</p>
-                                            <p class="text-gray-500 text-sm font-normal mb-0">{{ \Carbon\Carbon::parse($upload->created_at)->format('n/j/Y') }}</p>
+                                            <p class="small mb-0 mr-3">{{ $upload->user->initials() }}</p>
+                                            <p class="small mb-0">{{ \Carbon\Carbon::parse($upload->created_at)->format('n/j/Y') }}</p>
                                         </div>
                                         <div class="w-1/8">
                                             <form method="post" class="delete-form" action="/upload/{{ $upload->id}}" >
@@ -64,8 +62,8 @@
                     </div>
                 </div>
 
-                <div class="mb-8">
-                    <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-list-ol mr-1"></i> Tasks</h2>
+                <div>
+                    <h2 class="card-title"><i class="fa fa-list-ol mr-1"></i> Tasks</h2>
                     <div class="card">
 
                         @foreach ($project->tasks as $task)
@@ -96,20 +94,20 @@
 
                 </div>
 
-                <div class="mb-8">
-                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-pencil-square-o mr-1"></i> Notes</h2>
+                <div class="mb-12">
+                    <h2 class="card-title"><i class="fa fa-pencil-square-o mr-1"></i> Notes</h2>
                     <form method="POST" action="{{ $project->path() . '/notes' }}">
                         @csrf
                         @method('PATCH')
-                        <textarea name="notes" class="card w-full mb-3 h-300">{{ $project->notes }}</textarea>
-                        <button type="submit" class="button">Save</button>
+                        <textarea name="notes" class="card w-full mb-2 min-h-300">{{ $project->notes }}</textarea>
+                        <button type="submit" class="save-link">Save</button>
                     </form>
                 </div>
 
-                <div class="mb-8">
-                    <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-comment-o mr-1"></i> Comments / Updates</h2>
+                <div class="mb-12">
+                    <h2 class="card-title"><i class="fa fa-comment-o mr-1"></i> Comments / Updates</h2>
 
-                    <div class="card mb-3">
+                    <div class="card">
                         <form action="/comment/project/{{ $project->id }}" method="POST">
                             {{ csrf_field() }}
                             <input name="body" class="w-full" placeholder="Add a comment.">
@@ -117,11 +115,11 @@
                     </div>
 
                     @foreach ($project->comments->sortByDesc('created_at') as $comment)
-                        <div class="card mb-3">
+                        <div class="card comment-card">
                             <form method="POST" action="/comment/{{ $comment->id }}">
                                 {{ method_field('PATCH') }}
                                 {{ csrf_field() }}
-                                <div class="flex justify-between items-center text-sm">
+                                <div class="flex justify-between">
                                     <input class="w-3/4" name="body" value="{{ $comment->body }}">
                                     <div>
                                         <p>{{ $comment->user->initials() }}</p>
@@ -136,11 +134,11 @@
                 </div>
 
             </div>
-    		<div class="lg:w-1/4 px-3">
+    		<div class="client-data">
                 @include ('projects.card')
 
-                <div class="mb-8">
-                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
+                <div>
+                    <h2 class="card-title"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
                     <div class="card constrain-height">
                         @foreach ($project->activities as $activity)
                             <div class="border-b-2 py-6">

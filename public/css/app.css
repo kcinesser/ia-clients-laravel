@@ -3076,6 +3076,28 @@ h6, .h6 {
   letter-spacing: -0.025em;
 }
 
+@media (max-width: 639px) {
+  h1, .h1 {
+    font-size: 1.5rem;
+  }
+
+  h2, .h2 {
+    font-size: 1.25rem;
+  }
+
+  h3, .h3 {
+    font-size: 1.125rem;
+  }
+
+  h4, .h4 {
+    font-size: 1rem;
+  }
+
+  h5, .h5 {
+    font-size: 0.875rem;
+  }
+}
+
 nav a {
   font-size: 1rem;
   font-family: Montserrat, sans-serif;
@@ -3381,6 +3403,10 @@ hr.with-text:after {
   padding-bottom: 0;
 }
 
+.comment-card {
+  margin-bottom: 0.75rem;
+}
+
 .badge {
   position: relative;
   top: -3px;
@@ -3444,6 +3470,42 @@ hr.with-text:after {
   color: #F15B39;
   font-size: 0.875rem;
   font-weight: 700;
+}
+
+.client-data {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .client-data {
+    padding-right: 1.5rem;
+    padding-left: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .client-data {
+    width: 25%;
+  }
+}
+
+.main-content {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .main-content {
+    padding-left: 1.5rem;
+    padding-right: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-content {
+    width: 75%;
+  }
 }
 
 p > .fa {

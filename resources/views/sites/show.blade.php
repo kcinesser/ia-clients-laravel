@@ -3,7 +3,7 @@
 @section('content')
 
     <header class="mb-3 py-4">
-        <div class="flex items-center w-full mb-2">
+        <div class="flex justify-start w-full items-center">
             <h1 class="text-blue-500"><i class="fa fa-laptop mr-3"></i>Sites / {{ $site->name }}</h1>
             <a href="" class="button btn-add ml-4" data-toggle="modal" data-target="#editSiteModal"><i class="fa fa-pencil"></i></a>
         </div>
@@ -12,7 +12,7 @@
 
     <main class="sites-show">
     	<div class="lg:flex -mx-3 flex-row-reverse">
-    		<div class="lg:w-3/4 pl-6">
+    		<div class="main-content">
 
                 @if($site->urls()->exists())
                     <div>
@@ -184,7 +184,7 @@
                 </div>
 
                 <div>
-                    <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-key mr-1"></i>Licenses</h2>
+                    <h2 class="card-title"><i class="fa fa-key mr-1"></i>Licenses</h2>
 
                     <div class="card">
                         @foreach ($site->licenses as $license)
@@ -236,7 +236,7 @@
                 </div>
 
                 <div class="mb-12">
-                    <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-refresh mr-1"></i> Update Instructions</h2>
+                    <h2 class="card-title"><i class="fa fa-refresh mr-1"></i> Update Instructions</h2>
 
                     <form method="POST" action="{{ $site->path() . '/notes' }}">
                         @csrf
@@ -260,7 +260,7 @@
                 <div>
                     <h2 class="card-title"><i class="fa fa-comment-o mr-1"></i> Comments</h2>
 
-                    <div class="card mb-3">
+                    <div class="card comment-card">
                         <form action="/comment/site/{{ $site->id }}" method="POST">
                             {{ csrf_field() }}
                             <input name="body" class="w-full" placeholder="Add a comment.">
@@ -268,7 +268,7 @@
                     </div>
 
                     @foreach ($site->comments->sortByDesc('created_at') as $comment)
-                        <div class="card mb-3">
+                        <div class="card comment-card">
                             <form method="POST" action="/comment/{{ $comment->id }}">
                                 {{ method_field('PATCH') }}
                                 {{ csrf_field() }}
@@ -288,7 +288,7 @@
 
                 </div>
             </div>
-            <div class="lg:w-1/4 pr-6">
+            <div class="client-data">
                 @include ('sites.card')
 
                 <div>
@@ -315,7 +315,7 @@
                         </form>
                     </div>
                 </div>
-                
+
                 <div>
                     <h2 class="card-title"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
                     <div class="card constrain-height">

@@ -51,6 +51,14 @@ h6, .h6 {
 	@apply text-sm font-display font-extrabold tracking-tight;
 }
 
+@media (max-width: 639px) {
+	h1, .h1 { @apply text-2xl; }
+	h2, .h2 { @apply text-xl; }
+	h3, .h3 { @apply text-lg; }
+	h4, .h4 { @apply text-base; }
+	h5, .h5 { @apply text-sm; }
+}
+
 nav a {
 	@apply text-base font-sans;
 }
@@ -259,6 +267,10 @@ hr {
 	}
 }
 
+	.comment-card {
+		@apply mb-3;
+	}
+
 .badge {
 	position: relative;
 	top: -3px;
@@ -297,6 +309,30 @@ hr {
 
 .save-link {
 	@apply text-orange-500 text-sm font-bold;
+}
+
+.client-data { // sidebar on clients, sites, & project views
+	@apply px-3;
+
+	@media (min-width: 768px) {
+		@apply pr-6 pl-0;
+	}
+
+	@media (min-width: 1024px) {
+		@apply w-1/4;
+	}
+}
+
+.main-content { // main content area on clients, sites, & project views
+	 @apply px-3;
+
+	 @media (min-width: 768px) {
+		 @apply pl-6 pr-0;
+	 }
+
+	 @media (min-width: 1024px) {
+		 @apply w-3/4;
+	 }
 }
 
 
