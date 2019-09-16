@@ -63,7 +63,7 @@ a.no-underline {
 }
 
 .header {
-	@apply bg-orange-500 p-6;
+	@apply bg-gray-900 p-6;
 
 	.container {
 		@apply mx-auto flex items-center justify-between flex-wrap font-display px-6;
@@ -71,7 +71,7 @@ a.no-underline {
 }
 
 .sub-nav {
-	@apply flex items-center justify-center w-full text-white bg-gray-900 p-3;
+	@apply flex items-center justify-center w-full text-white bg-blue-500 p-3;
 
 	a:hover, a:active {
 		opacity: 0.8;
