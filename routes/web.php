@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('clients.sites.urls', 'SiteURLController')->only(['store', 'destroy', 'update']);
     Route::resource('clients.sites.updates', 'UpdateController')->only('store', 'update');
     Route::post('clients/{client}/sites/{site}/mma-update', 'MMAController@store');
+    Route::patch('clients/{client}/sites/{site}/mma-update/{update}', 'MMAController@update');
     Route::resource('services', 'ServiceController')->only(['store', 'destroy', 'update']);
     Route::resource('hosting', 'HostingController')->only(['index','store', 'destroy', 'update']);
 

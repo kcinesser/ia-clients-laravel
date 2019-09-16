@@ -3593,8 +3593,16 @@ select:focus {
 }
 
 .mma-list > div.updated a {
-  color: #000;
-  text-decoration: line-through underline;
+  position: relative;
+}
+
+.mma-list > div.updated a:before {
+  content: '';
+  border-bottom: 1px solid #000;
+  width: 100%;
+  position: absolute;
+  right: 0;
+  top: 50%;
 }
 
 .mma-list > div.updated span {

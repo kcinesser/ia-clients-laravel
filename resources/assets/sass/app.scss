@@ -411,8 +411,16 @@ select {
 		}
 		
 		a {
-			@apply text-black;
-			text-decoration: line-through underline;
+			position: relative;
+		}
+
+		a:before {
+			content: '';
+			border-bottom: 1px solid #000;
+			width: 100%;
+			position: absolute;
+			right: 0;
+			top: 50%;
 		}
 		span {
 			@apply text-gray-500;

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Client;
 use App\Site;
 use App\Service;
+use App\Update;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -50,8 +51,21 @@ class MMAController extends Controller
         $attributes = request()->validate(['description' => 'required', 'mma' => 'numeric']);
         $attributes['user_id'] = Auth::id();
 
-        $site->updates()->create($attributes);
+        $update = $site->updates()->create($attributes);
 
-        return redirect('/mma');
+        $update->username = $update->user->initials();
+        $update->friendly_date = \Carbon\Carbon::parse($update->created_at)->format('n/j/Y');
+        $update->path = $update->mmaPath();
+
+        return response()->json($update);
+    }
+
+    public function update (Client $client, Site $site, Update $update) {
+        $attributes = request()->validate(['description' => 'required']);
+
+        $update->update($attributes);
+        $update->friendly_date = \Carbon\Carbon::parse($update->updated_at)->format('n/j/Y');
+
+        return response()->json($update);
     }
 }
