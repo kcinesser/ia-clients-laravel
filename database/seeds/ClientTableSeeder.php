@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\ClientStatus;
 use Illuminate\Database\Seeder;
 
 class ClientTableSeeder extends Seeder
@@ -41,7 +42,7 @@ class ClientTableSeeder extends Seeder
             'contact_name' => 'LRS Contact',
             'contact_email' => 'test@test.com',
             'contact_phone' => '1231231234',
-            'status' => 3
+            'status' => ClientStatus::Archived
         ]);
 
         DB::table('clients')->insert([
@@ -50,7 +51,7 @@ class ClientTableSeeder extends Seeder
             'contact_name' => 'NU Contact',
             'contact_email' => 'test@test.com',
             'contact_phone' => '1231231234',
-            'status' => 3
+            'status' => ClientStatus::Archived
         ]);
 
         DB::table('clients')->insert([

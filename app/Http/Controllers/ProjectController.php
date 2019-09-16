@@ -42,21 +42,21 @@ class ProjectController extends Controller
     }
 
     public function client_project_archives(Client $client) {
-        $archived_projects = $client->projects->where('status', 3);
+        $archived_projects = $client->projects->where('status', ProjectStatus::Archived);
 
         return view('projects.archive', compact('archived_projects', 'client'));
     }
 
     public function archive(Client $client, Project $project) {
         $project->update([
-            'status' => 3
+            'status' => ProjectStatus::Archived
         ]);
 
         return redirect($client->path());
     }
 
     public function all_archives() {
-        $archive_projects = Project::all()->where('status', 3);
+        $archive_projects = Project::all()->where('status', ProjectStatus::Archived);
 
         return view('projects.all_archive', compact('archive_projects'));
     }

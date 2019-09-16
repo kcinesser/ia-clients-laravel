@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\ProjectStatus;
+use App\Enums\SiteStatus;
 
 class Client extends Model
 {
@@ -22,7 +24,7 @@ class Client extends Model
 
     public function hasSiteArchive() {
         foreach($this->sites as $site) {
-            if($site->status == 4) {
+            if($site->status == SiteStatus::Archived) {
                 return true;
             } 
         }
@@ -32,7 +34,7 @@ class Client extends Model
 
     public function hasProjectArchive() {
         foreach($this->projects as $project) {
-            if($project->status == 3) {
+            if($project->status == ProjectStatus::Archived) {
                 return true;
             } 
         }

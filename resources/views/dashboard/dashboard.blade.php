@@ -76,7 +76,7 @@
 			</div>
 			<div class="lg:w-1/4 lg:pl-6">
 		   		<h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
-				<div class="card constrain-height">
+				<div class="card constrain-height mb-10">
 					@foreach ($activities as $activity)
 						<div class="border-b-2 py-6">
 							<span class="text-gray-500 text-xs font-normal block">{{ \Carbon\Carbon::parse($activity->created_at)->format('n/j/Y') }}</span>
@@ -104,15 +104,15 @@
 
 
 		@include('dashboard._clients_modal', [
-			'clients' => App\Client::all()->whereNotIn('status', 3)->sortBy('name')
+			'clients' => App\Client::all()->whereNotIn('status', App\Enums\ClientStatus::Archived)->sortBy('name')
 		])
 
 		@include('dashboard._projects_modal', [
-			'projects' => App\Project::all()->whereNotIn('status', 3)->sortBy('title')
+			'projects' => App\Project::all()->whereNotIn('status', App\Enums\ProjectStatus::Archived)->sortBy('title')
 		])
 
 		@include('dashboard._sites_modal', [
-			'sites' => App\Site::all()->whereNotIn('status', 4)->sortBy('name')
+			'sites' => App\Site::all()->whereNotIn('status', App\Enums\SiteStatus::Archived)->sortBy('name')
 		])
 
 	</main>
