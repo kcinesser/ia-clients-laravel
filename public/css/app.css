@@ -3098,6 +3098,10 @@ h6, .h6 {
   }
 }
 
+a.no-underline {
+  text-decoration: none;
+}
+
 .container a:not(.button) {
   font-family: Montserrat, sans-serif;
   text-decoration: underline;
@@ -3156,7 +3160,8 @@ h6, .h6 {
   padding-right: 1.5rem;
 }
 
-.footer .container a:not(.button) {
+.footer .container a {
+  text-decoration: underline;
   -webkit-text-decoration-color: #a0aec0;
           text-decoration-color: #a0aec0;
 }

@@ -20,15 +20,18 @@ Route::group(['middleware' => 'auth'], function(){
     Route::patch('/clients/{client}/sites/{site}/archive', 'SiteController@archive');
     Route::get('/clients/{client}/sites/archives', 'SiteController@client_site_archives');
     Route::patch('/clients/{client}/archive', 'ClientController@archive');
-    Route::resource('clients.projects', 'ProjectController')->except(['index', 'create', 'edit']);
+    Route::resource('clients.projects', 'ProjectController')->except(['create', 'edit']);
     Route::get('/clients/{client}/client-sites', 'ClientController@clientSites');
-    Route::resource('clients.sites', 'SiteController')->except(['index', 'create', 'edit']);
-    Route::resource('clients.domains', 'HostedDomainController')->only(['store', 'update', 'destroy']);
+    Route::resource('clients.sites', 'SiteController')->except(['create', 'edit']);
+    Route::resource('clients.domains', 'HostedDomainController')->except(['show']);
     Route::resource('clients.sites.urls', 'SiteURLController')->only(['store', 'destroy', 'update']);
     Route::resource('clients.sites.updates', 'UpdateController')->only('store', 'update');
     Route::post('clients/{client}/sites/{site}/mma-update', 'UpdateController@mma');
     Route::resource('services', 'ServiceController')->only(['store', 'destroy', 'update']);
     Route::resource('hosting', 'HostingController')->only(['index','store', 'destroy', 'update']);
+
+    Route::get('/projects', 'ProjectController@index');
+    Route::get('/sites', 'SiteController@index');
 
     Route::get('/projects/archives', 'ProjectController@all_archives');
     Route::get('/sites/archives', 'SiteController@all_archives');

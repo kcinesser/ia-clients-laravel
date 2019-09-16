@@ -13,6 +13,11 @@ use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {
+    public function index() {
+        $sites = Site::all()->whereNotIn('status', SiteStatus::Archived);
+
+        return view('sites.index', compact('sites'));
+    }
 
     /**
      * Store a newly created resource in storage.

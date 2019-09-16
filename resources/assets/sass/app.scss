@@ -59,6 +59,10 @@ h6, .h6 {
 	h5, .h5 { @apply text-sm; }
 }
 
+a.no-underline {
+	text-decoration: none;
+}
+
 .container a:not(.button) {
 	@apply font-body underline;
 	text-decoration-color: #F15B51;
@@ -84,7 +88,8 @@ h6, .h6 {
 	.container {
 		@apply mx-auto flex items-center justify-between flex-wrap px-6;
 
-		a:not(.button) {
+		a {
+			@apply underline;
 			text-decoration-color: #a0aec0;
 		}
 	}
@@ -367,7 +372,6 @@ hr {
 		 @apply w-3/4;
 	 }
 }
-
 
 p>.fa {
 	min-width: 14px;
