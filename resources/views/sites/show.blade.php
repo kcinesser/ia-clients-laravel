@@ -11,7 +11,7 @@
     </header>
 
     <main class="sites-show">
-    	<div class="lg:flex -mx-3 flex-row-reverse">
+    	<div class="lg:flex flex-row-reverse">
     		<div class="main-content">
 
                 @if($site->urls()->exists())

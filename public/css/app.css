@@ -3098,11 +3098,6 @@ h6, .h6 {
   }
 }
 
-nav a {
-  font-size: 1rem;
-  font-family: Montserrat, sans-serif;
-}
-
 .container a:not(.button) {
   font-family: Montserrat, sans-serif;
   text-decoration: underline;
@@ -3112,6 +3107,70 @@ nav a {
 
 .container a:not(.button).no-underline {
   text-decoration: none;
+}
+
+.header {
+  background-color: #F15B39;
+  padding: 1.5rem;
+}
+
+.header .container {
+  margin-left: auto;
+  margin-right: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  font-family: Montserrat, sans-serif;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.footer {
+  background-color: #2d3748;
+  padding: 1.5rem;
+}
+
+.footer .container {
+  margin-left: auto;
+  margin-right: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.footer .container a:not(.button) {
+  -webkit-text-decoration-color: #a0aec0;
+          text-decoration-color: #a0aec0;
+}
+
+.footer p {
+  color: #a0aec0;
+  font-size: 0.75rem;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+nav a {
+  font-size: 1rem;
+  font-family: Montserrat, sans-serif;
 }
 
 p {

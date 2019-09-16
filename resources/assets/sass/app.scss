@@ -59,10 +59,6 @@ h6, .h6 {
 	h5, .h5 { @apply text-sm; }
 }
 
-nav a {
-	@apply text-base font-sans;
-}
-
 .container a:not(.button) {
 	@apply font-body underline;
 	text-decoration-color: #F15B51;
@@ -72,6 +68,35 @@ nav a {
 	&.no-underline {
 		text-decoration: none;
 	}
+}
+
+.header {
+	@apply bg-orange-500 p-6;
+
+	.container {
+		@apply mx-auto flex items-center justify-between flex-wrap font-display px-6;
+	}
+}
+
+.footer {
+	@apply bg-gray-800 p-6;
+
+	.container {
+		@apply mx-auto flex items-center justify-between flex-wrap px-6;
+
+		a:not(.button) {
+			text-decoration-color: #a0aec0;
+		}
+	}
+
+	p {
+		@apply text-gray-500 text-xs font-normal mb-0;
+	}
+}
+
+
+nav a {
+	@apply text-base font-sans;
 }
 
 p {
@@ -453,8 +478,6 @@ select {
 .mma-list > div:nth-child(odd) {
     background: #f1f1f1;
 }
-
-
 
 @tailwind utilities;
 

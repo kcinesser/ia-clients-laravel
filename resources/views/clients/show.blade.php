@@ -9,7 +9,7 @@
     </header>
 
     <main>
-    	<div class="lg:flex -mx-3">
+    	<div class="lg:flex">
     		<div class="client-data">
  				@include ('clients.card')
 
