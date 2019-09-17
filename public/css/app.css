@@ -3239,7 +3239,6 @@ code {
   color: #a0aec0;
   font-size: 0.875rem;
   font-weight: 400;
-  margin-left: 0.75rem;
   margin-top: 0.25rem;
 }
 
@@ -3756,8 +3755,40 @@ select:focus {
   border: 1px solid #ddd;
 }
 
+.mma-list .mma-update {
+  font-size: 0.75rem;
+  margin-bottom: 0;
+}
+
+.mma-list .mma-update + div > span {
+  color: #a0aec0;
+  font-size: 0.75rem;
+}
+
 .mma-list > div {
   background: #fff;
+}
+
+.mma-list > div.updated p {
+  color: #000;
+  text-decoration: line-through;
+}
+
+.mma-list > div.updated a {
+  position: relative;
+}
+
+.mma-list > div.updated a:before {
+  content: '';
+  border-bottom: 1px solid #000;
+  width: 100%;
+  position: absolute;
+  right: 0;
+  top: 50%;
+}
+
+.mma-list > div.updated span {
+  color: #a0aec0;
 }
 
 .mma-list > div:nth-child(odd) {

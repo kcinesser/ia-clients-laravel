@@ -11930,6 +11930,76 @@ $('.inputfile').on('change', function (e) {
 	}
 });
 
+$('form.mma-store').submit(function (e) {
+	e.preventDefault();
+
+	var form = $(this);
+	var update = form.serialize();
+	var path = $(this).attr('action');
+	var row = $(this).parent().parent();
+
+	$.ajaxSetup({
+		headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		}
+	});
+
+	$.ajax({
+		url: path,
+		type: "POST",
+		data: update,
+		success: function success(data) {
+			row.addClass("updated");
+
+			var newForm = $("<div class='flex justify-between items-center'>" + "<input class='mma-update' name='description' value='" + data.description + "'>" + "<div>" + "<span class='mr-1'>" + data.username + "</span>" + "<span> " + data.friendly_date + "</span>" + "</div>" + "</div>");
+
+			$(newForm.children("input")).keyup(function (e) {
+				e.preventDefault();
+
+				var input = $(this);
+				var description = input.serialize();
+				var update_path = data.path;
+
+				$.ajaxSetup({
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					}
+				});
+
+				$.ajax({
+					url: update_path,
+					type: 'PATCH',
+					data: description,
+					success: function success(data) {}
+				});
+			});
+
+			form.replaceWith($(newForm));
+		}
+	});
+});
+
+$('input.mma-update').keyup(function (e) {
+	e.preventDefault();
+
+	var input = $(this);
+	var description = input.serialize();
+	var path = input.data('path');
+
+	$.ajaxSetup({
+		headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		}
+	});
+
+	$.ajax({
+		url: path,
+		type: 'PATCH',
+		data: description,
+		success: function success(data) {}
+	});
+});
+
 /***/ }),
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
