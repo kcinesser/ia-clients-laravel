@@ -11,7 +11,7 @@
     <select name="remote_provider_type">   
     	<option value="">Choose a Provider</option> 	
         @foreach(RemoteDomainsProviders::getValues() as $providerType)
-            <option value="{{ $providerType }}" {{ ($providerType === ($domain->remote_provider_type ?? NULL)) ? 'selected' : '' }}>
+            <option value="{{ $providerType }}">
             	{{ RemoteDomainsProviders::getKey($providerType) }}
            	</option>
         @endforeach
@@ -24,7 +24,7 @@
 
     <div class="control">
     	
-        <input type="number" autocomplete="off" name="remote_provider_id" value="{{ $domain->remote_provider_id ?? '' }}">
+        <input type="number" autocomplete="off" name="remote_provider_id">
     </div>
 </div>
 
@@ -56,7 +56,7 @@
     <div class="control">
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="free_with_mma" {{ ($domain->free_with_mma ?? FALSE) ? 'checked' : '' }}> Free With MMA
+                <input type="checkbox" name="free_with_mma"> Free With MMA
                 <p class="text-gray-600 text-xs italic">
                     Checking this box indicates that when this domain is connected to a site on the MMA, no renewal charges will be billed to the client. 
                     There should only be one domain marked per MMA site and it should be the .com domain in the case of multiples. 

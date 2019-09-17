@@ -11670,6 +11670,9 @@ $('#editDomainModal').on('show.bs.modal', function (event) {
 	var site_id = button.data('siteid');
 	var exp_date = button.data('exp'); // Extract info from data-* attributes
 	var path = button.data('path'); // Extract info from data-* attributes
+	var hosted_at = button.data('hosted-at'); // Extract info from data-* attributes
+	var remote_id = button.data('remote-id'); // Extract info from data-* attributes
+	var mma_domain = button.data('mma-domain'); // Extract info from data-* attributes
 
 	// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
 	// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
@@ -11679,6 +11682,14 @@ $('#editDomainModal').on('show.bs.modal', function (event) {
 	modal.find('.modal-body input[name="name"]').val(name);
 	modal.find('.modal-body input[name="exp_date"]').val(exp_date);
 	modal.find('.modal-body select[name="site_id"]').val(site_id);
+	modal.find('.modal-body select[name="remote_provider_type"]').val(hosted_at);
+	modal.find('.modal-body input[name="remote_provider_id"]').val(remote_id);
+
+	if (mma_domain == 1) {
+		modal.find('.modal-body input[name="free_with_mma"]').attr("checked", "checked");
+	} else {
+		modal.find('.modal-body input[name="free_with_mma"]').removeAttr("checked");
+	}
 });
 
 $('#editUserModal').on('show.bs.modal', function (event) {
