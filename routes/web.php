@@ -1,5 +1,10 @@
 <?php
 
+use App\Services\NamecheapDomainsService;
+use App\Repositories\RemoteDomainsRepository;
+use App\HostedDomain;
+use App\RemoteDomain;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,16 +25,20 @@ Route::group(['middleware' => 'auth'], function(){
     Route::patch('/clients/{client}/sites/{site}/archive', 'SiteController@archive');
     Route::get('/clients/{client}/sites/archives', 'SiteController@client_site_archives');
     Route::patch('/clients/{client}/archive', 'ClientController@archive');
-    Route::resource('clients.projects', 'ProjectController')->except(['index', 'create', 'edit']);
+    Route::resource('clients.projects', 'ProjectController')->except(['create', 'edit']);
     Route::get('/clients/{client}/client-sites', 'ClientController@clientSites');
-    Route::resource('clients.sites', 'SiteController')->except(['index', 'create', 'edit']);
-    Route::resource('clients.domains', 'HostedDomainController')->only(['store', 'update', 'destroy']);
+    Route::resource('clients.sites', 'SiteController')->except(['create', 'edit']);
+    Route::resource('clients.domains', 'HostedDomainController')->except(['show']);
     Route::resource('clients.sites.urls', 'SiteURLController')->only(['store', 'destroy', 'update']);
     Route::resource('clients.sites.updates', 'UpdateController')->only('store', 'update');
     Route::post('clients/{client}/sites/{site}/mma-update', 'MMAController@store');
     Route::patch('clients/{client}/sites/{site}/mma-update/{update}', 'MMAController@update');
     Route::resource('services', 'ServiceController')->only(['store', 'destroy', 'update']);
     Route::resource('hosting', 'HostingController')->only(['index','store', 'destroy', 'update']);
+
+    Route::get('/projects', 'ProjectController@index');
+    Route::get('/sites', 'SiteController@index');
+    Route::get('/domains', 'HostedDomainController@index');
 
     Route::get('/projects/archives', 'ProjectController@all_archives');
     Route::get('/sites/archives', 'SiteController@all_archives');
@@ -82,3 +91,48 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
+// Email Preview Routes...
+Route::get('mail_preview/domain_renewing/{daysOut}', function ($daysOut) {
+    $remoteDomain = resolve(
+        RemoteDomain::class,
+        [
+            'providerName' => 'Namecheap',
+            'providerId' => '191284878',
+            'domain' => 'jeffsdomain.com',
+            'expires' => "2019-10-11T13:16:27.000Z",
+            'renewAuto' => TRUE,
+            'renewable' => TRUE,
+            'status' => 'ACTIVE'
+        ]
+    );
+    
+    $hostedDomain = HostedDomain::with('client.accountManager')->where([
+        ['remote_provider_type', RemoteDomainsProviders::Namecheap],
+        ['remote_provider_id', $remoteDomain->providerId]
+    ])->first();
+
+    return new App\Mail\UpcomingDomainRenewal($remoteDomain, $hostedDomain, $daysOut);
+});
+
+Route::get('mail_preview/domain_expiring/{daysOut}', function ($daysOut) {
+    $remoteDomain = resolve(
+        RemoteDomain::class,
+        [
+            'providerName' => 'Namecheap',
+            'providerId' => '191284878',
+            'domain' => 'jeffsdomain.com',
+            'expires' => "2019-10-11T13:16:27.000Z",
+            'renewAuto' => FALSE,
+            'renewable' => TRUE,
+            'status' => 'ACTIVE'
+        ]
+        );
+    
+    $hostedDomain = HostedDomain::with('client.accountManager')->where([
+        ['remote_provider_type', RemoteDomainsProviders::Namecheap],
+        ['remote_provider_id', $remoteDomain->providerId]
+    ])->first();
+    
+    return new App\Mail\UpcomingDomainExpiration($remoteDomain, $hostedDomain, $daysOut);
+});

@@ -19,8 +19,7 @@
 // START - base styles
 
 body {
-	@apply font-body;
-	color: #333;
+	@apply font-body text-gray-900;
 }
 
 button:focus {
@@ -51,19 +50,54 @@ h6, .h6 {
 	@apply text-sm font-display font-extrabold tracking-tight;
 }
 
-nav a {
-	@apply text-base font-sans;
+@media (max-width: 639px) {
+	h1, .h1 { @apply text-2xl; }
+	h2, .h2 { @apply text-xl; }
+	h3, .h3 { @apply text-lg; }
+	h4, .h4 { @apply text-base; }
+	h5, .h5 { @apply text-sm; }
 }
 
-.container a:not(.button) {
-	@apply font-body underline;
-	text-decoration-color: #F15B51;
-	&:hover {
-		// @apply text-primary;
+a.no-underline {
+	text-decoration: none;
+}
+
+.header {
+	@apply bg-gray-900 p-6;
+
+	.container {
+		@apply mx-auto flex items-center justify-between flex-wrap font-display px-6;
 	}
-	&.no-underline {
-		text-decoration: none;
+}
+
+.sub-nav {
+	@apply flex items-center justify-center w-full text-white bg-blue-500 p-3;
+
+	a:hover, a:active {
+		opacity: 0.8;
 	}
+}
+
+.footer {
+	@apply bg-gray-900 p-6;
+
+	.container {
+		@apply mx-auto flex items-center justify-between flex-wrap px-6;
+
+		a {
+			@apply underline;
+			text-decoration-color: #a0aec0;
+		}
+	}
+
+	p {
+		@apply text-gray-500 text-xs font-normal mb-0;
+	}
+}
+
+
+nav a {
+	@apply text-base font-sans;
 }
 
 p {
@@ -71,6 +105,10 @@ p {
 	margin-bottom: 0.75em;
 
 	&:last-child { margin-bottom: 0; }
+
+	&.small {
+		@apply text-gray-500 text-sm font-normal;
+	}
 }
 
 ul {
@@ -239,8 +277,9 @@ hr {
 }
 
 .card {
-	@apply bg-white p-5 rounded-lg shadow mb-4 font-display;
+	@apply bg-white p-5 mb-12 font-display;
 	color: #4B5783;
+	border: 1px solid rgba(160, 174, 192, 0.3);
 
 	a:link, a:visited {
 		font-family: Montserrat, sans-serif;
@@ -261,6 +300,10 @@ hr {
 		padding-bottom: 0;
 	}
 }
+
+	.comment-card {
+		@apply mb-3;
+	}
 
 .badge {
 	position: relative;
@@ -290,6 +333,57 @@ hr {
 	max-height: 35vh;
 	overflow-y: scroll;
 }
+
+.card-title {
+	@apply text-gray-500 mb-1 headline-lead;
+}
+.add-toggle {
+	@apply mb-1 -mt-1 ml-2;
+}
+
+.save-link {
+	@apply text-orange-500 text-sm font-bold;
+}
+
+.client-data { // sidebar on clients, sites, & project views
+	@apply px-3;
+
+	@media (min-width: 768px) {
+		@apply pr-6 pl-0;
+	}
+
+	@media (min-width: 1024px) {
+		@apply w-1/4;
+	}
+}
+
+.main-content { // main content area on clients, sites, & project views
+	 @apply px-3;
+
+	 @media (min-width: 768px) {
+		 @apply pl-6 pr-0;
+	 }
+
+	 @media (min-width: 1024px) {
+		 @apply w-3/4;
+	 }
+}
+
+.nav-search-bar {
+	overflow: hidden;
+	float: right;
+	//height: 33px;
+	width: 30px;
+	-moz-transition: all 0.35s;
+	-webkit-transition: all 0.35s;
+
+	&:hover, &:focus, &:focus-within {
+		width: 275px;
+		overflow: visible;
+	}
+}
+
+
 
 p>.fa {
 	min-width: 14px;
@@ -431,8 +525,6 @@ select {
 .mma-list > div:nth-child(odd) {
     background: #f1f1f1;
 }
-
-
 
 @tailwind utilities;
 

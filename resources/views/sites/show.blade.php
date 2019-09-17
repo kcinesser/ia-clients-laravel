@@ -3,80 +3,92 @@
 @section('content')
 
     <header class="mb-3 py-4">
-        <div class="flex items-center w-full mb-2">
+        <div class="flex justify-start w-full items-center">
             <h1 class="text-blue-500"><i class="fa fa-laptop mr-3"></i>Sites / {{ $site->name }}</h1>
             <a href="" class="button btn-add ml-4" data-toggle="modal" data-target="#editSiteModal"><i class="fa fa-pencil"></i></a>
         </div>
-        <p class="text-gray-500 text-sm font-normal">{{ $site->description }}</p>
+        <p class="small">{{ $site->description }}</p>
     </header>
 
     <main class="sites-show">
-    	<div class="lg:flex -mx-3 flex-row-reverse">
-    		<div class="lg:w-3/4 px-3">
-                <div class="mb-8">
-                    <div class="flex flex-wrap items-center mb-2">
-                        <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-home"></i> URLs</h2>
+    	<div class="lg:flex flex-row-reverse">
+    		<div class="main-content">
+
+                @if($site->urls()->exists())
+                    <div>
+                        <div class="flex flex-wrap items-center mb-2">
+                            <h2 class="card-title"><i class="fa fa-home"></i> URLs</h2>
+                            <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newURLModal"><i class="fa fa-plus"></i></a>
+                        </div>
+                        <div class="card">
+                        @foreach ($site->urls as $url)
+                            <div class="flex justify-between">
+                                <div class="w-1/4">
+                                    <p class="small mb-0">{{ \App\Enums\URLEnvironment::getDescription($url->environment) }} {{ \App\Enums\URLType::getDescription($url->type) }}</p>
+                                </div>
+                                <div class="w-1/2">
+                                    <a class="text-sm" href="{{ $url->url }}" target="_blank">{{ $url->url }}</a>
+                                </div>
+                                <div class="w-1/8 flex">
+                                    <a class="mr-3" href="" data-toggle="modal" data-target="#editURLModal"  data-url="{{ $url->url }}" data-type="{{ $url->type }}" data-environment="{{ $url->environment }}" data-path="{{ $url->path() }}"><i class="fa fa-pencil"></i></a>
+                                    <form method="POST" action="{{ $url->path() }}" class="delete-form">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="text-red-500 text-sm font-normal"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        @endforeach
+                        </div>
+                    </div>
+                @else
+                    <div class="flex flex-wrap items-center mb-6">
+                        <h2 class="card-title"><i class="fa fa-home"></i> Add a URL</h2>
                         <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newURLModal"><i class="fa fa-plus"></i></a>
                     </div>
-                    <div class="card mb-6">
-                    @forelse ($site->urls as $url)
-                        <div class="flex justify-between">
-                            <div class="w-1/4">
-                                <p class="text-gray-500 text-sm font-normal mb-0">{{ \App\Enums\URLEnvironment::getDescription($url->environment) }} {{ \App\Enums\URLType::getDescription($url->type) }}</p>
-                            </div>
-                            <div class="w-1/2">
-                                <a class="text-sm" href="{{ $url->url }}" target="_blank">{{ $url->url }}</a>
-                            </div>
-                            <div class="w-1/8 flex">
-                                <a class="mr-3" href="" data-toggle="modal" data-target="#editURLModal"  data-url="{{ $url->url }}" data-type="{{ $url->type }}" data-environment="{{ $url->environment }}" data-path="{{ $url->path() }}"><i class="fa fa-pencil"></i></a>
-                                <form method="POST" action="{{ $url->path() }}" class="delete-form">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="text-red-500 text-sm font-normal"><i class="fa fa-trash"></i></button>
-                                </form>
-                            </div>
-                        </div>
-                    @empty
-                        <p>No URLs yet.</p>
-                    @endforelse
-                    </div>
-                </div>
+                @endif
 
-                <div class="mb-8">
-                    <div class="flex flex-wrap items-center mb-2">
-                        <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-globe mr-1"></i> Hosted Domains</h2>
-                        <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newDomainSiteModal"><i class="fa fa-plus"></i></a>
-                    </div>
-                    <div class="card mb-6">
-                    @forelse ($site->hostedDomains as $domain)
-                        <div class="flex justify-between">
-                            <div class="w-1/3">
-                                <p class="text-sm">{{ $domain->name }}</p>
-                            </div>
-                            <div class="lg:w-1/3 text-sm">
-                                @if($domain->exp_date)
-                                    Exp: {{ \Carbon\Carbon::parse($domain->exp_date)->format('n-j-Y') }}
-                                @endif
-                            </div>
-                            <div class="w-1/8 flex">
-                                <a  class="mr-3" href="" data-toggle="modal" data-target="#editDomainModal"  data-name="{{ $domain->name }}" data-exp="{{ $domain->exp_date }}" data-path="{{ $domain->path() }}" data-siteid="{{ $domain->site->id }}"><i class="fa fa-pencil"></i></a>
-                                <form method="POST" action="{{ $domain->path() }}" class="delete-form">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="text-red-500 text-sm font-normal"><i class="fa fa-trash"></i></button>
-                                </form>
-                            </div>
+
+                @if($site->hostedDomains()->exists())
+                    <div>
+                        <div class="flex flex-wrap items-center mb-2">
+                            <h2 class="card-title"><i class="fa fa-globe mr-1"></i> Hosted Domains</h2>
+                            <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newDomainSiteModal"><i class="fa fa-plus"></i></a>
                         </div>
-                    @empty
-                        <p>No domains yet.</p>
-                    @endforelse
+                        <div class="card">
+                        @foreach ($site->hostedDomains as $domain)
+                            <div class="flex justify-between">
+                                <div class="w-1/3">
+                                    <p class="text-sm">{{ $domain->name }}</p>
+                                </div>
+                                <div class="lg:w-1/3 text-sm">
+                                    @if($domain->exp_date)
+                                        Exp: {{ \Carbon\Carbon::parse($domain->exp_date)->format('n-j-Y') }}
+                                    @endif
+                                </div>
+                                <div class="w-1/8 flex">
+                                    <a  class="mr-3" href="" data-toggle="modal" data-target="#editDomainModal"  data-name="{{ $domain->name }}" data-exp="{{ $domain->exp_date }}" data-path="{{ $domain->path() }}" data-siteid="{{ $domain->site->id }}"><i class="fa fa-pencil"></i></a>
+                                    <form method="POST" action="{{ $domain->path() }}" class="delete-form">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="text-red-500 text-sm font-normal"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        @endforeach
+                        </div>
                     </div>
-                </div>
+                    @else
+                        <div class="flex flex-wrap items-center mb-6">
+                            <h2 class="card-title"><i class="fa fa-globe mr-1"></i> Add a Hosted Domain</h2>
+                            <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newDomainSiteModal"><i class="fa fa-plus"></i></a>
+                        </div>
+                    @endif
 
                 @if($site->projects()->exists())
-                <div class="mb-8">  
+                <div>
                     <div class="flex flex-wrap items-center mb-2">
-                        <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-check-square-o mr-1"></i> Projects</h2>
+                        <h2 class="card-title"><i class="fa fa-check-square-o mr-1"></i> Projects</h2>
                         <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newProjectModal"><i class="fa fa-plus"></i></a>
                     </div>
 
@@ -84,7 +96,7 @@
                         @forelse ($projects as $project)
                             <div class="lg:w-full p-2">
                                 <h3><a href="{{ $project->path() }}">{{ $project->title }}</a></h3>
-                                <p class="text-gray-500 text-sm font-normal">{{ \Illuminate\Support\Str::limit($project->description, 80) }}</p>
+                                <p class="small">{{ \Illuminate\Support\Str::limit($project->description, 80) }}</p>
                             </div>
                         @empty
                             <div class="lg:w-full p-2">
@@ -98,8 +110,8 @@
                 </div>
                 @endif
 
-                <div class="mb-8">
-                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-file-o mr-1"></i> Files</h2>
+                <div>
+                    <h2 class="card-title"><i class="fa fa-file-o mr-1"></i> Files</h2>
 
                     <div class="card constrain-height">
                         <div class="mb-6">
@@ -113,10 +125,10 @@
                                         <div class="w-1/3">
                                             <a href="{{ $upload->url }}" target="_blank">{{ $upload->name }}</a>
                                         </div>
-                                        <div class="w-1/3"><p class="text-gray-500 text-sm font-normal mb-0"></p></div>
+                                        <div class="w-1/3"><p class="small mb-0"></p></div>
                                         <div class="w-1/3 flex">
-                                            <p class="text-gray-500 text-sm font-normal mb-0 mr-3">{{ $upload->user->initials() }}</p>
-                                            <p class="text-gray-500 text-sm font-normal mb-0">{{ \Carbon\Carbon::parse($upload->created_at)->format('n/j/Y') }}</p>
+                                            <p class="small mb-0 mr-3">{{ $upload->user->initials() }}</p>
+                                            <p class="small mb-0">{{ \Carbon\Carbon::parse($upload->created_at)->format('n/j/Y') }}</p>
                                         </div>
                                         <div class="w-1/8">
                                             <form method="post" class="delete-form" action="/upload/{{ $upload->id}}" >
@@ -134,11 +146,11 @@
                                             <a href="{{ $upload->url }}" target="_blank">{{ $upload->name }}</a>
                                         </div>
                                         <div class="w-1/3">
-                                            <p class="text-gray-500 text-sm font-normal mb-0">{{ $upload->uploadable->title }}</p>
+                                            <p class="small mb-0">{{ $upload->uploadable->title }}</p>
                                         </div>
                                         <div class="w-1/3 flex">
-                                            <p class="text-gray-500 text-sm font-normal mb-0 mr-3">{{ $upload->user->initials() }}</p>
-                                            <p class="text-gray-500 text-sm font-normal mb-0">{{ \Carbon\Carbon::parse($upload->created_at)->format('n/j/Y') }}</p>
+                                            <p class="small mb-0 mr-3">{{ $upload->user->initials() }}</p>
+                                            <p class="small mb-0">{{ \Carbon\Carbon::parse($upload->created_at)->format('n/j/Y') }}</p>
                                         </div>
                                         <div class="w-1/8">
                                             <form method="post" class="delete-form" action="/upload/{{ $upload->id}}" >
@@ -171,9 +183,8 @@
 
                 </div>
 
-
-                <div class="mb-8">
-                    <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-key mr-1"></i>Licenses</h2>
+                <div>
+                    <h2 class="card-title"><i class="fa fa-key mr-1"></i>Licenses</h2>
 
                     <div class="card">
                         @foreach ($site->licenses as $license)
@@ -209,7 +220,7 @@
                                     <div class="table-cell text-sm w-4/12"><input name="key" placeholder="Key" class="w-10/12"></div>
                                     <div class="table-cell text-sm w-2/12"><input class="date-field w-10/12" autocomplete="off" name="exp_date" placeholder="Expiration Date"></div>
                                     <div class="table-cell text-sm w-2/12"><input name="url" placeholder="URL" class="w-10/12"></div>
-                                    <div class="table-cell w-1/12"><button type="submit" class="text-orange-500 text-sm font-bold w-10/12">Save</button></div>
+                                    <div class="table-cell w-1/12"><button type="submit" class="save-link w-10/12">Save</button></div>
                                 </div>
                             </div>
                         </form>
@@ -224,32 +235,32 @@
                     </div>
                 </div>
 
-                <div class="mb-8">
-                    <h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-refresh mr-1"></i> Update Instructions</h2>
+                <div class="mb-12">
+                    <h2 class="card-title"><i class="fa fa-refresh mr-1"></i> Update Instructions</h2>
 
                     <form method="POST" action="{{ $site->path() . '/notes' }}">
                         @csrf
                         @method('PATCH')
-                        <textarea name="update_instructions" class="card w-full mb-3 h-300">{{ $site->update_instructions }}</textarea>
-                        <button type="submit" class="button">Save</button>
+                        <textarea name="update_instructions" class="card w-full mb-2 min-h-300">{{ $site->update_instructions }}</textarea>
+                        <button type="submit" class="save-link">Save</button>
                     </form>
                 </div>
 
-    			<div class="mb-8">
-                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-pencil-square-o mr-1"></i> Notes</h2>
+    			<div class="mb-12">
+                    <h2 class="card-title"><i class="fa fa-pencil-square-o mr-1"></i> Notes</h2>
 
                     <form method="POST" action="{{ $site->path() . '/notes' }}">
                         @csrf
                         @method('PATCH')
-                        <textarea name="notes" class="card w-full mb-3 h-300">{{ $site->notes }}</textarea>
-                        <button type="submit" class="button">Save</button>
+                        <textarea name="notes" class="card w-full mb-2 min-h-300">{{ $site->notes }}</textarea>
+                        <button type="submit" class="save-link">Save</button>
                     </form>
 	            </div>
 
-                <div class="mb-8">
-                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-comment-o mr-1"></i> Comments</h2>
+                <div>
+                    <h2 class="card-title"><i class="fa fa-comment-o mr-1"></i> Comments</h2>
 
-                    <div class="card mb-3">
+                    <div class="card comment-card">
                         <form action="/comment/site/{{ $site->id }}" method="POST">
                             {{ csrf_field() }}
                             <input name="body" class="w-full" placeholder="Add a comment.">
@@ -257,7 +268,7 @@
                     </div>
 
                     @foreach ($site->comments->sortByDesc('created_at') as $comment)
-                        <div class="card mb-3">
+                        <div class="card comment-card">
                             <form method="POST" action="/comment/{{ $comment->id }}">
                                 {{ method_field('PATCH') }}
                                 {{ csrf_field() }}
@@ -277,11 +288,11 @@
 
                 </div>
             </div>
-            <div class="lg:w-1/4 px-3">
+            <div class="client-data">
                 @include ('sites.card')
 
-                <div class="mb-8">
-                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-cogs mr-1"></i> Update History</h2>
+                <div>
+                    <h2 class="card-title"><i class="fa fa-cogs mr-1"></i> Update History</h2>
                     <div class="card">
                         @foreach ($site->updates->sortByDesc('updated_at') as $update)
                             <form method="POST" action="{{ $update->path() }}">
@@ -304,9 +315,9 @@
                         </form>
                     </div>
                 </div>
-                
-                <div class="mb-8">
-                    <h2 class="text-gray-500 mb-1 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
+
+                <div>
+                    <h2 class="card-title"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
                     <div class="card constrain-height">
                         @foreach ($client->activities as $activity)
                             <div class="border-b-2 py-6">

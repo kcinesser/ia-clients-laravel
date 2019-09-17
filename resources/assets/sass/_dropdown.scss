@@ -24,6 +24,7 @@
   background-clip: padding-box;
   border: $dropdown-border-width solid $dropdown-border-color;
   @include border-radius($dropdown-border-radius);
+  width: 100%;
 
   &.right-drop {
     left: auto;
@@ -52,7 +53,6 @@
   font-weight: 400;
   color: #212529;
   text-align: inherit; // For `<button>`s
-  white-space: nowrap; // prevent links from randomly breaking onto new lines
   background-color: transparent; // For `<button>`s
   border: 0; // For `<button>`s
 
@@ -72,7 +72,7 @@
   }
 
   &.search-results {
-    padding: 0px $dropdown-item-padding-x;
+    padding: 0px;
   }
 }
 

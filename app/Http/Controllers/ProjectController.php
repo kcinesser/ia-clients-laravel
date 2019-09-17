@@ -9,6 +9,12 @@ use App\Client;
 
 class ProjectController extends Controller
 {
+    public function index() {
+        $projects = Project::all()->whereNotIn('status', ProjectStatus::Archived);
+
+        return view('projects.index', compact('projects'));
+    }
+
     public function show(Client $client, Project $project) {
         return view('projects.show', compact('project', 'client'));
     }
