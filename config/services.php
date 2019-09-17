@@ -39,6 +39,23 @@ return [
         'client_id'     => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect'      => env('GOOGLE_REDIRECT')
-    ]
+    ],
+    
+    'godaddy' => [
+        'api' => [
+            'url' => env('GODADDY_URL', 'https://api.ote-godaddy.com'),
+            'key' => env('GODADDY_KEY'),
+            'secret' => env('GODADDY_SECRET'),
+            'debug' => env('GODADDY_DEBUG_ON', FALSE),
+        ],
+    ],
+    
+    'slack' => [
+        'webhook' => [
+            'url' => env('SLACK_WEBHOOK_URL'),
+        ],
+        'dev_alert_channel' => env('SLACK_DEV_ALERT_CHANNEL'),
+        'accounts_alert_channel' => env('SLACK_ACCOUNTS_ALERT_CHANNEL'),
+    ],
 
 ];

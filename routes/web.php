@@ -1,5 +1,10 @@
 <?php
 
+use App\Services\NamecheapDomainsService;
+use App\Repositories\RemoteDomainsRepository;
+use App\HostedDomain;
+use App\RemoteDomain;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -85,3 +90,48 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
+// Email Preview Routes...
+Route::get('mail_preview/domain_renewing/{daysOut}', function ($daysOut) {
+    $remoteDomain = resolve(
+        RemoteDomain::class,
+        [
+            'providerName' => 'Namecheap',
+            'providerId' => '191284878',
+            'domain' => 'jeffsdomain.com',
+            'expires' => "2019-10-11T13:16:27.000Z",
+            'renewAuto' => TRUE,
+            'renewable' => TRUE,
+            'status' => 'ACTIVE'
+        ]
+    );
+    
+    $hostedDomain = HostedDomain::with('client.accountManager')->where([
+        ['remote_provider_type', RemoteDomainsProviders::Namecheap],
+        ['remote_provider_id', $remoteDomain->providerId]
+    ])->first();
+
+    return new App\Mail\UpcomingDomainRenewal($remoteDomain, $hostedDomain, $daysOut);
+});
+
+Route::get('mail_preview/domain_expiring/{daysOut}', function ($daysOut) {
+    $remoteDomain = resolve(
+        RemoteDomain::class,
+        [
+            'providerName' => 'Namecheap',
+            'providerId' => '191284878',
+            'domain' => 'jeffsdomain.com',
+            'expires' => "2019-10-11T13:16:27.000Z",
+            'renewAuto' => FALSE,
+            'renewable' => TRUE,
+            'status' => 'ACTIVE'
+        ]
+        );
+    
+    $hostedDomain = HostedDomain::with('client.accountManager')->where([
+        ['remote_provider_type', RemoteDomainsProviders::Namecheap],
+        ['remote_provider_id', $remoteDomain->providerId]
+    ])->first();
+    
+    return new App\Mail\UpcomingDomainExpiration($remoteDomain, $hostedDomain, $daysOut);
+});

@@ -66,10 +66,18 @@ class HostedDomainController extends Controller
      * Validates the form data
      */
     private function validate_data(){
-        return request()->validate([
-            'name' => 'required',
+        // TODO: The name attribute needs to have a unique validation on it
+        // since it has a unique key in the database. Implement when refactoring validations.
+        $validatedAttributes = request()->validate([
+            'name' => "required",
             'exp_date' => 'nullable|date',
-            'site_id' => 'nullable|numeric|sometimes'
+            'site_id' => 'nullable|numeric|sometimes',
+            'remote_provider_type' => 'nullable|numeric|sometimes',
+            'remote_provider_id' => 'nullable|numeric',
+            'free_with_mma' => 'string'
         ]);
+        
+        // Handle scenario where checkbox being unchecked sends no request key. Detect absence and set to false explicitly
+        return array_merge($validatedAttributes, [ 'free_with_mma' => request()->get('free_with_mma') ?? FALSE ]);
     }
 }
