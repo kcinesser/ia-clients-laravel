@@ -140,7 +140,6 @@ code {
 	@apply text-gray-500;
 	@apply text-sm;
 	@apply font-normal;
-	@apply ml-3;
 	@apply mt-1;
 }
 
@@ -492,7 +491,15 @@ select {
 }
 
 .mma-list {
-    border: 1px solid #ddd;
+	border: 1px solid #ddd;
+	
+	.mma-update {
+		@apply text-xs mb-0;
+	}
+
+	.mma-update + div > span {
+		@apply text-gray-500 text-xs
+	}
 }
 
 .mma-list > div {
@@ -500,22 +507,22 @@ select {
 
 	&.updated {
 		p {
-			@apply text-black;
-			@apply line-through;
+			@apply text-black line-through;
 		}
 		
 		a {
 			position: relative;
+		
+			&:before {
+				content: '';
+				border-bottom: 1px solid #000;
+				width: 100%;
+				position: absolute;
+				right: 0;
+				top: 50%;
+			}
 		}
-
-		a:before {
-			content: '';
-			border-bottom: 1px solid #000;
-			width: 100%;
-			position: absolute;
-			right: 0;
-			top: 50%;
-		}
+		
 		span {
 			@apply text-gray-500;
 		}

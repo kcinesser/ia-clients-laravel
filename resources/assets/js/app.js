@@ -369,15 +369,13 @@ $('form.mma-store').submit(function(e) {
         type: "POST",
         data: update,
         success: function(data) {
-			console.log(data);
-
 			row.addClass("updated");
 
 			var newForm = $("<div class='flex justify-between items-center'>" +
-			"<input class='mb-0 text-xs mb-0 mma-update' name='description' value='" + data.description + "'>" +
+			"<input class='mma-update' name='description' value='" + data.description + "'>" +
 			"<div>" +
- 	 		"<span class='text-gray-500 text-xs mr-1'>" + data.username + "</span>" +
-			"<span class='text-gray-500 text-xs'>" + data.friendly_date + "</span>" +
+ 	 		"<span class='mr-1'>" + data.username + "</span>" +
+			"<span> " + data.friendly_date + "</span>" +
 			"</div>" +
 			"</div>");
 
@@ -399,7 +397,6 @@ $('form.mma-store').submit(function(e) {
 					type: 'PATCH',
 					data: description,
 					success: function(data) {
-						console.log(data)
 					}
 				})
 			})
@@ -427,7 +424,6 @@ $('input.mma-update').keyup(function(e) {
         type: 'PATCH',
 		data: description,
 		success: function(data) {
-			console.log(data)
 		}
 	})
 })

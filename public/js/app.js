@@ -11949,11 +11949,9 @@ $('form.mma-store').submit(function (e) {
 		type: "POST",
 		data: update,
 		success: function success(data) {
-			console.log(data);
-
 			row.addClass("updated");
 
-			var newForm = $("<div class='flex justify-between items-center'>" + "<input class='mb-0 text-xs mb-0 mma-update' name='description' value='" + data.description + "'>" + "<div>" + "<span class='text-gray-500 text-xs mr-1'>" + data.username + "</span>" + "<span class='text-gray-500 text-xs'>" + data.friendly_date + "</span>" + "</div>" + "</div>");
+			var newForm = $("<div class='flex justify-between items-center'>" + "<input class='mma-update' name='description' value='" + data.description + "'>" + "<div>" + "<span class='mr-1'>" + data.username + "</span>" + "<span> " + data.friendly_date + "</span>" + "</div>" + "</div>");
 
 			$(newForm.children("input")).keyup(function (e) {
 				e.preventDefault();
@@ -11972,9 +11970,7 @@ $('form.mma-store').submit(function (e) {
 					url: update_path,
 					type: 'PATCH',
 					data: description,
-					success: function success(data) {
-						console.log(data);
-					}
+					success: function success(data) {}
 				});
 			});
 
@@ -12000,9 +11996,7 @@ $('input.mma-update').keyup(function (e) {
 		url: path,
 		type: 'PATCH',
 		data: description,
-		success: function success(data) {
-			console.log(data);
-		}
+		success: function success(data) {}
 	});
 });
 

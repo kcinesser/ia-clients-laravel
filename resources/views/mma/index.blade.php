@@ -32,10 +32,10 @@
 						<div class="lg:w-1/4 card mb-0">
 							@if($site->latest_update)
 								<div class="flex justify-between items-center">
-									<input class="mb-0 text-xs mb-0 mma-update" data-path="{{ $site->latest_update->mmaPath() }}" name="description" value="{{ $site->latest_update->description }}">
+									<input class="mma-update" data-path="{{ $site->latest_update->mmaPath() }}" name="description" value="{{ $site->latest_update->description }}">
 									<div>
-										<span class="text-gray-500 text-xs mr-1">{{ $site->latest_update->user->initials() }}</span>
-										<span class="text-gray-500 text-xs"> {{ \Carbon\Carbon::parse($site->latest_update->updated_at)->format('n/j/Y')}}</span>
+										<span class="mr-1">{{ $site->latest_update->user->initials() }}</span>
+										<span> {{ \Carbon\Carbon::parse($site->latest_update->updated_at)->format('n/j/Y')}}</span>
 									</div>
 								</div>
 							@else
@@ -72,10 +72,10 @@
 						<div class="lg:w-1/4 card mb-0">
 							@if($site->latest_update)
 								<div class="flex justify-between items-center">
-									<input class="mb-0 text-xs mb-0 mma-update" data-path="{{ $site->latest_update->mmaPath() }}" name="description" value="{{ $site->latest_update->description }}">
+									<input class="mma-update" data-path="{{ $site->latest_update->mmaPath() }}" name="description" value="{{ $site->latest_update->description }}">
 									<div>
-										<span class="text-gray-500 text-xs mr-1">{{ $site->latest_update->user->initials() }}</span>
-										<span class="text-gray-500 text-xs"> {{ \Carbon\Carbon::parse($site->latest_update->updated_at)->format('n/j/Y')}}</span>
+										<span class="mr-1">{{ $site->latest_update->user->initials() }}</span>
+										<span> {{ \Carbon\Carbon::parse($site->latest_update->updated_at)->format('n/j/Y')}}</span>
 									</div>
 								</div>
 							@else
