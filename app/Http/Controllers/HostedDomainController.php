@@ -39,7 +39,7 @@ class HostedDomainController extends Controller
      */
     public function update(Client $client, HostedDomain $domain)
     {
-        $domain->update($this->validate_data($domain));
+        $domain->update($this->validate_data());
 
         return redirect($client->path());
     }
@@ -60,15 +60,11 @@ class HostedDomainController extends Controller
     /**
      * Validates the form data
      */
-    private function validate_data(HostedDomain $domain = NULL){
-        $name_rule = "required|unique:hosted_domains";
-        $id = $domain->id ?? NULL;
-        if ($id)
-        {
-            $name_rule .= ",name,{$id}";  
-        }
+    private function validate_data(){
+        // TODO: The name attribute needs to have a unique validation on it
+        // since it has a unique key in the database. Implement when refactoring validations.
         $validatedAttributes = request()->validate([
-            'name' => $name_rule,
+            'name' => "required",
             'exp_date' => 'nullable|date',
             'site_id' => 'nullable|numeric|sometimes',
             'remote_provider_type' => 'nullable|numeric|sometimes',
