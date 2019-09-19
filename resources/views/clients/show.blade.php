@@ -90,7 +90,7 @@
                                 @endif
                             </div>
                             <div class="w-1/8 flex">
-                                <a  class="mr-3" href="" data-toggle="modal" data-target="#editDomainModal"  data-name="{{ $domain->name }}" data-exp="{{ $domain->exp_date }}" data-path="{{ $domain->path() }}" data-siteid="{{ isset($domain->site) ? $domain->site->id : "" }}"><i class="fa fa-pencil"></i></a>
+                                <a  class="mr-3" href="" data-toggle="modal" data-target="#editDomainModal"  data-name="{{ $domain->name }}" data-exp="{{ $domain->exp_date }}" data-path="{{ $domain->path() }}" data-siteid="{{ isset($domain->site) ? $domain->site->id : "" }}" data-hosted-at="{{ $domain->remote_provider_type }}" data-remote-id="{{ $domain->remote_provider_id }}" data-mma-domain="{{ $domain->free_with_mma }}"><i class="fa fa-pencil"></i></a>
                                 <form method="POST" action="{{ $domain->path() }}" class="delete-form">
                                     @method('DELETE')
                                     @csrf
