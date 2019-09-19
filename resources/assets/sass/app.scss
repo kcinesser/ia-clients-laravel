@@ -307,7 +307,11 @@ hr {
 .badge {
 	position: relative;
 	top: -3px;
-	@apply rounded-full py-1 px-2 text-xs font-extrabold ;
+	@apply rounded-full py-1 px-2 text-xs font-extrabold;
+	&[class*="badge-"]{
+		@apply bg-yellow-300 text-plum-500;
+	}
+
 	&.badge-mma {
 		@apply bg-blue-300 text-white;
 	}
