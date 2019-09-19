@@ -7,6 +7,7 @@ use App\Client;
 use App\Site;
 use App\DomainAccount;
 use App\Http\Requests\HostedDomainRequest;
+use App\Http\Requests\HostedDomainUpdateRequest;
 use Illuminate\Http\Request;
 
 class HostedDomainController extends Controller
@@ -43,11 +44,11 @@ class HostedDomainController extends Controller
      * @param  \App\Domain  $domain
      * @return \Illuminate\Http\Response
      */
-    public function update(HostedDomainRequest $request, Client $client, HostedDomain $domain)
+    public function update(HostedDomainUpdateRequest $request, Client $client, HostedDomain $domain)
     {
         $attributes = $request->validated();
         $domain->update($attributes);
-
+        
         return redirect($client->path());
     }
 

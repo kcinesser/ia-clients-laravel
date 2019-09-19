@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-
+use App\Enums\RemoteDomainsProviders;
 use Tests\TestCase;
 use App\HostedDomain;
 use Illuminate\Foundation\Testing\WithFaker;
