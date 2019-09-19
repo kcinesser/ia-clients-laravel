@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Enums\ProjectStatus;
 use App\Project;
 use App\Client;
+use App\Http\Requests\ProjectRequest;
 
 class ProjectController extends Controller
 {
@@ -19,15 +20,16 @@ class ProjectController extends Controller
         return view('projects.show', compact('project', 'client'));
     }
 
-    public function store(Client $client) {
-        $project = $client->addProject($this->validate_data());
+    public function store(ProjectRequest $request, Client $client) {
+        $attributes = $request->validated();
+        $project = $client->addProject($attributes);
 
         return redirect($project->path());
     }
 
-    public function update(Client $client, Project $project) {
-
-        $project->update($this->validate_data());
+    public function update(ProjectRequest $request, Client $client, Project $project) {
+        $attributes = $request->validated();
+        $project->update($attributes);
 
         return redirect($project->path());
     }
@@ -36,15 +38,6 @@ class ProjectController extends Controller
         $project->delete();
 
         return redirect($client->path());
-    }
-
-    public function notes(Client $client, Project $project) {
-
-        $project->update(request()->validate([
-            'notes' => 'nullable',
-        ]));
-
-        return redirect($project->path());
     }
 
     public function client_project_archives(Client $client) {
@@ -66,19 +59,4 @@ class ProjectController extends Controller
 
         return view('projects.all_archive', compact('archive_projects'));
     }
-
-    private function validate_data(){
-        return request()->validate([
-            'title' => 'required|sometimes',
-            'site_id' => 'nullable|numeric|sometimes',
-            'description' => 'nullable|sometimes',
-            'status' => 'required|numeric|sometimes',
-            'start_date' => 'nullable|date|sometimes',
-            'end_date' => 'nullable|date|sometimes',
-            'go_live_date' => 'nullable|date|sometimes',
-            'developer_id' => 'nullable|numeric|sometimes',
-            'technology' => 'nullable|numeric|sometimes'
-        ]);
-    }
-
 }

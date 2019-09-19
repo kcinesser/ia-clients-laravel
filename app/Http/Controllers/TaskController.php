@@ -4,43 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Client;
+use App\Http\Requests\TaskRequest;
 use App\Project;
 use App\Task;
 
 class TaskController extends Controller
 {
-    public function store(Client $client, Project $project) {
-        $data = $this->validate_data();
+    public function store(TaskRequest $request, Client $client, Project $project) {
+        $attributes = $request->validated();
 
-    	$project->addTask($data['body']);
+    	$project->addTask($attributes);
 
     	return redirect($project->path());
     }
 
-    public function update(Client $client, Project $project, Task $task) {
-    	$data = $this->validate_data();
+    public function update(TaskRequest $request, Client $client, Project $project, Task $task) {
+    	$attributes = $request->validated();
 
     	$task->update([
-    		'body' => $data['body'],
+    		'body' => $attributes['body'],
     		'completed' => request()->has('completed')
     	]);
 
     	return redirect($project->path());
     }
-
-    /**
-     * Validates form data
-     */
-    private function validate_data(){
-         $rules = [
-            'body' => 'required'
-         ];
-         $custom_messages = [
-             'body.required' => 'Task name is required.'
-         ];
-
-        return $this->validate(request(), $rules, $custom_messages);
-    }
-
-
 }

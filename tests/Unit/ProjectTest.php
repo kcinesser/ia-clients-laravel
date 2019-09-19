@@ -28,7 +28,7 @@ class ProjectTest extends TestCase
         $client = factory('App\Client')->create(['account_manager_id' => auth()->id()]);
         $project = factory('App\Project')->create(['client_id' => $client->id]);
 
-        $task = $project->addTask("Test task.");
+        $task = $project->addTask(['body' => 'Test task.']);
 
         $this->assertCount(1, $project->tasks);
         $this->assertTrue($project->tasks->contains($task));

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\SoftwareLicense;
 use App\Client;
+use App\Http\Requests\SoftwareLicenseRequest;
 use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -12,23 +13,15 @@ use Illuminate\Support\Facades\Validator;
 class SoftwareLicenseController extends Controller
 {
 
-    public function store(Request $request, $model, $id)
+    public function store(SoftwareLicenseRequest $request, $model, $id)
     {
-
-
-        $validator = $this->validate_data();
-
-        if($validator->fails()){
-            return redirect()->back()->withErrors($validator, 'license_errors');
-        }
-
-        $data = $validator->valid();
+        $attributes = $request->validated();
 
         $license = new SoftwareLicense();
-        $license->description = $data['description'];
-        $license->key = $data['key'];
-        $license->url = $data['url'];
-        $license->exp_date = $data['exp_date'];
+        $license->description = $attributes['description'];
+        $license->key = $attributes['key'];
+        $license->url = $attributes['url'];
+        $license->exp_date = $attributes['exp_date'];
         $license->licenseable_type = 'App\\' . ucfirst($model);
         $license->licenseable_id = $id;
 
@@ -38,10 +31,11 @@ class SoftwareLicenseController extends Controller
     }
 
 
-    public function update(SoftwareLicense $softwareLicense)
+    public function update(SoftwareLicenseRequest $request, SoftwareLicense $softwareLicense)
     {
-        $attributes = $this->validate_data()->valid();
+        $attributes = $request->validated();
         $softwareLicense->update($attributes);
+        
         return redirect()->back();
     }
 
@@ -50,24 +44,5 @@ class SoftwareLicenseController extends Controller
         $softwareLicense->delete();
 
         return redirect()->back();
-    }
-
-    /**
-     * Validates form data
-     */
-    private function validate_data(){
-
-        $validator = Validator::make(
-            request()->all(),
-            [
-                'description' => 'required',
-                'key' => 'nullable',
-                'url' => 'nullable|url',
-                'exp_date' => 'date|nullable'
-            ]
-        );
-
-
-        return $validator;
     }
 }

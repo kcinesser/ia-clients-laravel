@@ -9,6 +9,8 @@ use App\Enums\SiteStatus;
 use App\Service;
 use App\HostedDomain;
 use App\Hosting;
+use App\Http\Requests\ClientRequest;
+use App\Http\Requests\SiteRequest;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
@@ -25,9 +27,11 @@ class SiteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Client $client)
+    public function store(SiteRequest $request, Client $client)
     {
-        $site = $client->addSite($this->validate_data());
+        $attributes = $request->validated();
+        $site = $client->addSite($attributes);
+
         return redirect($site->path());
     }
 
@@ -52,9 +56,9 @@ class SiteController extends Controller
      * @param  \App\Site  $site
      * @return \Illuminate\Http\Response
      */
-    public function update(Client $client, Site $site)
+    public function update(SiteRequest $request, Client $client, Site $site)
     {
-        $attributes = $this->validate_data();
+        $attributes = $request->validated();
 
         if(isset($attributes['services']) ){
             //update services and remove it from attributes
@@ -71,18 +75,6 @@ class SiteController extends Controller
         $site->delete();
 
         return redirect($client->path());
-    }
-
-
-    public function notes(Client $client, Site $site) {
-        $site->update(
-            request()->validate([
-                'notes' => 'nullable',
-                'update_instructions' => 'nullable'
-            ])
-        );
-
-        return redirect($site->path());
     }
 
     /**
@@ -102,23 +94,6 @@ class SiteController extends Controller
 
         $site->services()->sync(!empty($data['services']) ? $data['services'] : null);
         return back();
-    }
-
-    /**
-     * Validates form data
-     */
-    private function validate_data(){
-        return request()->validate([
-            'name' => 'required|sometimes',
-            'URL' => 'required|sometimes|url',
-            'description' => 'nullable',
-            'status' => 'required|numeric|sometimes',
-            'technology' => 'required|numeric|sometimes',
-            'host_id' => 'required|numeric|sometimes',
-            'services' => 'nullable|array',
-            'services.*' => 'numeric',
-            'prev_dev' => 'nullable'
-        ]);
     }
 
     public function all_archives() {

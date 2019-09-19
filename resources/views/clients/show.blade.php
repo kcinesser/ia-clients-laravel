@@ -236,7 +236,7 @@
                 <div class="mb-12">
                     <h2 class="card-title"><i class="fa fa-pencil-square-o mr-1"></i> Notes</h2>
 
-                    <form method="POST" action="{{ $client->path() . '/notes' }}">
+                    <form method="POST" action="{{ $client->path() }}">
                         @csrf
                         @method('PATCH')
                         <textarea name="notes" class="card w-full mb-2 min-h-300">{{ $client->notes }}</textarea>

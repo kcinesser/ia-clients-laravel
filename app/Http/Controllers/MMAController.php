@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Client;
+use App\Http\Requests\UpdateRequest;
 use App\Site;
 use App\Service;
 use App\Update;
@@ -47,8 +48,8 @@ class MMAController extends Controller
         return view('mma.index', compact('mma_sites', 'mma_internal_sites'));
     }
 
-    public function store(Client $client, Site $site) {
-        $attributes = request()->validate(['description' => 'required', 'mma' => 'numeric']);
+    public function store(UpdateRequest $request, Client $client, Site $site) {
+        $attributes = $request->validated();
         $attributes['user_id'] = Auth::id();
 
         $update = $site->updates()->create($attributes);
@@ -60,8 +61,8 @@ class MMAController extends Controller
         return response()->json($update);
     }
 
-    public function update (Client $client, Site $site, Update $update) {
-        $attributes = request()->validate(['description' => 'required']);
+    public function update (UpdateRequest $request, Client $client, Site $site, Update $update) {
+        $attributes = $request->validated();
 
         $update->update($attributes);
         $update->friendly_date = \Carbon\Carbon::parse($update->updated_at)->format('n/j/Y');

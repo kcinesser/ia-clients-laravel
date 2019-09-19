@@ -238,7 +238,7 @@
                 <div class="mb-12">
                     <h2 class="card-title"><i class="fa fa-refresh mr-1"></i> Update Instructions</h2>
 
-                    <form method="POST" action="{{ $site->path() . '/notes' }}">
+                    <form method="POST" action="{{ $site->path() }}">
                         @csrf
                         @method('PATCH')
                         <textarea name="update_instructions" class="card w-full mb-2 min-h-300">{{ $site->update_instructions }}</textarea>
@@ -249,7 +249,7 @@
     			<div class="mb-12">
                     <h2 class="card-title"><i class="fa fa-pencil-square-o mr-1"></i> Notes</h2>
 
-                    <form method="POST" action="{{ $site->path() . '/notes' }}">
+                    <form method="POST" action="{{ $site->path() }}">
                         @csrf
                         @method('PATCH')
                         <textarea name="notes" class="card w-full mb-2 min-h-300">{{ $site->notes }}</textarea>
