@@ -24,7 +24,7 @@ class HostedDomainRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => "required",
+            'name' => 'required|unique:hosted_domains,name',
             'exp_date' => 'nullable|date',
             'site_id' => 'nullable|numeric|sometimes',
             'remote_provider_type' => 'nullable|numeric|sometimes',
