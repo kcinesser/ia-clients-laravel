@@ -7,6 +7,7 @@ use App\Client;
 use App\Update;
 use App\Activity;
 use Auth;
+use Illuminate\Support\Facades\Log;
 
 class DashboardController extends Controller
 {
@@ -16,7 +17,9 @@ class DashboardController extends Controller
     	$projects = $user->dashboardProjects();
     	$sites = $user->dashboardSites();
     	$updates = Update::all()->sortByDesc('created_at');
-    	$activities = Activity::latest()->take(10)->get();
+		$activities = Activity::latest()->take(10)->get();
+		
+		Log::critical("TEST CRITICAL ERROR");
 
     	return view('dashboard.dashboard', compact('user', 'clients', 'projects', 'updates', 'activities', 'sites'));
     }
