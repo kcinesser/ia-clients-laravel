@@ -57,7 +57,7 @@
 			  		@forelse ($sites as $site)
 			            <div class="lg:w-full p-2">
 			            	<h3><a href="{{ $site->path() }}">{{ $site->name }}</a>
-								<span class="badge {{$site->status == App\Enums\SiteStatus::InDevelopment ? 'badge-dev' : 'badge-live'}}">{{$site->status == App\Enums\SiteStatus::InDevelopment ? 'In Dev' : 'Live'}}</span>
+								<span class="badge {{$site->status == App\Enums\SiteStatus::InDevelopment ? 'badge-dev' : 'badge-' . strtolower(\App\Enums\SiteStatus::getDescription($site->status))}}">{{$site->status == App\Enums\SiteStatus::InDevelopment ? 'In Dev' : \App\Enums\SiteStatus::getDescription($site->status)}}</span>
 
 								@if ($site->services->contains(1))
 									<span class="badge badge-mma">MMA</span>

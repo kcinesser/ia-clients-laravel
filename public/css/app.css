@@ -3499,6 +3499,11 @@ hr.with-text:after {
   font-weight: 800;
 }
 
+.badge[class*="badge-"]{
+  background-color: #fac957;
+  color: #4c2e3f;
+}
+
 .badge.badge-mma {
   background-color: #59679c;
   color: #fff;
