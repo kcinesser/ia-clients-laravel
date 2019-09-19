@@ -76,7 +76,7 @@
 			</div>
 			<div class="lg:w-1/4 lg:pl-6">
 		   		<h2 class="text-gray-500 mb-2 headline-lead"><i class="fa fa-commenting-o mr-1"></i> Activity Feed</h2>
-				<div class="card">
+				<div class="card constrain-height">
 					@foreach ($activities as $activity)
 						<div class="border-b-2 py-6">
 							<span class="text-gray-500 text-xs font-normal block tracking-wider">{{ \Carbon\Carbon::parse($activity->created_at)->format('n/j/Y') }}</span>
