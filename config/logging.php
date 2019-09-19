@@ -30,7 +30,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['daily'],
+            'channels' => ['stderr', 'slack'],
             'ignore_exceptions' => false,
         ],
         'single' => [
@@ -67,6 +67,7 @@ return [
             'with' => [
                 'stream' => 'php://stderr',
             ],
+            'level' => 'error'
         ],
         'stdout' => [
             'driver' => 'monolog',
