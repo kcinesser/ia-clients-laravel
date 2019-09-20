@@ -11,22 +11,35 @@
     	<div class="lg:flex">
 			<div class="lg:w-3/4 lg:pr-6">
 				<div class="flex justify-between mb-1">
-					<h2 class="inline-block text-gray-500 headline-lead"><i class="fa fa-users mr-1"></i> Upcoming Due Dates</h2>
+					<h2 class="inline-block text-gray-500 headline-lead"><i class="fa fa-calendar-o mr-1"></i> Active Project Due Dates</h2>
 				</div>
 				<div  class="lg:flex lg:flex-wrap card">
 					@foreach($dashboard_items['upcoming_projects'] as $project)
-					<div class="lg:w-1/2 p-2">
-						<h3><a href="{{ $project->path() }}">{{ $project->title }}</a></h3>
-						<p><a href="{{ $project->client->path() }}" class="text-gray-500 text-sm font-normal">{{ $project->client->name }}</a></p>
-					</div>
-					<div class="lg:w-1/4 p-2">
-						@if(isset($project->end_date))
-							<p class="text-gray-500 text-sm font-normal">Due: {{ $project->end_date }}</p>
-						@endif
-					</div>
-					<div class="lg:w-1/8 p-2">
-						<p class="text-gray-500 text-sm font-normal">{{ App\Enums\ProjectStatus::getDescription($project->status) }}</p>
-					</div>
+						<div class="lg:w-2/5 p-2">
+							<h3><a href="{{ $project->path() }}">{{ $project->title }}</a></h3>
+							<p><a href="{{ $project->client->path() }}" class="text-gray-500 text-sm font-normal">{{ $project->client->name }}</a></p>
+						</div>
+						<div class="lg:w-3/5 p-2 flex">
+							<div class="lg:w-1/3 p-2">
+								<p class="text-gray-500 text-sm font-normal">
+									@if($project->status == App\Enums\ProjectStatus::Incoming || $project->status == App\Enums\ProjectStatus::Hold || $project->status == App\Enums\ProjectStatus::Kickoff)
+										<span class="badge badge-warn">{{ App\Enums\ProjectStatus::getDescription($project->status) }}</span>
+									@elseif ($project->status == App\Enums\ProjectStatus::Complete)
+										<span class="badge badge-live">{{ App\Enums\ProjectStatus::getDescription($project->status) }}</span>
+									@else
+										<span class="badge badge-dev">{{ App\Enums\ProjectStatus::getDescription($project->status) }}</span>
+									@endif
+								</p>
+							</div>
+							<div class="lg:w-1/3 p-2">
+								<p class="text-gray-500 text-sm font-normal">{{ $project->developer->initials() }}</p>
+							</div>
+							<div class="lg:w-1/3 p-2">
+								@if(isset($project->end_date))
+									<p class="text-gray-500 text-sm font-normal">Due: {{ \Carbon\Carbon::parse($project->end_date)->format('n/j/Y') }}</p>
+								@endif
+							</div>
+						</div>
 					@endforeach
 				</div>
 
@@ -36,12 +49,12 @@
     		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#clientsModal"><i class="fa fa-th-list mr-1"></i> <span class="hidden sm:inline">View </span>All Clients</button>
     		    	</div>
     		    </div>
-		   		<div  class="lg:flex lg:flex-wrap card">
+		   		<div  class="flex lg:flex-wrap card">
 			   		@forelse ($dashboard_items['clients'] as $client)
-						<div class="lg:w-3/4 p-2">
+						<div class="w-3/4 p-2">
 							<h3><a href="{{ $client->path() }}">{{ $client->name }}</a></h3>
 						</div>
-						<div class="lg:w-1/4 p-2 text-right">
+						<div class="lg:w-1/4 w-1/2 p-2 text-right">
 							<form method="POST" action='/favorite/{{ $client->favorite->id }}'>
 								@csrf
 								@method('DELETE')
@@ -61,13 +74,13 @@
     		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#projectsModal"><i class="fa fa-th-list mr-1"></i> <span class="hidden sm:inline">View </span>All Projects</button>
     		    	</div>
 		    	</div>
-		   		<div  class="lg:flex lg:flex-wrap card">
+		   		<div  class="flex lg:flex-wrap card">
 			  		@forelse ($dashboard_items['projects'] as $project)
-			            <div class="lg:w-3/4 p-2">
+			            <div class="lg:w-3/4 w-1/2 p-2">
 			            	<h3><a href="{{ $project->path() }}">{{ $project->title }}</a></h3>
 							<p><a href="{{ $project->client->path() }}" class="text-gray-500 text-sm font-normal">{{ $project->client->name }}</a></p>
 						</div>
-						<div class="lg:w-1/4 p-2 text-right">
+						<div class="lg:w-1/4 w-1/2 p-2 text-right">
 							<form method="POST" action='/favorite/{{ $project->favorite->id }}'>
 								@csrf
 								@method('DELETE')
@@ -87,9 +100,9 @@
     		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#sitesModal"><i class="fa fa-th-list mr-1"></i> <span class="hidden sm:inline">View </span>All Sites</button>
     		    	</div>
 		    	</div>
-		   		<div  class="lg:flex lg:flex-wrap card">
+		   		<div  class="flex lg:flex-wrap card">
 			  		@forelse ($dashboard_items['sites'] as $site)
-			            <div class="lg:w-3/4 p-2">
+			            <div class="w-3/4 w-1/2 p-2">
 			            	<h3><a href="{{ $site->path() }}">{{ $site->name }}</a>
 								<span class="badge {{$site->status == App\Enums\SiteStatus::InDevelopment ? 'badge-dev' : 'badge-' . strtolower(\App\Enums\SiteStatus::getDescription($site->status))}}">{{$site->status == App\Enums\SiteStatus::InDevelopment ? 'In Dev' : \App\Enums\SiteStatus::getDescription($site->status)}}</span>
 
@@ -101,7 +114,7 @@
 							</h3>
 							<p><a href="{{ $site->client->path() }}" class="text-gray-500 text-sm font-normal">{{ $site->client->name }}</a></p>
 						</div>
-						<div class="lg:w-1/4 p-2 text-right">
+						<div class="w-1/4 p-2 text-right">
 							<form method="POST" action='/favorite/{{ $site->favorite->id }}'>
 								@csrf
 								@method('DELETE')

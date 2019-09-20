@@ -3523,8 +3523,8 @@ hr.with-text:after {
   color: #4a5568;
 }
 
-.badge.badge-dev {
-  background-color: #fac957;
+.badge.badge-warn {
+  background-color: #feb2b2;
   color: #4c2e3f;
 }
 

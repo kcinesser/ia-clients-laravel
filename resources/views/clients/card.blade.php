@@ -23,7 +23,7 @@
     	<p class="small"> {{ \Carbon\Carbon::parse($client->created_at)->format('n-j-Y')}}</p>
 	</div>
     <div class="text-right">
-        @if ($client->status != 3)
+        @if ($client->status != App\Enums\ClientStatus::Archived)
             <form class="archive-client-form" method="POST" action="{{ $client->path() . '/archive' }}">
                 @method('PATCH')
                 @csrf

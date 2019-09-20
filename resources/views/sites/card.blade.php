@@ -63,7 +63,7 @@
     </div>
 
     <div class="text-right">
-        @if ($site->status != 4)
+        @if ($site->status != App\Enums\SiteStatus::Archived)
             <form class="archive-site-form" method="POST" action="{{ $site->path() . '/archive' }}">
                 @method('PATCH')
                 @csrf
