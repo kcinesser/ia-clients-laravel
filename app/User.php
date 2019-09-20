@@ -43,45 +43,6 @@ class User extends Authenticatable
         return $initials;
     }
 
-    public function dashboardProjects() {
-        $projects = array();
-
-        if ($this->role == UserTypes::Developer) {
-            $projects = $this->projects->whereNotIn('status', ProjectStatus::Archived);
-        } elseif ($this->role == UserTypes::AccountManager) {
-            $projects = $this->accountManagerProjects->whereNotIn('status', ProjectStatus::Archived);
-        }
-
-        return $projects;
-    }
-
-    public function dashboardClients() {
-        $clients = array();
-        
-        if ($this->role == UserTypes::Developer) {
-            $client_ids = Project::where('developer_id', $this->id)->pluck('client_id');
-            $clients = Client::find($client_ids)->whereNotIn('status', ClientStatus::Archived);
-        } else {
-            $clients = $this->clients->whereNotIn('status', ClientStatus::Archived);
-        }
-        
-        return $clients;
-    }
-
-    public function dashboardSites() {
-        $sites = array();
-
-        if ($this->role == UserTypes::Developer) {
-            $site_ids = Project::where('developer_id', $this->id)->pluck('site_id');
-            $sites = Site::find($site_ids)->whereNotIn('status', SiteStatus::Archived);
-        } else {
-            $sites = Site::whereIn('client_id', $this->clients->pluck('id'))->get()->whereNotIn('status', SiteStatus::Archived);
-        }
-        
-        return $sites;
-    }
-
-
     public function clients() {
         return $this->hasMany(Client::class, 'account_manager_id');
     }
@@ -90,7 +51,7 @@ class User extends Authenticatable
         return $this->hasManyThrough(Project::class, Client::class, 'account_manager_id');
     }
 
-    public function projects() {
+    public function developerProjects() {
         return $this->hasMany(Project::class, 'developer_id');
     }
 
@@ -100,5 +61,9 @@ class User extends Authenticatable
 
     public function updates() {
         return $this->hasMany(Update::class);
+    }
+
+    public function favorites() {
+        return $this->hasMany(Favorite::class);
     }
 }

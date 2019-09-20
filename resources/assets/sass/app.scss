@@ -273,6 +273,14 @@ hr {
 		&:hover { @apply bg-red-300; }
 	}
 
+	&.btn-favorite {
+		font-size: 1.5em;
+		background-color: transparent;
+		width: 40px;
+		height: 40px;
+		padding: 0px 0px;
+		@apply text-yellow-300;
+	}
 }
 
 .card {

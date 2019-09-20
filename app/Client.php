@@ -88,6 +88,10 @@ class Client extends Model
         return $this->morphMany(Comment::class, 'commentable');
     }
 
+    public function favorite() {
+        return $this->morphOne(Favorite::class, 'favoriteable');
+    }
+
     public function uploads() {
         return $this->morphMany(Upload::class, 'uploadable');
     }

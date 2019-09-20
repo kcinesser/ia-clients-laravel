@@ -6,6 +6,18 @@
         <div class="flex justify-start w-full items-center">
             <h1 class="text-blue-500"><i class="fa fa-laptop mr-3"></i>Sites / {{ $site->name }}</h1>
             <a href="" class="button btn-add ml-4" data-toggle="modal" data-target="#editSiteModal"><i class="fa fa-pencil"></i></a>
+            @if(!$site->favorite)
+                <form method="POST" action='/favorite/site/{{ $site->id }}'>
+                    @csrf
+                    <button type="submit" class="button btn-favorite ml-4"><i class="fa fa-star-o"></i></button>
+                </form>
+            @else
+                <form method="POST" action='/favorite/{{ $site->favorite->id }}'>
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="button btn-favorite ml-4"><i class="fa fa-star "></i></button>
+                </form>
+            @endif  
         </div>
         <p class="small">{{ $site->description }}</p>
     </header>
