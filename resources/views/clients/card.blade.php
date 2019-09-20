@@ -24,8 +24,8 @@
 	</div>
     <div class="mb-6">
         <p class="text-gray-800 text-xs headline-lead">Client Archives</p>
-        <p class="small"><a href="{{ $client->siteArchivePath() }}">{{ count($archived_sites) }} Archived {{Illuminate\Support\Str::plural('Site', count($archived_sites))}} <i class="fa fa-sign-out ml-1"></i></a></p>
-        <p class="small"><a href="{{ $client->projectArchivePath() }}">{{ count($archived_projects) }} Archived {{Illuminate\Support\Str::plural('Project', count($archived_projects))}} <i class="fa fa-sign-out ml-1"></i></a></p>
+        <p class="small"><a href="{{ $client->siteArchivePath() }}">{{ count($archived_sites) }} Archived {{Illuminate\Support\Str::plural('Site', count($archived_sites))}} <i class="fa fa-share ml-1"></i></a></p>
+        <p class="small"><a href="{{ $client->projectArchivePath() }}">{{ count($archived_projects) }} Archived {{Illuminate\Support\Str::plural('Project', count($archived_projects))}} <i class="fa fa-share ml-1"></i></a></p>
     </div>
     <div class="text-right">
         @if ($client->status != 3)

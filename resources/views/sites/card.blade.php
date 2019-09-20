@@ -1,6 +1,6 @@
 <div class="card">
     <h3 class="mb-3">
-        <i class="fa fa-users mr-3"></i><a href="{{ $site->client->path() }}" class="text-black no-underline">{{ $site->client->name }}</a>
+        <i class="fa fa-users mr-3"></i><a href="{{ $site->client->path() }}" class="no-underline">{{ $site->client->name }}</a>
     </h3>
     <div class="mb-6">
         <p class="text-gray-800 text-xs headline-lead">Status</p>
@@ -34,6 +34,11 @@
     <div class="mb-6">
         <p class="text-gray-800 text-xs headline-lead">Hosting</p>
         <p class="small">{{$site->host->name}} ({{ \App\Enums\Owners::getKey($site->host->owner) }})</p>
+    </div>
+
+    <div class="mb-6">
+        <p class="text-gray-800 text-xs headline-lead">Site Project Archives</p>
+        <p class="small"><a href="{{ $client->projectArchivePath() }}">{{ count($archived_projects) }} Archived {{Illuminate\Support\Str::plural('Project', count($archived_projects))}} <i class="fa fa-share ml-1"></i></a></p>
     </div>
 
     @if($site->prev_dev)

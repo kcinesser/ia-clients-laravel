@@ -22,7 +22,7 @@
                             <div class="lg:w-1/2"><p class="text-gray-500">{{ $project->client->name }}</p></div>
                         </div>
                     @empty
-                        <div>No archives found.</div>
+                        <div class="p-3">No archives found.</div>
                     @endforelse
                 </div>
             </div>

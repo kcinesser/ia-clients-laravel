@@ -22,6 +22,10 @@ body {
 	@apply font-body text-gray-900;
 }
 
+main.container {
+	min-height: calc(100vh - 257px);
+}
+
 button:focus {
 	outline: none;
 }
@@ -191,6 +195,10 @@ hr {
 	}
 }
 
+.min-h-300 {
+	min-height: 300px;
+}
+
 // END - base styles
 
 @tailwind components;
@@ -283,7 +291,7 @@ hr {
 	a:link, a:visited {
 		font-family: Montserrat, sans-serif;
 		text-decoration: none;
-		color: #4B5783;
+		//color: #4B5783;
 
 		&:hover, &:active {
 			opacity: 0.7;
