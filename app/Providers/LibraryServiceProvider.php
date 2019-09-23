@@ -33,9 +33,5 @@ class LibraryServiceProvider extends ServiceProvider
         $this->app->singleton(GoDaddyClient::class, function ($app) {
             return new GoDaddyClient($app->make(Client::class), config('services.godaddy.api.url'), config('services.godaddy.api.key'), config('services.godaddy.api.secret'));
         });
-        
-        $this->app->singleton(NamecheapClient::class, function ($app) {
-            return new NamecheapClient($app->make(Client::class));
-        });
     }
 }
