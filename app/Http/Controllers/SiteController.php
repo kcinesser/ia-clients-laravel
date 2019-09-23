@@ -41,8 +41,9 @@ class SiteController extends Controller
     {
         $services = Service::all();
         $projects = $site->projects->whereNotIn('status', ProjectStatus::Archived);
+        $archived_projects = $site->projects->whereIn('status', ProjectStatus::Archived);
 
-        return view('sites.show' , compact('client', 'site', 'services', 'projects'));
+        return view('sites.show' , compact('client', 'site', 'services', 'projects', 'archived_projects'));
     }
 
     /**

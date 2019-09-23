@@ -20,8 +20,10 @@ class ClientController extends Controller
     public function show(Client $client) {
         $projects = $client->projects->whereNotIn('status', ProjectStatus::Archived);
         $sites = $client->sites->whereNotIn('status', SiteStatus::Archived);
+        $archived_sites = $client->sites->whereIn('status', SiteStatus::Archived);
+        $archived_projects = $client->projects->whereIn('status', ProjectStatus::Archived);
 
-        return view('clients.show', compact('client', 'projects', 'sites'));
+        return view('clients.show', compact('client', 'projects', 'sites', 'archived_sites', 'archived_projects'));
     }
 
 

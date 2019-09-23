@@ -3030,6 +3030,10 @@ body {
   color: #1a202c;
 }
 
+main.container {
+  min-height: calc(100vh - 257px);
+}
+
 button:focus {
   outline: none;
 }
@@ -3296,6 +3300,10 @@ hr.with-text:after {
   background-color: #fcfcfa;
 }
 
+.min-h-300 {
+  min-height: 300px;
+}
+
 .container{
   width: 100%;
 }
@@ -3476,7 +3484,6 @@ hr.with-text:after {
 .card a:link, .card a:visited {
   font-family: Montserrat, sans-serif;
   text-decoration: none;
-  color: #4B5783;
 }
 
 .card a:link:hover, .card a:link:active, .card a:visited:hover, .card a:visited:active {

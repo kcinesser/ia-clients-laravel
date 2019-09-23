@@ -22,7 +22,7 @@
                             <div class="lg:w-1/2"><p>{{ $client->accountManager->name }}</p></div>
                         </div>
                     @empty
-                        <div>No archives found.</div>
+                        <div class="p-3">No archives found.</div>
                     @endforelse
                 </div>
             </div>

@@ -90,36 +90,39 @@
                         @endforeach
                         </div>
                     </div>
-                    @else
-                        <div class="flex flex-wrap items-center mb-6">
-                            <h2 class="card-title"><i class="fa fa-globe mr-1"></i> Add a Hosted Domain</h2>
-                            <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newDomainSiteModal"><i class="fa fa-plus"></i></a>
-                        </div>
-                    @endif
+                @else
+                    <div class="flex flex-wrap items-center mb-6">
+                        <h2 class="card-title"><i class="fa fa-globe mr-1"></i> Add a Hosted Domain</h2>
+                        <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newDomainSiteModal"><i class="fa fa-plus"></i></a>
+                    </div>
+                @endif
 
-                @if($site->projects()->exists())
+                @if( !(count($projects) == 0) )
                 <div>
                     <div class="flex flex-wrap items-center mb-2">
-                        <h2 class="card-title"><i class="fa fa-check-square-o mr-1"></i> Projects</h2>
-                        <a href="" class="button btn-add-sm mb-1 -mt-1 ml-2" data-toggle="modal" data-target="#newProjectModal"><i class="fa fa-plus"></i></a>
+                        <h2 class="card-title"><i class="fa fa-tasks mr-1"></i> Projects</h2>
+                        <a href="" class="add-toggle button btn-add-sm" data-toggle="modal" data-target="#newProjectModal"><i class="fa fa-plus"></i></a>
                     </div>
 
                     <div class="lg:flex lg:flex-wrap card">
-                        @forelse ($projects as $project)
+                        @foreach ($projects as $project)
                             <div class="lg:w-full p-2">
                                 <h3><a href="{{ $project->path() }}">{{ $project->title }}</a></h3>
-                                <p class="small">{{ \Illuminate\Support\Str::limit($project->description, 80) }}</p>
+                                <p class="small">{{ \Illuminate\Support\Str::limit($project->description, 65) }}</p>
                             </div>
-                        @empty
-                            <div class="lg:w-full p-2">
-                                <p>No projects yet.</p>
-                            </div>
-                        @endforelse
+                        @endforeach
+
                         @if($site->hasProjectArchive())
-                            <a href="{{ $client->projectArchivePath() }}" class="headline-lead text-xs no-underline text-right ml-auto">View Archived Projects</a>
+                            <a href="{{ $client->projectArchivePath() }}" class="headline-lead text-xs no-underline text-right ml-auto mt-3 block">View Archived Projects</a>
                         @endif
+
                     </div>
                 </div>
+                @else
+                    <div class="flex flex-wrap items-center mb-6">
+                        <h2 class="card-title"><i class="fa fa-tasks mr-1"></i> Add a Project</h2>
+                        <a href="" class="add-toggle button btn-add-sm" data-toggle="modal" data-target="#newProjectModal"><i class="fa fa-plus"></i></a>
+                    </div>
                 @endif
 
                 <div>
