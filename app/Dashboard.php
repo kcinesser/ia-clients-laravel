@@ -43,7 +43,9 @@ class Dashboard
         $clients = array();
 
         foreach($favorite_clients as $client) {
-            array_push($clients, $client->favoriteable);
+            if ($client->favoriteable->status != ClientStatus::Archived) {
+                array_push($clients, $client->favoriteable);
+            }
         }
 
         return $clients;
@@ -54,7 +56,9 @@ class Dashboard
         $projects = array();
 
         foreach($favorite_projects as $project) {
-            array_push($projects, $project->favoriteable);
+            if ($project->favoriteable->status != ProjectStatus::Archived) {
+                array_push($projects, $project->favoriteable);
+            }
         }
 
         return $projects;
@@ -65,7 +69,9 @@ class Dashboard
         $sites = array();
 
         foreach($favorite_sites as $site) {
-            array_push($sites, $site->favoriteable);
+            if ($site->favoriteable->status != SiteStatus::Archived) {
+                array_push($sites, $site->favoriteable);
+            }
         }
 
         return $sites;

@@ -22,7 +22,7 @@ class ProjectTableSeeder extends Seeder
         	'technology' => Technologies::PHP,
         	'go_live_date' => '2019-10-31',
         	'start_date' => '2019-06-01',
-        	'end_date' => '2019-10-1',
+        	'end_date' => '2019-9-23',
         	'status' => ProjectStatus::Hold
         ]);
 
@@ -35,7 +35,7 @@ class ProjectTableSeeder extends Seeder
         	'technology' => Technologies::WordPress,
         	'go_live_date' => '2019-10-31',
         	'start_date' => '2019-07-01',
-        	'end_date' => '2019-10-15',
+        	'end_date' => '2019-9-27',
         	'status' => ProjectStatus::Hold
         ]);
 
@@ -48,7 +48,7 @@ class ProjectTableSeeder extends Seeder
         	'technology' => Technologies::PHP,
         	'go_live_date' => '2019-10-31',
         	'start_date' => '2019-01-01',
-        	'end_date' => '2019-10-31',
+        	'end_date' => '2019-9-14',
         	'status' => ProjectStatus::Kickoff
         ]);
 
@@ -61,8 +61,8 @@ class ProjectTableSeeder extends Seeder
         	'technology' => Technologies::WordPress,
         	'go_live_date' => '2019-10-31',
         	'start_date' => '2019-01-01',
-        	'end_date' => '2019-11-30',
-        	'status' => ProjectStatus::InDesign
+        	'end_date' => '2019-9-20',
+        	'status' => ProjectStatus::Complete
         ]);
 
 

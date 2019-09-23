@@ -19,7 +19,7 @@
 							<h3><a href="{{ $project->path() }}">{{ $project->title }}</a></h3>
 							<p><a href="{{ $project->client->path() }}" class="text-gray-500 text-sm font-normal">{{ $project->client->name }}</a></p>
 						</div>
-						<div class="lg:w-3/5 p-2 flex">
+						<div class="lg:w-3/5 flex lg:p-2 md:p-2 sm:p-0">
 							<div class="lg:w-1/3 p-2">
 								<p class="text-gray-500 text-sm font-normal">
 									@if($project->status == App\Enums\ProjectStatus::Incoming || $project->status == App\Enums\ProjectStatus::Hold || $project->status == App\Enums\ProjectStatus::Kickoff)
@@ -36,7 +36,17 @@
 							</div>
 							<div class="lg:w-1/3 p-2">
 								@if(isset($project->end_date))
-									<p class="text-gray-500 text-sm font-normal">Due: {{ \Carbon\Carbon::parse($project->end_date)->format('n/j/Y') }}</p>
+									<p class="text-gray-500 text-sm font-normal">Due: {{ \Carbon\Carbon::parse($project->end_date)->format('n/j/Y') }}
+										@if (\Carbon\Carbon::parse($project->end_date)->isToday())
+											<i class="fa fa-exclamation text-red-500"></i>
+										@elseif($project->status == App\Enums\ProjectStatus::Complete)
+											<i class="fa fa-check text-green-500"></i>
+										@elseif(\Carbon\Carbon::parse($project->end_date)->isPast())
+											<i class="fa fa-exclamation-triangle text-red-500"></i>
+										@elseif(\Carbon\Carbon::parse($project->end_date) < \Carbon\Carbon::now()->addWeek())
+											<i class="fa fa-exclamation text-yellow-500"></i>
+										@endif
+									</p>
 								@endif
 							</div>
 						</div>
@@ -44,7 +54,7 @@
 				</div>
 
     			<div class="flex justify-between mb-1">
-    		   		<h2 class="inline-block text-gray-500 headline-lead"><i class="fa fa-users mr-1"></i> Your Favorite Clients</h2>
+    		   		<h2 class="inline-block text-gray-500 headline-lead"><i class="fa fa-users mr-1"></i> <span class="hidden md:inline lg:inline">Your </span>Favorite Clients</h2>
     		   		<div class="inline-block text-right">
     		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#clientsModal"><i class="fa fa-th-list mr-1"></i> <span class="hidden sm:inline">View </span>All Clients</button>
     		    	</div>
@@ -69,7 +79,7 @@
 				</div>
 		    	
 		    	<div class="flex justify-between mb-1">
-    		  		<h2 class="inline-block text-gray-500 headline-lead"><i class="fa fa-tasks mr-1"></i> Your Favorite Projects</h2>
+    		  		<h2 class="inline-block text-gray-500 headline-lead"><i class="fa fa-tasks mr-1"></i> <span class="hidden md:inline lg:inline">Your </span> Favorite Projects</h2>
     		  		<div class="inline-block text-right">
     		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#projectsModal"><i class="fa fa-th-list mr-1"></i> <span class="hidden sm:inline">View </span>All Projects</button>
     		    	</div>
@@ -95,7 +105,7 @@
 				</div>
 				
 				<div class="flex justify-between mb-1">
-    		    	<h2 class="inline-block text-gray-500 headline-lead"><i class="fa fa-window-maximize mr-1"></i> Your Favorite Sites</h2>
+    		    	<h2 class="inline-block text-gray-500 headline-lead"><i class="fa fa-window-maximize mr-1"></i> <span class="hidden md:inline lg:inline">Your  </span>Favorite Sites</h2>
     		    	<div class="inline-block text-right">
     		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#sitesModal"><i class="fa fa-th-list mr-1"></i> <span class="hidden sm:inline">View </span>All Sites</button>
     		    	</div>

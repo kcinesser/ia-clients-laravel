@@ -56,6 +56,7 @@ class ClientController extends Controller
     }
 
     public function destroy (Client $client) {
+        $client->favorite->delete();
         $client->delete();
 
         return redirect('/');

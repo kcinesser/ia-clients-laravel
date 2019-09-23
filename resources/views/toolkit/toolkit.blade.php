@@ -107,6 +107,10 @@
                             <td><a href="" class="button btn-add"><i class="fa fa-pencil"></i></a></td>
                         </tr>
                         <tr>
+                            <td><code>.button.btn-favorite</td>
+                            <td><button type="submit" class="button btn-favorite"><i class="fa fa-star "></i></button></td>
+                        </tr>
+                        <tr>
                             <td><code>.button.btn-large</code></td>
                             <td><a href="" class="button btn-large">Large Button</a></td>
                         </tr>
