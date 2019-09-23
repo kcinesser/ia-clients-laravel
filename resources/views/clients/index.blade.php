@@ -35,13 +35,13 @@
                                 @if(!$client->favorite)
                                     <form method="POST" action='/favorite/client/{{ $client->id }}'>
                                         @csrf
-                                        <button type="submit"><i class="fa fa-star-o text-yellow-500"></i></button>
+                                        <button type="submit"><i class="fa fa-star-o text-yellow-300"></i></button>
                                     </form>
                                 @else
                                     <form method="POST" action='/favorite/{{ $client->favorite->id }}'>
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit"><i class="fa fa-star text-yellow-500"></i></button>
+                                        <button type="submit"><i class="fa fa-star text-yellow-300"></i></button>
                                     </form>
                                 @endif   
                             </div>
