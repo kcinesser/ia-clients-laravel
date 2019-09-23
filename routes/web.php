@@ -136,3 +136,7 @@ Route::get('mail_preview/domain_expiring/{daysOut}', function ($daysOut) {
     
     return new App\Mail\UpcomingDomainExpiration($remoteDomain, $hostedDomain, $daysOut);
 });
+
+Route::get('testemail', function () {
+    Notification::route('mail', ['info.interactive@firespring.com'])->notify(new App\Notifications\TestEmail());
+});
