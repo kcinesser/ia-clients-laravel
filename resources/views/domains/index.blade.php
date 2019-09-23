@@ -8,27 +8,29 @@
     </header>
 
     <main>
-        <div class="tab-content settings-tabs" id="settingsTabContent">
-            <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
-                <div class="lg:flex justify-between p-3 sm:hidden hidden lg:block font-semibold text-blue-500">
-                    <div class="lg:flex-1">Domain Name</div>
-                    <div class="lg:flex-1">Client</div>
-                    <div class="lg:flex-1">Provider</div>
-                    <div class="lg:flex-1">Expires</div>
-                    <div class="lg:flex-1 text-center">Free With MMA?</div>
-                </div>
-                <div id="hosted-domain-modal-list">
-                    @foreach($domains as $domain)
-                        <div class="lg:flex justify-between p-3">
-                            <div class="lg:flex-1"><a href="http://{{ $domain->name }}" target="_blank">{{ $domain->name }}</a></div>
-                            <div class="lg:flex-1"><a href="{{ route('clients.show', ['client' => $domain->client]) }}">{{ $domain->client->name }}</a></div>
-                            <div class="lg:flex-1">{{ \App\Enums\RemoteDomainsProviders::getDescription($domain->remote_provider_type) }}</div>
-                            <div class="lg:flex-1">{{ $domain->exp_date ?? "" }}</p></div>
-                            <div class="lg:flex-1 text-center">{{ $domain->free_with_mma === TRUE ? "Yes" : "No" }}</div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
+    	<table class="list-table striped">
+    		<thead>
+            	<tr>
+            		<th>Domain Name</th>
+            		<th>Client</th>
+            		<th>Provider</th>
+            		<th>Provider ID</th>
+            		<th>Expires</th>
+            		<th class="text-center">Free With MMA?</th>
+            	</tr>
+           	</thead>
+           	<tbody>
+        	@foreach($domains as $domain)
+            	<tr>
+            		<td><a href="http://{{ $domain->name }}" target="_blank">{{ $domain->name }}</a></td>
+            		<td><a href="{{ route('clients.show', ['client' => $domain->client]) }}">{{ $domain->client->name }}</a></td>
+            		<td>{{ \App\Enums\RemoteDomainsProviders::getDescription($domain->remote_provider_type) }}</td>
+            		<td>{{ $domain->remote_provider_id }}</td>
+            		<td>{{ $domain->exp_date ?? "" }}</td>
+            		<td class="text-center">{{ $domain->free_with_mma === TRUE ? "Yes" : "No" }}</td>
+            	</tr>
+        	@endforeach
+        	</tbody>
+        </table>
     </main>
 @endsection

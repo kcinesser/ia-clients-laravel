@@ -184,8 +184,7 @@
 
 .ui-button-icon-only {
   width: 2em;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   text-indent: -9999px;
   white-space: nowrap;
 }
@@ -243,8 +242,7 @@ button.ui-button::-moz-focus-inner {
  */
 
 .ui-checkboxradio-label .ui-icon-background {
-  -webkit-box-shadow: inset 1px 1px 1px #ccc;
-          box-shadow: inset 1px 1px 1px #ccc;
+  box-shadow: inset 1px 1px 1px #ccc;
   border-radius: .12em;
   border: none;
 }
@@ -306,8 +304,7 @@ button.ui-button::-moz-focus-inner {
 }
 
 .ui-controlgroup-vertical .ui-controlgroup-item {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .ui-controlgroup .ui-controlgroup-label {
@@ -698,7 +695,6 @@ button.ui-button::-moz-focus-inner {
  */
 
 .ui-draggable-handle {
-  -ms-touch-action: none;
   touch-action: none;
 }
 /*!
@@ -824,7 +820,6 @@ button.ui-button::-moz-focus-inner {
   position: absolute;
   font-size: 0.1px;
   display: block;
-  -ms-touch-action: none;
   touch-action: none;
 }
 
@@ -906,7 +901,6 @@ button.ui-button::-moz-focus-inner {
  */
 
 .ui-selectable {
-  -ms-touch-action: none;
   touch-action: none;
 }
 
@@ -982,7 +976,6 @@ button.ui-button::-moz-focus-inner {
  */
 
 .ui-sortable-handle {
-  -ms-touch-action: none;
   touch-action: none;
 }
 /*!
@@ -1007,7 +1000,6 @@ button.ui-button::-moz-focus-inner {
   width: 1.2em;
   height: 1.2em;
   cursor: default;
-  -ms-touch-action: none;
   touch-action: none;
 }
 
@@ -1339,8 +1331,7 @@ a.ui-button:focus {
 }
 
 .ui-visual-focus {
-  -webkit-box-shadow: 0 0 3px 1px rgb(94, 158, 214);
-          box-shadow: 0 0 3px 1px rgb(94, 158, 214);
+  box-shadow: 0 0 3px 1px rgb(94, 158, 214);
 }
 
 .ui-state-active,
@@ -2052,7 +2043,6 @@ a.ui-button:active,
 }
 
 .ui-widget-shadow {
-  -webkit-box-shadow: 0/*{offsetLeftShadow}*/ 0/*{offsetTopShadow}*/ 5px/*{thicknessShadow}*/ #666666/*{bgColorShadow}*/;
   box-shadow: 0/*{offsetLeftShadow}*/ 0/*{offsetTopShadow}*/ 5px/*{thicknessShadow}*/ #666666/*{bgColorShadow}*/;
 }
 /*!
@@ -2088,7 +2078,6 @@ a.ui-button:active,
 
 .fade {
   opacity: 0;
-  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
@@ -2101,40 +2090,27 @@ a.ui-button:active,
   width: auto;
   margin: 1.75rem auto;
   pointer-events: none;
-  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
 .modal.fade .modal-dialog {
-  -webkit-transform: translate(0, -25%);
-          transform: translate(0, -25%);
+  transform: translate(0, -25%);
 }
 
-.modal.show .modal-dialog,
-.modal.in .modal-dialog {
-  -webkit-transform: translate(0, 0);
-          transform: translate(0, 0);
+.modal.show .modal-dialog, .modal.in .modal-dialog {
+  transform: translate(0, 0);
 }
 
 .modal-dialog-centered {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   min-height: calc(100% - (1.75rem auto * 2));
 }
 
 .modal-content {
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   width: 90%;
   margin: 0 auto;
   pointer-events: auto;
@@ -2170,15 +2146,9 @@ a.ui-button:active,
 }
 
 .modal-header {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  align-items: flex-start;
+  justify-content: space-between;
   padding: 1rem;
   border-bottom: 1px solid #F3F2EF;
   border-top-left-radius: 0.3rem;
@@ -2197,31 +2167,23 @@ a.ui-button:active,
 
 .modal-body {
   position: relative;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 auto;
-          flex: 1 1 auto;
+  flex: 1 1 auto;
   padding: 1rem;
 }
 
 .modal-footer {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  align-items: center;
+  justify-content: flex-end;
   padding: 1rem;
 }
 
 .modal-footer > :not(:first-child) {
-  margin-left: .25rem;
+  margin-left: 0.25rem;
 }
 
 .modal-footer > :not(:last-child) {
-  margin-right: .25rem;
+  margin-right: 0.25rem;
 }
 
 .modal-scrollbar-measure {
@@ -2254,11 +2216,8 @@ a.ui-button:active,
 }
 
 .nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
@@ -2316,18 +2275,13 @@ a.ui-button:active,
 }
 
 .nav-fill .nav-item {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 auto;
-          flex: 1 1 auto;
+  flex: 1 1 auto;
   text-align: center;
 }
 
 .nav-justified .nav-item {
-  -ms-flex-preferred-size: 0;
-      flex-basis: 0;
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
+  flex-basis: 0;
+  flex-grow: 1;
   text-align: center;
 }
 
@@ -2381,7 +2335,7 @@ a.ui-button:active,
 
 .dropdown-divider {
   height: 0;
-  margin: .5rem 0;
+  margin: 0.5rem 0;
   overflow: hidden;
   border-top: 1px solid #e9ecef;
 }
@@ -2478,8 +2432,7 @@ h1 {
  */
 
 hr {
-  -webkit-box-sizing: content-box;
-          box-sizing: content-box; /* 1 */
+  box-sizing: content-box; /* 1 */
   height: 0; /* 1 */
   overflow: visible; /* 2 */
 }
@@ -2667,8 +2620,7 @@ fieldset {
  */
 
 legend {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box; /* 1 */
+  box-sizing: border-box; /* 1 */
   color: inherit; /* 2 */
   display: table; /* 1 */
   max-width: 100%; /* 1 */
@@ -2699,8 +2651,7 @@ textarea {
 
 [type="checkbox"],
 [type="radio"] {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box; /* 1 */
+  box-sizing: border-box; /* 1 */
   padding: 0; /* 2 */
 }
 
@@ -2792,16 +2743,14 @@ template {
  */
 
 html {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box; /* 1 */
+  box-sizing: border-box; /* 1 */
   font-family: sans-serif; /* 2 */
 }
 
 *,
 *::before,
 *::after {
-  -webkit-box-sizing: inherit;
-          box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 /**
@@ -2915,6 +2864,12 @@ textarea::-webkit-input-placeholder {
 
 input::-moz-placeholder,
 textarea::-moz-placeholder {
+  color: inherit;
+  opacity: 0.5;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
   color: inherit;
   opacity: 0.5;
 }
@@ -3114,32 +3069,19 @@ a.no-underline {
 .header .container {
   margin-left: auto;
   margin-right: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
   font-family: Montserrat, sans-serif;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
 
 .sub-nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   color: #fff;
   background-color: #4B5783;
@@ -3158,17 +3100,10 @@ a.no-underline {
 .footer .container {
   margin-left: auto;
   margin-right: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
@@ -3275,12 +3210,11 @@ hr.with-text {
   color: black;
   text-align: center;
   height: 1.5em;
-  opacity: .5;
+  opacity: 0.5;
 }
 
 hr.with-text:before {
-  content: '';
-  background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(#818078), to(transparent));
+  content: "";
   background: linear-gradient(to right, transparent, #818078, transparent);
   position: absolute;
   left: 0;
@@ -3294,7 +3228,7 @@ hr.with-text:after {
   position: relative;
   display: inline-block;
   color: black;
-  padding: 0 .5em;
+  padding: 0 0.5em;
   line-height: 1.5em;
   color: #818078;
   background-color: #fcfcfa;
@@ -3344,17 +3278,14 @@ hr.with-text:after {
   padding-bottom: 0.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-  -webkit-transition: all 0.25s ease-in-out;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   transition: all 0.25s ease-in-out;
   display: inline-block;
 }
 
 .button:hover {
   background-color: #f36f51;
-  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
 .button.btn-large {
@@ -3423,8 +3354,7 @@ hr.with-text:after {
 
 .button.btn-add.btn-blue:hover {
   background-color: #59679c;
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .button.btn-add-sm {
@@ -3461,6 +3391,37 @@ hr.with-text:after {
 
 .button.btn-delete-sm:hover {
   background-color: #feb2b2;
+}
+
+.list-table {
+  table-layout: auto;
+  width: 100%;
+}
+
+.list-table thead tr {
+  background-color: #cbd5e0;
+  text-align: left;
+}
+
+.list-table thead tr th {
+  padding: 1rem;
+}
+
+.list-table tbody tr {
+  text-align: left;
+}
+
+.list-table tbody tr td {
+  padding: 1rem;
+}
+
+.list-table tbody tr td a {
+  color: #F15B39;
+  text-decoration: none;
+}
+
+.list-table.striped tbody tr:nth-child(even) {
+  background-color: #edf2f7;
 }
 
 .card {
@@ -3506,7 +3467,7 @@ hr.with-text:after {
   font-weight: 800;
 }
 
-.badge[class*="badge-"] {
+.badge[class*=badge-] {
   background-color: #fac957;
   color: #4c2e3f;
 }
@@ -3648,11 +3609,11 @@ p > .fa {
   display: block;
 }
 
-.field input[type='checkbox'] ~ label {
+.field input[type=checkbox] ~ label {
   display: inline;
 }
 
-.control input:not([type='checkbox']),
+.control input:not([type=checkbox]),
 .control select,
 .control textarea {
   display: block;
@@ -3673,7 +3634,7 @@ p > .fa {
   line-height: 1.25;
 }
 
-.control input:not([type='checkbox']):focus,
+.control input:not([type=checkbox]):focus,
 .control select:focus,
 .control textarea:focus {
   outline: 0;
@@ -3757,8 +3718,8 @@ select:focus {
 
 @media (min-width: 1024px) {
   #client-modal-list a,
-  #site-modal-list a,
-  #project-modal-list a {
+#site-modal-list a,
+#project-modal-list a {
     font-size: 0.875rem;
   }
 }
@@ -3791,7 +3752,7 @@ select:focus {
 }
 
 .mma-list > div.updated a:before {
-  content: '';
+  content: "";
   border-bottom: 1px solid #000;
   width: 100%;
   position: absolute;
@@ -7126,14 +7087,10 @@ select:focus {
 }
 
 .flex{
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
 .inline-flex{
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
@@ -7154,291 +7111,203 @@ select:focus {
 }
 
 .flex-row{
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
 }
 
 .flex-row-reverse{
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: reverse;
-      -ms-flex-direction: row-reverse;
-          flex-direction: row-reverse;
+  flex-direction: row-reverse;
 }
 
 .flex-col{
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
 
 .flex-col-reverse{
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: reverse;
-      -ms-flex-direction: column-reverse;
-          flex-direction: column-reverse;
+  flex-direction: column-reverse;
 }
 
 .flex-wrap{
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 .flex-wrap-reverse{
-  -ms-flex-wrap: wrap-reverse;
-      flex-wrap: wrap-reverse;
+  flex-wrap: wrap-reverse;
 }
 
 .flex-no-wrap{
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
+  flex-wrap: nowrap;
 }
 
 .items-start{
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  align-items: flex-start;
 }
 
 .items-end{
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+  align-items: flex-end;
 }
 
 .items-center{
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 .items-baseline{
-  -webkit-box-align: baseline;
-      -ms-flex-align: baseline;
-          align-items: baseline;
+  align-items: baseline;
 }
 
 .items-stretch{
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
+  align-items: stretch;
 }
 
 .self-auto{
-  -ms-flex-item-align: auto;
-      align-self: auto;
+  align-self: auto;
 }
 
 .self-start{
-  -ms-flex-item-align: start;
-      align-self: flex-start;
+  align-self: flex-start;
 }
 
 .self-end{
-  -ms-flex-item-align: end;
-      align-self: flex-end;
+  align-self: flex-end;
 }
 
 .self-center{
-  -ms-flex-item-align: center;
-      align-self: center;
+  align-self: center;
 }
 
 .self-stretch{
-  -ms-flex-item-align: stretch;
-      align-self: stretch;
+  align-self: stretch;
 }
 
 .justify-start{
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  justify-content: flex-start;
 }
 
 .justify-end{
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  justify-content: flex-end;
 }
 
 .justify-center{
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
 
 .justify-between{
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
 }
 
 .justify-around{
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  justify-content: space-around;
 }
 
 .content-center{
-  -ms-flex-line-pack: center;
-      align-content: center;
+  align-content: center;
 }
 
 .content-start{
-  -ms-flex-line-pack: start;
-      align-content: flex-start;
+  align-content: flex-start;
 }
 
 .content-end{
-  -ms-flex-line-pack: end;
-      align-content: flex-end;
+  align-content: flex-end;
 }
 
 .content-between{
-  -ms-flex-line-pack: justify;
-      align-content: space-between;
+  align-content: space-between;
 }
 
 .content-around{
-  -ms-flex-line-pack: distribute;
-      align-content: space-around;
+  align-content: space-around;
 }
 
 .flex-1{
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 0%;
-          flex: 1 1 0%;
+  flex: 1 1 0%;
 }
 
 .flex-auto{
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 auto;
-          flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 .flex-initial{
-  -webkit-box-flex: 0;
-      -ms-flex: 0 1 auto;
-          flex: 0 1 auto;
+  flex: 0 1 auto;
 }
 
 .flex-none{
-  -webkit-box-flex: 0;
-      -ms-flex: none;
-          flex: none;
+  flex: none;
 }
 
 .flex-grow-0{
-  -webkit-box-flex: 0;
-      -ms-flex-positive: 0;
-          flex-grow: 0;
+  flex-grow: 0;
 }
 
 .flex-grow{
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
+  flex-grow: 1;
 }
 
 .flex-shrink-0{
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 .flex-shrink{
-  -ms-flex-negative: 1;
-      flex-shrink: 1;
+  flex-shrink: 1;
 }
 
 .order-1{
-  -webkit-box-ordinal-group: 2;
-      -ms-flex-order: 1;
-          order: 1;
+  order: 1;
 }
 
 .order-2{
-  -webkit-box-ordinal-group: 3;
-      -ms-flex-order: 2;
-          order: 2;
+  order: 2;
 }
 
 .order-3{
-  -webkit-box-ordinal-group: 4;
-      -ms-flex-order: 3;
-          order: 3;
+  order: 3;
 }
 
 .order-4{
-  -webkit-box-ordinal-group: 5;
-      -ms-flex-order: 4;
-          order: 4;
+  order: 4;
 }
 
 .order-5{
-  -webkit-box-ordinal-group: 6;
-      -ms-flex-order: 5;
-          order: 5;
+  order: 5;
 }
 
 .order-6{
-  -webkit-box-ordinal-group: 7;
-      -ms-flex-order: 6;
-          order: 6;
+  order: 6;
 }
 
 .order-7{
-  -webkit-box-ordinal-group: 8;
-      -ms-flex-order: 7;
-          order: 7;
+  order: 7;
 }
 
 .order-8{
-  -webkit-box-ordinal-group: 9;
-      -ms-flex-order: 8;
-          order: 8;
+  order: 8;
 }
 
 .order-9{
-  -webkit-box-ordinal-group: 10;
-      -ms-flex-order: 9;
-          order: 9;
+  order: 9;
 }
 
 .order-10{
-  -webkit-box-ordinal-group: 11;
-      -ms-flex-order: 10;
-          order: 10;
+  order: 10;
 }
 
 .order-11{
-  -webkit-box-ordinal-group: 12;
-      -ms-flex-order: 11;
-          order: 11;
+  order: 11;
 }
 
 .order-12{
-  -webkit-box-ordinal-group: 13;
-      -ms-flex-order: 12;
-          order: 12;
+  order: 12;
 }
 
 .order-first{
-  -webkit-box-ordinal-group: -9998;
-      -ms-flex-order: -9999;
-          order: -9999;
+  order: -9999;
 }
 
 .order-last{
-  -webkit-box-ordinal-group: 10000;
-      -ms-flex-order: 9999;
-          order: 9999;
+  order: 9999;
 }
 
 .order-none{
-  -webkit-box-ordinal-group: 1;
-      -ms-flex-order: 0;
-          order: 0;
+  order: 0;
 }
 
 .float-right{
@@ -9933,128 +9802,103 @@ select:focus {
 }
 
 .shadow-2{
-  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .shadow-3{
-  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
 .shadow-4{
-  -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-          box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .shadow-5{
-  -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-          box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
 
 .shadow{
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
 }
 
 .hover\:shadow-2:hover{
-  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .hover\:shadow-3:hover{
-  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
 .hover\:shadow-4:hover{
-  -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-          box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .hover\:shadow-5:hover{
-  -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-          box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
 
 .hover\:shadow:hover{
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
 }
 
 .focus\:shadow-2:focus{
-  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .focus\:shadow-3:focus{
-  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
 .focus\:shadow-4:focus{
-  -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-          box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .focus\:shadow-5:focus{
-  -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-          box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
 
 .focus\:shadow:focus{
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
 }
 
 .active\:shadow-2:active{
-  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .active\:shadow-3:active{
-  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
 .active\:shadow-4:active{
-  -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-          box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .active\:shadow-5:active{
-  -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-          box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
 
 .active\:shadow:active{
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
 }
 
 .group:hover .group-hover\:shadow-2{
-  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .group:hover .group-hover\:shadow-3{
-  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
 .group:hover .group-hover\:shadow-4{
-  -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-          box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .group:hover .group-hover\:shadow-5{
-  -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-          box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
 
 .group:hover .group-hover\:shadow{
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
 }
 
 .fill-current{
@@ -11963,16 +11807,10 @@ Datepicker UI - START
   right: 0;
   bottom: 0;
   left: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   font-weight: normal;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .ui-datepicker-prev:before {
@@ -12012,18 +11850,14 @@ File Upload - START
   padding-bottom: 0.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-  -webkit-transition: all 0.25s ease-in-out;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   transition: all 0.25s ease-in-out;
   display: inline-block;
 }
 
-.inputfile:focus + label,
-.inputfile + label:hover {
+.inputfile:focus + label, .inputfile + label:hover {
   background-color: #80d7d9;
-  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
 /***
@@ -15350,14 +15184,10 @@ File Upload - END
   }
 
   .sm\:flex{
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
   }
 
   .sm\:inline-flex{
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
     display: inline-flex;
   }
 
@@ -15378,291 +15208,203 @@ File Upload - END
   }
 
   .sm\:flex-row{
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
+    flex-direction: row;
   }
 
   .sm\:flex-row-reverse{
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: reverse;
-        -ms-flex-direction: row-reverse;
-            flex-direction: row-reverse;
+    flex-direction: row-reverse;
   }
 
   .sm\:flex-col{
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    flex-direction: column;
   }
 
   .sm\:flex-col-reverse{
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: reverse;
-        -ms-flex-direction: column-reverse;
-            flex-direction: column-reverse;
+    flex-direction: column-reverse;
   }
 
   .sm\:flex-wrap{
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+    flex-wrap: wrap;
   }
 
   .sm\:flex-wrap-reverse{
-    -ms-flex-wrap: wrap-reverse;
-        flex-wrap: wrap-reverse;
+    flex-wrap: wrap-reverse;
   }
 
   .sm\:flex-no-wrap{
-    -ms-flex-wrap: nowrap;
-        flex-wrap: nowrap;
+    flex-wrap: nowrap;
   }
 
   .sm\:items-start{
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
+    align-items: flex-start;
   }
 
   .sm\:items-end{
-    -webkit-box-align: end;
-        -ms-flex-align: end;
-            align-items: flex-end;
+    align-items: flex-end;
   }
 
   .sm\:items-center{
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    align-items: center;
   }
 
   .sm\:items-baseline{
-    -webkit-box-align: baseline;
-        -ms-flex-align: baseline;
-            align-items: baseline;
+    align-items: baseline;
   }
 
   .sm\:items-stretch{
-    -webkit-box-align: stretch;
-        -ms-flex-align: stretch;
-            align-items: stretch;
+    align-items: stretch;
   }
 
   .sm\:self-auto{
-    -ms-flex-item-align: auto;
-        align-self: auto;
+    align-self: auto;
   }
 
   .sm\:self-start{
-    -ms-flex-item-align: start;
-        align-self: flex-start;
+    align-self: flex-start;
   }
 
   .sm\:self-end{
-    -ms-flex-item-align: end;
-        align-self: flex-end;
+    align-self: flex-end;
   }
 
   .sm\:self-center{
-    -ms-flex-item-align: center;
-        align-self: center;
+    align-self: center;
   }
 
   .sm\:self-stretch{
-    -ms-flex-item-align: stretch;
-        align-self: stretch;
+    align-self: stretch;
   }
 
   .sm\:justify-start{
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
+    justify-content: flex-start;
   }
 
   .sm\:justify-end{
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
+    justify-content: flex-end;
   }
 
   .sm\:justify-center{
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    justify-content: center;
   }
 
   .sm\:justify-between{
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    justify-content: space-between;
   }
 
   .sm\:justify-around{
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
+    justify-content: space-around;
   }
 
   .sm\:content-center{
-    -ms-flex-line-pack: center;
-        align-content: center;
+    align-content: center;
   }
 
   .sm\:content-start{
-    -ms-flex-line-pack: start;
-        align-content: flex-start;
+    align-content: flex-start;
   }
 
   .sm\:content-end{
-    -ms-flex-line-pack: end;
-        align-content: flex-end;
+    align-content: flex-end;
   }
 
   .sm\:content-between{
-    -ms-flex-line-pack: justify;
-        align-content: space-between;
+    align-content: space-between;
   }
 
   .sm\:content-around{
-    -ms-flex-line-pack: distribute;
-        align-content: space-around;
+    align-content: space-around;
   }
 
   .sm\:flex-1{
-    -webkit-box-flex: 1;
-        -ms-flex: 1 1 0%;
-            flex: 1 1 0%;
+    flex: 1 1 0%;
   }
 
   .sm\:flex-auto{
-    -webkit-box-flex: 1;
-        -ms-flex: 1 1 auto;
-            flex: 1 1 auto;
+    flex: 1 1 auto;
   }
 
   .sm\:flex-initial{
-    -webkit-box-flex: 0;
-        -ms-flex: 0 1 auto;
-            flex: 0 1 auto;
+    flex: 0 1 auto;
   }
 
   .sm\:flex-none{
-    -webkit-box-flex: 0;
-        -ms-flex: none;
-            flex: none;
+    flex: none;
   }
 
   .sm\:flex-grow-0{
-    -webkit-box-flex: 0;
-        -ms-flex-positive: 0;
-            flex-grow: 0;
+    flex-grow: 0;
   }
 
   .sm\:flex-grow{
-    -webkit-box-flex: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1;
+    flex-grow: 1;
   }
 
   .sm\:flex-shrink-0{
-    -ms-flex-negative: 0;
-        flex-shrink: 0;
+    flex-shrink: 0;
   }
 
   .sm\:flex-shrink{
-    -ms-flex-negative: 1;
-        flex-shrink: 1;
+    flex-shrink: 1;
   }
 
   .sm\:order-1{
-    -webkit-box-ordinal-group: 2;
-        -ms-flex-order: 1;
-            order: 1;
+    order: 1;
   }
 
   .sm\:order-2{
-    -webkit-box-ordinal-group: 3;
-        -ms-flex-order: 2;
-            order: 2;
+    order: 2;
   }
 
   .sm\:order-3{
-    -webkit-box-ordinal-group: 4;
-        -ms-flex-order: 3;
-            order: 3;
+    order: 3;
   }
 
   .sm\:order-4{
-    -webkit-box-ordinal-group: 5;
-        -ms-flex-order: 4;
-            order: 4;
+    order: 4;
   }
 
   .sm\:order-5{
-    -webkit-box-ordinal-group: 6;
-        -ms-flex-order: 5;
-            order: 5;
+    order: 5;
   }
 
   .sm\:order-6{
-    -webkit-box-ordinal-group: 7;
-        -ms-flex-order: 6;
-            order: 6;
+    order: 6;
   }
 
   .sm\:order-7{
-    -webkit-box-ordinal-group: 8;
-        -ms-flex-order: 7;
-            order: 7;
+    order: 7;
   }
 
   .sm\:order-8{
-    -webkit-box-ordinal-group: 9;
-        -ms-flex-order: 8;
-            order: 8;
+    order: 8;
   }
 
   .sm\:order-9{
-    -webkit-box-ordinal-group: 10;
-        -ms-flex-order: 9;
-            order: 9;
+    order: 9;
   }
 
   .sm\:order-10{
-    -webkit-box-ordinal-group: 11;
-        -ms-flex-order: 10;
-            order: 10;
+    order: 10;
   }
 
   .sm\:order-11{
-    -webkit-box-ordinal-group: 12;
-        -ms-flex-order: 11;
-            order: 11;
+    order: 11;
   }
 
   .sm\:order-12{
-    -webkit-box-ordinal-group: 13;
-        -ms-flex-order: 12;
-            order: 12;
+    order: 12;
   }
 
   .sm\:order-first{
-    -webkit-box-ordinal-group: -9998;
-        -ms-flex-order: -9999;
-            order: -9999;
+    order: -9999;
   }
 
   .sm\:order-last{
-    -webkit-box-ordinal-group: 10000;
-        -ms-flex-order: 9999;
-            order: 9999;
+    order: 9999;
   }
 
   .sm\:order-none{
-    -webkit-box-ordinal-group: 1;
-        -ms-flex-order: 0;
-            order: 0;
+    order: 0;
   }
 
   .sm\:float-right{
@@ -18157,128 +17899,103 @@ File Upload - END
   }
 
   .sm\:shadow-2{
-    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 
   .sm\:shadow-3{
-    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
 
   .sm\:shadow-4{
-    -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 
   .sm\:shadow-5{
-    -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
 
   .sm\:shadow{
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   }
 
   .sm\:hover\:shadow-2:hover{
-    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 
   .sm\:hover\:shadow-3:hover{
-    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
 
   .sm\:hover\:shadow-4:hover{
-    -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 
   .sm\:hover\:shadow-5:hover{
-    -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
 
   .sm\:hover\:shadow:hover{
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   }
 
   .sm\:focus\:shadow-2:focus{
-    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 
   .sm\:focus\:shadow-3:focus{
-    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
 
   .sm\:focus\:shadow-4:focus{
-    -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 
   .sm\:focus\:shadow-5:focus{
-    -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
 
   .sm\:focus\:shadow:focus{
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   }
 
   .sm\:active\:shadow-2:active{
-    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 
   .sm\:active\:shadow-3:active{
-    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
 
   .sm\:active\:shadow-4:active{
-    -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 
   .sm\:active\:shadow-5:active{
-    -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
 
   .sm\:active\:shadow:active{
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   }
 
   .group:hover .sm\:group-hover\:shadow-2{
-    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 
   .group:hover .sm\:group-hover\:shadow-3{
-    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
 
   .group:hover .sm\:group-hover\:shadow-4{
-    -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 
   .group:hover .sm\:group-hover\:shadow-5{
-    -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
 
   .group:hover .sm\:group-hover\:shadow{
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   }
 
   .sm\:fill-current{
@@ -23491,14 +23208,10 @@ File Upload - END
   }
 
   .md\:flex{
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
   }
 
   .md\:inline-flex{
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
     display: inline-flex;
   }
 
@@ -23519,291 +23232,203 @@ File Upload - END
   }
 
   .md\:flex-row{
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
+    flex-direction: row;
   }
 
   .md\:flex-row-reverse{
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: reverse;
-        -ms-flex-direction: row-reverse;
-            flex-direction: row-reverse;
+    flex-direction: row-reverse;
   }
 
   .md\:flex-col{
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    flex-direction: column;
   }
 
   .md\:flex-col-reverse{
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: reverse;
-        -ms-flex-direction: column-reverse;
-            flex-direction: column-reverse;
+    flex-direction: column-reverse;
   }
 
   .md\:flex-wrap{
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+    flex-wrap: wrap;
   }
 
   .md\:flex-wrap-reverse{
-    -ms-flex-wrap: wrap-reverse;
-        flex-wrap: wrap-reverse;
+    flex-wrap: wrap-reverse;
   }
 
   .md\:flex-no-wrap{
-    -ms-flex-wrap: nowrap;
-        flex-wrap: nowrap;
+    flex-wrap: nowrap;
   }
 
   .md\:items-start{
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
+    align-items: flex-start;
   }
 
   .md\:items-end{
-    -webkit-box-align: end;
-        -ms-flex-align: end;
-            align-items: flex-end;
+    align-items: flex-end;
   }
 
   .md\:items-center{
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    align-items: center;
   }
 
   .md\:items-baseline{
-    -webkit-box-align: baseline;
-        -ms-flex-align: baseline;
-            align-items: baseline;
+    align-items: baseline;
   }
 
   .md\:items-stretch{
-    -webkit-box-align: stretch;
-        -ms-flex-align: stretch;
-            align-items: stretch;
+    align-items: stretch;
   }
 
   .md\:self-auto{
-    -ms-flex-item-align: auto;
-        align-self: auto;
+    align-self: auto;
   }
 
   .md\:self-start{
-    -ms-flex-item-align: start;
-        align-self: flex-start;
+    align-self: flex-start;
   }
 
   .md\:self-end{
-    -ms-flex-item-align: end;
-        align-self: flex-end;
+    align-self: flex-end;
   }
 
   .md\:self-center{
-    -ms-flex-item-align: center;
-        align-self: center;
+    align-self: center;
   }
 
   .md\:self-stretch{
-    -ms-flex-item-align: stretch;
-        align-self: stretch;
+    align-self: stretch;
   }
 
   .md\:justify-start{
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
+    justify-content: flex-start;
   }
 
   .md\:justify-end{
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
+    justify-content: flex-end;
   }
 
   .md\:justify-center{
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    justify-content: center;
   }
 
   .md\:justify-between{
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    justify-content: space-between;
   }
 
   .md\:justify-around{
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
+    justify-content: space-around;
   }
 
   .md\:content-center{
-    -ms-flex-line-pack: center;
-        align-content: center;
+    align-content: center;
   }
 
   .md\:content-start{
-    -ms-flex-line-pack: start;
-        align-content: flex-start;
+    align-content: flex-start;
   }
 
   .md\:content-end{
-    -ms-flex-line-pack: end;
-        align-content: flex-end;
+    align-content: flex-end;
   }
 
   .md\:content-between{
-    -ms-flex-line-pack: justify;
-        align-content: space-between;
+    align-content: space-between;
   }
 
   .md\:content-around{
-    -ms-flex-line-pack: distribute;
-        align-content: space-around;
+    align-content: space-around;
   }
 
   .md\:flex-1{
-    -webkit-box-flex: 1;
-        -ms-flex: 1 1 0%;
-            flex: 1 1 0%;
+    flex: 1 1 0%;
   }
 
   .md\:flex-auto{
-    -webkit-box-flex: 1;
-        -ms-flex: 1 1 auto;
-            flex: 1 1 auto;
+    flex: 1 1 auto;
   }
 
   .md\:flex-initial{
-    -webkit-box-flex: 0;
-        -ms-flex: 0 1 auto;
-            flex: 0 1 auto;
+    flex: 0 1 auto;
   }
 
   .md\:flex-none{
-    -webkit-box-flex: 0;
-        -ms-flex: none;
-            flex: none;
+    flex: none;
   }
 
   .md\:flex-grow-0{
-    -webkit-box-flex: 0;
-        -ms-flex-positive: 0;
-            flex-grow: 0;
+    flex-grow: 0;
   }
 
   .md\:flex-grow{
-    -webkit-box-flex: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1;
+    flex-grow: 1;
   }
 
   .md\:flex-shrink-0{
-    -ms-flex-negative: 0;
-        flex-shrink: 0;
+    flex-shrink: 0;
   }
 
   .md\:flex-shrink{
-    -ms-flex-negative: 1;
-        flex-shrink: 1;
+    flex-shrink: 1;
   }
 
   .md\:order-1{
-    -webkit-box-ordinal-group: 2;
-        -ms-flex-order: 1;
-            order: 1;
+    order: 1;
   }
 
   .md\:order-2{
-    -webkit-box-ordinal-group: 3;
-        -ms-flex-order: 2;
-            order: 2;
+    order: 2;
   }
 
   .md\:order-3{
-    -webkit-box-ordinal-group: 4;
-        -ms-flex-order: 3;
-            order: 3;
+    order: 3;
   }
 
   .md\:order-4{
-    -webkit-box-ordinal-group: 5;
-        -ms-flex-order: 4;
-            order: 4;
+    order: 4;
   }
 
   .md\:order-5{
-    -webkit-box-ordinal-group: 6;
-        -ms-flex-order: 5;
-            order: 5;
+    order: 5;
   }
 
   .md\:order-6{
-    -webkit-box-ordinal-group: 7;
-        -ms-flex-order: 6;
-            order: 6;
+    order: 6;
   }
 
   .md\:order-7{
-    -webkit-box-ordinal-group: 8;
-        -ms-flex-order: 7;
-            order: 7;
+    order: 7;
   }
 
   .md\:order-8{
-    -webkit-box-ordinal-group: 9;
-        -ms-flex-order: 8;
-            order: 8;
+    order: 8;
   }
 
   .md\:order-9{
-    -webkit-box-ordinal-group: 10;
-        -ms-flex-order: 9;
-            order: 9;
+    order: 9;
   }
 
   .md\:order-10{
-    -webkit-box-ordinal-group: 11;
-        -ms-flex-order: 10;
-            order: 10;
+    order: 10;
   }
 
   .md\:order-11{
-    -webkit-box-ordinal-group: 12;
-        -ms-flex-order: 11;
-            order: 11;
+    order: 11;
   }
 
   .md\:order-12{
-    -webkit-box-ordinal-group: 13;
-        -ms-flex-order: 12;
-            order: 12;
+    order: 12;
   }
 
   .md\:order-first{
-    -webkit-box-ordinal-group: -9998;
-        -ms-flex-order: -9999;
-            order: -9999;
+    order: -9999;
   }
 
   .md\:order-last{
-    -webkit-box-ordinal-group: 10000;
-        -ms-flex-order: 9999;
-            order: 9999;
+    order: 9999;
   }
 
   .md\:order-none{
-    -webkit-box-ordinal-group: 1;
-        -ms-flex-order: 0;
-            order: 0;
+    order: 0;
   }
 
   .md\:float-right{
@@ -26298,128 +25923,103 @@ File Upload - END
   }
 
   .md\:shadow-2{
-    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 
   .md\:shadow-3{
-    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
 
   .md\:shadow-4{
-    -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 
   .md\:shadow-5{
-    -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
 
   .md\:shadow{
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   }
 
   .md\:hover\:shadow-2:hover{
-    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 
   .md\:hover\:shadow-3:hover{
-    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
 
   .md\:hover\:shadow-4:hover{
-    -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 
   .md\:hover\:shadow-5:hover{
-    -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
 
   .md\:hover\:shadow:hover{
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   }
 
   .md\:focus\:shadow-2:focus{
-    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 
   .md\:focus\:shadow-3:focus{
-    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
 
   .md\:focus\:shadow-4:focus{
-    -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 
   .md\:focus\:shadow-5:focus{
-    -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
 
   .md\:focus\:shadow:focus{
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   }
 
   .md\:active\:shadow-2:active{
-    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 
   .md\:active\:shadow-3:active{
-    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
 
   .md\:active\:shadow-4:active{
-    -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 
   .md\:active\:shadow-5:active{
-    -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
 
   .md\:active\:shadow:active{
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   }
 
   .group:hover .md\:group-hover\:shadow-2{
-    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 
   .group:hover .md\:group-hover\:shadow-3{
-    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
 
   .group:hover .md\:group-hover\:shadow-4{
-    -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 
   .group:hover .md\:group-hover\:shadow-5{
-    -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
 
   .group:hover .md\:group-hover\:shadow{
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   }
 
   .md\:fill-current{
@@ -31632,14 +31232,10 @@ File Upload - END
   }
 
   .lg\:flex{
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
   }
 
   .lg\:inline-flex{
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
     display: inline-flex;
   }
 
@@ -31660,291 +31256,203 @@ File Upload - END
   }
 
   .lg\:flex-row{
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
+    flex-direction: row;
   }
 
   .lg\:flex-row-reverse{
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: reverse;
-        -ms-flex-direction: row-reverse;
-            flex-direction: row-reverse;
+    flex-direction: row-reverse;
   }
 
   .lg\:flex-col{
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    flex-direction: column;
   }
 
   .lg\:flex-col-reverse{
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: reverse;
-        -ms-flex-direction: column-reverse;
-            flex-direction: column-reverse;
+    flex-direction: column-reverse;
   }
 
   .lg\:flex-wrap{
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+    flex-wrap: wrap;
   }
 
   .lg\:flex-wrap-reverse{
-    -ms-flex-wrap: wrap-reverse;
-        flex-wrap: wrap-reverse;
+    flex-wrap: wrap-reverse;
   }
 
   .lg\:flex-no-wrap{
-    -ms-flex-wrap: nowrap;
-        flex-wrap: nowrap;
+    flex-wrap: nowrap;
   }
 
   .lg\:items-start{
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
+    align-items: flex-start;
   }
 
   .lg\:items-end{
-    -webkit-box-align: end;
-        -ms-flex-align: end;
-            align-items: flex-end;
+    align-items: flex-end;
   }
 
   .lg\:items-center{
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    align-items: center;
   }
 
   .lg\:items-baseline{
-    -webkit-box-align: baseline;
-        -ms-flex-align: baseline;
-            align-items: baseline;
+    align-items: baseline;
   }
 
   .lg\:items-stretch{
-    -webkit-box-align: stretch;
-        -ms-flex-align: stretch;
-            align-items: stretch;
+    align-items: stretch;
   }
 
   .lg\:self-auto{
-    -ms-flex-item-align: auto;
-        align-self: auto;
+    align-self: auto;
   }
 
   .lg\:self-start{
-    -ms-flex-item-align: start;
-        align-self: flex-start;
+    align-self: flex-start;
   }
 
   .lg\:self-end{
-    -ms-flex-item-align: end;
-        align-self: flex-end;
+    align-self: flex-end;
   }
 
   .lg\:self-center{
-    -ms-flex-item-align: center;
-        align-self: center;
+    align-self: center;
   }
 
   .lg\:self-stretch{
-    -ms-flex-item-align: stretch;
-        align-self: stretch;
+    align-self: stretch;
   }
 
   .lg\:justify-start{
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
+    justify-content: flex-start;
   }
 
   .lg\:justify-end{
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
+    justify-content: flex-end;
   }
 
   .lg\:justify-center{
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    justify-content: center;
   }
 
   .lg\:justify-between{
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    justify-content: space-between;
   }
 
   .lg\:justify-around{
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
+    justify-content: space-around;
   }
 
   .lg\:content-center{
-    -ms-flex-line-pack: center;
-        align-content: center;
+    align-content: center;
   }
 
   .lg\:content-start{
-    -ms-flex-line-pack: start;
-        align-content: flex-start;
+    align-content: flex-start;
   }
 
   .lg\:content-end{
-    -ms-flex-line-pack: end;
-        align-content: flex-end;
+    align-content: flex-end;
   }
 
   .lg\:content-between{
-    -ms-flex-line-pack: justify;
-        align-content: space-between;
+    align-content: space-between;
   }
 
   .lg\:content-around{
-    -ms-flex-line-pack: distribute;
-        align-content: space-around;
+    align-content: space-around;
   }
 
   .lg\:flex-1{
-    -webkit-box-flex: 1;
-        -ms-flex: 1 1 0%;
-            flex: 1 1 0%;
+    flex: 1 1 0%;
   }
 
   .lg\:flex-auto{
-    -webkit-box-flex: 1;
-        -ms-flex: 1 1 auto;
-            flex: 1 1 auto;
+    flex: 1 1 auto;
   }
 
   .lg\:flex-initial{
-    -webkit-box-flex: 0;
-        -ms-flex: 0 1 auto;
-            flex: 0 1 auto;
+    flex: 0 1 auto;
   }
 
   .lg\:flex-none{
-    -webkit-box-flex: 0;
-        -ms-flex: none;
-            flex: none;
+    flex: none;
   }
 
   .lg\:flex-grow-0{
-    -webkit-box-flex: 0;
-        -ms-flex-positive: 0;
-            flex-grow: 0;
+    flex-grow: 0;
   }
 
   .lg\:flex-grow{
-    -webkit-box-flex: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1;
+    flex-grow: 1;
   }
 
   .lg\:flex-shrink-0{
-    -ms-flex-negative: 0;
-        flex-shrink: 0;
+    flex-shrink: 0;
   }
 
   .lg\:flex-shrink{
-    -ms-flex-negative: 1;
-        flex-shrink: 1;
+    flex-shrink: 1;
   }
 
   .lg\:order-1{
-    -webkit-box-ordinal-group: 2;
-        -ms-flex-order: 1;
-            order: 1;
+    order: 1;
   }
 
   .lg\:order-2{
-    -webkit-box-ordinal-group: 3;
-        -ms-flex-order: 2;
-            order: 2;
+    order: 2;
   }
 
   .lg\:order-3{
-    -webkit-box-ordinal-group: 4;
-        -ms-flex-order: 3;
-            order: 3;
+    order: 3;
   }
 
   .lg\:order-4{
-    -webkit-box-ordinal-group: 5;
-        -ms-flex-order: 4;
-            order: 4;
+    order: 4;
   }
 
   .lg\:order-5{
-    -webkit-box-ordinal-group: 6;
-        -ms-flex-order: 5;
-            order: 5;
+    order: 5;
   }
 
   .lg\:order-6{
-    -webkit-box-ordinal-group: 7;
-        -ms-flex-order: 6;
-            order: 6;
+    order: 6;
   }
 
   .lg\:order-7{
-    -webkit-box-ordinal-group: 8;
-        -ms-flex-order: 7;
-            order: 7;
+    order: 7;
   }
 
   .lg\:order-8{
-    -webkit-box-ordinal-group: 9;
-        -ms-flex-order: 8;
-            order: 8;
+    order: 8;
   }
 
   .lg\:order-9{
-    -webkit-box-ordinal-group: 10;
-        -ms-flex-order: 9;
-            order: 9;
+    order: 9;
   }
 
   .lg\:order-10{
-    -webkit-box-ordinal-group: 11;
-        -ms-flex-order: 10;
-            order: 10;
+    order: 10;
   }
 
   .lg\:order-11{
-    -webkit-box-ordinal-group: 12;
-        -ms-flex-order: 11;
-            order: 11;
+    order: 11;
   }
 
   .lg\:order-12{
-    -webkit-box-ordinal-group: 13;
-        -ms-flex-order: 12;
-            order: 12;
+    order: 12;
   }
 
   .lg\:order-first{
-    -webkit-box-ordinal-group: -9998;
-        -ms-flex-order: -9999;
-            order: -9999;
+    order: -9999;
   }
 
   .lg\:order-last{
-    -webkit-box-ordinal-group: 10000;
-        -ms-flex-order: 9999;
-            order: 9999;
+    order: 9999;
   }
 
   .lg\:order-none{
-    -webkit-box-ordinal-group: 1;
-        -ms-flex-order: 0;
-            order: 0;
+    order: 0;
   }
 
   .lg\:float-right{
@@ -34439,128 +33947,103 @@ File Upload - END
   }
 
   .lg\:shadow-2{
-    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 
   .lg\:shadow-3{
-    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
 
   .lg\:shadow-4{
-    -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 
   .lg\:shadow-5{
-    -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
 
   .lg\:shadow{
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   }
 
   .lg\:hover\:shadow-2:hover{
-    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 
   .lg\:hover\:shadow-3:hover{
-    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
 
   .lg\:hover\:shadow-4:hover{
-    -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 
   .lg\:hover\:shadow-5:hover{
-    -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
 
   .lg\:hover\:shadow:hover{
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   }
 
   .lg\:focus\:shadow-2:focus{
-    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 
   .lg\:focus\:shadow-3:focus{
-    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
 
   .lg\:focus\:shadow-4:focus{
-    -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 
   .lg\:focus\:shadow-5:focus{
-    -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
 
   .lg\:focus\:shadow:focus{
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   }
 
   .lg\:active\:shadow-2:active{
-    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 
   .lg\:active\:shadow-3:active{
-    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
 
   .lg\:active\:shadow-4:active{
-    -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 
   .lg\:active\:shadow-5:active{
-    -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
 
   .lg\:active\:shadow:active{
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   }
 
   .group:hover .lg\:group-hover\:shadow-2{
-    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 
   .group:hover .lg\:group-hover\:shadow-3{
-    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
 
   .group:hover .lg\:group-hover\:shadow-4{
-    -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 
   .group:hover .lg\:group-hover\:shadow-5{
-    -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
 
   .group:hover .lg\:group-hover\:shadow{
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   }
 
   .lg\:fill-current{
@@ -39773,14 +39256,10 @@ File Upload - END
   }
 
   .xl\:flex{
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
   }
 
   .xl\:inline-flex{
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
     display: inline-flex;
   }
 
@@ -39801,291 +39280,203 @@ File Upload - END
   }
 
   .xl\:flex-row{
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
+    flex-direction: row;
   }
 
   .xl\:flex-row-reverse{
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: reverse;
-        -ms-flex-direction: row-reverse;
-            flex-direction: row-reverse;
+    flex-direction: row-reverse;
   }
 
   .xl\:flex-col{
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    flex-direction: column;
   }
 
   .xl\:flex-col-reverse{
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: reverse;
-        -ms-flex-direction: column-reverse;
-            flex-direction: column-reverse;
+    flex-direction: column-reverse;
   }
 
   .xl\:flex-wrap{
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+    flex-wrap: wrap;
   }
 
   .xl\:flex-wrap-reverse{
-    -ms-flex-wrap: wrap-reverse;
-        flex-wrap: wrap-reverse;
+    flex-wrap: wrap-reverse;
   }
 
   .xl\:flex-no-wrap{
-    -ms-flex-wrap: nowrap;
-        flex-wrap: nowrap;
+    flex-wrap: nowrap;
   }
 
   .xl\:items-start{
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
+    align-items: flex-start;
   }
 
   .xl\:items-end{
-    -webkit-box-align: end;
-        -ms-flex-align: end;
-            align-items: flex-end;
+    align-items: flex-end;
   }
 
   .xl\:items-center{
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    align-items: center;
   }
 
   .xl\:items-baseline{
-    -webkit-box-align: baseline;
-        -ms-flex-align: baseline;
-            align-items: baseline;
+    align-items: baseline;
   }
 
   .xl\:items-stretch{
-    -webkit-box-align: stretch;
-        -ms-flex-align: stretch;
-            align-items: stretch;
+    align-items: stretch;
   }
 
   .xl\:self-auto{
-    -ms-flex-item-align: auto;
-        align-self: auto;
+    align-self: auto;
   }
 
   .xl\:self-start{
-    -ms-flex-item-align: start;
-        align-self: flex-start;
+    align-self: flex-start;
   }
 
   .xl\:self-end{
-    -ms-flex-item-align: end;
-        align-self: flex-end;
+    align-self: flex-end;
   }
 
   .xl\:self-center{
-    -ms-flex-item-align: center;
-        align-self: center;
+    align-self: center;
   }
 
   .xl\:self-stretch{
-    -ms-flex-item-align: stretch;
-        align-self: stretch;
+    align-self: stretch;
   }
 
   .xl\:justify-start{
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
+    justify-content: flex-start;
   }
 
   .xl\:justify-end{
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
+    justify-content: flex-end;
   }
 
   .xl\:justify-center{
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    justify-content: center;
   }
 
   .xl\:justify-between{
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    justify-content: space-between;
   }
 
   .xl\:justify-around{
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
+    justify-content: space-around;
   }
 
   .xl\:content-center{
-    -ms-flex-line-pack: center;
-        align-content: center;
+    align-content: center;
   }
 
   .xl\:content-start{
-    -ms-flex-line-pack: start;
-        align-content: flex-start;
+    align-content: flex-start;
   }
 
   .xl\:content-end{
-    -ms-flex-line-pack: end;
-        align-content: flex-end;
+    align-content: flex-end;
   }
 
   .xl\:content-between{
-    -ms-flex-line-pack: justify;
-        align-content: space-between;
+    align-content: space-between;
   }
 
   .xl\:content-around{
-    -ms-flex-line-pack: distribute;
-        align-content: space-around;
+    align-content: space-around;
   }
 
   .xl\:flex-1{
-    -webkit-box-flex: 1;
-        -ms-flex: 1 1 0%;
-            flex: 1 1 0%;
+    flex: 1 1 0%;
   }
 
   .xl\:flex-auto{
-    -webkit-box-flex: 1;
-        -ms-flex: 1 1 auto;
-            flex: 1 1 auto;
+    flex: 1 1 auto;
   }
 
   .xl\:flex-initial{
-    -webkit-box-flex: 0;
-        -ms-flex: 0 1 auto;
-            flex: 0 1 auto;
+    flex: 0 1 auto;
   }
 
   .xl\:flex-none{
-    -webkit-box-flex: 0;
-        -ms-flex: none;
-            flex: none;
+    flex: none;
   }
 
   .xl\:flex-grow-0{
-    -webkit-box-flex: 0;
-        -ms-flex-positive: 0;
-            flex-grow: 0;
+    flex-grow: 0;
   }
 
   .xl\:flex-grow{
-    -webkit-box-flex: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1;
+    flex-grow: 1;
   }
 
   .xl\:flex-shrink-0{
-    -ms-flex-negative: 0;
-        flex-shrink: 0;
+    flex-shrink: 0;
   }
 
   .xl\:flex-shrink{
-    -ms-flex-negative: 1;
-        flex-shrink: 1;
+    flex-shrink: 1;
   }
 
   .xl\:order-1{
-    -webkit-box-ordinal-group: 2;
-        -ms-flex-order: 1;
-            order: 1;
+    order: 1;
   }
 
   .xl\:order-2{
-    -webkit-box-ordinal-group: 3;
-        -ms-flex-order: 2;
-            order: 2;
+    order: 2;
   }
 
   .xl\:order-3{
-    -webkit-box-ordinal-group: 4;
-        -ms-flex-order: 3;
-            order: 3;
+    order: 3;
   }
 
   .xl\:order-4{
-    -webkit-box-ordinal-group: 5;
-        -ms-flex-order: 4;
-            order: 4;
+    order: 4;
   }
 
   .xl\:order-5{
-    -webkit-box-ordinal-group: 6;
-        -ms-flex-order: 5;
-            order: 5;
+    order: 5;
   }
 
   .xl\:order-6{
-    -webkit-box-ordinal-group: 7;
-        -ms-flex-order: 6;
-            order: 6;
+    order: 6;
   }
 
   .xl\:order-7{
-    -webkit-box-ordinal-group: 8;
-        -ms-flex-order: 7;
-            order: 7;
+    order: 7;
   }
 
   .xl\:order-8{
-    -webkit-box-ordinal-group: 9;
-        -ms-flex-order: 8;
-            order: 8;
+    order: 8;
   }
 
   .xl\:order-9{
-    -webkit-box-ordinal-group: 10;
-        -ms-flex-order: 9;
-            order: 9;
+    order: 9;
   }
 
   .xl\:order-10{
-    -webkit-box-ordinal-group: 11;
-        -ms-flex-order: 10;
-            order: 10;
+    order: 10;
   }
 
   .xl\:order-11{
-    -webkit-box-ordinal-group: 12;
-        -ms-flex-order: 11;
-            order: 11;
+    order: 11;
   }
 
   .xl\:order-12{
-    -webkit-box-ordinal-group: 13;
-        -ms-flex-order: 12;
-            order: 12;
+    order: 12;
   }
 
   .xl\:order-first{
-    -webkit-box-ordinal-group: -9998;
-        -ms-flex-order: -9999;
-            order: -9999;
+    order: -9999;
   }
 
   .xl\:order-last{
-    -webkit-box-ordinal-group: 10000;
-        -ms-flex-order: 9999;
-            order: 9999;
+    order: 9999;
   }
 
   .xl\:order-none{
-    -webkit-box-ordinal-group: 1;
-        -ms-flex-order: 0;
-            order: 0;
+    order: 0;
   }
 
   .xl\:float-right{
@@ -42580,128 +41971,103 @@ File Upload - END
   }
 
   .xl\:shadow-2{
-    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 
   .xl\:shadow-3{
-    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
 
   .xl\:shadow-4{
-    -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 
   .xl\:shadow-5{
-    -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
 
   .xl\:shadow{
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   }
 
   .xl\:hover\:shadow-2:hover{
-    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 
   .xl\:hover\:shadow-3:hover{
-    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
 
   .xl\:hover\:shadow-4:hover{
-    -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 
   .xl\:hover\:shadow-5:hover{
-    -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
 
   .xl\:hover\:shadow:hover{
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   }
 
   .xl\:focus\:shadow-2:focus{
-    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 
   .xl\:focus\:shadow-3:focus{
-    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
 
   .xl\:focus\:shadow-4:focus{
-    -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 
   .xl\:focus\:shadow-5:focus{
-    -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
 
   .xl\:focus\:shadow:focus{
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   }
 
   .xl\:active\:shadow-2:active{
-    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 
   .xl\:active\:shadow-3:active{
-    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
 
   .xl\:active\:shadow-4:active{
-    -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 
   .xl\:active\:shadow-5:active{
-    -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
 
   .xl\:active\:shadow:active{
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   }
 
   .group:hover .xl\:group-hover\:shadow-2{
-    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 
   .group:hover .xl\:group-hover\:shadow-3{
-    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
 
   .group:hover .xl\:group-hover\:shadow-4{
-    -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 
   .group:hover .xl\:group-hover\:shadow-5{
-    -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-            box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
 
   .group:hover .xl\:group-hover\:shadow{
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   }
 
   .xl\:fill-current{

@@ -283,6 +283,45 @@ hr {
 
 }
 
+.list-table {
+  @apply table-auto;
+  width: 100%;
+  
+  thead {
+    tr {
+      @apply bg-gray-400 text-left;
+      
+      th {
+        @apply p-4;
+      }
+    }  
+  }
+  
+  tbody {
+    tr {
+      @apply text-left;
+      
+      td {
+        @apply p-4;
+        
+        a {
+          @apply text-orange-500 no-underline;
+        }
+      }
+    }
+  }
+  
+  &.striped {
+    tbody {
+      tr {
+        &:nth-child(even) {
+          @apply bg-gray-200;
+        }
+      }
+    }
+  }
+}
+
 .card {
 	@apply bg-white p-5 mb-12 font-display;
 	color: #4B5783;
