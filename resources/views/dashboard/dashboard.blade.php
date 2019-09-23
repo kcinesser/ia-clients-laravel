@@ -53,7 +53,7 @@
 					@endforeach
 					<div class="text-right w-full">
 						<p class="text-gray-500 text-sm font-normall"><i class="fa fa-check text-green-500"></i> = We good</p>
-						<p class="text-gray-500 text-sm font-normall"><i class="fa fa-exclamation text-yellow-500"></i> = <span class="underline" data-toggle="modal" data-target="#pandaModal">Chill out, we got time</span></p>
+						<p class="text-gray-500 text-sm font-normall"><i class="fa fa-exclamation text-yellow-500"></i> = <span class="underline cursor-pointer" data-toggle="modal" data-target="#pandaModal">Chill out, we got time</span></p>
 						<p class="text-gray-500 text-sm font-normall"><i class="fa fa-exclamation text-red-500"></i> = Nobody panic</p>
 						<p class="text-gray-500 text-sm font-normall"><i class="fa fa-exclamation-triangle text-red-500"></i> = Everybody panic</p>
 					</div>
