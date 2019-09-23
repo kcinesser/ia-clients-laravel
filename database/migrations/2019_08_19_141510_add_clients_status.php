@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\ProjectStatus;
+use App\Enums\ClientStatus;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -15,7 +15,7 @@ class AddClientsStatus extends Migration
     public function up()
     {
         Schema::table('clients', function (Blueprint $table) {
-            $table->tinyInteger('status')->unsigned()->default(ProjectStatus::Active)->nullable();
+            $table->tinyInteger('status')->unsigned()->default(ClientStatus::Active)->nullable();
         });
     }
 
