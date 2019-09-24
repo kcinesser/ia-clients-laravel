@@ -3472,6 +3472,37 @@ hr.with-text:after {
   color: #FABE35;
 }
 
+.list-table {
+  table-layout: auto;
+  width: 100%;
+}
+
+.list-table thead tr {
+  background-color: #cbd5e0;
+  text-align: left;
+}
+
+.list-table thead tr th {
+  padding: 1rem;
+}
+
+.list-table tbody tr {
+  text-align: left;
+}
+
+.list-table tbody tr td {
+  padding: 1rem;
+}
+
+.list-table tbody tr td a {
+  color: #F15B39;
+  text-decoration: none;
+}
+
+.list-table.striped tbody tr:nth-child(even) {
+  background-color: #edf2f7;
+}
+
 .card {
   background-color: #fff;
   padding: 1.25rem;

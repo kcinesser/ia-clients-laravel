@@ -38,25 +38,19 @@
 								@if(isset($project->end_date))
 									<p class="text-gray-500 text-sm font-normal">Due: {{ \Carbon\Carbon::parse($project->end_date)->format('n/j/Y') }}
 										@if (\Carbon\Carbon::parse($project->end_date)->isToday())
-											<i class="fa fa-exclamation text-red-500"></i>
+											<i class="fa fa-exclamation text-red-500 ml-2 cursor-pointer" data-toggle="modal" data-target="legendModal"></i>
 										@elseif($project->status == App\Enums\ProjectStatus::Complete)
-											<i class="fa fa-check text-green-500"></i>
+											<i class="fa fa-check text-green-500 ml-2 cursor-pointer" data-toggle="modal" data-target="#legendModal"></i>
 										@elseif(\Carbon\Carbon::parse($project->end_date)->isPast())
-											<i class="fa fa-exclamation-triangle text-red-500"></i>
+											<i class="fa fa-exclamation-triangle text-red-500 ml-2 cursor-pointer" data-toggle="modal" data-target="#legendModal"></i>
 										@elseif(\Carbon\Carbon::parse($project->end_date) < \Carbon\Carbon::now()->addWeek())
-											<i class="fa fa-exclamation text-yellow-500"></i>
+											<i class="fa fa-exclamation text-yellow-500 ml-2 cursor-pointer" data-toggle="modal" data-target="#legendModal"></i>
 										@endif
 									</p>
 								@endif
 							</div>
 						</div>
 					@endforeach
-					<div class="text-right w-full">
-						<p class="text-gray-500 text-sm font-normall"><i class="fa fa-check text-green-500"></i> = We good</p>
-						<p class="text-gray-500 text-sm font-normall"><i class="fa fa-exclamation text-yellow-500"></i> = <span class="underline cursor-pointer" data-toggle="modal" data-target="#pandaModal">Chill out, we got time</span></p>
-						<p class="text-gray-500 text-sm font-normall"><i class="fa fa-exclamation text-red-500"></i> = Nobody panic</p>
-						<p class="text-gray-500 text-sm font-normall"><i class="fa fa-exclamation-triangle text-red-500"></i> = Everybody panic</p>
-					</div>
 				</div>
 
     			<div class="flex justify-between mb-1">
@@ -186,17 +180,27 @@
 			'sites' => App\Site::all()->whereNotIn('status', App\Enums\SiteStatus::Archived)->sortBy('name')
 		])
 
-		<div class="modal fade" id="pandaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal fade" id="legendModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">You Got This</h5>
+						<h5 class="modal-title" id="exampleModalLabel">Project Status Legend</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
 					<div class="modal-body">
-						<img class="mx-auto" src="/media/misc/panda.jpeg">
+						<div class="flex">
+							<div class="w-1/2">
+								<p class="text-gray-500 text-sm font-normall"><i class="fa fa-check text-green-500"></i> = We good</p>
+								<p class="text-gray-500 text-sm font-normall"><i class="fa fa-exclamation text-yellow-500"></i> = Chill out, we got time</p>
+								<p class="text-gray-500 text-sm font-normall"><i class="fa fa-exclamation text-red-500"></i> = Nobody panic</p>
+								<p class="text-gray-500 text-sm font-normall"><i class="fa fa-exclamation-triangle text-red-500"></i> = Everybody panic</p>
+							</div>
+							<div class="w-1/2">
+								<img class="mx-auto" src="/media/misc/panda.jpeg">
+							</div>
+						</div>
 						<div class="modal-footer">
 							<a href="" class="button btn-blue" data-dismiss="modal">Close</a>
 						</div>

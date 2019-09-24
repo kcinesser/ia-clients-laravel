@@ -7,10 +7,8 @@ use App\Services\SendExpiringDomainsNotificationsService;
 use App\Services\SendRenewedDomainsNotificationsService;
 use App\Services\SendExpiredDomainsNotificationsService;
 use App\Services\GoDaddyDomainsService;
-use App\Services\NamecheapDomainsService;
 use App\Repositories\RemoteDomainsRepository;
 use App\Libraries\GoDaddy\GoDaddyClient;
-use App\Libraries\Namecheap\NamecheapClient;
 use Illuminate\Console\Command;
 use Log;
 
@@ -49,8 +47,7 @@ class sendDomainRenewalNotices extends Command
     {
         Log::info('Running sendDomainRenewalNotices command.');
             
-        //$repository = resolve(RemoteDomainsRepository::class, ['client' => resolve(GoDaddyDomainsService::class)]);
-        $repository = resolve(RemoteDomainsRepository::class, ['client' => resolve(NamecheapDomainsService::class)]);
+        $repository = resolve(RemoteDomainsRepository::class, ['client' => resolve(GoDaddyDomainsService::class)]);
         
         // Send thirty day upcoming renewal notices
         resolve(
