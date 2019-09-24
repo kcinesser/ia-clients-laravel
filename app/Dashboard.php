@@ -33,7 +33,7 @@ class Dashboard
     }
 
     private function getDueProjects() {
-        $due_projects = Project::all()->whereNotIn('status', ProjectStatus::Archived)->sortBy('end_date');
+        $due_projects = Project::all()->whereNotIn('status', ProjectStatus::Archived)->sortBy('go_live_date');
 
         return $due_projects;
     }

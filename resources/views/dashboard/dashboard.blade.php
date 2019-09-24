@@ -59,7 +59,7 @@
     		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#clientsModal"><i class="fa fa-th-list mr-1"></i> <span class="hidden sm:inline">View </span>All Clients</button>
     		    	</div>
     		    </div>
-		   		<div  class="lg:flex lg:flex-wrap card">
+		   		<div  class="card">
 					   @forelse ($dashboard_items['clients'] as $client)
 					   	<div class="flex">
 							<div class="w-3/4 p-2">
@@ -86,7 +86,7 @@
     		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#projectsModal"><i class="fa fa-th-list mr-1"></i> <span class="hidden sm:inline">View </span>All Projects</button>
     		    	</div>
 		    	</div>
-		   		<div  class="lg:flex lg:flex-wrap card">
+		   		<div  class="card">
 					  @forelse ($dashboard_items['projects'] as $project)
 						  <div class="flex">
 							<div class="lg:w-3/4 w-1/2 p-2">
@@ -114,7 +114,7 @@
     		    		<button type="submit" class="headline-lead text-xs text-gray-500 hover:text-orange-500" data-toggle="modal" data-target="#sitesModal"><i class="fa fa-th-list mr-1"></i> <span class="hidden sm:inline">View </span>All Sites</button>
     		    	</div>
 		    	</div>
-		   		<div  class="lg:flex lg:flex-wrap card">
+		   		<div  class="card">
 					@forelse ($dashboard_items['sites'] as $site)
 						<div class="flex">
 							<div class="w-3/4 w-1/2 p-2">
