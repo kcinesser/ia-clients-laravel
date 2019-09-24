@@ -22,15 +22,29 @@
 
         <div class="tab-content settings-tabs" id="settingsTabContent">
             <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
-                <div class="lg:flex justify-between p-3 sm:hidden hidden lg:block font-semibold text-blue-500">
-                    <div class="lg:w-1/2"><p>Client Name <button class="sort" data-order="asc" data-sort="name" data-model="client"><i class="fa fa-sort mr-1"></i></button></p></div>
-                    <div class="lg:w-1/2"><p>Account Manager <button class="sort" data-order="asc" data-sort="AM" data-model="client"><i class="fa fa-sort mr-1"></i></button></p></div>
+                <div class="lg:flex p-3 sm:hidden hidden lg:block font-semibold text-blue-500">
+                    <div class="lg:w-2/5"><p>Client Name <button class="sort" data-order="asc" data-sort="name" data-model="client"><i class="fa fa-sort mr-1"></i></button></p></div>
+                    <div class="lg:w-2/5"><p>Account Manager <button class="sort" data-order="asc" data-sort="AM" data-model="client"><i class="fa fa-sort mr-1"></i></button></p></div>
                 </div>
                 <div id="client-modal-list">
                     @foreach($clients as $client)
                         <div class="lg:flex justify-between p-3">
-                            <div class="lg:w-1/2"><a href="{{ $client->path() }}">{{ $client->name }}</a></div>
-                            <div class="lg:w-1/2"><p>{{ $client->accountManager->name }}</p></div>
+                            <div class="lg:w-2/5"><a href="{{ $client->path() }}">{{ $client->name }}</a></div>
+                            <div class="lg:w-2/5"><p>{{ $client->accountManager->name }}</p></div>
+                            <div class="lg:w-1/5 text-right">
+                                @if(!$client->favorite)
+                                    <form method="POST" action='/favorite/client/{{ $client->id }}'>
+                                        @csrf
+                                        <button type="submit"><i class="fa fa-star-o text-yellow-300"></i></button>
+                                    </form>
+                                @else
+                                    <form method="POST" action='/favorite/{{ $client->favorite->id }}'>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"><i class="fa fa-star text-yellow-300"></i></button>
+                                    </form>
+                                @endif   
+                            </div>
                         </div>
                     @endforeach
                 </div>

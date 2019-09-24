@@ -51,6 +51,9 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::post('/comment/{model}/{id}', 'CommentController@store')->where('model', ('client|project|site'));
     Route::patch('/comment/{comment}', 'CommentController@update');
+    Route::post('/favorite/{model}/{id}', 'FavoriteController@addFavorite');
+    Route::delete('/favorite/{favorite}', 'FavoriteController@removeFavorite');
+
     Route::post('/software_license/{model}/{id}', 'SoftwareLicenseController@store')->where('model', ('project|site'));
     Route::patch('/software_license/{software_license}', 'SoftwareLicenseController@update');
     Route::delete('/software_license/{software_license}', 'SoftwareLicenseController@destroy');

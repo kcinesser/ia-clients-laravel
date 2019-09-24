@@ -69,6 +69,7 @@ class SiteController extends Controller
     }
 
     public function destroy(Client $client, Site $site) {
+        $site->favorite->delete();
         $site->delete();
 
         return redirect($client->path());

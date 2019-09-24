@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddClientsStatus extends Migration
+class UpdateClientStatus extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class AddClientsStatus extends Migration
     public function up()
     {
         Schema::table('clients', function (Blueprint $table) {
-            $table->tinyInteger('status')->unsigned()->default(ClientStatus::Active)->nullable();
+            $table->string('status')->unsigned()->default(ClientStatus::Active)->nullable()->change();
         });
     }
 
@@ -26,8 +26,6 @@ class AddClientsStatus extends Migration
      */
     public function down()
     {
-        Schema::table('clients', function (Blueprint $table) {
-            $table->dropColumn('status');
-        });
+        //
     }
 }

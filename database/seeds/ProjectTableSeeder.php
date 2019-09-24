@@ -20,10 +20,10 @@ class ProjectTableSeeder extends Seeder
         	'title' => 'E-Commerce Rebuild',
         	'description' => 'Upgrading to PHP 7.2 via Flywheel broke the WooCommerce plugin being used on the site for league registration. Interactive team will build a custom e-commerce plugin to replace the broken plugin.',
         	'technology' => Technologies::PHP,
-        	'go_live_date' => '2019-08-31',
+        	'go_live_date' => '2019-10-31',
         	'start_date' => '2019-06-01',
-        	'end_date' => '2019-08-31',
-        	'status' => ProjectStatus::Active
+        	'end_date' => '2019-9-23',
+        	'status' => ProjectStatus::Hold
         ]);
 
         DB::table('projects')->insert([
@@ -33,10 +33,10 @@ class ProjectTableSeeder extends Seeder
         	'title' => 'Sustainability Site Build',
         	'description' => 'Interactive to build Sustainability site for SL Green.',
         	'technology' => Technologies::WordPress,
-        	'go_live_date' => '2019-08-31',
+        	'go_live_date' => '2019-10-31',
         	'start_date' => '2019-07-01',
-        	'end_date' => null,
-        	'status' => ProjectStatus::Active
+        	'end_date' => '2019-9-27',
+        	'status' => ProjectStatus::Hold
         ]);
 
         DB::table('projects')->insert([
@@ -46,10 +46,10 @@ class ProjectTableSeeder extends Seeder
         	'title' => 'LRS Job Search Plugin',
         	'description' => 'LRS wants their job search functionality to tie in with their job management system. Interactive to build custom plugin for users to search for and apply for projects on the LRS site.',
         	'technology' => Technologies::PHP,
-        	'go_live_date' => null,
+        	'go_live_date' => '2019-10-31',
         	'start_date' => '2019-01-01',
-        	'end_date' => null,
-        	'status' => ProjectStatus::Archived
+        	'end_date' => '2019-9-14',
+        	'status' => ProjectStatus::Kickoff
         ]);
 
         DB::table('projects')->insert([
@@ -59,10 +59,10 @@ class ProjectTableSeeder extends Seeder
         	'title' => 'NU Foundation Site Build',
         	'description' => 'Interactive will build a new WordPress site for the NU Foundation.',
         	'technology' => Technologies::WordPress,
-        	'go_live_date' => null,
+        	'go_live_date' => '2019-10-31',
         	'start_date' => '2019-01-01',
-        	'end_date' => null,
-        	'status' => ProjectStatus::Archived
+        	'end_date' => '2019-9-20',
+        	'status' => ProjectStatus::Complete
         ]);
 
 
@@ -75,8 +75,8 @@ class ProjectTableSeeder extends Seeder
         	'technology' => Technologies::Laravel,
         	'go_live_date' => '2019-09-30',
         	'start_date' => '2019-01-01',
-        	'end_date' => null,
-        	'status' => ProjectStatus::Active
+        	'end_date' => '2019-11-15',
+        	'status' => ProjectStatus::Dev
         ]);
     }
 }

@@ -5,6 +5,18 @@
         <div class="flex justify-start w-full items-center">
             <h1 class="text-blue-500"><i class="fa fa-users mr-3"></i>Client / {{ $client->name }}</h1>
             <a href="" class="button btn-add ml-4" data-toggle="modal" data-target="#editClientModal"><i class="fa fa-pencil"></i></a>
+            @if(!$client->favorite)
+                <form method="POST" action='/favorite/client/{{ $client->id }}'>
+                    @csrf
+                    <button type="submit" class="button btn-favorite ml-4"><i class="fa fa-star-o"></i></button>
+                </form>
+            @else
+                <form method="POST" action='/favorite/{{ $client->favorite->id }}'>
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="button btn-favorite ml-4"><i class="fa fa-star "></i></button>
+                </form>
+            @endif     
         </div>
     </header>
 

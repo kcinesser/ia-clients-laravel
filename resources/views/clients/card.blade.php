@@ -28,7 +28,7 @@
         <p class="small"><a href="{{ $client->projectArchivePath() }}">{{ count($archived_projects) }} Archived {{Illuminate\Support\Str::plural('Project', count($archived_projects))}} <i class="fa fa-share ml-1"></i></a></p>
     </div>
     <div class="text-right">
-        @if ($client->status != 3)
+        @if ($client->status != App\Enums\ClientStatus::Archived)
             <form class="archive-client-form" method="POST" action="{{ $client->path() . '/archive' }}">
                 @method('PATCH')
                 @csrf

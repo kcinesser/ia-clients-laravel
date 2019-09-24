@@ -51,7 +51,7 @@
 
 
     <div class="text-right">
-        @if ($project->status != 3)
+        @if ($project->status != App\Enums\ProjectStatus::Archived)
             <form class="archive-project-form" method="POST" action="{{ $project->path() . '/archive' }}">
                 @method('PATCH')
                 @csrf
