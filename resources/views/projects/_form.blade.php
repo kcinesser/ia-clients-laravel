@@ -13,7 +13,7 @@
         <select id="site_id" name="site_id" value="{{ old('site_id') }}">
                 <option value="">None</option>
             @foreach ($sites as $site)
-                <option value="{{ $site->id }}">{{ $site->name }}</option>
+                <option value="{{ $site->id }}" {{ $project->site()->exists() && $project->site->id == $site->id ? "selected" : "" }}>{{ $site->name }}</option>
             @endforeach
         </select>
     </div>
