@@ -35,6 +35,7 @@ class ProjectController extends Controller
     }
 
     public function destroy(Client $client, Project $project) {
+        $project->favorite->delete();
         $project->delete();
 
         return redirect($client->path());

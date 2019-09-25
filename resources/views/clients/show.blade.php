@@ -5,6 +5,18 @@
         <div class="flex justify-start w-full items-center">
             <h1 class="text-blue-500"><i class="fa fa-users mr-3"></i>Client / {{ $client->name }}</h1>
             <a href="" class="button btn-add ml-4" data-toggle="modal" data-target="#editClientModal"><i class="fa fa-pencil"></i></a>
+            @if(!$client->favorite)
+                <form method="POST" action='/favorite/client/{{ $client->id }}'>
+                    @csrf
+                    <button type="submit" class="button btn-favorite ml-4"><i class="fa fa-star-o"></i></button>
+                </form>
+            @else
+                <form method="POST" action='/favorite/{{ $client->favorite->id }}'>
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="button btn-favorite ml-4"><i class="fa fa-star "></i></button>
+                </form>
+            @endif     
         </div>
     </header>
 
@@ -36,7 +48,7 @@
                             @forelse ($sites as $site)
                                 <div class="lg:w-full p-2">
                                     <h3><a href="{{ $site->path() }}">{{ $site->name }}</a>
-                                        <span class="badge {{$site->status == App\Enums\SiteStatus::InDevelopment ? 'badge-dev' : 'badge-live'}}">{{$site->status == App\Enums\SiteStatus::InDevelopment ? 'In Dev' : 'Live'}}</span>
+                                        <span class="badge {{$site->status == App\Enums\SiteStatus::InDevelopment ? 'badge-dev' : 'badge-' . strtolower(\App\Enums\SiteStatus::getDescription($site->status))}}">{{$site->status == App\Enums\SiteStatus::InDevelopment ? 'In Dev' : \App\Enums\SiteStatus::getDescription($site->status)}}</span>
 
                                         @if ($site->services->contains(1))
                                             <span class="badge badge-mma">MMA</span>
@@ -90,7 +102,7 @@
                                 @endif
                             </div>
                             <div class="w-1/8 flex">
-                                <a  class="mr-3" href="" data-toggle="modal" data-target="#editDomainModal"  data-name="{{ $domain->name }}" data-exp="{{ $domain->exp_date }}" data-path="{{ $domain->path() }}" data-siteid="{{ isset($domain->site) ? $domain->site->id : "" }}"><i class="fa fa-pencil"></i></a>
+                                <a  class="mr-3" href="" data-toggle="modal" data-target="#editDomainModal"  data-name="{{ $domain->name }}" data-exp="{{ $domain->exp_date }}" data-path="{{ $domain->path() }}" data-siteid="{{ isset($domain->site) ? $domain->site->id : "" }}" data-hosted-at="{{ $domain->remote_provider_type }}" data-remote-id="{{ $domain->remote_provider_id }}" data-mma-domain="{{ $domain->free_with_mma }}"><i class="fa fa-pencil"></i></a>
                                 <form method="POST" action="{{ $domain->path() }}" class="delete-form">
                                     @method('DELETE')
                                     @csrf

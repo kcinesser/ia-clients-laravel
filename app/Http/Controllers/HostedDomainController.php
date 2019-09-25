@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 class HostedDomainController extends Controller
 {
     public function index() {
-        $domains = HostedDomain::all();
+        $domains = HostedDomain::with('client')->orderBy('name', 'asc')->get();
 
         return view('domains.index', compact('domains'));
     }

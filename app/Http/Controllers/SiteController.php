@@ -45,8 +45,9 @@ class SiteController extends Controller
     {
         $services = Service::all();
         $projects = $site->projects->whereNotIn('status', ProjectStatus::Archived);
+        $archived_projects = $site->projects->whereIn('status', ProjectStatus::Archived);
 
-        return view('sites.show' , compact('client', 'site', 'services', 'projects'));
+        return view('sites.show' , compact('client', 'site', 'services', 'projects', 'archived_projects'));
     }
 
     /**
@@ -72,6 +73,7 @@ class SiteController extends Controller
     }
 
     public function destroy(Client $client, Site $site) {
+        $site->favorite->delete();
         $site->delete();
 
         return redirect($client->path());

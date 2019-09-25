@@ -41,6 +41,10 @@ class Site extends Model
         return $this->morphMany(Comment::class, 'commentable');
     }
 
+    public function favorite() {
+        return $this->morphOne(Favorite::class, 'favoriteable');
+    }
+
     public function activities() {
         return $this->morphMany(Activity::class, 'activatable');
     }

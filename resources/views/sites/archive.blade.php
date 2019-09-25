@@ -20,7 +20,7 @@
                             <div class="lg:w-full"><a href="{{ $site->path() }}" class="text-black no-underline">{{ $site->name }}</a></div>
                         </div>
                     @empty
-                        <div>No archives found.</div>
+                        <div class="p-3">No archives found.</div>
                     @endforelse
                 </div>
             </div>

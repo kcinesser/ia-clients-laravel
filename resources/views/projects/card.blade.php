@@ -1,6 +1,6 @@
 <div class="card">
     <h3 class="mb-3">
-        <i class="fa fa-users mr-3"></i><a href="{{ $client->path() }}" class="text-black no-underline">{{ $client->name }}</a>
+        <i class="fa fa-users mr-3"></i><a href="{{ $client->path() }}" class="no-underline">{{ $client->name }}</a>
     </h3>
     <div class="mb-6">
         <p class="text-gray-800 text-xs headline-lead">Status</p>
@@ -29,7 +29,7 @@
     @if($project->site()->exists())
         <div class="mb-6">
             <p class="text-gray-800 text-xs headline-lead">Site</p>
-            <p class="small"><a class="text-blue-500 no-underline" href="{{ $project->site->path() }}">{{ $project->site->name }}</a></p>
+            <p class="small"><a href="{{ $project->site->path() }}">{{ $project->site->name }} <i class="fa fa-share ml-1"></i></a></p>
         </div>
     @endif
     <div class="mb-6">
@@ -51,7 +51,7 @@
 
 
     <div class="text-right">
-        @if ($project->status != 3)
+        @if ($project->status != App\Enums\ProjectStatus::Archived)
             <form class="archive-project-form" method="POST" action="{{ $project->path() . '/archive' }}">
                 @method('PATCH')
                 @csrf
