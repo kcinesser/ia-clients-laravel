@@ -25,11 +25,11 @@ class SendRenewedDomainsNotificationsService
         
         if (empty($remoteDomains)) 
         {
-            Log::info("No domains found to have renewed yesterday.");
+            Log::notice("No domains found to have renewed yesterday.");
         }
         
         foreach($remoteDomains as $remoteDomain) {
-            Log::info("{$remoteDomain->domain} found to have renewed yesterday. Sending Notification");
+            Log::notice("{$remoteDomain->domain} found to have renewed yesterday. Sending Notification");
             
             $hostedDomain = HostedDomain::with('client.accountManager')->where([
                 ['remote_provider_type', RemoteDomainsProviders::getValue($remoteDomain->providerName)],

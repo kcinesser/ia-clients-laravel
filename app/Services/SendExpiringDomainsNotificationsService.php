@@ -25,11 +25,11 @@ class SendExpiringDomainsNotificationsService
         
         if (empty($remoteDomains)) 
         {
-            Log::info("No domains found to be expiring in {$this->daysOut} days.");
+            Log::notice("No domains found to be expiring in {$this->daysOut} days.");
         }
         
         foreach($remoteDomains as $remoteDomain) {
-            Log::info("{$remoteDomain->domain} is expiring in {$this->daysOut} days. Sending Notification");
+            Log::notice("{$remoteDomain->domain} is expiring in {$this->daysOut} days. Sending Notification");
             
             $hostedDomain = HostedDomain::with('client.accountManager')->where([
                 ['remote_provider_type', RemoteDomainsProviders::getValue($remoteDomain->providerName)],
