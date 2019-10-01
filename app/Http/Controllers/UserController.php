@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Enums\UserTypes;
+use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
 
 class UserController extends Controller
 {
@@ -14,15 +16,8 @@ class UserController extends Controller
     	return view('users.create', compact('roles'));
     }
 
-    public function store() {
-
-    	$attributes = request()->validate([
-    	    'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'role' => 'required|numeric',
-            'password' => 'required|confirmed'
-        ]);
-
+    public function store(UserStoreRequest $request) {
+    	$attributes = $request->validated();
     	//encrypt password
     	$attributes['password'] =  bcrypt($attributes['password']);
 
@@ -37,15 +32,9 @@ class UserController extends Controller
         return view('users.edit', compact('user', 'roles'));
     }
 
-    public function update(User $user) {
-
-        $user->update(
-            request()->validate([
-                'name' => 'required',
-                'role' => 'required|numeric',
-                'email' => 'required|email'
-            ])
-        );
+    public function update(UserUpdateRequest $request, User $user) {
+    	$attributes = $request->validated();
+        $user->update($attributes);
 
         return redirect('/settings');
     }

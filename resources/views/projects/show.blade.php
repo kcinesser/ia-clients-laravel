@@ -80,8 +80,8 @@
 
                         @foreach ($project->tasks as $task)
                             <form method="POST" action="{{ $task->path() }}">
-                                {{ method_field('PATCH') }}
-                                {{ csrf_field() }}
+                                @method('PATCH')
+                                @csrf
 
                                 <div class="flex items-center mb-3">
                                     <input class="w-full {{ $task->completed ? 'text-gray-500 line-through' : '' }}" name="body" value="{{ $task->body }}">
@@ -108,7 +108,7 @@
 
                 <div class="mb-12">
                     <h2 class="card-title"><i class="fa fa-pencil-square-o mr-1"></i> Notes</h2>
-                    <form method="POST" action="{{ $project->path() . '/notes' }}">
+                    <form method="POST" action="{{ $project->path() }}">
                         @csrf
                         @method('PATCH')
                         <textarea name="notes" class="card w-full mb-2 min-h-300">{{ $project->notes }}</textarea>

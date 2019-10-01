@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Hosting;
 use App\Enums\Owners;
+use App\Http\Requests\HostingRequest;
 use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Http\Request;
 
@@ -27,14 +28,10 @@ class HostingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(HostingRequest $request)
     {
-
-        Hosting::create($request->validate([
-            'name' => 'required',
-            'details' => 'nullable',
-            'owner' => 'required|numeric'
-        ]));
+        $attributes = $request->validated();
+        Hosting::create($attributes);
 
         return redirect('/settings');
     }
@@ -47,13 +44,10 @@ class HostingController extends Controller
      * @param  \App\Hosting  $hosting
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Hosting $hosting)
+    public function update(HostingRequest $request, Hosting $hosting)
     {
-        $hosting->update($request->validate([
-            'name' => 'required',
-            'details' => 'nullable',
-            'owner' => 'required|numeric'
-        ]));
+        $attributes = $request->validated();
+        $hosting->update($attributes);
 
         return redirect('/settings');
     }

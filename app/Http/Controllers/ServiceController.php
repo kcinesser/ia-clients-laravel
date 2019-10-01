@@ -1,30 +1,26 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\ServiceRequest;
 use App\Service;
 
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
-    public function store() {
-        Service::create($this->validate_data());
+    public function store(ServiceRequest $request) {
+        $attributes = $request->validated();
+        Service::create($attributes);
 
         return redirect('/settings');
     }
 
-    public function update(Service $service) {
-        $service->update($this->validate_data());
+    public function update(ServiceRequest $request, Service $service) {
+        $attributes = $request->validated();
+        $service->update($attributes);
+        
         return redirect('/settings');
-    }
-
-
-    private function validate_data(){
-        return request()->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'price' => 'nullable|numeric'
-        ]);
     }
 
     public function destroy(Service $service) {

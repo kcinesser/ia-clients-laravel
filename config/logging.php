@@ -67,7 +67,7 @@ return [
             'with' => [
                 'stream' => 'php://stderr',
             ],
-            'level' => 'error',
+            'level' => 'error'
         ],
         'stdout' => [
             'driver' => 'monolog',

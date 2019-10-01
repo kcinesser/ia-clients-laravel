@@ -8,6 +8,7 @@ use App\Enums\ClientStatus;
 use App\Enums\SiteStatus;
 use App\Enums\ProjectStatus;
 use App\Enums\RemoteDomainsProviders;
+use App\Http\Requests\ClientRequest;
 
 class ClientController extends Controller
 {
@@ -33,8 +34,8 @@ class ClientController extends Controller
         return view('clients.create', compact('statuses'));
     }
 
-    public function store() {
-	  	$attributes = $this->validate_data();
+    public function store(ClientRequest $request) {
+	  	$attributes = $request->validated();
 
         $client = Client::create($attributes);
 
@@ -48,8 +49,8 @@ class ClientController extends Controller
     	return view ('clients.edit', compact('client', 'statuses'));
     }
 
-    public function update(Client $client) {
-        $attributes = $this->validate_data();
+    public function update(Client $client, ClientRequest $request) {
+        $attributes = $request->validated();
         $client->update($attributes);
 
         return redirect($client->path());
@@ -60,28 +61,6 @@ class ClientController extends Controller
         $client->delete();
 
         return redirect('/');
-    }
-
-    public function notes(Client $client) {
-        $client->update(
-            request()->validate([
-                'notes' => 'nullable'
-            ])
-        );
-
-        return redirect($client->path());
-    }
-
-
-    private function validate_data() {
-        return request()->validate([
-            'name' => 'required|sometimes',
-            'contact_name' => 'nullable',
-            'contact_email' => 'nullable',
-            'contact_phone' => 'nullable',
-            'account_manager_id' => 'required|numeric|sometimes',
-            'status' => 'numeric|sometimes'
-        ]);
     }
 
     public function archives() {

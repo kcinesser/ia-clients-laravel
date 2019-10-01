@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Client;
+use App\Http\Requests\UploadRequest;
 use App\Project;
 use App\Site;
 use App\Upload;
@@ -12,13 +13,15 @@ use Illuminate\Support\Facades\Storage;
 
 class UploadController extends Controller
 {
-    public function store (Request $request, $model, $id) {
-        $file_name = $request->file('file')->getClientOriginalName();
+    public function store (UploadRequest $request, $model, $id) {
+        $file = $request->validated();
+
+        $file_name = $file['file']->getClientOriginalName();
         $name = pathinfo($file_name, PATHINFO_FILENAME);
-		$extension = $request->file('file')->getClientOriginalExtension();
+		$extension = $file['file']->getClientOriginalExtension();
 		$file_name = $name . "_" . time() . "." . $extension;
 
-        Storage::putFileAs('public/uploads/' . date('Y') . '/' . date('m'), $request->file('file'), $file_name, 'public');
+        Storage::putFileAs('public/uploads/' . date('Y') . '/' . date('m'), $file['file'], $file_name, 'public');
 
         if (config('filesystems.default') == 's3') {
             $url = 'https://ia-clients.s3.amazonaws.com/public/uploads/' . date('Y') . '/' . date('m') . '/' . $file_name;

@@ -52,7 +52,7 @@ class Project extends Model
         return $this->morphMany(Upload::class, 'uploadable');
     }
 
-    public function addTask($body) {
-    	return $this->tasks()->create(compact('body'));
+    public function addTask($task) {
+    	return $this->tasks()->create($task);
     }
 }

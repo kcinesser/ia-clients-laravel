@@ -16,7 +16,7 @@ use App\RemoteDomain;
 */
 
 Route::group(['middleware' => 'auth'], function(){
-    Route::resource('activities', 'ActivitiesController')->only(['index']);
+    Route::resource('activities', 'ActivityController')->only(['index']);
     Route::get('/clients/archives', 'ClientController@archives');
     Route::resource('clients', 'ClientController');
     Route::get('/clients/{client}/projects/archives', 'ProjectController@client_project_archives');
@@ -41,10 +41,7 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/projects/archives', 'ProjectController@all_archives');
     Route::get('/sites/archives', 'SiteController@all_archives');
-    Route::patch('/clients/{client}/projects/{project}/notes', 'ProjectController@notes');
-    Route::patch('/clients/{client}/sites/{site}/notes', 'SiteController@notes');
     Route::patch('/clients/{client}/sites/{site}/services', 'SiteController@services');
-    Route::patch('/clients/{client}/notes', 'ClientController@notes');
 
     Route::post('/clients/{client}/projects/{project}/tasks', 'TaskController@store');
     Route::patch('/clients/{client}/projects/{project}/tasks/{task}', 'TaskController@update');
