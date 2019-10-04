@@ -25,8 +25,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('command:domainRenewalMonthRemainingNotice')->everyMinute()->when(function() {
-            return Cron::shouldRun('command:domainRenewalMonthRemainingNotice', 1440);
+        $schedule->command('command:sendDomainRenewalNotices')->everyMinute()->when(function() {
+            return Cron::shouldRun('command:sendDomainRenewalNotices', 1440);
             //returns true every 24 hours (1140 minutes)
         })->environments(['local', 'production']);;
     }
