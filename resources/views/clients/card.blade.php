@@ -4,11 +4,19 @@
     </h3>
     <div class="mb-6">
         <p class="text-gray-800 text-xs headline-lead">Status</p>
-        <p class="small">{{ \App\Enums\ClientStatus::getDescription($client->status) }}</p>
+        <p class="small">{{ App\Enums\ClientStatus::getDescription($client->status) }}</p>
     </div>
     <div class="mb-6">
         <p class="text-gray-800 text-xs headline-lead">Account Manager</p>
         <p class="small">{{ $client->accountManager->name }}</p>
+    </div>
+    <div class="mb-6">
+        <p class="text-gray-800 text-xs headline-lead">Enterprise Client ID</p>
+        @if ($client->enterprise_client_id)
+        <p class="small">{{ $client->enterprise_client_id }}</p>
+        @else
+        <p class="small italic">Not Set</p>
+        @endif
     </div>
     @if ($client->contact_name || $client->contact_email || $client->contact_phone)
         <div class="mb-6">

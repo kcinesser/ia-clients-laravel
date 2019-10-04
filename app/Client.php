@@ -9,6 +9,11 @@ use App\Enums\SiteStatus;
 class Client extends Model
 {
     protected $guarded = [];
+    
+    protected $casts = [
+        'status' => 'integer',
+        'enterprise_client_id' => 'integer'
+    ];
 
     public function path() {
         return "/clients/{$this->id}";

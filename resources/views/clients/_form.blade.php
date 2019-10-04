@@ -61,6 +61,14 @@
     </div>
 </div>
 
+<div class="field mb-6{{ $errors->has('enterprise_client_id') ? ' has-error' : '' }}">
+    <label for="enterprise_client_id" class="label text-sm mb-2 block">Enterprise Client ID</label>
+
+    <div class="control">
+        <input type="text" name="enterprise_client_id" value="{{ $client->enterprise_client_id }}">
+    </div>
+</div>
+
 <div class="modal-footer">
     <a href="" class="button btn-blue" data-dismiss="modal">Cancel</a>
     <button type="submit" class="button is-link">{{ $buttonText }}</button>

@@ -31,7 +31,8 @@ class ClientRequest extends FormRequest
             'contact_phone' => 'nullable',
             'account_manager_id' => 'required|numeric|sometimes',
             'status' => 'numeric|sometimes',
-            'notes' => 'nullable'
+            'notes' => 'nullable',
+            'enterprise_client_id' => 'nullable|numeric|sometimes',
         ];
     }
 }
