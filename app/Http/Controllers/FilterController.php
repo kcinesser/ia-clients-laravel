@@ -41,10 +41,14 @@ class FilterController extends Controller
     			$results = App\Project::all()->whereNotIn('status', ProjectStatus::Archived);
 
     			foreach ($results as $result) {
+    			    $result->projectId = $result->id;
     				$result->clientName = $result->client->name;
     				$result->status = \App\Enums\ProjectStatus::getDescription($result->status);
     				$result->developerName = $result->developer->name;
+    				$result->clientAccountManagerName = ($result->client->accountManager->name ?? '');
+    				$result->endDate = $result->end_date;
     				$result->URL = $result->path();
+    				$result->favorite_id = ($result->favorite->id ?? NULL);
     			}
 
     			break;

@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 
 use Tests\TestCase;
+use App\Enums\ProjectStatus;
+use App\Enums\SiteStatus;
 use App\Client;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -99,18 +101,51 @@ class ManageClientsTest extends TestCase
         $response->assertRedirect('/');
         
         $this->assertDatabaseHas('clients', [
+            'id' => $client->id,
             'name' => $client->name,
             'status' => 3
         ]);
-
+    }
+    
+    /** @test */
+    public function archiving_a_client_also_archives_its_related_projects() {
+        $this->signIn();
+        
+        $client = factory('App\Client')->create(['account_manager_id' => auth()->id()]);
+        $host = $this->factoryWithoutObservers('App\Hosting')->create();
+        $site = factory('App\Site')->create(['client_id' => $client->id, 'host_id' => $host->id]);
+        $project = factory('App\Project')->create(['client_id' => $client->id]);
+        
+        $response = $this->patch($client->path() . '/archive');
+        
+        $response->assertRedirect('/');
+        
+        
         $this->assertDatabaseHas('projects', [
+            'client_id' => $client->id,
             'title' => $project->title,
-            'status' => 3
+            'status' => ProjectStatus::Archived,
         ]);
-
+    }
+    
+    /** @test */
+    public function archiving_a_client_also_archives_its_related_sites() {
+        $this->signIn();
+        
+        $client = factory('App\Client')->create(['account_manager_id' => auth()->id()]);
+        $host = $this->factoryWithoutObservers('App\Hosting')->create();
+        $site = factory('App\Site')->create(['client_id' => $client->id, 'host_id' => $host->id]);
+        $project = factory('App\Project')->create(['client_id' => $client->id]);
+        
+        $response = $this->patch($client->path() . '/archive');
+        
+        $response->assertRedirect('/');
+        
+        
         $this->assertDatabaseHas('sites', [
+            'client_id' => $client->id,
             'name' => $site->name,
-            'status' => 4
+            'status' => SiteStatus::Archived
         ]);
     }
 }
