@@ -11816,11 +11816,11 @@ $('.sort').click(function (e) {
 				case "project":
 					$('#project-modal-list').empty();
 					$.each(data, function (i) {
-						var favorite = '<form method="POST" action="/favorite/project/' + data[i].projectId + '"><input type="hidden" name="_token" value="' + $('meta[name="csrf-token"]').attr('content') + '"><button type="submit"><i class="fa fa-star-o text-yellow-300"></i></button></form>';
+						var favorite = '<form method="POST" action="/favorite/project/' + data[i].id + '"><input type="hidden" name="_token" value="' + $('meta[name="csrf-token"]').attr('content') + '"><button type="submit"><i class="fa fa-star-o text-yellow-300"></i></button></form>';
 						if (Number.isInteger(parseInt(data[i].favorite_id))) {
 							favorite = '<form method="POST" action="/favorite/' + data[i].favorite_id + '"><input type="hidden" name="_method" value="DELETE"><input type="hidden" name="_token" value="' + $('meta[name="csrf-token"]').attr('content') + '"><button type="submit"><i class="fa fa-star text-yellow-300"></i></button></form>';
 						}
-						$('#project-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/6"><a href="' + data[i].URL + '" class="text-orange-500 no-underline lg:text-sm">' + data[i].title + '</a></div><div class="lg:w-1/4"><p>' + data[i].status + '</p></div><div class="lg:w-1/6"><p>' + data[i].developerName + '</p></div><div class="lg:w-1/6"><p>' + data[i].clientAccountManagerName + '</p></div><div class="lg:w-1/6"><p>' + data[i].end_date + '</p></div><div class="lg:w-1/6 text-right">' + favorite + '</div></div>');
+						$('#project-modal-list').append('<div class="lg:flex justify-between p-3"><div class="lg:w-1/6"><a href="' + data[i].URL + '" class="text-orange-500 no-underline lg:text-sm">' + data[i].title + '</a></div><div class="lg:w-1/4"><p>' + data[i].status + '</p></div><div class="lg:w-1/6"><p>' + data[i].developerName + '</p></div><div class="lg:w-1/6"><p>' + data[i].clientAccountManagerName + '</p></div><div class="lg:w-1/6"><p>' + data[i].formattedEndDate + '</p></div><div class="lg:w-1/6 text-right">' + favorite + '</div></div>');
 					});
 					break;
 				case "site":

@@ -27,7 +27,7 @@
                     <div class="lg:w-1/6"><p>Status <button class="sort" data-order="asc" data-sort="status" data-model="project"><i class="fa fa-sort mr-1"></i></button></p></div>
                     <div class="lg:w-1/6"><p>Developer <button class="sort" data-order="asc" data-sort="developerName" data-model="project"><i class="fa fa-sort mr-1"></i></button></p></div>
                     <div class="lg:w-1/6"><p>Account Manager <button class="sort" data-order="asc" data-sort="clientAccountManagerName" data-model="project"><i class="fa fa-sort mr-1"></i></button></p></div>
-                	<div class="lg:w-1/6"><p>Due Date <button class="sort" data-order="asc" data-sort="endDate" data-model="project"><i class="fa fa-sort mr-1"></i></button></p></div>
+                	<div class="lg:w-1/6"><p>Due Date <button class="sort" data-order="asc" data-sort="end_date" data-model="project"><i class="fa fa-sort mr-1"></i></button></p></div>
                 	<div class="lg:w-1/6"></div>
                 </div>
                 <div id="project-modal-list">
@@ -37,7 +37,7 @@
                             <div class="lg:w-1/6"><p>{{ \App\Enums\ProjectStatus::getDescription($project->status) }}</p></div>
                             <div class="lg:w-1/6"><p>{{ !is_null($project->developer) ? $project->developer->name : "" }}</p></div>
                             <div class="lg:w-1/6"><p>{{ $project->client->accountManager->name ?? "" }}</p></div>
-                            <div class="lg:w-1/6"><p>{{ isset($project->end_date) ? \Carbon\Carbon::parse($project->end_date)->format('n/j/Y') : "None" }}</p></div>
+                            <div class="lg:w-1/6"><p>{{ isset($project->end_date) ? \Carbon\Carbon::parse($project->end_date)->format('n/j/Y') : "Not Set" }}</p></div>
                             <div class="lg:w-1/6 text-right">
                                 @if(!$project->favorite)
                                     <form method="POST" action='/favorite/project/{{ $project->id }}'>
