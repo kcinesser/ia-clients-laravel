@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Libraries\Enterprise\EnterpriseClient;
 use App\Libraries\GoDaddy\GoDaddyClient;
 use GuzzleHttp\Client;
 use Illuminate\Support\ServiceProvider;
@@ -33,5 +34,11 @@ class LibraryServiceProvider extends ServiceProvider
         $this->app->singleton(GoDaddyClient::class, function ($app) {
             return new GoDaddyClient($app->make(Client::class), config('services.godaddy.api.url'), config('services.godaddy.api.key'), config('services.godaddy.api.secret'));
         });
+
+        $this->app->singleton(EnterpriseClient::class, function($app) {
+            return new EnterpriseClient($app->make(Client::class), config('services.enterprise.api.url'), config('services.enterprise.api.key'), config('services.enterprise.api.secret'));
+        });
+
+        dd(resolve('App\Libraries\Enterprise\EnterpriseClient'));
     }
 }

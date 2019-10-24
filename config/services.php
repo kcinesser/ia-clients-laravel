@@ -58,4 +58,12 @@ return [
         'accounts_alert_channel' => env('SLACK_ACCOUNTS_ALERT_CHANNEL'),
     ],
 
+    'enterprise' => [
+        'api' => [
+            'url' => env('ENTERPRISE_URL'),
+            'key' => env('ENTERPRISE_KEY'),
+            'secret' => env('ENTERPRISE_SECRET'),
+        ],
+    ],
+
 ];
