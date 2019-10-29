@@ -94,8 +94,8 @@ To run any pending migrations. In vagrant, run:
     
     php artisan migrate
     
- 
-OR to reset the database and run all database seeds, run:
+
+(optional) To reset the database and run all database seeds, run:
 
     php artisan migrate:fresh --seed
 

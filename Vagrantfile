@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
     #config.vm.synced_folder ".", "/var/www", :nfs => { :mount_options => ["dmode=777","fmode=777"] }
 
     config.vm.provision "initial-setup", type: "shell" do |s|
-        s.inline = 'cd /var/www/; php artisan migrate:fresh --seed --database=testing';
+        s.inline = 'cd /var/www/; php artisan migrate:fresh --seed; php artisan migrate:fresh --seed --database=testing;';
     end
 
 end
