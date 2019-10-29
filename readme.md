@@ -27,8 +27,15 @@ Add the following entry to your `/etc/hosts` file:
 
 
 ### Step 3
+Download the ia-clients.box file located in the ia-client's AWS S3 bucket: (ia-clients/vbox/iaclients.box)
 
-Using the terminal, access the project directory: `/ia-clients-laravel`
+
+Place the iaclients.box file in the repo directory. Using the terminal, access the project directory: `/ia-clients-laravel` Then run the following command:
+
+    vagrant box add ia-clients-box iaclients.box
+
+Once complete, you can delete your iaclients.box file.
+
 
 
 Run the following command:
@@ -36,7 +43,7 @@ Run the following command:
     vagrant up
 
 
-Wait for vagrant to to finish booting up. After its done, run:
+Wait for vagrant to finish booting up. After it's done, run:
 
     vagrant ssh
 
@@ -73,21 +80,22 @@ After installing successfully, you only need to run `vagrant up` (inside the pro
 
 ### Step 4
 
-Locally, or via vagrant box*, run:
+To install any module dependencies and combine assets, locally, or via vagrant box*, run:
     
     npm install
     
-*If you have issues running via vagrant box, modify Vagrantfile file, change from `:mount_options => ["dmode=777", "fmode=666"]` to `:mount_options => ["dmode=777", "fmode=777"]`. After changing, reload box `vagrant reload --provision`
     
 Then:
 
     npm run dev
     
-To install any module dependencies and combile assets.
 
-Then, in vagrant, run:
-
+To run any pending migrations. In vagrant, run:
+    
     php artisan migrate
     
-To run any pending migrations. At this point, there is not seed/development database, so the first time you set up, you'll be starting from scratch.
+
+(optional) To reset the database and run all database seeds, run:
+
+    php artisan migrate:fresh --seed
 
