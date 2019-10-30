@@ -38,7 +38,5 @@ class LibraryServiceProvider extends ServiceProvider
         $this->app->singleton(EnterpriseClient::class, function($app) {
             return new EnterpriseClient($app->make(Client::class), config('services.enterprise.api.url'), config('services.enterprise.api.key'), config('services.enterprise.api.secret'));
         });
-
-        dd(resolve('App\Libraries\Enterprise\EnterpriseClient'));
     }
 }
