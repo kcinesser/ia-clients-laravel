@@ -23,19 +23,22 @@
         <div class="tab-content settings-tabs" id="settingsTabContent">
             <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
                 <div class="lg:flex p-3 sm:hidden hidden lg:block font-semibold text-blue-500">
-                    <div class="lg:w-1/5"><p>Project Title <button class="sort" data-order="asc" data-sort="title" data-model="project"><i class="fa fa-sort mr-1"></i></button></p></div>
-                    <div class="lg:w-1/5"><p>Client <button class="sort" data-order="asc" data-sort="clientName" data-model="project"><i class="fa fa-sort mr-1"></i></button></p></div>
-                    <div class="lg:w-1/5"><p>Status <button class="sort" data-order="asc" data-sort="status" data-model="project"><i class="fa fa-sort mr-1"></i></button></p></div>
-                    <div class="lg:w-1/5"><p>Developer <button class="sort" data-order="asc" data-sort="developerName" data-model="project"><i class="fa fa-sort mr-1"></i></button></p></div>
+                    <div class="lg:w-1/6"><p>Project Title <button class="sort" data-order="asc" data-sort="title" data-model="project"><i class="fa fa-sort mr-1"></i></button></p></div>
+                    <div class="lg:w-1/6"><p>Status <button class="sort" data-order="asc" data-sort="status" data-model="project"><i class="fa fa-sort mr-1"></i></button></p></div>
+                    <div class="lg:w-1/6"><p>Developer <button class="sort" data-order="asc" data-sort="developerName" data-model="project"><i class="fa fa-sort mr-1"></i></button></p></div>
+                    <div class="lg:w-1/6"><p>Account Manager <button class="sort" data-order="asc" data-sort="clientAccountManagerName" data-model="project"><i class="fa fa-sort mr-1"></i></button></p></div>
+                	<div class="lg:w-1/6"><p>Due Date <button class="sort" data-order="asc" data-sort="end_date" data-model="project"><i class="fa fa-sort mr-1"></i></button></p></div>
+                	<div class="lg:w-1/6"></div>
                 </div>
                 <div id="project-modal-list">
                     @foreach($projects as $project)
                         <div class="lg:flex justify-between p-3">
-                            <div class="lg:w-1/5"><a href="{{ $project->path() }}">{{ $project->title }}</a></div>
-                            <div class="lg:w-1/5"><p>{{ $project->client->name }}</p></div>
-                            <div class="lg:w-1/5"><p>{{ \App\Enums\ProjectStatus::getDescription($project->status) }}</p></div>
-                            <div class="lg:w-1/5"><p>{{ !is_null($project->developer) ? $project->developer->name : "" }}</p></div>
-                            <div class="lg:w-1/5 text-right">
+                            <div class="lg:w-1/6"><a href="{{ $project->path() }}">{{ $project->title }}</a></div>
+                            <div class="lg:w-1/6"><p>{{ \App\Enums\ProjectStatus::getDescription($project->status) }}</p></div>
+                            <div class="lg:w-1/6"><p>{{ !is_null($project->developer) ? $project->developer->name : "" }}</p></div>
+                            <div class="lg:w-1/6"><p>{{ $project->client->accountManager->name ?? "" }}</p></div>
+                            <div class="lg:w-1/6"><p>{{ isset($project->end_date) ? \Carbon\Carbon::parse($project->end_date)->format('n/j/Y') : "Not Set" }}</p></div>
+                            <div class="lg:w-1/6 text-right">
                                 @if(!$project->favorite)
                                     <form method="POST" action='/favorite/project/{{ $project->id }}'>
                                         @csrf

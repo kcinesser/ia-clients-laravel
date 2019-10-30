@@ -37,10 +37,12 @@
 							<div class="lg:w-1/3 p-2">
 								@if(isset($project->go_live_date))
 									<p class="text-gray-500 text-sm font-normal">Due: {{ \Carbon\Carbon::parse($project->go_live_date)->format('n/j/Y') }}
-										@if (\Carbon\Carbon::parse($project->go_live_date)->isToday())
-											<i class="fa fa-exclamation text-red-500 ml-2 cursor-pointer" data-toggle="modal" data-target="legendModal"></i>
-										@elseif($project->status == App\Enums\ProjectStatus::Complete)
+										@if($project->status == App\Enums\ProjectStatus::Complete)
 											<i class="fa fa-check text-green-500 ml-2 cursor-pointer" data-toggle="modal" data-target="#legendModal"></i>
+										@elseif($project->status == App\Enums\ProjectStatus::Hold)
+											<i class="fa fa-exclamation text-yellow-500 ml-2 cursor-pointer" data-toggle="modal" data-target="#legendModal"></i>
+										@elseif (\Carbon\Carbon::parse($project->go_live_date)->isToday())
+											<i class="fa fa-exclamation text-red-500 ml-2 cursor-pointer" data-toggle="modal" data-target="#legendModal"></i>
 										@elseif(\Carbon\Carbon::parse($project->go_live_date)->isPast())
 											<i class="fa fa-exclamation-triangle text-red-500 ml-2 cursor-pointer" data-toggle="modal" data-target="#legendModal"></i>
 										@elseif(\Carbon\Carbon::parse($project->go_live_date) < \Carbon\Carbon::now()->addWeek())

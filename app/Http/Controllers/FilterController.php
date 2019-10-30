@@ -44,7 +44,10 @@ class FilterController extends Controller
     				$result->clientName = $result->client->name;
     				$result->status = \App\Enums\ProjectStatus::getDescription($result->status);
     				$result->developerName = $result->developer->name;
+    				$result->clientAccountManagerName = ($result->client->accountManager->name ?? '');
+    				$result->formattedEndDate = (!empty($result->end_date) ? \Carbon\Carbon::parse($result->end_date)->format('n/j/Y') : 'Not Set');
     				$result->URL = $result->path();
+    				$result->favorite_id = ($result->favorite->id ?? NULL);
     			}
 
     			break;
