@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Log;
 use SoapClient;
 use SoapHeader;
+use SoapParam;
 use SoapVar;
 
 class requestEnterpriseJobs extends Command
@@ -48,17 +49,23 @@ class requestEnterpriseJobs extends Command
             'uri' => 'http://localhost/EnterpriseWebService/Enterprise Connect',
             'soap_version' => SOAP_1_2,
             'trace' => 1,
+            'login' => env('ENTERPRISE_USERNAME'),
+            'password' => env('ENTERPRISE_PASSWORD')
         );
 
-        $soapClient = new SoapClient(null, $options);
-
-        $params = array();
-        $params[] = new SoapVar('123', null, null, null, 'JobNumber' );
+        $soapClient = new SoapClient(null, $options);        
 
         try{   
-            $result = $soapClient->__soapCall('GetJobProductionEntries', $params);
+            $result = $soapClient->__soapCall('GetJobProductionEntries',
+                array(
+                    new SoapVar(array(
+                        new SoapVar(env('ENTERPRISE_USERNAME'), XSD_STRING, null, null, 'Username'),
+                        new SoapVar(env('ENTERPRISE_PASSWORD'), XSD_STRING, null, null, 'Password')
+                    ), XSD_ANYTYPE, null, null, 'Credentials'),
+                    new SoapVar('348919', XSD_STRING, null, null, 'JobNumber')
+                )
+            );
             print_r($soapClient->__getLastRequest());
-            print_r($result);
         } catch (\Exception $e){
             print_r($soapClient->__getLastRequest());
             throw new \Exception("SOAP request failed! Response: ".$e);
