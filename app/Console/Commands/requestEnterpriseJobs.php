@@ -50,28 +50,54 @@ class requestEnterpriseJobs extends Command
             'uri' => 'http://localhost/EnterpriseWebService/Enterprise Connect',
             'soap_version' => SOAP_1_2,
             'trace' => 1,
-            // 'login' => env('ENTERPRISE_USERNAME'),
-            // 'password' => env('ENTERPRISE_PASSWORD'),
             'connection_timeout' => 60,
+            'exceptions' => 0
         );
 
-        $soapClient = new SoapClient(null, $options);
+        $soapClient = new SoapClient('https://api.mis.print.firespring.com/EnterpriseWebService/Service.asmx?WSDL', $options);
 
-        var_dump($soapClient);
-
-        $params = array();
-        $credentials = array();
-        $credentials[] = new SoapVar(env('ENTERPRISE_USERNAME'), XSD_STRING, null, null, 'Username');
-        $credentials[] = new SoapVar(env('ENTERPRISE_PASSWORD'), XSD_STRING, null, null, 'Password');
-        $params[] = new SoapVar($credentials, SOAP_ENC_OBJECT, null, null, 'Credentials');
-        $params[] = new SoapVar($job_number, XSD_STRING, null, null, 'JobNumber' );
+        $params = array(
+            'Credentials' => array(
+                'Username' => env('ENTERPRISE_USERNAME'),
+                'Password' => env('ENTERPRISE_PASSWORD')
+            ),
+            'JobNumber' => $job_number
+        );
 
         try {   
-            $result = $soapClient->__soapCall('GetJobProductionEntries', $params);
+            $result = $soapClient->GetJobProductionEntries($params);
         } catch (\Exception $e){
-            print_r($soapClient->__getLastRequest());
             throw new \Exception("SOAP request failed! Response: ".$e);
         }
+
+        $total = 0;
+
+        foreach($result->GetJobProductionEntriesResult->ProductionEntry as $entry) {
+            if($entry->Description === "Interactive Development" || $entry->Description === "Interactive Project Management") {
+                $total += $entry->ElapsedTime;
+            }
+        }
+
+        echo("Total time: " . $total / 60 . "\n");
+
+
+        $params2 = array(
+            'Credentials' => array(
+                'Username' => env('ENTERPRISE_USERNAME'),
+                'Password' => env('ENTERPRISE_PASSWORD')
+            ),
+            'JobType' => 'Creative',
+            'FilterType' => '2019',
+            'FilteryCriteria' => '2019'
+        );
+
+        try {   
+            $result2 = $soapClient->GetJobList($params2);
+        } catch (\Exception $e){
+            throw new \Exception("SOAP request failed! Response: ".$e);
+        }
+
+        var_dump($result2);
 
         Log::info('requestEnterpriseJobs Command run successfully.');
     }
