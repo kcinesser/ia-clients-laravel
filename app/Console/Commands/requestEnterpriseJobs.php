@@ -5,8 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Log;
 use SoapClient;
-use SoapHeader;
-use SoapParam;
+use SoapFault;
 use SoapVar;
 
 class requestEnterpriseJobs extends Command
@@ -44,28 +43,31 @@ class requestEnterpriseJobs extends Command
     {
         Log::info('Running requestEnterpriseJobs command.');
 
+        $job_number = '348919';
+
         $options = array(
             'location' => 'https://api.mis.print.firespring.com/EnterpriseWebService/Service.asmx',
             'uri' => 'http://localhost/EnterpriseWebService/Enterprise Connect',
             'soap_version' => SOAP_1_2,
             'trace' => 1,
-            'login' => env('ENTERPRISE_USERNAME'),
-            'password' => env('ENTERPRISE_PASSWORD')
+            // 'login' => env('ENTERPRISE_USERNAME'),
+            // 'password' => env('ENTERPRISE_PASSWORD'),
+            'connection_timeout' => 60,
         );
 
-        $soapClient = new SoapClient(null, $options);        
+        $soapClient = new SoapClient(null, $options);
 
-        try{   
-            $result = $soapClient->__soapCall('GetJobProductionEntries',
-                array(
-                    new SoapVar(array(
-                        new SoapVar(env('ENTERPRISE_USERNAME'), XSD_STRING, null, null, 'Username'),
-                        new SoapVar(env('ENTERPRISE_PASSWORD'), XSD_STRING, null, null, 'Password')
-                    ), XSD_ANYTYPE, null, null, 'Credentials'),
-                    new SoapVar('348919', XSD_STRING, null, null, 'JobNumber')
-                )
-            );
-            print_r($soapClient->__getLastRequest());
+        var_dump($soapClient);
+
+        $params = array();
+        $credentials = array();
+        $credentials[] = new SoapVar(env('ENTERPRISE_USERNAME'), XSD_STRING, null, null, 'Username');
+        $credentials[] = new SoapVar(env('ENTERPRISE_PASSWORD'), XSD_STRING, null, null, 'Password');
+        $params[] = new SoapVar($credentials, SOAP_ENC_OBJECT, null, null, 'Credentials');
+        $params[] = new SoapVar($job_number, XSD_STRING, null, null, 'JobNumber' );
+
+        try {   
+            $result = $soapClient->__soapCall('GetJobProductionEntries', $params);
         } catch (\Exception $e){
             print_r($soapClient->__getLastRequest());
             throw new \Exception("SOAP request failed! Response: ".$e);
